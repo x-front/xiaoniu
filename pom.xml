@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.xiaoniu</groupId>
   <artifactId>xiaoniu-root</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>1.0.0</version>
   <packaging>pom</packaging>
   <modules>
   	<module>common</module>
@@ -11,4 +11,19 @@
   	<module>xiaoniu-db</module>
   	<module>xiaoniu-service</module>
   </modules>
+  
+  <properties>
+  		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.version>1.0.0</project.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		
+		<mybatis.version>3.3.0</mybatis.version>
+		<mapper.version>3.3.4</mapper.version>
+		<mapper.pagehelper.version>4.1.1</mapper.pagehelper.version>
+		<mysql.version>5.1.35</mysql.version>
+		
+		<spring.version>4.2.4.RELEASE</spring.version>
+  </properties>
+  
 </project>

@@ -5,14 +5,16 @@
   <parent>
     <groupId>com.xiaoniu</groupId>
     <artifactId>xiaoniu-root</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
   </parent>
-  <groupId>com.xiaoniu</groupId>
+  
   <artifactId>xiaoniu-admin</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
+  
   <name>xiaoniu-admin Maven Webapp</name>
   <url>http://maven.apache.org</url>
+  
   <dependencies>
     <dependency>
       <groupId>junit</groupId>

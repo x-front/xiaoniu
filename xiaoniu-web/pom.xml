@@ -5,14 +5,15 @@
   <parent>
     <groupId>com.xiaoniu</groupId>
     <artifactId>xiaoniu-root</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
   </parent>
-  <groupId>com.xiaoniu</groupId>
+  
   <artifactId>xiaoniu-web</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
   <name>xiaoniu-web Maven Webapp</name>
   <url>http://maven.apache.org</url>
+  
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -20,6 +21,26 @@
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
+    
+    <!-- 引用其他模块 -->
+    <dependency>
+    	<groupId>com.xiaoniu</groupId>
+    	<artifactId>xiaoniu-service</artifactId>
+    	<version>${project.version}</version>
+    </dependency>
+    
+    <dependency>
+    	<groupId>com.xiaoniu</groupId>
+    	<artifactId>xiaoniu-db</artifactId>
+    	<version>${project.version}</version>
+    </dependency>
+    
+    <dependency>
+    	<groupId>com.xiaoniu</groupId>
+    	<artifactId>common</artifactId>
+    	<version>${project.version}</version>
+    </dependency>
+    
   </dependencies>
   <build>
     <finalName>xiaoniu-web</finalName>
