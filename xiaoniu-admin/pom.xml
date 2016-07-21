@@ -25,5 +25,11 @@
   </dependencies>
   <build>
     <finalName>xiaoniu-admin</finalName>
+    
+    	<plugins>
+    		<plugin>
+    			<artifactId></artifactId>
+    		</plugin>
+    	</plugins>
   </build>
 </project>
