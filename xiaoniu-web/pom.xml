@@ -3,13 +3,13 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>com.xiaoniu</groupId>
+    <groupId>com.xiaoniu-root</groupId>
     <artifactId>xiaoniu-root</artifactId>
     <version>1.0.0</version>
   </parent>
   
   <artifactId>xiaoniu-web</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.1</version>
   <packaging>war</packaging>
   <name>xiaoniu-web Maven Webapp</name>
   <url>http://maven.apache.org</url>
@@ -44,5 +44,38 @@
   </dependencies>
   <build>
     <finalName>xiaoniu-web</finalName>
+    <plugins>
+	    <plugin>
+				<!-- YUI Compressor Maven压缩插件 -->
+				<groupId>net.alchim31.maven</groupId>
+				<artifactId>yuicompressor-maven-plugin</artifactId>
+				<version>1.4.0</version>
+				<executions>
+					<execution>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>compress</goal>
+						</goals>
+						<configuration>
+							<!-- 读取js,css文件采用UTF-8编码 -->
+							<encoding>UTF-8</encoding>
+							<excludes>
+								<exclude>**/*.min.js</exclude>
+								<exclude>**/*.min.css</exclude>
+							</excludes>
+							<includes>  
+		                        <include>**/*.js</include>  
+		                        <include>**/*.css</include>  
+		                    </includes>
+							<nosuffix>true</nosuffix>
+							<linebreakpos>-1</linebreakpos>
+							<jswarn>false</jswarn>
+							<force>false</force>
+							<sourceDirectory>src/main/resources/js/</sourceDirectory>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
   </build>
 </project>

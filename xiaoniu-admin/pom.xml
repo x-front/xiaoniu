@@ -3,13 +3,12 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>com.xiaoniu</groupId>
+    <groupId>com.xiaoniu-root</groupId>
     <artifactId>xiaoniu-root</artifactId>
     <version>1.0.0</version>
   </parent>
   
   <artifactId>xiaoniu-admin</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
   
   <name>xiaoniu-admin Maven Webapp</name>
@@ -22,14 +21,105 @@
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
+    
+    <!-- 引用其他模块 -->
+    <dependency>
+    	<groupId>com.xiaoniu</groupId>
+    	<artifactId>xiaoniu-service</artifactId>
+    	<version>${project.version}</version>
+    </dependency>
+    
+    <dependency>
+    	<groupId>com.xiaoniu</groupId>
+    	<artifactId>xiaoniu-db</artifactId>
+    	<version>${project.version}</version>
+    </dependency>
+    
+    
+    <dependency>
+    	<groupId>com.xiaoniu</groupId>
+    	<artifactId>common</artifactId>
+    	<version>${project.version}</version>
+    </dependency>
   </dependencies>
   <build>
     <finalName>xiaoniu-admin</finalName>
     
-    	<plugins>
-    		<plugin>
-    			<artifactId></artifactId>
-    		</plugin>
-    	</plugins>
+    <filters>
+		<filter>src/main/filters/filter-${env}.properties</filter>
+	</filters>
+    
+    <resources>
+    	<resource>
+    		<directory>src/main/resources</directory>
+    		<excludes>
+    			<exclude>configs/jdbc.properties</exclude>
+    			<exclude>configs/config.properties</exclude>
+    		</excludes>
+    		<filtering>false</filtering>
+    	</resource>
+    	<resource>
+    		<directory>src/main/resources</directory>
+    		<includes>
+    			<include>configs/jdbc.properties</include>
+    			<include>configs/config.properties</include>
+    		</includes>
+    		<filtering>true</filtering>
+    	</resource>
+    </resources>
+    
+    <plugins>
+    	<plugin>
+			<!-- YUI Compressor Maven压缩插件 -->
+			<groupId>net.alchim31.maven</groupId>
+			<artifactId>yuicompressor-maven-plugin</artifactId>
+			<version>1.4.0</version>
+			<executions>
+				<execution>
+					<phase>prepare-package</phase>
+					<goals>
+						<goal>compress</goal>
+					</goals>
+					<configuration>
+						<!-- 读取js,css文件采用UTF-8编码 -->
+						<encoding>UTF-8</encoding>
+						<excludes>
+							<exclude>**/*.min.js</exclude>
+							<exclude>**/*.min.css</exclude>
+						</excludes>
+						<includes>  
+	                        <include>**/*.js</include>  
+	                        <include>**/*.css</include>  
+	                    </includes>  
+						<nosuffix>true</nosuffix>
+						<linebreakpos>-1</linebreakpos>
+						<jswarn>false</jswarn>
+						<force>false</force>
+						<sourceDirectory>src/main/resources/js/</sourceDirectory>
+					</configuration>
+				</execution>
+			</executions>
+		</plugin>
+    </plugins>
+    
   </build>
+  
+  <profiles>
+  	<profile>
+  		<id>test</id>
+  		<properties>
+  			<env>test</env>
+  		</properties>
+  		<activation>
+			<activeByDefault>true</activeByDefault>
+		</activation>
+  	</profile>
+  	<profile>
+  		<id>product</id>
+  		<properties>
+  			<env>product</env>
+  		</properties>
+  	</profile>
+  </profiles>
+  
 </project>

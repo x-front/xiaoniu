@@ -3,13 +3,13 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>com.xiaoniu</groupId>
+    <groupId>com.xiaoniu-root</groupId>
     <artifactId>xiaoniu-root</artifactId>
     <version>1.0.0</version>
   </parent>
   
   <artifactId>xiaoniu-db</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>1.0.0</version>
   <name>xiaoniu-db</name>
   <url>http://maven.apache.org</url>
   <properties>
@@ -23,4 +23,8 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+  <build>
+  	<finalName>${project.name}</finalName>
+  </build>
+  <groupId>com.xiaoniu</groupId>
 </project>

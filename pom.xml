@@ -1,6 +1,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.xiaoniu</groupId>
+  <groupId>com.xiaoniu-root</groupId>
   <artifactId>xiaoniu-root</artifactId>
   <version>1.0.0</version>
   <packaging>pom</packaging>
@@ -14,7 +14,7 @@
   
   <properties>
   		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.version>1.0.0</project.version>
+		<project.version>0.0.1</project.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		
@@ -27,11 +27,11 @@
 		
 		<jetty.version>8.1.1.v20120215</jetty.version>
   </properties>
-  
+  <!-- 
   <repositories>
   	<repository>
-  		<id>central</id>
-  		<url>http://127.0.0.1:8081/nexus/content/repositories/releases/</url>
+  		<id>3rd central</id>
+  		<url>http://localhost:8081/repository/3rd-release/</url>
   		<name>Central Repository</name>
 		<releases>
 			<enabled>true</enabled>
@@ -40,18 +40,32 @@
 			<enabled>true</enabled>
 		</snapshots>
   	</repository>
+  	<repository>
+  		<id>Maven central</id>
+  		<url>http://localhost:8081/repository/maven-central/</url>
+  		<name>Maven Central Repository</name>
+		<releases>
+			<enabled>true</enabled>
+		</releases>
+		<snapshots>
+			<enabled>true</enabled>
+		</snapshots>
+  	</repository>
   </repositories>
+  
   <distributionManagement>
 		<repository>
-			<id>nf-nexus-release</id>
-			<url>http://127.0.0.1:8081/nexus/content/repositories/releases/</url>
+			<id>xiaoniu-nexus-release</id>
+			<url>http://localhost:8081/repository/3rd-release/</url>
+			<uniqueVersion>false</uniqueVersion>
 		</repository>
 		<snapshotRepository>
-			<id>nf-nexus-snapshots</id>
-			<url>http://127.0.0.1:8081/nexus/content/repositories/snapshots/</url>
+			<id>xiaoniu-nexus-snapshots</id>
+			<url>http://localhost:8081/repository/3rd-Snapshot/</url>
+			<uniqueVersion>false</uniqueVersion>
 		</snapshotRepository>
   </distributionManagement>
-  
+   -->
   <build>
   	<plugins>
   		<!--compiler -->
@@ -96,7 +110,6 @@
 				</configuration>
 			</plugin>
 		
-		<!-- compress -->
   	</plugins>
   </build>
   
