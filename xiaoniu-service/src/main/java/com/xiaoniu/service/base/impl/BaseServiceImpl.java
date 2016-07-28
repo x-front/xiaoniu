@@ -74,7 +74,7 @@ public abstract class BaseServiceImpl<T extends BaseVO> implements BaseService<T
 			}
 			return c;
 		}else{
-			throw new RuntimeException("id is not null");
+			throw new RuntimeException("id 不能为空");
 		}
 		
 	}
@@ -129,6 +129,23 @@ public abstract class BaseServiceImpl<T extends BaseVO> implements BaseService<T
 	public void afterPropertiesSet() throws Exception {
 		// TODO Auto-generated method stub
 		this.logger.info(this.getClass()+"初始化完毕...");
+	}
+	
+	@Override
+	public int batchUpdateValid(Integer valid,Integer ...id) throws InstantiationException, IllegalAccessException{
+		if(id!=null){
+			int c = 0;
+			for (int i = 0; i < id.length; i++) {
+				T entity = getActualTypeClass().newInstance();
+				entity.setId(id[i]);
+				entity.setValid(valid);
+				mapper.updateByPrimaryKey(entity);
+				c = c + mapper.deleteByPrimaryKey(id[i]);
+			}
+			return c;
+		}else{
+			throw new RuntimeException("id 不能为空");
+		}
 	}
 	
 	

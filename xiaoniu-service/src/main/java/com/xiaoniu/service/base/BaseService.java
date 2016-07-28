@@ -29,4 +29,6 @@ public interface BaseService <T extends BaseVO> extends InitializingBean {
     public List<T> selectAll();
     
     public List<T> selectByExample(Object example);
+    
+    public int batchUpdateValid(Integer valid,Integer ...id)throws InstantiationException, IllegalAccessException;
 }

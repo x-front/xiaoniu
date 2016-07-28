@@ -16,8 +16,6 @@ public class AdminUserInfo extends BaseVO implements Serializable {
     @Column(name = "login_code")
     private String loginCode;
 
-    private Byte valid;
-
     @Column(name = "create_time")
     private Date createTime;
 
@@ -70,19 +68,6 @@ public class AdminUserInfo extends BaseVO implements Serializable {
         this.loginCode = loginCode;
     }
 
-    /**
-     * @return valid
-     */
-    public Byte getValid() {
-        return valid;
-    }
-
-    /**
-     * @param valid
-     */
-    public void setValid(Byte valid) {
-        this.valid = valid;
-    }
 
     /**
      * @return create_time

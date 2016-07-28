@@ -41,8 +41,19 @@ public class BaseVO implements Serializable {
 	
 	@Column(name="update_time")
 	protected Date updateTime;
+	
+	@Column(name="valid")
+	protected Integer valid;
 
 	
+
+	public Integer getValid() {
+		return valid;
+	}
+
+	public void setValid(Integer valid) {
+		this.valid = valid;
+	}
 
 	public Integer getId() {
 		return id;
