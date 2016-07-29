@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.xiaoniu.db.domain.BaseVO;
 import com.xiaoniu.service.base.BaseService;
+import com.zxx.common.contants.Contants;
+import com.zxx.common.enums.MsgCode;
+import com.zxx.common.utils.StringUtils;
 
 public class BaseController<T extends BaseVO> implements InitializingBean{
 
@@ -45,10 +48,11 @@ public class BaseController<T extends BaseVO> implements InitializingBean{
 		Map<String,Object> map = new HashMap<String,Object>();
 		try{
 			service.save(entity);
-			map.put("resultCode", 0);
+			map.put(Contants.RESULT_CODE, MsgCode.SAVE_SUCCESS.getCode());
+			map.put(Contants.MSG, MsgCode.SAVE_SUCCESS.getMsg());
 		}catch(Exception e){
-			map.put("resultCode", -1);
-			map.put("msg", e);
+			map.put(Contants.RESULT_CODE, MsgCode.SAVE_FAILED.getCode());
+			map.put(Contants.MSG, e);
 		}
 		return map;
 	}
@@ -59,10 +63,11 @@ public class BaseController<T extends BaseVO> implements InitializingBean{
 		Map<String,Object> map = new HashMap<String,Object>();
 		try{
 			service.delete(id);
-			map.put("resultCode", 0);
+			map.put(Contants.RESULT_CODE, MsgCode.DELETE_SUCCESS.getCode());
+			map.put(Contants.MSG, MsgCode.DELETE_SUCCESS.getMsg());
 		}catch(Exception e){
-			map.put("resultCode", -1);
-			map.put("msg", e);
+			map.put(Contants.RESULT_CODE, MsgCode.DELETE_FAILED.getCode());
+			map.put(Contants.MSG, e);
 		}
 		return map;
 	}
@@ -72,11 +77,13 @@ public class BaseController<T extends BaseVO> implements InitializingBean{
 	public Map<String,Object> batchDelete(String strIds){
 		Map<String,Object> map = new HashMap<String,Object>();
 		try{
-			service.delete(id);
-			map.put("resultCode", 0);
+			Integer[] ids = StringUtils.convertStringToIds(strIds);
+			service.delete(ids);
+			map.put(Contants.RESULT_CODE, MsgCode.DELETE_SUCCESS.getCode());
+			map.put(Contants.MSG, MsgCode.DELETE_SUCCESS.getMsg());
 		}catch(Exception e){
-			map.put("resultCode", -1);
-			map.put("msg", e);
+			map.put(Contants.RESULT_CODE, MsgCode.DELETE_FAILED.getCode());
+			map.put(Contants.MSG, e);
 		}
 		return map;
 	}
@@ -86,11 +93,13 @@ public class BaseController<T extends BaseVO> implements InitializingBean{
 	public Map<String,Object> batchUpdateValid(String strIds,Integer valid){
 		Map<String,Object> map = new HashMap<String,Object>();
 		try{
-			service.delete(id);
-			map.put("resultCode", 0);
+			Integer[] ids = StringUtils.convertStringToIds(strIds);
+			service.batchUpdateValid(valid, ids);
+			map.put(Contants.RESULT_CODE, MsgCode.UPDATE_SUCCESS.getCode());
+			map.put(Contants.MSG, MsgCode.UPDATE_SUCCESS.getMsg());
 		}catch(Exception e){
-			map.put("resultCode", -1);
-			map.put("msg", e);
+			map.put(Contants.RESULT_CODE, MsgCode.UPDATE_FAILED.getCode());
+			map.put(Contants.MSG, e);
 		}
 		return map;
 	}

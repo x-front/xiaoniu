@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xmlns:aop="http://www.springframework.org/schema/aop"
+     xmlns:tx="http://www.springframework.org/schema/tx"
+     xmlns:jee="http://www.springframework.org/schema/jee"
+     xmlns:context="http://www.springframework.org/schema/context"
+     xmlns:security="http://www.springframework.org/schema/security"
+     xsi:schemaLocation="
+     http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+     http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+     http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.0.xsd
+     http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+     http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+     http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+     
+     <!-- 数据库配置 -->
+     <!-- 方式1. 容器JNDI数据源-->
+     <!-- 
+     <jee:jndi-lookup id="dataSource" jndi-name="jdbc/i2caoDB"/>
+      -->
+     <context:property-placeholder location="classpath:admin.properties" /> 
+     <!-- 
+     <bean id="dataSource" class="com.atomikos.jdbc.AtomikosDataSourceBean"  
+        init-method="init" destroy-method="close" autowire="byName">   
+        <description>admin mysql xa datasource</description>   
+        <property name="uniqueResourceName">   
+            <value>admin_db</value>   
+        </property>   
+        <property name="xaDataSourceClassName" value="com.mysql.jdbc.jdbc2.optional.MysqlXADataSource" />   
+        <property name="xaProperties">   
+            <props>   
+                <prop key="user">${database.user}</prop>   
+                <prop key="password">${database.password}</prop>   
+                <prop key="URL">${database.jdbcUrl}</prop>   
+            </props>   
+        </property>
+        <property name="validationQuery" value="SELECT 1" />
+    	<property name="testOnBorrow" value="true"/>   
+        <property name="maxPoolSize" value="${database.maxPoolSize}"/> 
+        <property name="minPoolSize" value="${database.minPoolSize}"/>
+        <property name="maxIdleTime" value="${database.maxIdleTime}"/> 
+        <property name="maxActive"   value="${database.maxActive}"/>
+        <property name="maxWait" value="${database.maxWait}"/>
+        <property name="initialSize" value="${database.initialSize}"/> 
+    </bean>
+      -->
+     
+     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+		   <property name="driverClass" value="com.mysql.jdbc.Driver"/>
+		   <property name="jdbcUrl" value="${database.jdbcUrl}"/>
+		   <property name="user" ><value>${database.user}</value></property>
+		   <property name="password" ><value>${database.password}</value></property>
+		    <property name="minPoolSize"><value>${database.minPoolSize}</value></property>        
+		    <property name="maxPoolSize"><value>${database.maxPoolSize}</value></property>        
+		    <property name="maxIdleTime"><value>${database.maxIdleTime}</value></property>        
+		    <property name="acquireIncrement" value="3" />         
+		    <property name="maxStatements" value="1000" />          
+		    <property name="initialPoolSize" value="10" />          
+		    <property name="idleConnectionTestPeriod" value="60" />          
+		    <property name="acquireRetryAttempts" value="30" />          
+		    <property name="breakAfterAcquireFailure" value="true" />              
+		    <property name="testConnectionOnCheckout" value="false" />
+	 </bean> 
+      
+     <!-- 事务配置 -->
+     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+    
+    <!-- 开启注解 -->
+    <context:annotation-config/>
+    
+    
+    
+    <!-- enable component scanning (beware that this does not enable mapper scanning!)
+   		  自动扫描指定的包下面的通过注解标识的组件，无需使用xml来定义spring的bean了
+     -->    
+    <context:component-scan base-package="cn.hrx.**.service" />
+
+    <!-- enable autowire 开启bean类的注解支持 （让 @Autowired等注解工作起来 ）-->
+    <context:annotation-config />
+
+    <!-- enable transaction demarcation with annotations 开启通过注解标识事务功能 -->
+    <tx:annotation-driven />
+
+    <!-- Mybatis工厂类配置 define the SqlSessionFactory -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean" autowire="byName">
+        <property name="typeAliasesPackage" value="cn.hrx" />
+    </bean>
+
+    <!-- 扫描Mybatis的Mapper组件 scan for mappers and let them be autowired -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="cn.hrx.**.mapper" />
+    </bean>
+   
+    
+    <!-- 谷歌验证码 --> 
+    <bean id="captchaProducer" class="com.google.code.kaptcha.impl.DefaultKaptcha">  
+        <property name="config">  
+            <bean class="com.google.code.kaptcha.util.Config">  
+                <constructor-arg>  
+                    <props>  
+                        <prop key="kaptcha.border">yes</prop>  
+                        <prop key="kaptcha.border.color">105,179,90</prop>  
+                        <prop key="kaptcha.textproducer.font.color">blue</prop>
+                        <prop key="kaptcha.noise.color">blue</prop>
+                        <prop key="kaptcha.image.width">100</prop> 
+                        <prop key="kaptcha.image.height">40</prop>
+                        <prop key="kaptcha.textproducer.impl">com.google.code.kaptcha.text.impl.DefaultTextCreator</prop>
+                        <prop key="kaptcha.noise.impl">com.google.code.kaptcha.impl.NoNoise</prop>
+                        <prop key="kaptcha.obscurificator.impl">com.google.code.kaptcha.impl.WaterRipple</prop>
+                        <prop key="kaptcha.textproducer.font.size">32</prop>  
+                        <prop key="kaptcha.textproducer.char.length">4</prop>  
+                    </props>  
+                </constructor-arg>  
+            </bean>  
+        </property>  
+    </bean>
+</beans>
