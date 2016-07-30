@@ -22,7 +22,7 @@ public class AdminUserInfo extends BaseVO implements Serializable {
     @Column(name = "update_time")
     private Date updateTime;
 
-    private byte[] password;
+    private String password;
 
     private static final long serialVersionUID = 1L;
 
@@ -100,14 +100,14 @@ public class AdminUserInfo extends BaseVO implements Serializable {
     /**
      * @return password
      */
-    public byte[] getPassword() {
+    public String getPassword() {
         return password;
     }
 
     /**
      * @param password
      */
-    public void setPassword(byte[] password) {
+    public void setPassword(String password) {
         this.password = password;
     }
 }

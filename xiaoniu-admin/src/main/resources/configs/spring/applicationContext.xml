@@ -15,84 +15,72 @@
      http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd">
      
      <!-- 数据库配置 -->
-     <!-- 方式1. 容器JNDI数据源-->
-     <!-- 
-     <jee:jndi-lookup id="dataSource" jndi-name="jdbc/i2caoDB"/>
-      -->
-     <context:property-placeholder location="classpath:admin.properties" /> 
-     <!-- 
-     <bean id="dataSource" class="com.atomikos.jdbc.AtomikosDataSourceBean"  
-        init-method="init" destroy-method="close" autowire="byName">   
-        <description>admin mysql xa datasource</description>   
-        <property name="uniqueResourceName">   
-            <value>admin_db</value>   
-        </property>   
-        <property name="xaDataSourceClassName" value="com.mysql.jdbc.jdbc2.optional.MysqlXADataSource" />   
-        <property name="xaProperties">   
-            <props>   
-                <prop key="user">${database.user}</prop>   
-                <prop key="password">${database.password}</prop>   
-                <prop key="URL">${database.jdbcUrl}</prop>   
-            </props>   
-        </property>
-        <property name="validationQuery" value="SELECT 1" />
-    	<property name="testOnBorrow" value="true"/>   
-        <property name="maxPoolSize" value="${database.maxPoolSize}"/> 
-        <property name="minPoolSize" value="${database.minPoolSize}"/>
-        <property name="maxIdleTime" value="${database.maxIdleTime}"/> 
-        <property name="maxActive"   value="${database.maxActive}"/>
-        <property name="maxWait" value="${database.maxWait}"/>
-        <property name="initialSize" value="${database.initialSize}"/> 
-    </bean>
-      -->
+     <context:property-placeholder location="classpath:configs/jdbc.properties" /> 
      
-     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
-		   <property name="driverClass" value="com.mysql.jdbc.Driver"/>
-		   <property name="jdbcUrl" value="${database.jdbcUrl}"/>
-		   <property name="user" ><value>${database.user}</value></property>
-		   <property name="password" ><value>${database.password}</value></property>
-		    <property name="minPoolSize"><value>${database.minPoolSize}</value></property>        
-		    <property name="maxPoolSize"><value>${database.maxPoolSize}</value></property>        
-		    <property name="maxIdleTime"><value>${database.maxIdleTime}</value></property>        
-		    <property name="acquireIncrement" value="3" />         
-		    <property name="maxStatements" value="1000" />          
-		    <property name="initialPoolSize" value="10" />          
-		    <property name="idleConnectionTestPeriod" value="60" />          
-		    <property name="acquireRetryAttempts" value="30" />          
-		    <property name="breakAfterAcquireFailure" value="true" />              
-		    <property name="testConnectionOnCheckout" value="false" />
-	 </bean> 
+	 <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
+		init-method="init" destroy-method="close">
+		<property name="driverClassName" value="${JDBC_DRIVER_CLASS_NAME}"/>
+		<property name="url" value="${JDBC_URL}" />
+		<property name="username" value="${JDBC_USER}" />
+		<property name="password" value="${JDBC_PASSWORD}" />
+		<property name="filters" value="stat" />
+		<property name="maxActive" value="20" />
+		<property name="initialSize" value="5" />
+		<property name="maxWait" value="60000" />
+		<property name="minIdle" value="2" />
+		<property name="timeBetweenEvictionRunsMillis" value="3000" />
+		<property name="minEvictableIdleTimeMillis" value="300000" />
+		<property name="validationQuery" value="SELECT 'x'" />
+		<property name="testWhileIdle" value="true" />
+		<property name="testOnBorrow" value="false" />
+		<property name="testOnReturn" value="false" />
+		<property name="poolPreparedStatements" value="true" />
+		<property name="maxPoolPreparedStatementPerConnectionSize" value="20" />
+	</bean>
       
      <!-- 事务配置 -->
      <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource" />
     </bean>
     
-    <!-- 开启注解 -->
-    <context:annotation-config/>
-    
-    
     
     <!-- enable component scanning (beware that this does not enable mapper scanning!)
    		  自动扫描指定的包下面的通过注解标识的组件，无需使用xml来定义spring的bean了
      -->    
-    <context:component-scan base-package="cn.hrx.**.service" />
+    <context:component-scan base-package="com.xiaoniu.**.service" />
 
     <!-- enable autowire 开启bean类的注解支持 （让 @Autowired等注解工作起来 ）-->
     <context:annotation-config />
 
     <!-- enable transaction demarcation with annotations 开启通过注解标识事务功能 -->
-    <tx:annotation-driven />
+    <tx:annotation-driven transaction-manager="transactionManager"/>
 
     <!-- Mybatis工厂类配置 define the SqlSessionFactory -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean" autowire="byName">
-        <property name="typeAliasesPackage" value="cn.hrx" />
+        <property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="classpath:configs/mybatis/mybatis-configuration.xml"/>
+		<property name="mapperLocations" value="classpath:configs/mapper/xiaoniu/*.xml" />
     </bean>
 
     <!-- 扫描Mybatis的Mapper组件 scan for mappers and let them be autowired -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="cn.hrx.**.mapper" />
+        <property name="basePackage" value="com.xiaoniu.db.mapper" />
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
     </bean>
+    
+    <aop:config>
+        <aop:advisor advice-ref="txAdvice" pointcut="execution(* com.xiaoniu..service..*.*(..))" />
+    </aop:config>
+    
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="select*" read-only="true"/>
+            <tx:method name="find*" read-only="true"/>
+            <tx:method name="get*" read-only="true"/>
+            <tx:method name="query*" read-only="true"/>
+            <tx:method name="*"/>
+        </tx:attributes>
+    </tx:advice> 
    
     
     <!-- 谷歌验证码 --> 
