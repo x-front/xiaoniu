@@ -59,7 +59,7 @@
     <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" />
 	
 	<!-- 扫描所有controller组件 -->
-	<context:component-scan base-package="com.xiaoniu.**.controller" />
+	<context:component-scan base-package="com.xiaoniu.controller" />
 	
 	<!-- 配置web应用的默的视图为 -->
 	<mvc:view-controller path="/" view-name="/public/forward" />

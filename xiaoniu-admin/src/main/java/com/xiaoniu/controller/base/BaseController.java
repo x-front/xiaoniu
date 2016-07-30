@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.github.pagehelper.PageInfo;
 import com.xiaoniu.db.domain.BaseVO;
 import com.xiaoniu.service.base.BaseService;
 import com.zxx.common.contants.Contants;
@@ -40,6 +41,24 @@ public class BaseController<T extends BaseVO> implements InitializingBean{
             entityClass = (Class<T>)p[0];
         }
         return entityClass;
+	}
+	
+	@RequestMapping("queryList")
+	@ResponseBody
+	public Map<String,Object> queryList(Integer page,Integer  rows, String orderBy,T entity){
+		Map<String,Object> map = new HashMap<String,Object>();
+		try{
+			if(orderBy == null || "".equals(orderBy.trim())){
+				orderBy = " id desc";
+			}
+			PageInfo<T> pageInfo = service.queryList(page, rows, orderBy, entity);
+			map.put(Contants.TOTAL, pageInfo.getTotal());
+			map.put(Contants.ROWS, pageInfo.getList());
+		}catch(Exception e){
+			map.put(Contants.RESULT_CODE, MsgCode.FALSE.getCode());
+			map.put(Contants.MSG, e);
+		}
+		return map;
 	}
 	
 	@RequestMapping("save")

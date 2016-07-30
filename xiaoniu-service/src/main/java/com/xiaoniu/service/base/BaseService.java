@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.InitializingBean;
 
+import com.github.pagehelper.PageInfo;
 import com.xiaoniu.db.domain.BaseVO;
 
 public interface BaseService <T extends BaseVO> extends InitializingBean {
@@ -31,4 +32,6 @@ public interface BaseService <T extends BaseVO> extends InitializingBean {
     public List<T> selectByExample(Object example);
     
     public int batchUpdateValid(Integer valid,Integer ...id)throws InstantiationException, IllegalAccessException;
+    
+    public PageInfo<T> queryList(Integer page,Integer rows,String orderBy,T entity);
 }

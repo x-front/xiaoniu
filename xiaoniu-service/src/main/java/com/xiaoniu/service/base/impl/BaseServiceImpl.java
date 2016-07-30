@@ -11,6 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import tk.mybatis.mapper.common.Mapper;
 
+import com.github.pagehelper.ISelect;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.xiaoniu.db.domain.BaseVO;
 import com.xiaoniu.service.base.BaseService;
 
@@ -148,5 +151,15 @@ public abstract class BaseServiceImpl<T extends BaseVO> implements BaseService<T
 		}
 	}
 	
+	public PageInfo<T> queryList(Integer page,Integer rows,String orderBy,final T entity){
+		PageInfo<T> pageInfo = PageHelper.startPage(page, rows, orderBy).doSelectPageInfo(new ISelect() {
+			
+			@Override
+			public void doSelect() {
+				mapper.select(entity);
+			}
+		});
+		return pageInfo;
+	}
 	
 }

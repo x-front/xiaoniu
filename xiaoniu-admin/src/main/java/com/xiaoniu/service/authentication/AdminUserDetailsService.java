@@ -12,7 +12,15 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
+import com.xiaoniu.db.domain.AdminUserInfo;
+import com.xiaoniu.db.domain.AdminUserPrivileges;
+import com.xiaoniu.db.domain.AdminUserPrivilegesVO;
+import com.xiaoniu.db.domain.AdminUserRole;
+import com.xiaoniu.domain.AdminUserDetailsVO;
 import com.xiaoniu.service.adminUserInfo.AdminUserInfoService;
+import com.xiaoniu.service.adminUserPrivileges.AdminUserPrivilegesService;
+import com.xiaoniu.service.adminUserRole.AdminUserRoleService;
+import com.zxx.common.enums.MsgCode;
 
 
 @Component
@@ -21,9 +29,9 @@ public class AdminUserDetailsService implements UserDetailsService{
 	@Autowired
 	private AdminUserInfoService adminUserInfoService;
 	@Autowired
-	private UserPrivilegeService userPrivilegeService;
+	private AdminUserPrivilegesService userPrivilegeService;
 	@Autowired
-	private UserRoleService userRoleService;
+	private AdminUserRoleService userRoleService;
 	
 	@Override
 	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException{
@@ -32,16 +40,19 @@ public class AdminUserDetailsService implements UserDetailsService{
 		}
 		try{
 			//查询用户信息,这里的userName其实就是登录帐号，也就是对应loginCode
-			List<AdminUserInfoVO> adminUserInfoList = adminUserInfoService.queryAdminUser(null, userName,null, null);
+			AdminUserInfo adminUserInfoVO = new AdminUserInfo();
+			adminUserInfoVO.setLoginCode(userName);
+			adminUserInfoVO.setValid(MsgCode.TRUE.getCode());
+			List<AdminUserInfo> adminUserInfoList = adminUserInfoService.select(adminUserInfoVO);
 			if ( adminUserInfoList == null ){
 				throw new UsernameNotFoundException("没有找到该用户信息");
 			}
-			if ( adminUserInfoList.size() > 1 ) {
-				throw new UsernameNotFoundException("存在多个同名帐号");
+			if ( adminUserInfoList.size() != 1 ) {
+				throw new UsernameNotFoundException("账户异常");
 			}
 			
 			//查询用户对应的权限 
-			List<UserPrivilegeVO> userPrivileges = userPrivilegeService.queryUserPrivilege(null, adminUserInfoList.get(0).getId(), null, Tag.TRUE);
+			List<AdminUserPrivilegesVO> userPrivileges = userPrivilegeService.queryAdminUserPrivileges(adminUserInfoList.get(0).getId());
 			if ( userPrivileges == null){
 				throw new UsernameNotFoundException("查询用户权限出错");
 			}
@@ -50,7 +61,9 @@ public class AdminUserDetailsService implements UserDetailsService{
 			}
 			
 			//查询角色
-			List<UserRoleVO> roles = userRoleService.queryUserRole(null, adminUserInfoList.get(0).getId(), null, Tag.TRUE);
+			AdminUserRole adminUserRole = new AdminUserRole();
+			
+			List<AdminUserRole> roles = userRoleService.select(entity);
 			if ( roles == null ) {
 				throw new UsernameNotFoundException("查询用户角色出错");
 			}
@@ -60,7 +73,7 @@ public class AdminUserDetailsService implements UserDetailsService{
 			
 			//构造认证信息
 			List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-			for ( UserPrivilegeVO userPrivilege : userPrivileges) {
+			for ( AdminUserPrivilegesVO userPrivilege : userPrivileges) {
 				authorities.add(new SimpleGrantedAuthority(userPrivilege.getPvgName()));
 			}
 			for ( UserRoleVO role : roles) {

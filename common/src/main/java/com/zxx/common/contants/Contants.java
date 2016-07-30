@@ -12,4 +12,6 @@ package com.zxx.common.contants;
 public class Contants {
 	public static final String RESULT_CODE="resultCode";
 	public static final String MSG = "msg";
+	public static String ROWS = "rows";
+	public static String TOTAL = "total";
 }

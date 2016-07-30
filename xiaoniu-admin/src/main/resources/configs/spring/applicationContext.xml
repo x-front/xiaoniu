@@ -47,7 +47,7 @@
     <!-- enable component scanning (beware that this does not enable mapper scanning!)
    		  自动扫描指定的包下面的通过注解标识的组件，无需使用xml来定义spring的bean了
      -->    
-    <context:component-scan base-package="com.xiaoniu.**.service" />
+    <context:component-scan base-package="com.xiaoniu.service" />
 
     <!-- enable autowire 开启bean类的注解支持 （让 @Autowired等注解工作起来 ）-->
     <context:annotation-config />
