@@ -8,9 +8,9 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="user_name" jdbcType="VARCHAR" property="userName" />
     <result column="login_code" jdbcType="VARCHAR" property="loginCode" />
-    <result column="valid" jdbcType="TINYINT" property="valid" />
+    <result column="valid" jdbcType="INTEGER" property="valid" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
-    <result column="password" jdbcType="BINARY" property="password" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
   </resultMap>
 </mapper>

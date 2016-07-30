@@ -1,4 +1,4 @@
-package com.xiaoniu.base.controller;
+package com.xiaoniu.controller.base;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;

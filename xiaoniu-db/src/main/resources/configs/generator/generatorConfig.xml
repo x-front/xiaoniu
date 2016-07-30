@@ -34,20 +34,20 @@
 
 
 
-	
+	<!-- 
 	<table tableName="%" >
-		<!-- <ignoreColumn column="update_time"/>
+		<ignoreColumn column="update_time"/>
 		<ignoreColumn column="create_time"/>
-		<ignoreColumn column="id"/> -->
+		<ignoreColumn column="id"/>
 		<property name="rootClass" value="com.xiaoniu.db.domain.BaseVO"/>
       	<generatedKey column="id" sqlStatement="Mysql" identity="true" />
 	</table>
-	
-<!-- 
-    <table tableName="product_info" >
-      <property name="rootClass" value="com.xiaoniu.db.domain.BaseModel"/>
-      <generatedKey column="id" sqlStatement="Mysql" identity="true" />
+	 -->
+
+    <table tableName="admin_user_role" >
+      <property name="rootClass" value="com.xiaoniu.db.domain.BaseVO"/>
+      	<generatedKey column="id" sqlStatement="Mysql" identity="true" />
     </table>
-     -->
+    
   </context>
 </generatorConfiguration>
