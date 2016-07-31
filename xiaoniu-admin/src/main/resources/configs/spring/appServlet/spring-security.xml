@@ -13,12 +13,10 @@
 	<http pattern="/resources/js/**" security="none"></http>
 	<http pattern="/resources/css/**" security="none"></http>
 	<http pattern="/resources/images/**" security="none"></http>
-	<http pattern="/resources/upload/**" security="none"></http>
 	<http pattern="/resources/css/*" security="none"></http>
-	<http pattern="/static/**" security="none"></http>
 	<http pattern="/favicon.ico" security="none"></http>
 	<http use-expressions="true" entry-point-ref="authenticationProcessingFilterEntryPoint">
-		<logout logout-success-url="/index.html" logout-url="/logout.html"/>
+		<logout logout-success-url="/public/index.html" logout-url="/public/logout.html"/>
 		<access-denied-handler error-page="/public/error/403.html"/>
 	    <intercept-url pattern="/" access="permitAll" />
 	    <intercept-url pattern="/public/**" access="permitAll" />
