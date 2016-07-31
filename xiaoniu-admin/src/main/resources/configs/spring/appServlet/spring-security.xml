@@ -9,7 +9,6 @@
 	<!-- 打开@PreFilter,@PreAuthorize, @PostFilter, @PostAuthorize等注解支持（注意：放在这里只会对Service层的方法生效） -->
 	<global-method-security pre-post-annotations="enabled" />
 	
-	
 	<http pattern="/resources/js/**" security="none"></http>
 	<http pattern="/resources/css/**" security="none"></http>
 	<http pattern="/resources/images/**" security="none"></http>
@@ -26,6 +25,7 @@
 	    <custom-filter ref="validateCodeUsernamePasswordAuthenticationFilter" position="FORM_LOGIN_FILTER"/>
 	</http>
 	
+	
 	<!-- 整合登陆验证码的认证 -->
 	<beans:bean id="validateCodeUsernamePasswordAuthenticationFilter" class="com.xiaoniu.utils.ValidateCodeUsernamePasswordAuthenticationFilter">
 		<!-- 处理登录的action  -->
@@ -39,7 +39,7 @@
 	
 	<!-- 登录成功 -->
 	<beans:bean id="loginLogAuthenticationSuccessHandler" class="org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler">
-		<beans:property name="defaultTargetUrl" value="/public/loginSuccess"/>
+		<beans:property name="defaultTargetUrl" value="/secure/index"/>
 	</beans:bean>
 	
 	<!-- 登录失败 -->

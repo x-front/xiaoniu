@@ -53,10 +53,11 @@ public class AuthenticationController {
 	    return mav;
 	  }
 
-	  @RequestMapping({"index"})
-	  public String index1()
+	  @RequestMapping({"secure/index"})
+	  public ModelAndView index1()
 	  {
-	    return "redirect:public/login.html";
+		  ModelAndView mav = new ModelAndView("secure/index");
+		  return mav;
 	  }
 
 	  @RequestMapping({"public/loginFailed"})

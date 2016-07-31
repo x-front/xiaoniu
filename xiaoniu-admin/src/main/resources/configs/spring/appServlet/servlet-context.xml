@@ -52,7 +52,6 @@
 				</bean>
 			</list>
 		</property>
-	
 	</bean>
 	
 	<!-- 完成请求和注解POJO的映射 -->

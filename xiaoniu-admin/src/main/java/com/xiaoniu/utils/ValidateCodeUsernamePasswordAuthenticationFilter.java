@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -18,6 +19,10 @@ import com.google.code.kaptcha.Constants;
  *
  */
 public class ValidateCodeUsernamePasswordAuthenticationFilter extends UsernamePasswordAuthenticationFilter{
+	
+	@Value("${isValidCode}")
+	private Integer isValidCode;
+	
 	private Logger log = Logger.getLogger(getClass());
 	private boolean postOnly = true;
 	/**
@@ -48,8 +53,9 @@ public class ValidateCodeUsernamePasswordAuthenticationFilter extends UsernamePa
 		setDetails(request, authRequest);
 		
 		//验证码校验
-		checkValidateCode(request);
-		
+		if(isValidCode == 1){
+			checkValidateCode(request);
+		}
 		Authentication authentication = this.getAuthenticationManager().authenticate(authRequest);
 		return authentication;
 		

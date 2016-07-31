@@ -10,8 +10,8 @@ package com.zxx.common.enums;
  *
  */
 public enum MsgCode {
-	TRUE(0,"TRUE"),
-	FALSE(-1,"FALSE"),
+	TRUE(1,"TRUE"),
+	FALSE(0,"FALSE"),
 	SUCCESS(0,"成功"),
 	FAILED(-1,"失败"),
 	OPERATOR_SUCCESS(0,"操作成功"),

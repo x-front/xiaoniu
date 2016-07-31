@@ -13,9 +13,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
 import com.xiaoniu.db.domain.AdminUserInfo;
-import com.xiaoniu.db.domain.AdminUserPrivileges;
 import com.xiaoniu.db.domain.AdminUserPrivilegesVO;
-import com.xiaoniu.db.domain.AdminUserRole;
 import com.xiaoniu.db.domain.AdminUserRoleVO;
 import com.xiaoniu.domain.AdminUserDetailsVO;
 import com.xiaoniu.service.adminUserInfo.AdminUserInfoService;
@@ -26,6 +24,7 @@ import com.zxx.common.enums.MsgCode;
 
 @Component
 public class AdminUserDetailsService implements UserDetailsService{
+	
 	private Logger log = Logger.getLogger(AdminUserDetailsService.class);
 	@Autowired
 	private AdminUserInfoService adminUserInfoService;

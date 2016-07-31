@@ -7,7 +7,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>小妞资本后台管理系统</title>
+	<meta name="_csrf" content="${_csrf.token}"/>  
+	<meta name="_csrf_header" content="${_csrf.headerName}"/> 
+    <title>小牛资本后台管理系统</title>
     <jsp:include page="../public/common/head.jsp"></jsp:include>
     <script type="text/javascript" src="<c:url value='/resources/js/xiaoniu/theme.js'/>?r=1134"></script>
     <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/xiaoniu/secure_index.css'/>"/>

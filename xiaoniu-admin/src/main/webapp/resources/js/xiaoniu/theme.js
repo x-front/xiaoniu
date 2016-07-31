@@ -7,13 +7,34 @@ $(function(){
  * 初始化菜单
  */
 function init(){
-	$.post("/secure/menu/queryMenu",{},function(result){
+	var token = $("meta[name='_csrf']").attr("content");  
+	var header = $("meta[name='_csrf_header']").attr("content");  
+/*	$.post("/secure/menu/queryMenu",{},function(result){
 		if(result["resultCode"] == 0){
 			parse(result);
 		} else {
 			alert(result["msg"]);
 		}
-	},"json");
+	},"json");*/
+	$.ajax({
+	    url: "/secure/menu/queryMenu",
+	    type: "POST",
+	    dataType: "json",
+	    beforeSend: function (xhr) {
+	    	xhr.setRequestHeader(header, token);
+	    },
+	    success: function (result) {
+	    	if(result["resultCode"] == 0){
+				parse(result);
+			} else {
+				alert(result["msg"]);
+			}
+	    },
+	    error: function (xhr, textStatus, errorThrow) {
+	        alert(xhr.readyState);
+	    }
+	});
+	
 }
 
 /**
