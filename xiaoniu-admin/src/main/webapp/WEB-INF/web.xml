@@ -11,12 +11,12 @@
 			classpath:/configs/spring/applicationContext.xml,classpath:/configs/spring/appServlet/spring-security.xml
 		</param-value>
   </context-param>
-  
+  <!-- 
   <context-param>
 	    <param-name>log4jConfiguration</param-name>
 	    <param-value>classpath:configs/log4j/log4j2.xml</param-value>
 	</context-param>
-  
+   -->
   <filter>
     <filter-name>springSecurityFilterChain</filter-name>
     <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
