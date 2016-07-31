@@ -16,6 +16,7 @@ import com.xiaoniu.db.domain.AdminUserInfo;
 import com.xiaoniu.db.domain.AdminUserPrivileges;
 import com.xiaoniu.db.domain.AdminUserPrivilegesVO;
 import com.xiaoniu.db.domain.AdminUserRole;
+import com.xiaoniu.db.domain.AdminUserRoleVO;
 import com.xiaoniu.domain.AdminUserDetailsVO;
 import com.xiaoniu.service.adminUserInfo.AdminUserInfoService;
 import com.xiaoniu.service.adminUserPrivileges.AdminUserPrivilegesService;
@@ -61,9 +62,8 @@ public class AdminUserDetailsService implements UserDetailsService{
 			}
 			
 			//查询角色
-			AdminUserRole adminUserRole = new AdminUserRole();
 			
-			List<AdminUserRole> roles = userRoleService.select(entity);
+			List<AdminUserRoleVO> roles = userRoleService.queryAdminUserRole(adminUserInfoList.get(0).getId());
 			if ( roles == null ) {
 				throw new UsernameNotFoundException("查询用户角色出错");
 			}
@@ -76,7 +76,7 @@ public class AdminUserDetailsService implements UserDetailsService{
 			for ( AdminUserPrivilegesVO userPrivilege : userPrivileges) {
 				authorities.add(new SimpleGrantedAuthority(userPrivilege.getPvgName()));
 			}
-			for ( UserRoleVO role : roles) {
+			for ( AdminUserRoleVO role : roles) {
 				authorities.add(new SimpleGrantedAuthority(role.getRoleName()));
 			}
 			
