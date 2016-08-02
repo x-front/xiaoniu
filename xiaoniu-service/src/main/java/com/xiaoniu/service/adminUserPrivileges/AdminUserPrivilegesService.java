@@ -8,4 +8,5 @@ import com.xiaoniu.service.base.BaseService;
 
 public interface AdminUserPrivilegesService extends BaseService<AdminUserPrivileges>{
 	public List<AdminUserPrivilegesVO> queryAdminUserPrivileges(Integer userId);
+	public List<AdminUserPrivilegesVO> queryAdminUserPrivilegesVOList(Integer userId,int page,int rows) throws Exception;
 }

@@ -6,16 +6,17 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>权限管理</title>
-<jsp:include page="../../public/common/head.jsp"></jsp:include>
-<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/CRUD.css'/>"/>
-<script type="text/javascript" src="<c:url value='/resources/js/common/dateTool.js'/>?r=1134"></script>
+<jsp:include page="../public/common/head.jsp"></jsp:include>
+<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/xiaoniu/CRUD.css'/>"/>
+<script type="text/javascript" src="<c:url value='/resources/js/xiaoniu/dateTool.js'/>?r=1134"></script>
+<script type="text/javascript" src="<c:url value='/resources/js/xiaoniu/common.js'/>?r=23"></script>
 <script type="text/javascript">
 
-	commonTable.loadDateURI = "<c:url value='/secure/privilegesGroup/queryList'/>";
-	commonTable.batchUpdateValidURI = "<c:url value='/secure/privilegesGroup/batchDelete?strIds='/>";
-	commonTable.batchDeleteURI = "<c:url value='/secure/privilegesGroup/batchUpdateValid?strIds='/>";
-	commonTable.updateURI = "<c:url value='/secure/privilegesGroup/update'/>";
-	commonTable.insertURI = "<c:url value='/secure/privilegesGroup/insert'/>";
+	commonTable.loadDateURI = "/secure/adminUserPrivilegesGroup/queryList";
+	commonTable.batchUpdateValidURI = "/secure/adminUserPrivilegesGroup/batchDelete?strIds=";
+	commonTable.batchDeleteURI = "/secure/adminUserPrivilegesGroup/batchUpdateValid?strIds=";
+	commonTable.updateURI = "/secure/adminUserPrivilegesGroup/update";
+	commonTable.insertURI = "/secure/adminUserPrivilegesGroup/insert";
 	commonTable.title = "权限列表";
 	commonTable.columns =[
 		{field:'ck',checkbox:true},
@@ -28,8 +29,7 @@
 		updateTimeColumn,
 		{field:'operator',title: '操作',align:'center',
 			formatter: function(value,row,index){
-					return "<a href='#' onclick='javascript:initUpdateWindow(\""+ row.id + "\",\"" + row.groupName 
-							+ "\",\""  + row.icon + "\",\"" + row.valid + "\",\"" + row.serialNumber +"\")'>修改</a>";
+					return "<a href='#' onclick='javascript:commonTable.initUpdateWindow("+index+")'>修改</a>";
 				}
 		},
     ];
@@ -46,7 +46,7 @@
 	$(function(){
 		
 		showPageLoading();
-		commonTable.defineAddWindow(500, 290);
+		commonTable.defineAddWindow(500, 270);
 		commonTable.init();
 		removePageLoading();
 		
@@ -61,8 +61,8 @@
 	
 	<!-- tool bar -->
 	<div id="table_tb" style="padding:5px;height:auto" class="none">
-		<a href="javascript:void(0);" onclick="javascript:initAddWindow()"class="easyui-linkbutton" title="添加" plain="true" iconCls="icon-add" id="addBtn">添加</a>
-		<a href="javascript:void(0);" onclick="javascript:batchDelete()"class="easyui-linkbutton" title="删除" plain="true" iconCls="icon-cut" id="delBtn">删除</a>
+		<a href="javascript:void(0);" onclick="javascript:commonTable.initAddWindow()"class="easyui-linkbutton" title="添加" plain="true" iconCls="icon-add" id="addBtn">添加</a>
+		<a href="javascript:void(0);" onclick="javascript:commonTable.batchDelete()"class="easyui-linkbutton" title="删除" plain="true" iconCls="icon-cut" id="delBtn">删除</a>
 	</div>
 	
 	<!-- 添加-->
@@ -96,13 +96,13 @@
 					</tr>
 					<tr>
 						<td class="opt_btn" colspan="2" style="text-align: center;padding-top: 10px;">
-							<a class="easyui-linkbutton" id="edit_form_submit_btn" iconCls="icon-ok" onclick="javascript:save();">确定</a> 
+							<a class="easyui-linkbutton" id="edit_form_submit_btn" iconCls="icon-ok" onclick="javascript:commonTable.save();">确定</a> 
 							<a class="easyui-linkbutton" iconCls="icon-cancel" onclick="$('#htm_edit').window('close');">取消</a>
 						</td>
 					</tr>
 					<tr class="loading none">
 						<td colspan="2" style="text-align: center; padding-top: 10px; vertical-align:middle;">
-							<img alt="" src="<c:url value='/resources/images/loading.gif'/>" style="vertical-align:middle;">
+							<img alt="" src="/resources/images/loading.gif" style="vertical-align:middle;">
 							<span style="vertical-align:middle;">请稍后...</span>
 						</td>
 					</tr>

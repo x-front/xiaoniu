@@ -100,14 +100,14 @@ public class AdminUserInfoController extends BaseController<AdminUserInfo>{
 				entity.setPassword(encPassword);
 			}
 			entity.setUpdateTime(now);
-			service.updateAll(entity);
+			service.updateNotNull(entity);
 			
 			AdminUserRole adminUserRoleVO = new AdminUserRole();
 			adminUserRoleVO.setRoleId(roleId);
 			adminUserRoleVO.setUserId(entity.getId());
 			adminUserRoleVO.setValid(MsgCode.TRUE.getCode());
 			adminUserRoleVO.setUpdateTime(now);
-			adminUserRoleService.updateAll(adminUserRoleVO);
+			adminUserRoleService.updateNotNull(adminUserRoleVO);
 			map.put(Contants.RESULT_CODE, MsgCode.SAVE_SUCCESS.getCode());
 			map.put(Contants.MSG, MsgCode.SAVE_SUCCESS.getMsg());
 		}catch(Exception e){

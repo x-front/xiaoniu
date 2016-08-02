@@ -38,7 +38,9 @@ var commonTable ={
 						beforePageText : "页码",
 						afterPageText : '共 {pages} 页',
 						displayMsg: '第 {from} 到 {to} 共 {total} 条记录',
-					    onBeforeRefresh : this.onBeforeRefresh,
+					    onBeforeRefresh : function(){
+					    	this.onBeforeRefresh();
+					    }
 					});
 		},
 		//add window
@@ -56,8 +58,8 @@ var commonTable ={
 		
 		//update window
 		beforeInitUpdateWindow:function(){},
-		initUpdateWindow:function(){
-			this.beforeInitUpdateWindow();
+		initUpdateWindow:function(index){
+			this.beforeInitUpdateWindow(index);
 			$("#edit_form").attr("action",this.updateURI);
 			$("#htm_edit").panel({title:"修改"});
 			$("#edit_form .opt_btn").hide();
@@ -86,7 +88,9 @@ var commonTable ={
 			}
 			$("#edit_form .opt_btn").hide();
 			$("#edit_form .loading").show();
-			$.post($("#edit_form").attr("action"),$("#edit_form").serialize(),this.afterSave(result),"json");
+			$.post($("#edit_form").attr("action"),$("#edit_form").serialize(),function(result){
+				commonTable.afterSave(result);
+			},"json");
 		},
 		
 		//batchDelete
@@ -183,7 +187,7 @@ var commonTable ={
 				onClose : function(){
 					$("#htm_edit .clear-input").val('');
 					$("#htm_edit .clear-combobox").combobox('setValue',1);
-					this.addWindowCloseCallBack();
+					commonTable.addWindowCloseCallBack();
 				},
 			});
 		}
@@ -203,20 +207,20 @@ var createTimeColumn = {field:'createTime',title:'创建时间',align:'center',
 	validColumn = {field:'valid',title: '有效性',align:'center',
 		formatter: function(value,row,index){
 			if(value == 1) {
-					img = "<c:url value='/resources/js/easyUI/themes/icons/ok.png'/>";
+					img = "/resources/3rd/easyUI/themes/icons/ok.png";
 					return "<img title='有效' class='htm_column_img'  src='" + img + "'/>";
 				}
-				img = "<c:url value='/resources/js/easyUI/themes/icons/tip.png'/>";
+				img = "/resources/3rd/easyUI/themes/icons/tip.png";
 				return "<img title='无效' class='htm_column_img' src='" + img + "'/>";
 			}
 	},
 	publishColumn = {field:'valid',title: '发布状态',align:'center',
 			formatter: function(value,row,index){
 				if(value == 1) {
-						img = "<c:url value='/resources/js/easyUI/themes/icons/ok.png'/>";
+						img = "/resources/3rd/easyUI/themes/icons/ok.png";
 						return "<img title='已发布' class='htm_column_img'  src='" + img + "'/>";
 					}
-					img = "<c:url value='/resources/js/easyUI/themes/icons/tip.png'/>";
+					img = "/resources/3rd/easyUI/themes/icons/tip.png";
 					return "<img title='未发布' class='htm_column_img' src='" + img + "'/>";
 				}
 		};

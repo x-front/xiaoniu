@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans:beans xmlns:beans="http://www.springframework.org/schema/beans"
      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xmlns:c="http://www.springframework.org/schema/c"
      xmlns="http://www.springframework.org/schema/security"
      xsi:schemaLocation="
      http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
@@ -50,7 +51,7 @@
 	
 	<!-- 登录入口点 -->
 	<beans:bean id="authenticationProcessingFilterEntryPoint" class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
-		<beans:constructor-arg value="/login.html"/>
+		<beans:constructor-arg value="/public/login.html"/>
 	</beans:bean>
 	
 	<beans:bean id="zxxzxjEncoder" class="com.xiaoniu.utils.ZxxzxjDESPasswordEncoder"/>
@@ -61,4 +62,32 @@
 		</authentication-provider>
 	</authentication-manager>
 	
+	<!-- spring security 4.0 set header -->
+	<!-- <http>
+	    <headers>
+	        <header ref="xFrameOptionsHeaderWriter" />
+	    </headers>
+	</http>
+	<beans:bean id="xFrameOptionsHeaderWriter" class="org.springframework.security.web.header.writers.DelegatingRequestMatcherHeaderWriter">
+	    
+	    <beans:constructor-arg> 
+	        <beans:bean class="org.springframework.security.web.util.matcher.NegatedRequestMatcher">
+	            <beans:constructor-arg>
+	                <beans:bean class="org.springframework.security.web.util.matcher.OrRequestMatcher">
+	                    <beans:constructor-arg>
+	                        <beans:list>
+	                            <beans:bean class="org.springframework.security.web.util.matcher.AntPathRequestMatcher" c:pattern="/public/**" />
+	                            <beans:bean class="org.springframework.security.web.util.matcher.AntPathRequestMatcher" c:pattern="/**/another-path/**" />
+	                        </beans:list>
+	                    </beans:constructor-arg>
+	                </beans:bean>
+	            </beans:constructor-arg>
+	        </beans:bean>
+	    </beans:constructor-arg>
+		
+	    <beans:constructor-arg>
+	        <beans:bean  class="org.springframework.security.web.header.writers.frameoptions.XFrameOptionsHeaderWriter" c:frameOptionsMode="SAMEORIGIN" />
+	    </beans:constructor-arg>
+	</beans:bean>
+	 -->
 </beans:beans>

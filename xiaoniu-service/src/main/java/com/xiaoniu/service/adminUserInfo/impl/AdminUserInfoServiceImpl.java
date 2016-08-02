@@ -67,7 +67,7 @@ public class AdminUserInfoServiceImpl extends BaseServiceImpl<AdminUserInfo> imp
 			}
 		}
 		entity.setUpdateTime(new Date());
-		return mapper.updateByPrimaryKey(entity);
+		return mapper.updateByPrimaryKeySelective(entity);
 	}
 
 	@Override

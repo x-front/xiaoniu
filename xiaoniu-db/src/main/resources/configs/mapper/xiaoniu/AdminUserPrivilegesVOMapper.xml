@@ -24,4 +24,20 @@
   		aup.user_id=#{userId} and aup.valid=1 and ap.valid=1 and aui.valid=1
   </select>
   
+  <!-- select -->
+  <select id="queryAdminUserPrivilegesVOList" resultMap="AdminUserPrivilegesMap">
+  	select aup.*,ap.name,aui.user_name
+  	from admin_user_privileges aup 
+  		left join admin_privileges ap on aup.pvg_id = ap.id
+  		left join admin_user_info aui on aup.user_id = aui.id
+  	<where>
+  		aup.valid=1 and ap.valid=1 and aui.valid=1
+  		<if test="userId != null">
+  			and	aup.user_id=#{userId}
+  		</if>
+  	</where> 
+  	order by id desc 
+  	limit #{start},#{limit}	  
+  </select>
+  
 </mapper>

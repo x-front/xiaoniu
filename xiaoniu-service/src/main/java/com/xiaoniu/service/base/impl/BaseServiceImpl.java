@@ -137,13 +137,14 @@ public abstract class BaseServiceImpl<T extends BaseVO> implements BaseService<T
 	@Override
 	public int batchUpdateValid(Integer valid,Integer ...id) throws InstantiationException, IllegalAccessException{
 		if(id!=null){
+			Date now = new Date();
 			int c = 0;
 			for (int i = 0; i < id.length; i++) {
 				T entity = getActualTypeClass().newInstance();
 				entity.setId(id[i]);
 				entity.setValid(valid);
-				mapper.updateByPrimaryKey(entity);
-				c = c + mapper.deleteByPrimaryKey(id[i]);
+				entity.setUpdateTime(now);
+				c = c + mapper.updateByPrimaryKeySelective(entity);
 			}
 			return c;
 		}else{

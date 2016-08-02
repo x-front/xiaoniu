@@ -6,16 +6,16 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>管理员权限管理</title>
-<jsp:include page="../../public/common/head.jsp"></jsp:include>
-<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/CRUD.css'/>"/>
-<script type="text/javascript" src="<c:url value='/resources/js/common/dateTool.js'/>?r=1134"></script>
-<script type="text/javascript" src="<c:url value='/resources/js/xiaoniu/common.js'/>?r=1134"></script>
+<jsp:include page="../public/common/head.jsp"></jsp:include>
+<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/xiaoniu/CRUD.css'/>"/>
+<script type="text/javascript" src="<c:url value='/resources/js/xiaoniu/dateTool.js'/>?r=1134"></script>
+<script type="text/javascript" src="<c:url value='/resources/js/xiaoniu/common.js'/>?r=123"></script>
 <script type="text/javascript">
-	commonTable.loadDateURI = "<c:url value='/secure/adminUserPrivilege/queryAdminUserInfoVOList'/>";
-	commonTable.batchUpdateValidURI = "<c:url value='/secure/adminUserPrivilege/batchDelete?strIds='/>";
-	commonTable.batchDeleteURI = "<c:url value='/secure/adminUserPrivilege/batchUpdateValid?strIds='/>";
-	commonTable.updateURI = "<c:url value='/secure/adminUserPrivilege/update'/>";
-	commonTable.insertURI = "<c:url value='/secure/adminUserPrivilege/insert'/>";
+	commonTable.loadDateURI = "/secure/adminUserPrivilege/queryAdminUserPrivilegesVOList";
+	commonTable.batchUpdateValidURI = "/secure/adminUserPrivilege/batchDelete?strIds=";
+	commonTable.batchDeleteURI = "/secure/adminUserPrivilege/batchUpdateValid?strIds=";
+	commonTable.updateURI = "/secure/adminUserPrivilege/update";
+	commonTable.insertURI = "/secure/adminUserPrivilege/insert";
 	commonTable.title = "管理员权限管理";
 	commonTable.columns = [
 		{field:'ck',checkbox:true},
@@ -36,7 +36,7 @@
 	
 	$(function(){
 		showPageLoading();
-		commonTable.defineAddWindow(500, 290);
+		commonTable.defineAddWindow(500, 240);
 		commonTable.init();
 		
 		$('#edit_form_privilege').combogrid({
@@ -47,6 +47,8 @@
 			pageList: [10,20],
 			editable: false,
 		    multiple: true,
+		    fitColumns:true,
+			//fit:true,
 		   	toolbar:"#privilege_tb",
 		   	url:"<c:url value='/secure/privileges/queryList'/>",
 		    idField:'id',
@@ -59,7 +61,8 @@
 		    columns:[[
 				{field : 'ck',checkbox : true },
 				{field:'id', title: '权限ID',align:'center'},
-				{field:'pvgName',title: '权限名称',align:'center',width:140},
+				{field:'name',title: '权限名称',align:'center',width:140},
+				updateTimeColumn
 				/* {field:'groupId', title: '所在组ID',align:'center', width:80 },
 				{field:'groupName',title: '所在组',align:'center',width:140}, */
 		    ]],
@@ -135,8 +138,8 @@
 	<!-- tool bar -->
 	<div id="table_tb" style="padding:5px;height:auto" class="none">
 		<input id="adminUser-input" />
-		<a href="javascript:void(0);" onclick="javascript:initAddWindow()"class="easyui-linkbutton" title="添加" plain="true" iconCls="icon-add" id="addBtn">为管理员添加权限</a>
-		<a href="javascript:void(0);" onclick="javascript:batchDelete()"class="easyui-linkbutton" title="删除" plain="true" iconCls="icon-cut" id="delBtn">删除</a>
+		<a href="javascript:void(0);" onclick="javascript:commonTable.initAddWindow()"class="easyui-linkbutton" title="添加" plain="true" iconCls="icon-add" id="addBtn">为管理员添加权限</a>
+		<a href="javascript:void(0);" onclick="javascript:commonTable.batchDelete()"class="easyui-linkbutton" title="删除" plain="true" iconCls="icon-cut" id="delBtn">删除</a>
 	</div>
 	
 	<!-- 添加-->
@@ -166,13 +169,13 @@
 					</tr>
 					<tr>
 						<td class="opt_btn" colspan="2" style="text-align: center;padding-top: 10px;">
-							<a class="easyui-linkbutton" id="edit_form_submit_btn" iconCls="icon-ok" onclick="javascript:save();">确定</a> 
+							<a class="easyui-linkbutton" id="edit_form_submit_btn" iconCls="icon-ok" onclick="javascript:commonTable.save();">确定</a> 
 							<a class="easyui-linkbutton" iconCls="icon-cancel" onclick="$('#htm_edit').window('close');">取消</a>
 						</td>
 					</tr>
 					<tr class="loading none">
 						<td colspan="2" style="text-align: center; padding-top: 10px; vertical-align:middle;">
-							<img alt="" src="<c:url value='/resources/images/loading.gif'/>" style="vertical-align:middle;">
+							<img alt="" src="/resources/images/loading.gif" style="vertical-align:middle;">
 							<span style="vertical-align:middle;">请稍后...</span>
 						</td>
 					</tr>

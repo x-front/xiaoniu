@@ -7,10 +7,10 @@ import com.xiaoniu.controller.base.BaseController;
 import com.xiaoniu.db.domain.AdminPrivilegesGroup;
 
 @Controller
-@RequestMapping("/secure/adminUserPrivilege")
+@RequestMapping("/secure/adminUserPrivilegesGroup")
 public class AdminPrivilegesGroupController extends BaseController<AdminPrivilegesGroup>{
-	@RequestMapping("adminUserPrivilege.html")
+	@RequestMapping("adminPrivilegesGroup.html")
 	public String adminUserPrivilegeHtml(){
-		return "secure/adminUserPrivilege";
+		return "secure/adminPrivilegesGroup";
 	}
 }

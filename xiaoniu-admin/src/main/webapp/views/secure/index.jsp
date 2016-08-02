@@ -15,7 +15,6 @@
     <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/xiaoniu/secure_index.css'/>"/>
     <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/xiaoniu/default.css'/>"/>
     <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/xiaoniu/CRUD.css'/>"/>
-    <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/xiaoniu/CRUD.css'/>"/>
     <script type="text/javascript" src="/resources/js/xiaoniu/index.js"></script>
     
 </head>

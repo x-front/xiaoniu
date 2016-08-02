@@ -3,6 +3,7 @@ package com.xiaoniu.controller.base;
 import java.io.PrintWriter;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -83,6 +84,9 @@ public class BaseController<T extends BaseVO> implements InitializingBean{
 	public Map<String,Object> insert(T entity){
 		Map<String,Object> map = new HashMap<String,Object>();
 		try{
+			Date now = new Date();
+			entity.setCreateTime(now);
+			entity.setUpdateTime(now);
 			service.save(entity);
 			map.put(Contants.RESULT_CODE, MsgCode.SAVE_SUCCESS.getCode());
 			map.put(Contants.MSG, MsgCode.SAVE_SUCCESS.getMsg());
@@ -98,7 +102,9 @@ public class BaseController<T extends BaseVO> implements InitializingBean{
 	public Map<String,Object> update(T entity){
 		Map<String,Object> map = new HashMap<String,Object>();
 		try{
-			service.updateAll(entity);
+			Date now = new Date();
+			entity.setUpdateTime(now);
+			service.updateNotNull(entity);
 			map.put(Contants.RESULT_CODE, MsgCode.SAVE_SUCCESS.getCode());
 			map.put(Contants.MSG, MsgCode.SAVE_SUCCESS.getMsg());
 		}catch(Exception e){

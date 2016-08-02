@@ -21,5 +21,10 @@ public class AdminUserPrivilegesServiceImpl extends BaseServiceImpl<AdminUserPri
 	public List<AdminUserPrivilegesVO> queryAdminUserPrivileges(Integer userId) {
 		return adminUserPrivilegesVOMapper.queryAdminUserPrivileges(userId);
 	}
+	
+	@Override
+	public List<AdminUserPrivilegesVO> queryAdminUserPrivilegesVOList(Integer userId,int page,int rows) throws Exception{
+		return adminUserPrivilegesVOMapper.queryAdminUserPrivilegesVOList(userId, (page - 1)*rows, rows);
+	}
 
 }
