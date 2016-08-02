@@ -22,17 +22,10 @@
 		{field:'id', title: 'ID',align:'center' },
 		{field:'userId',title: '用户ID',align:'center'},
 		{field:'userName',title: '用户名',align:'center',width:120},
-		{field:'pvgName',title: '组名称',align:'center',width:120},
-		{field:'valid',title: '有效性',align:'center',
-			formatter: function(value,row,index){
-				if(value == 1) {
-						img = "<c:url value='/resources/js/easyUI/themes/icons/ok.png'/>";
-						return "<img title='有效' class='htm_column_img'  src='" + img + "'/>";
-					}
-					img = "<c:url value='/resources/js/easyUI/themes/icons/tip.png'/>";
-					return "<img title='无效' class='htm_column_img' src='" + img + "'/>";
-				}
-		},
+		{field:'pvgName',title: '权限名称',align:'center',width:120},
+		validColumn,
+		createTimeColumn,
+		updateTimeColumn,
 	];
 	commonTable.addWindowCloseCallBack = function(){
 		$("#edit_form_privilege").combogrid('clear');
@@ -55,7 +48,7 @@
 			editable: false,
 		    multiple: true,
 		   	toolbar:"#privilege_tb",
-		   	url:"<c:url value='/secure/privileges/queryPrivileges'/>",
+		   	url:"<c:url value='/secure/privileges/queryList'/>",
 		    idField:'id',
 		    textField:'pvgName',
 		    pagination:true,
@@ -65,10 +58,10 @@
 		    },
 		    columns:[[
 				{field : 'ck',checkbox : true },
-				{field:'id', title: '权限ID',align:'center', width:100 },
+				{field:'id', title: '权限ID',align:'center'},
 				{field:'pvgName',title: '权限名称',align:'center',width:140},
-				{field:'groupId', title: '所在组ID',align:'center', width:80 },
-				{field:'groupName',title: '所在组',align:'center',width:140},
+				/* {field:'groupId', title: '所在组ID',align:'center', width:80 },
+				{field:'groupName',title: '所在组',align:'center',width:140}, */
 		    ]],
 		    queryParams:privilegeQueryParams,
 		    onLoadSuccess:function(data) {
@@ -80,23 +73,13 @@
 				}
 		    },
 		});
-		var p = $('#edit_form_privilege').combogrid('grid').datagrid('getPager');
-		p.pagination({
-			onBeforeRefresh : function(pageNumber, pageSize) {
-				if(pageNumber <= 1) {
-					privilegeMaxId = data.maxId;
-					privilegeQueryParams.maxId = privilegeMaxId;
-				}
-			}
-		});
 		
 		$("#adminUser-input").combobox({
 			valueField:'id',
 			textField:'userName',
 			selectOnNavigation:false,
-			url:"<c:url value='/secure/adminUserInfo/list'/>",
+			url:"<c:url value='/secure/adminUserInfo/queryAll'/>",
 			onSelect:function(rec){
-				tableQueryParams.maxId = 0;
 				tableQueryParams.userId = rec.id;
 				$("#html_table").datagrid("load",tableQueryParams);
 			}
@@ -106,20 +89,11 @@
 			valueField:'id',
 			textField:'userName',
 			selectOnNavigation:false,
-			url:"<c:url value='/secure/adminUserInfo/list'/>"
+			url:"<c:url value='/secure/adminUserInfo/queryAll'/>"
 		});
 		removePageLoading();
 	});
 	
-	//初始化添加段子窗口
-	function initAddWindow(){
-		$("#edit_form").attr("action","<c:url value='/secure/adminUserPrivilege/insert'/>");
-		$("#edit_form .opt_btn").hide();
-		$("#edit_form .loading").show();
-		$("#htm_edit").window('open');
-		$("#edit_form .opt_btn").show();
-		$("#edit_form .loading").hide();
-	}
 	
 	//添加段子submit
 	function save(){
@@ -143,9 +117,8 @@
 	
 	function searchPrivilege(){
 		privilegeMaxId = 0;
-		var pvgName = $('#ss_privilege').searchbox('getValue');
+		var pvgName = $('#ss_privilege').searchbox('getValue'),
 		userQueryParams = {
-			'maxId' : privilegeMaxId,
 			'pvgName' : pvgName
 		};
 		$("#edit_form_privilege").combogrid('grid').datagrid("load",userQueryParams);
@@ -173,23 +146,23 @@
 				<tbody>
 					<tr>
 						<td>管理员:</td>
-						<td><input id="edit_form_adminUser" /></td>
+						<td><input id="edit_form_adminUser" name="userId"/></td>
 					</tr>
 					<tr>
 						<td>权限:</td>
-						<td><input id="edit_form_privilege"/></td>
+						<td><input id="edit_form_privilege" name="roleId"/></td>
 					</tr>
 					<tr>
 						<td>有效性:</td>
 						<td>
-							<select id="edit_form_valid" class="easyui-combobox">
+							<select id="edit_form_valid" class="easyui-combobox" name="valid">
 								<option value="1">有效</option>
 								<option value="0">无效</option>
 							</select>
 						</td>
 					</tr>
 					<tr>
-						<td><input style="display:none" readonly="readonly" id="edit_form_id"></td>
+						<td><input style="display:none" readonly="readonly" id="edit_form_id" name="id"></td>
 					</tr>
 					<tr>
 						<td class="opt_btn" colspan="2" style="text-align: center;padding-top: 10px;">

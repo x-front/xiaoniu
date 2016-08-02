@@ -1,9 +1,14 @@
 package com.xiaoniu.controller.base;
 
+import java.io.PrintWriter;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,6 +65,18 @@ public class BaseController<T extends BaseVO> implements InitializingBean{
 		}
 		return map;
 	}
+	
+	@RequestMapping("queryAll")
+	@ResponseBody
+	public List<T> queryAll(HttpServletRequest request,HttpServletResponse response){
+		try{
+			return service.selectAll();
+		}catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
 	
 	@RequestMapping("insert")
 	@ResponseBody

@@ -23,7 +23,7 @@ import com.zxx.common.enums.MsgCode;
 
 
 @Controller
-@RequestMapping("/adminUserInfo")
+@RequestMapping("/secure/adminUserInfo")
 public class AdminUserInfoController extends BaseController<AdminUserInfo>{
 	
 	@Autowired
