@@ -46,13 +46,13 @@ public abstract class BaseServiceImpl<T extends BaseVO> implements BaseService<T
 	}
 	
 	@Override
-	public T selectByKey(Integer id) {
+	public T selectByKey(Integer id) throws Exception {
 		// TODO Auto-generated method stub
 		return mapper.selectByPrimaryKey(id);
 	}
 
 	@Override
-	public T save(T entity) {
+	public T save(T entity) throws Exception {
 		entity.setCreateTime(new Date());
 		entity.setUpdateTime(new Date());
 		Integer result = mapper.insert(entity);
@@ -63,13 +63,13 @@ public abstract class BaseServiceImpl<T extends BaseVO> implements BaseService<T
 	}
 
 	@Override
-	public List<T> select(T entity) {
+	public List<T> select(T entity) throws Exception {
 		// TODO Auto-generated method stub
 		return mapper.select(entity);
 	}
 
 	@Override
-	public int delete(Integer ...id) {
+	public int delete(Integer ...id) throws Exception {
 		if(id!=null){
 			int c = 0;
 			for (int i = 0; i < id.length; i++) {
@@ -83,25 +83,25 @@ public abstract class BaseServiceImpl<T extends BaseVO> implements BaseService<T
 	}
 
 	@Override
-	public int updateAll(T entity) {
+	public int updateAll(T entity) throws Exception {
 		entity.setUpdateTime(new Date());
 		return mapper.updateByPrimaryKey(entity);
 	}
 
 	@Override
-	public int updateNotNull(T entity) {
+	public int updateNotNull(T entity) throws Exception {
 		// TODO Auto-generated method stub
 		entity.setUpdateTime(new Date());
 		return mapper.updateByPrimaryKeySelective(entity);
 	}
 	@Override
-	public int selectCount(T entity) {
+	public int selectCount(T entity) throws Exception {
 		// TODO Auto-generated method stub
 		return mapper.selectCount(entity);
 	}
 
 	@Override
-	public List<T> selectAll() {
+	public List<T> selectAll() throws Exception {
 		// TODO Auto-generated method stub
 		return this.mapper.selectAll();
 	}
@@ -109,7 +109,7 @@ public abstract class BaseServiceImpl<T extends BaseVO> implements BaseService<T
 
 
 	@Override
-	public List<T> selectByExample(Object example) {
+	public List<T> selectByExample(Object example) throws Exception {
 		// TODO Auto-generated method stub
 		return mapper.selectByExample(example);
 	}
@@ -117,13 +117,13 @@ public abstract class BaseServiceImpl<T extends BaseVO> implements BaseService<T
 
 
 	@Override
-	public int delete(Integer id) {
+	public int delete(Integer id) throws Exception {
 		// TODO Auto-generated method stub
 		return this.mapper.deleteByPrimaryKey(id);
 	}
 
 	@Override
-	public T oneSelect(T entity) {
+	public T oneSelect(T entity) throws Exception {
 		// TODO Auto-generated method stub
 		return this.mapper.selectOne(entity);
 	}
@@ -151,7 +151,7 @@ public abstract class BaseServiceImpl<T extends BaseVO> implements BaseService<T
 		}
 	}
 	
-	public PageInfo<T> queryList(Integer page,Integer rows,String orderBy,final T entity){
+	public PageInfo<T> queryList(Integer page,Integer rows,String orderBy,final T entity) throws Exception {
 		PageInfo<T> pageInfo = PageHelper.startPage(page, rows, orderBy).doSelectPageInfo(new ISelect() {
 			
 			@Override

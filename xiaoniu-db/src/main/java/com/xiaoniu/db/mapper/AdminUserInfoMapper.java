@@ -4,4 +4,5 @@ import com.xiaoniu.db.domain.AdminUserInfo;
 import tk.mybatis.mapper.common.Mapper;
 
 public interface AdminUserInfoMapper extends Mapper<AdminUserInfo> {
+	public Integer insertReturnPrimaryKey(AdminUserInfo vo);
 }

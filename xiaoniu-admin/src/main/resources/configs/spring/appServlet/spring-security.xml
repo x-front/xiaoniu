@@ -9,6 +9,7 @@
 	<!-- 打开@PreFilter,@PreAuthorize, @PostFilter, @PostAuthorize等注解支持（注意：放在这里只会对Service层的方法生效） -->
 	<global-method-security pre-post-annotations="enabled" />
 	
+	<http pattern="/resources/3rd/**" security="none"></http>
 	<http pattern="/resources/js/**" security="none"></http>
 	<http pattern="/resources/css/**" security="none"></http>
 	<http pattern="/resources/images/**" security="none"></http>

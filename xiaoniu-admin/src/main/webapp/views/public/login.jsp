@@ -15,8 +15,8 @@
 <meta name="format-detection" content="telephone=no,email=no" />
 <meta name="msapplication-tap-highlight" content="no">
 <jsp:include page="./common/head.jsp"></jsp:include>
-<link rel="stylesheet" href="/resources/css/3rd/login/css/reset.css" type="text/css">
-<link rel="stylesheet" href="/resources/css/3rd/login/css/common.css" type="text/css">
+<link rel="stylesheet" href="/resources/3rd/login/css/reset.css" type="text/css">
+<link rel="stylesheet" href="/resources/3rd/login/css/common.css" type="text/css">
 <style type="text/css">
 .display-none{display:none;}
 .error{color:red;}
@@ -28,10 +28,10 @@
 	}
 </style>
 <!--[if lt IE 9]>
-<script type="text/javascript" src="/resources/css/3rd/login/js/html5.js"></script>
-<script type="text/javascript" src="/resources/css/3rd/login/js/respond.min.js"></script>
+<script type="text/javascript" src="/resources/3rd/login/js/html5.js"></script>
+<script type="text/javascript" src="/resources/3rd/login/js/respond.min.js"></script>
 <![endif]-->
-<script type="text/javascript" src="/resources/css/3rd/login/js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="/resources/3rd/login/js/jquery-1.8.3.min.js"></script>
 <script type="text/javascript" src="/resources/js/xiaoniu/login.js"></script>
 
 </head>

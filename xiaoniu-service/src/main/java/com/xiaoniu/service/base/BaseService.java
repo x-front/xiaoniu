@@ -9,29 +9,29 @@ import com.xiaoniu.db.domain.BaseVO;
 
 public interface BaseService <T extends BaseVO> extends InitializingBean {
 
-    public T selectByKey(Integer id);
+    public T selectByKey(Integer id)throws Exception;
 
-    public T save(T entity);
+    public T save(T entity)throws Exception;
     
-    public List<T> select(T entity);
+    public List<T> select(T entity)throws Exception;
     
-    public T oneSelect(T entity);
+    public T oneSelect(T entity)throws Exception;
 
-    public int delete(Integer id);
+    public int delete(Integer id)throws Exception;
     
-    public int delete(Integer ...id);
+    public int delete(Integer ...id)throws Exception;
 
-    public int updateAll(T entity);
+    public int updateAll(T entity)throws Exception;
     
-    public int selectCount(T entity);
+    public int selectCount(T entity)throws Exception;
 
-    public int updateNotNull(T entity);
+    public int updateNotNull(T entity)throws Exception;
 
-    public List<T> selectAll();
+    public List<T> selectAll()throws Exception;
     
-    public List<T> selectByExample(Object example);
+    public List<T> selectByExample(Object example)throws Exception;
     
     public int batchUpdateValid(Integer valid,Integer ...id)throws InstantiationException, IllegalAccessException;
     
-    public PageInfo<T> queryList(Integer page,Integer rows,String orderBy,T entity);
+    public PageInfo<T> queryList(Integer page,Integer rows,String orderBy,T entity)throws Exception;
 }

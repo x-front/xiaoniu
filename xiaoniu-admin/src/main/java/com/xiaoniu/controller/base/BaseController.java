@@ -61,12 +61,27 @@ public class BaseController<T extends BaseVO> implements InitializingBean{
 		return map;
 	}
 	
-	@RequestMapping("save")
+	@RequestMapping("insert")
 	@ResponseBody
-	public Map<String,Object> save(T entity){
+	public Map<String,Object> insert(T entity){
 		Map<String,Object> map = new HashMap<String,Object>();
 		try{
 			service.save(entity);
+			map.put(Contants.RESULT_CODE, MsgCode.SAVE_SUCCESS.getCode());
+			map.put(Contants.MSG, MsgCode.SAVE_SUCCESS.getMsg());
+		}catch(Exception e){
+			map.put(Contants.RESULT_CODE, MsgCode.SAVE_FAILED.getCode());
+			map.put(Contants.MSG, e);
+		}
+		return map;
+	}
+	
+	@RequestMapping("update")
+	@ResponseBody
+	public Map<String,Object> update(T entity){
+		Map<String,Object> map = new HashMap<String,Object>();
+		try{
+			service.updateAll(entity);
 			map.put(Contants.RESULT_CODE, MsgCode.SAVE_SUCCESS.getCode());
 			map.put(Contants.MSG, MsgCode.SAVE_SUCCESS.getMsg());
 		}catch(Exception e){

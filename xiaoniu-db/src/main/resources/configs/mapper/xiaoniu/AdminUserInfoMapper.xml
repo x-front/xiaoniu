@@ -13,4 +13,10 @@
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="password" jdbcType="VARCHAR" property="password" />
   </resultMap>
+  
+  <insert id="insertReturnPrimaryKey" useGeneratedKeys="true" keyProperty="id">
+  	insert into admin_user_info(user_name,login_code,valid,create_time,update_time,password)
+  	value(#{userName},#{loginCode},#{valid},#{createTime},#{updateTime},#{password})
+  </insert>
+  
 </mapper>
