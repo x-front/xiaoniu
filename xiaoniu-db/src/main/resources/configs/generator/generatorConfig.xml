@@ -44,7 +44,7 @@
 	</table>
 	 -->
 
-    <table tableName="admin_user_role" >
+    <table tableName="news" >
       <property name="rootClass" value="com.xiaoniu.db.domain.BaseVO"/>
       	<generatedKey column="id" sqlStatement="Mysql" identity="true" />
     </table>
