@@ -12,10 +12,10 @@
 <script type="text/javascript" src="<c:url value='/resources/js/xiaoniu/common.js'/>?r=123"></script>
 <script type="text/javascript">
 	commonTable.loadDateURI = "/secure/adminUserPrivilege/queryAdminUserPrivilegesVOList";
-	commonTable.batchUpdateValidURI = "/secure/adminUserPrivilege/batchDelete?strIds=";
-	commonTable.batchDeleteURI = "/secure/adminUserPrivilege/batchUpdateValid?strIds=";
+	commonTable.batchUpdateValidURI = "/secure/adminUserPrivilege/batchUpdateValid?strIds=";
+	commonTable.batchDeleteURI = "/secure/adminUserPrivilege/batchDelete?strIds=";
 	commonTable.updateURI = "/secure/adminUserPrivilege/update";
-	commonTable.insertURI = "/secure/adminUserPrivilege/insert";
+	commonTable.insertURI = "/secure/adminUserPrivilege/batchInsert";
 	commonTable.title = "管理员权限管理";
 	commonTable.columns = [
 		{field:'ck',checkbox:true},
@@ -52,7 +52,7 @@
 		   	toolbar:"#privilege_tb",
 		   	url:"<c:url value='/secure/privileges/queryList'/>",
 		    idField:'id',
-		    textField:'pvgName',
+		    textField:'name',
 		    pagination:true,
 		    onClickCell: function(rowIndex, field, value){
 		    	if(field == 'opt') 
@@ -68,12 +68,6 @@
 		    ]],
 		    queryParams:privilegeQueryParams,
 		    onLoadSuccess:function(data) {
-		    	if(data.result == 0) {
-					if(data.maxId > privilegeMaxId) {
-						privilegeMaxId = data.maxId;
-						privilegeQueryParams.maxId = privilegeMaxId;
-					}
-				}
 		    },
 		});
 		
@@ -153,7 +147,7 @@
 					</tr>
 					<tr>
 						<td>权限:</td>
-						<td><input id="edit_form_privilege" name="roleId"/></td>
+						<td><input id="edit_form_privilege" name="privilegeIds"/></td>
 					</tr>
 					<tr>
 						<td>有效性:</td>

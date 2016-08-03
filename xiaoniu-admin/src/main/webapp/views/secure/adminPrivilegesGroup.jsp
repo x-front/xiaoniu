@@ -13,8 +13,8 @@
 <script type="text/javascript">
 
 	commonTable.loadDateURI = "/secure/adminUserPrivilegesGroup/queryList";
-	commonTable.batchUpdateValidURI = "/secure/adminUserPrivilegesGroup/batchDelete?strIds=";
-	commonTable.batchDeleteURI = "/secure/adminUserPrivilegesGroup/batchUpdateValid?strIds=";
+	commonTable.batchUpdateValidURI = "/secure/adminUserPrivilegesGroup/batchUpdateValid?strIds=";
+	commonTable.batchDeleteURI = "/secure/adminUserPrivilegesGroup/batchDelete?strIds=";
 	commonTable.updateURI = "/secure/adminUserPrivilegesGroup/update";
 	commonTable.insertURI = "/secure/adminUserPrivilegesGroup/insert";
 	commonTable.title = "权限列表";

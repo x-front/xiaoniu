@@ -12,8 +12,8 @@
 <script type="text/javascript" src="<c:url value='/resources/js/xiaoniu/common.js'/>?r=1134"></script>
 <script type="text/javascript">
 	commonTable.loadDateURI = "/secure/news/queryList";
-	commonTable.batchUpdateValidURI = "/secure/news/batchDelete?strIds=";
-	commonTable.batchDeleteURI = "/secure/news/batchUpdateValid?strIds=";
+	commonTable.batchUpdateValidURI = "/secure/news/batchUpdateValid?strIds=";
+	commonTable.batchDeleteURI = "/secure/news/batchDelete?strIds=";
 	commonTable.updateURI = "/secure/news/update";
 	commonTable.insertURI = "/secure/news/insert";
 	commonTable.title = "文章列表";

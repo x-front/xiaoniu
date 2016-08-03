@@ -12,8 +12,8 @@
 <script type="text/javascript" src="<c:url value='/resources/js/xiaoniu/common.js'/>?r=22"></script>
 <script type="text/javascript">
 	commonTable.loadDateURI = "/secure/privileges/queryList";
-	commonTable.batchUpdateValidURI = "/secure/privileges/batchDelete?strIds=";
-	commonTable.batchDeleteURI = "/secure/privileges/batchUpdateValid?strIds=";
+	commonTable.batchUpdateValidURI = "/secure/privileges/batchUpdateValid?strIds=";
+	commonTable.batchDeleteURI = "/secure/privileges/batchDelete?strIds=";
 	commonTable.updateURI = "/secure/privileges/update";
 	commonTable.insertURI = "/secure/privileges/insert";
 	commonTable.title = "权限列表";
@@ -57,7 +57,7 @@
 			valueField:'id',
 			textField:'groupName',
 			selectOnNavigation:false,
-			url:"<c:url value='/secure/privilegesGroup/list'/>"
+			url:"<c:url value='/secure/adminUserPrivilegesGroup/queryAll'/>"
 		});
 		
 	});

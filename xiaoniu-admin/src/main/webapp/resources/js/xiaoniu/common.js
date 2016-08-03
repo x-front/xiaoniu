@@ -31,7 +31,9 @@ var commonTable ={
 				pagination:this.pagination,
 				rownumbers:this.rownumbers,
 				columns:[this.columns],
-				onLoadSuccess:this.onLoadSuccess,
+				onLoadSuccess:function(){
+					commonTable.onLoadSuccess();
+				}
 			});
 			var p = $('#html_table').datagrid('getPager');
 			p.pagination({
@@ -39,7 +41,7 @@ var commonTable ={
 						afterPageText : '共 {pages} 页',
 						displayMsg: '第 {from} 到 {to} 共 {total} 条记录',
 					    onBeforeRefresh : function(){
-					    	this.onBeforeRefresh();
+					    	commonTable.onBeforeRefresh();
 					    }
 					});
 		},
@@ -47,7 +49,7 @@ var commonTable ={
 		beforeInitAddWindow:function(){},
 		initAddWindow:function(){
 			this.beforeInitAddWindow();
-			$("#edit_form").attr("action",this.insertURI);
+			$("#edit_form").attr("action",commonTable.insertURI);
 			$("#htm_edit").panel({title:"添加"});
 			$("#edit_form .opt_btn").hide();
 			$("#edit_form .loading").show();
@@ -60,7 +62,7 @@ var commonTable ={
 		beforeInitUpdateWindow:function(){},
 		initUpdateWindow:function(index){
 			this.beforeInitUpdateWindow(index);
-			$("#edit_form").attr("action",this.updateURI);
+			$("#edit_form").attr("action",commonTable.updateURI);
 			$("#htm_edit").panel({title:"修改"});
 			$("#edit_form .opt_btn").hide();
 			$("#edit_form .loading").show();
@@ -101,12 +103,12 @@ var commonTable ={
 					if(r){				
 						var ids = [];
 						for(var i=0;i<rows.length;i+=1){		
-							ids.push(rows[i][recordIdKey]);	
+							ids.push(rows[i][commonTable.recordIdKey]);	
 							rowIndex = $('#html_table').datagrid('getRowIndex',rows[i]);				
 						}	
 						$('#html_table').datagrid('clearSelections'); //清除所有已选择的记录，避免重复提交id值	
 						$('#html_table').datagrid('loading');
-						$.post(batchDeleteURI + ids,function(result){
+						$.post(commonTable.batchDeleteURI + ids,function(result){
 							$('#html_table').datagrid('loaded');
 							if(result['resultCode'] == 0) {
 								$.messager.alert('提示',"成功" + ids.length + "条记录！");
@@ -137,12 +139,12 @@ var commonTable ={
 					if(r){				
 						var ids = [];
 						for(var i=0;i<rows.length;i+=1){		
-							ids.push(rows[i][recordIdKey]);	
+							ids.push(rows[i][commonTable.recordIdKey]);	
 							rowIndex = $('#html_table').datagrid('getRowIndex',rows[i]);				
 						}	
 						$('#html_table').datagrid('clearSelections'); //清除所有已选择的记录，避免重复提交id值	
 						$('#html_table').datagrid('loading');
-						$.post(batchDeleteURI + ids,{'valid':valid},function(result){
+						$.post(commonTable.batchUpdateValidURI + ids,{'valid':valid},function(result){
 							$('#html_table').datagrid('loaded');
 							if(result['resultCode'] == 0) {
 								$.messager.alert('提示',successTipsMsg + ids.length + "条记录！");

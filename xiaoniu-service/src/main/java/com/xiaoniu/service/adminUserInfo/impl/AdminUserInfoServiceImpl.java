@@ -13,8 +13,10 @@ import org.springframework.stereotype.Service;
 
 
 
+
 import com.xiaoniu.db.domain.AdminUserInfo;
 import com.xiaoniu.db.domain.AdminUserInfoVO;
+import com.xiaoniu.db.mapper.AdminUserInfoMapper;
 import com.xiaoniu.db.mapper.AdminUserInfoVOMapper;
 import com.xiaoniu.service.adminUserInfo.AdminUserInfoService;
 import com.xiaoniu.service.base.impl.BaseServiceImpl;
@@ -24,6 +26,9 @@ public class AdminUserInfoServiceImpl extends BaseServiceImpl<AdminUserInfo> imp
 	
 	@Autowired
 	private AdminUserInfoVOMapper adminUserInfoVOMapper;
+	
+	@Autowired
+	private AdminUserInfoMapper service;
 	
 	@Override
 	public List<AdminUserInfoVO> queryAdminUserInfoVO(Integer id,String userName,Integer page,Integer rows){
@@ -46,8 +51,7 @@ public class AdminUserInfoServiceImpl extends BaseServiceImpl<AdminUserInfo> imp
 		if(r != 0 ){
 			throw new Exception("该账号已经被注册");
 		}
-		Integer id = mapper.insertSelective(vo);
-		vo.setId(id);
+		service.insertReturnPrimaryKey(vo);
 		return vo;
 	}
 	
