@@ -44,7 +44,7 @@
 	</table>
 	 -->
 
-    <table tableName="news" >
+    <table tableName="cmpy_news" >
       <property name="rootClass" value="com.xiaoniu.db.domain.BaseVO"/>
       	<generatedKey column="id" sqlStatement="Mysql" identity="true" />
     </table>

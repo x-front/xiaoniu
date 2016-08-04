@@ -8,8 +8,11 @@
 <title>管理员信息</title>
 <jsp:include page="../public/common/head.jsp"></jsp:include>
 <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/xiaoniu/CRUD.css'/>"/>
+<link rel="stylesheet" href="/resources/kindeditor-4.1.10/themes/default/default.css" />
 <script type="text/javascript" src="<c:url value='/resources/js/xiaoniu/dateTool.js'/>?r=1134"></script>
 <script type="text/javascript" src="<c:url value='/resources/js/xiaoniu/common.js'/>?r=1134"></script>
+<script type="text/javascript" src="/resources/kindeditor-4.1.10/kindeditor-all-min.js"></script>
+<script type="text/javascript" src="/resources/kindeditor-4.1.10/lang/zh_CN.js"></script>
 <script type="text/javascript">
 	commonTable.loadDateURI = "/secure/news/queryList";
 	commonTable.batchUpdateValidURI = "/secure/news/batchUpdateValid?strIds=";
@@ -20,8 +23,10 @@
 	commonTable.columns = [
 		{field:'ck',checkbox:true},
 		{field:'id', title: 'ID',align:'center',  hidden:true},
+		{field:'banner', title: '封面图',align:'center',  hidden:true},
+		{field:'title',title: '标题', align:'center',width:200},
 		{field:'source',title: '来源',align:'center'},
-		{field:'summary',title: '摘要',align:'center',width:240},
+		{field:'summary',title: '摘要',align:'center',width:340},
 		{field:'publishTime',title: '发布时间',align:'center'},
 		{field:'clickTimes',title: '点击次数',align:'center'},
 		publishColumn,
@@ -29,114 +34,119 @@
 		updateTimeColumn,
 		{field:'operator',title: '操作',align:'center',
 			formatter: function(value,row,index){
-					return "<a href='#' onclick='javascript:initUpdateWindow("+index+")'>修改</a>";
+					return "<a href='#' onclick='javascript:initUpdateNewsWindow("+index+")'>修改</a>";
 				}
 		},
 	];
-	commonTable.beforeInitUpdateWindow = function(index){
-		var rows = $("#html_table").datagrid("getRows"),
-		row = rows[index];
-		$("#edit_form_userName").val(row.userName);
-		$("#edit_form_loginCode").val(row.loginCode);
-		$("#edit_form_id").val(row.id);
-		$("#edit_form_password").val('');
-		$('#edit_form_valid').combobox("setValue",row.valid);
-		$('#edit_form_role').combobox("setValue",row.roleId);
-	};
-	commonTable.beforeSave = function(){
-		var userName = $("#edit_form_userName").val();
-		var loginCode 	= $("#edit_form_loginCode").val();
-		var password	= $("#edit_form_password").val();
-		if(!userName || $.trim(userName) == ""){
-			$.messager.alert('提示',"用户名不能为空");
-			return false;
-		}
-		if(!loginCode || $.trim(loginCode) == ""){
-			$.messager.alert('提示',"登录账号不能为空");
-			return false;
-		}
-		if(!password || $.trim(password) == ""){
-			$.messager.alert('提示',"登录账号不能为空");
-			return false;
-		}
-		return true;
-	};
 	
+	var contextEditor;
 	$(function(){
 		showPageLoading();
-		commonTable.defineAddWindow(460, 290);
 		commonTable.init();
 		removePageLoading();
+		KindEditor.ready(function(K) {
+			contextEditor = K.create('textarea[name="content"]', {
+				cssPath : '/resources/kindeditor-4.1.10/plugins/code/prettify.css',
+				uploadJson : '/secure/kindeditor/upload_json',
+				fileManagerJson : '/secure/kindeditor/file_manager_json',
+				allowFileManager : true,
+				height:350,
+				width:700
+			});
+		});
 	});
+	
+	function initUpdateNewsWindow(index){
+		var rows = $("#html_table").datagrid("getRows"),
+		row = rows[index];
+		$("#display-none-id").val(row.id);
+		$("#edit-div-source").val(row.source);
+		$("#edit-div-title").val(row.title);
+		$("#edit-div-banner").val(row.banner);
+		$("#edit-div-summary").val(row.summary);
+		$("#edit-div-publishTime").val(row.publishTime);
+		$("#edit-div-clickTimes").val(row.clickTimes);
+		$("#edit-div-valid").combobox('setValue',row.valid);
+		contextEditor.html(row.content);
+		$("#edit-form").attr("action",commonTable.updateURI);
+		$("#html_table").addClass("none");
+		$("#edit-div").removeClass("none");
+	}
+	
+	function initAddNewsWindow(){
+		$("#html_table").hide();
+		$("#html_table").addClass("none");
+		$("#edit-div").removeClass("none");
+		$("#edit-form").attr("action",commonTable.insertURI);
+	}
+	function cancel(){
+		contextEditor.html('');
+		$("#edit-div").addClass("none");
+		$("#html_table").removeClass("none");
+	}
+	
+	function save(){
+		var $form = $("#edit-form");
+		$("#edit-form .opt_btn").hide();
+		$("#edit-form .loading").show();
+		$.post($form.attr('action'),$form.serialize(),function(result){
+			$("#edit-form .opt_btn").show();
+			$("#edit-form .loading").hide();
+			if ( result['resultCode'] == 0 ) {
+				$("#edit-div").addClass("none");
+				$("#html_table").removeClass("none");
+				$("#html_table").datagrid("reload");
+			} else {
+				$.messager.alert('提示',result['msg']);
+			}
+		});
+	}
 	
 </script>
 </head>
 <body>
-	<div id="main-box" class="none">
-		<div id="html_table">
-		
+		<div id="html_table" >
 		</div>
 		
 		<!-- tool bar -->
 		<div id="table_tb" style="padding:5px;height:auto" class="none">
-			<a href="javascript:void(0);" onclick="javascript:commonTable.initAddWindow()"class="easyui-linkbutton" title="添加" plain="true" iconCls="icon-add" id="addBtn">添加</a>
+			<a href="javascript:void(0);" onclick="javascript:initAddNewsWindow()"class="easyui-linkbutton" title="添加" plain="true" iconCls="icon-add" id="addBtn">添加</a>
 			<a href="javascript:void(0);" onclick="javascript:commonTable.batchDelete()"class="easyui-linkbutton" title="删除" plain="true" iconCls="icon-cut" id="delBtn">删除</a>
 		</div>
 		
-		<!-- 添加-->
-		<div id="htm_edit">
-			<form id="edit_form" method="post">
-				<table id="htm_edit_table" width="450">
-					<tbody>
-						<tr>
-							<td>用户名:</td>
-							<td><input id="edit_form_userName" name="userName" class="clear-input"/></td>
-						</tr>
-						<tr>
-							<td>登陆账号:</td>
-							<td><input id="edit_form_loginCode" name="loginCode" class="clear-input"/></td>
-						</tr>
-						<tr>
-							<td>密码:</td>
-							<td><input id="edit_form_password" name="password" class="clear-input"/></td>
-						</tr>
-						<tr>
-							<td>角色:</td>
-							<td>
-								<select id="edit_form_role" name="roleId" class="easyui-combobox clear-combobox">
-									<option value="1">超级管理员</option>
-									<option value="2">管理员</option>
-								</select>
-							</td>
-						</tr>
-						<tr>
-							<td>有效性:</td>
-							<td>
-								<select id="edit_form_valid" name="valid" class="easyui-combobox clear-combobox">
-									<option value="1">有效</option>
-									<option value="0">无效</option>
-								</select>
-							</td>
-						</tr>
-						<tr>
-							<td><input style="display:none" name="id" readonly="readonly" id="edit_form_id"></td>
-						</tr>
-						<tr>
-							<td class="opt_btn" colspan="2" style="text-align: center;padding-top: 10px;">
-								<a class="easyui-linkbutton" id="edit_form_submit_btn" iconCls="icon-ok" onclick="javascript:commonTable.save();">确定</a> 
-								<a class="easyui-linkbutton" iconCls="icon-cancel" onclick="$('#htm_edit').window('close');">取消</a>
-							</td>
-						</tr>
-						<tr class="loading none">
-							<td colspan="2" style="text-align: center; padding-top: 10px; vertical-align:middle;">
-								<img alt="" src="/resources/images/loading.gif" style="vertical-align:middle;">
-								<span style="vertical-align:middle;">请稍后...</span>
-							</td>
-						</tr>
-					</tbody>
-				</table>
+		<!-- 添加 -->
+		<div id="edit-div" class="none">
+			<form id="edit-form" method="post">
+				<input type="text" id="edit-div-banner" name="banner" class="clear-input" placeholder="封面图"/>
+				<input type="button" id="btn-banner-upload" value="选择图片"/>
+				
+				<input type="text" id="edit-div-title" name="title" class="clear-input" placeholder="标题"/>
+				<input type="text" id="edit-div-source" name="source" class="clear-input" placeholder="来源"/>
+				<input type="text" id="edit-div-publishTime" name="publishTime" class="clear-input" placeholder="发布时间"/>
+				<input type="number" id="edit-div-clickTimes" name="clickTimes" class="clear-input" placeholder="点击次数"/>
+				<select class="easyui-combobox" style="width:40%;text-align:center;" id="edit-div-valid" name="valid">
+					<option value="0">提交后不发布</option>
+					<option value="1">提交后直接发布</option>
+				</select>
+				
+				<textarea rows="5" id="edit-div-summary" name="summary"></textarea>
+				
+				<textarea name="content" style="height:90%; visibility:hidden;"></textarea>
+				<br>
+				<div class="opt_btn"  style="text-align: center;padding-top: 10px;">
+					<a class="easyui-linkbutton" id="import-form-submit-btn" iconCls="icon-ok" onclick="javascript:submit();">确定</a> 
+					<a class="easyui-linkbutton" iconCls="icon-cancel" onclick="cancel();">取消</a>
+				</div>
+				<div class="loading display-none" style="text-align: center; padding-top: 10px; vertical-align:middle;">
+					<img alt="" src="/resources/images/loading.gif" style="vertical-align:middle;">
+					<span style="vertical-align:middle;">请稍后...</span>
+				</div>
+				
+				<div id="display-none-input" class="none">
+					<input id="display-none-id" name="id" class="clear-input">
+				</div>
 			</form>
 		</div>
-	</div>
+		
 </body>
 </html>

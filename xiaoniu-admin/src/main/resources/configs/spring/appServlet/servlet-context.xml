@@ -19,15 +19,7 @@
 
 	<!-- 当HTTP GET请求地址是/resources/**下的资源时候，不需要DispatchServlet处理，
 		直接转到 ${webappRoot}/resources目录下的资源，有利于提高静态资源访问效率 -->
-	<mvc:resources mapping="/resources/3rd/**" location="/resources/3rd/" />
-	<mvc:resources mapping="/resources/js/**" location="/resources/js/" />
-	<mvc:resources mapping="/resources/images/**" location="/resources/images/" />
-	<mvc:resources mapping="/resources/css/**" location="/resources/css/" />
-	<mvc:resources mapping="/resources/ueditor/dialogs/**" location="/resources/ueditor/dialogs/" />
-	<mvc:resources mapping="/resources/ueditor/lang/**" location="/resources/ueditor/lang/" />
-	<mvc:resources mapping="/resources/ueditor/themes/**" location="/resources/ueditor/themes/" />
-	<mvc:resources mapping="/resources/ueditor/third-party/**" location="/resources/ueditor/third-party/" />
-	<mvc:resources mapping="/resources/ueditor/ueditor.**.js" location="/resources/ueditor/" />
+	<mvc:resources mapping="/resources/**" location="/resources/" />
 	<mvc:resources location="/resources/images/favicon.ico" mapping="/favicon.ico"/>
 
 	<!-- 视图资源配置，处理控制器组件返回的view，自动加上前缀及后缀 -->

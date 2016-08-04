@@ -10,11 +10,7 @@
 	<!-- 打开@PreFilter,@PreAuthorize, @PostFilter, @PostAuthorize等注解支持（注意：放在这里只会对Service层的方法生效） -->
 	<global-method-security pre-post-annotations="enabled" />
 	
-	<http pattern="/resources/3rd/**" security="none"></http>
-	<http pattern="/resources/js/**" security="none"></http>
-	<http pattern="/resources/css/**" security="none"></http>
-	<http pattern="/resources/images/**" security="none"></http>
-	<http pattern="/resources/css/*" security="none"></http>
+	<http pattern="/resources/**" security="none"></http>
 	<http pattern="/favicon.ico" security="none"></http>
 	<http use-expressions="true" entry-point-ref="authenticationProcessingFilterEntryPoint">
 		<logout logout-success-url="/public/index.html" logout-url="/public/logout.html"/>
@@ -22,7 +18,6 @@
 	    <intercept-url pattern="/" access="permitAll" />
 	    <intercept-url pattern="/public/**" access="permitAll" />
 	    <intercept-url pattern="/secure/**" access="fullyAuthenticated" />
-	    <intercept-url pattern="/resources/ueditor/**" access="fullyAuthenticated" />
 	    <intercept-url pattern="/**" access="denyAll" />
 	    <custom-filter ref="validateCodeUsernamePasswordAuthenticationFilter" position="FORM_LOGIN_FILTER"/>
 	</http>

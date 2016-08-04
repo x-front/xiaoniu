@@ -23,10 +23,14 @@ import com.zxx.common.contants.Contants;
 import com.zxx.common.enums.MsgCode;
 import com.zxx.common.utils.StringUtils;
 
-public class BaseController<T extends BaseVO> implements InitializingBean{
+public abstract class BaseController<T extends BaseVO> implements InitializingBean{
 
 	@Autowired
 	protected BaseService<T> service; 
+	
+	public BaseService<T> getService(){
+		return this.service;
+	}
 	
 	@Override
 	public void afterPropertiesSet() throws Exception {
