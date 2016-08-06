@@ -9,7 +9,7 @@
 <jsp:include page="../public/common/head.jsp"></jsp:include>
 <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/xiaoniu/CRUD.css'/>"/>
 <script type="text/javascript" src="<c:url value='/resources/js/xiaoniu/dateTool.js'/>?r=1134"></script>
-<script type="text/javascript" src="<c:url value='/resources/js/xiaoniu/common.js'/>?r=123"></script>
+<script type="text/javascript" src="<c:url value='/resources/js/xiaoniu/common.js'/>?r=33"></script>
 <script type="text/javascript">
 	commonTable.loadDateURI = "/secure/adminUserPrivilege/queryAdminUserPrivilegesVOList";
 	commonTable.batchUpdateValidURI = "/secure/adminUserPrivilege/batchUpdateValid?strIds=";
@@ -41,14 +41,14 @@
 		
 		$('#edit_form_privilege').combogrid({
 			panelWidth:500,
-		    panelHeight:350,
+		    panelHeight:320,
 		    title:"权限列表",
 		    loadMsg:'加载中，请稍后...',
-			pageList: [10,20],
+			pageList: [8,20],
 			editable: false,
 		    multiple: true,
 		    fitColumns:true,
-			//fit:true,
+		    //fit:true,
 		   	toolbar:"#privilege_tb",
 		   	url:"<c:url value='/secure/privileges/queryList'/>",
 		    idField:'id',

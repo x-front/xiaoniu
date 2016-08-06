@@ -41,10 +41,16 @@ public class AdminUserPrivilegesController extends BaseController<AdminUserPrivi
 				AdminUserPrivileges entity = new AdminUserPrivileges();
 				entity.setUserId(userId);
 				entity.setPvgId(ids[i]);
+				long r = service.selectCount(entity);
 				entity.setValid(valid);
 				entity.setUpdateTime(now);
-				entity.setCreateTime(now);
-				service.save(entity);
+				
+				if(r == 0){
+					entity.setCreateTime(now);
+					service.save(entity);
+				}else{
+					service.updateNotNull(entity);
+				}
 			}
 			
 			map.put(Contants.RESULT_CODE, MsgCode.SAVE_SUCCESS.getCode());

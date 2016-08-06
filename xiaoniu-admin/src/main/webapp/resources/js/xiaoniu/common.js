@@ -15,6 +15,7 @@ var commonTable ={
 		pageNum:1,
 		fitColumns:true,
 		fit:true,
+		draggable:true,
 		pagination:true,
 		rownumbers:true,
 		init:function(){
@@ -206,6 +207,11 @@ var createTimeColumn = {field:'createTime',title:'创建时间',align:'center',
 			return dateTools.LongTimeToDateString(value);		
 		}
 	},
+	publishTimeColumn = {field:'publishTime',title:'发布时间',align:'center',
+			formatter:function(value,row,index){
+				return dateTools.LongTimeToDateString(value);		
+			}
+		},
 	validColumn = {field:'valid',title: '有效性',align:'center',
 		formatter: function(value,row,index){
 			if(value == 1) {

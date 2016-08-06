@@ -17,6 +17,9 @@ public class CmpyNews extends BaseVO implements Serializable {
     @Column(name = "publish_time")
     private Date publishTime;
 
+    /**
+     * 1.美好家庭，2.美好体育，3美好公益，4.美好教育，5最新动态，6媒体报道，7小牛思想，8小牛声音
+     */
     private Integer type;
 
     private Integer valid;
@@ -31,6 +34,8 @@ public class CmpyNews extends BaseVO implements Serializable {
     private Integer clickTimes;
 
     private String summary;
+
+    private String title;
 
     private String content;
 
@@ -93,14 +98,18 @@ public class CmpyNews extends BaseVO implements Serializable {
     }
 
     /**
-     * @return type
+     * 获取1.美好家庭，2.美好体育，3美好公益，4.美好教育，5最新动态，6媒体报道，7小牛思想，8小牛声音
+     *
+     * @return type - 1.美好家庭，2.美好体育，3美好公益，4.美好教育，5最新动态，6媒体报道，7小牛思想，8小牛声音
      */
     public Integer getType() {
         return type;
     }
 
     /**
-     * @param type
+     * 设置1.美好家庭，2.美好体育，3美好公益，4.美好教育，5最新动态，6媒体报道，7小牛思想，8小牛声音
+     *
+     * @param type 1.美好家庭，2.美好体育，3美好公益，4.美好教育，5最新动态，6媒体报道，7小牛思想，8小牛声音
      */
     public void setType(Integer type) {
         this.type = type;
@@ -174,6 +183,20 @@ public class CmpyNews extends BaseVO implements Serializable {
      */
     public void setSummary(String summary) {
         this.summary = summary;
+    }
+
+    /**
+     * @return title
+     */
+    public String getTitle() {
+        return title;
+    }
+
+    /**
+     * @param title
+     */
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     /**

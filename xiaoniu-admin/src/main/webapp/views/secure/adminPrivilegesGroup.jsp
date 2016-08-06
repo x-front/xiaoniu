@@ -76,7 +76,7 @@
 					</tr>
 					<tr>
 						<td>icon:</td>
-						<td><input id="edit_form_icon" value="icon-nav" class="clear-input" name="icon"/></td>
+						<td><input id="edit_form_icon" value="icon-nav" name="icon"/></td>
 					</tr>
 					<tr>
 						<td>有效性:</td>
@@ -88,8 +88,8 @@
 						</td>
 					</tr>
 					<tr>
-						<td>序号(可为空):</td>
-						<td><input id="edit_form_serialNumber" class="clear-input" name="serialNumber"/></td>
+						<td>序号:</td>
+						<td><input id="edit_form_serialNumber" value="1" name="serialNumber"/></td>
 					</tr>
 					<tr>
 						<td><input style="display:none" readonly="readonly" id="edit_form_id" class="clear-input" name="id"></td>

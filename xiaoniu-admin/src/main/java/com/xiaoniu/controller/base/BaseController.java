@@ -1,8 +1,8 @@
 package com.xiaoniu.controller.base;
 
-import java.io.PrintWriter;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -13,6 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -165,5 +168,12 @@ public abstract class BaseController<T extends BaseVO> implements InitializingBe
 		return map;
 	}
 	
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		dateFormat.setLenient(true);
+		binder.registerCustomEditor(Date.class, new CustomDateEditor(
+				dateFormat, true));
+	}
 
 }

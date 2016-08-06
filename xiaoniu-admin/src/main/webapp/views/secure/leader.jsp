@@ -6,7 +6,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>新闻信息</title>
+<title>领导信息</title>
 <jsp:include page="../public/common/head.jsp"></jsp:include>
 <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/xiaoniu/CRUD.css'/>"/>
 <link rel="stylesheet" href="/resources/kindeditor-4.1.10/themes/default/default.css" />
@@ -15,22 +15,20 @@
 <script type="text/javascript" src="/resources/kindeditor-4.1.10/kindeditor-all-min.js"></script>
 <script type="text/javascript" src="/resources/kindeditor-4.1.10/lang/zh_CN.js"></script>
 <script type="text/javascript">
-	commonTable.loadDateURI = "/secure/news/queryList";
-	commonTable.batchUpdateValidURI = "/secure/news/batchUpdateValid?strIds=";
-	commonTable.batchDeleteURI = "/secure/news/batchDelete?strIds=";
-	commonTable.updateURI = "/secure/news/update";
-	commonTable.insertURI = "/secure/news/insert";
-	commonTable.title = "文章列表";
+	commonTable.loadDateURI = "/secure/leader/queryList";
+	commonTable.batchUpdateValidURI = "/secure/leader/batchUpdateValid?strIds=";
+	commonTable.batchDeleteURI = "/secure/leader/batchDelete?strIds=";
+	commonTable.updateURI = "/secure/leader/update";
+	commonTable.insertURI = "/secure/leader/insert";
+	commonTable.title = "团队列表";
 	commonTable.columns = [
 		{field:'ck',checkbox:true},
 		{field:'id', title: 'ID',align:'center',  hidden:true},
-		{field:'banner', title: '封面图',align:'center',  hidden:true},
-		{field:'title',title: '标题', align:'center',width:200},
-		{field:'source',title: '来源',align:'center'},
-		{field:'summary',title: '摘要',align:'center',width:340},
-		publishTimeColumn,
-		{field:'clickTimes',title: '点击次数',align:'center'},
-		publishColumn,
+		{field:'banner', title: '相片',align:'center',  hidden:true},
+		{field:'name',title: '民称', align:'center',},
+		{field:'position',title: '职位',align:'center'},
+		{field:'summary',title: '描述',align:'center',width:340},
+		validColumn,
 		createTimeColumn,
 		updateTimeColumn,
 		{field:'operator',title: '操作',align:'center',
@@ -40,7 +38,6 @@
 		},
 	];
 	
-	var contextEditor;
 	var PluginUpload;
 	var contentHeight;
 	var type = <%=type%>;
@@ -50,14 +47,6 @@
 		commonTable.init();
 		removePageLoading();
 		KindEditor.ready(function(K) {
-			contextEditor = K.create('textarea[name="content"]', {
-				cssPath : '/resources/kindeditor-4.1.10/plugins/code/prettify.css',
-				uploadJson : '/secure/aliyunOss/upload_json',
-				fileManagerJson : '/secure/aliyunOss/file_manager_json',
-				allowFileManager : true,
-				height:contentHeight - 200,
-				afterBlur: function(){this.sync();}
-			}); 
 			
 			PluginUpload = K.editor({
 				cssPath : '/resources/kindeditor-4.1.10/plugins/code/prettify.css',

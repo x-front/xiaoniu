@@ -9,7 +9,7 @@
 <jsp:include page="../public/common/head.jsp"></jsp:include>
 <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/xiaoniu/CRUD.css'/>"/>
 <script type="text/javascript" src="<c:url value='/resources/js/xiaoniu/dateTool.js'/>?r=1134"></script>
-<script type="text/javascript" src="<c:url value='/resources/js/xiaoniu/common.js'/>?r=22"></script>
+<script type="text/javascript" src="<c:url value='/resources/js/xiaoniu/common.js'/>?r=33"></script>
 <script type="text/javascript">
 	commonTable.loadDateURI = "/secure/privileges/queryList";
 	commonTable.batchUpdateValidURI = "/secure/privileges/batchUpdateValid?strIds=";
@@ -21,8 +21,6 @@
 		{field:'ck',checkbox:true},
 		{field:'id', title: '权限ID',align:'center' },
 		{field:'name',title: '权限名称',align:'center',width:120},
-		{field:'groupId', title: '所在组ID',align:'center' },
-		{field:'groupName',title: '所在组',align:'center',width:120},
 		{field:'url',title: '页面路径',align:'left',width:320},
 		{field:'icon',title: 'icon',align:'center'},
 		{field:'serialNumber',title: '系列号',align:'center'},
@@ -103,7 +101,7 @@
 					</tr>
 					<tr>
 						<td>icon:</td>
-						<td><input id="edit_form_icon" value="icon-nav" class="clear-input" name="icon"/></td>
+						<td><input id="edit_form_icon" value="icon-nav" name="icon"/></td>
 					</tr>
 					<tr>
 						<td>有效性:</td>

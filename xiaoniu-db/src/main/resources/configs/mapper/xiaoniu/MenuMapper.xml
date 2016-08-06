@@ -29,7 +29,7 @@
 			and ap.valid=1
 			and apg.valid=1
 		group by apg.id,apg.group_name
-		order by apg.serial_number asc
+		order by apg.serial_number asc,apg.id desc
 	</select>
 	
 	<!-- 查询子菜单 -->
@@ -41,6 +41,6 @@
 			ap.group_id=#{groupId}
 			and aup.user_id=#{userId}
 			and aup.valid=1
-		order by ap.serial_number
+		order by ap.serial_number asc,ap.id desc
 	</select>
 </mapper>
