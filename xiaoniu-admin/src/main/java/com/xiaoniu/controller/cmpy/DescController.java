@@ -45,12 +45,12 @@ public class DescController extends BaseController<CmpyDesc>{
 		Map<String,Object> map = new HashMap<String,Object>();
 		try{
 			CmpyDesc entity = new CmpyDesc();
-			entity.setId(1);;
+			entity.setId(1);
 			long r = service.selectCount(entity);
 			if(r == 0){
 				service.save(vo);
 			}else{
-				service.updateAll(vo);
+				service.updateNotNull(vo);
 			}
 			map.put(Contants.RESULT_CODE, MsgCode.SAVE_SUCCESS.getCode());
 			map.put(Contants.MSG, MsgCode.SAVE_SUCCESS.getMsg());

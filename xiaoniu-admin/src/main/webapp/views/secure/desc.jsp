@@ -164,6 +164,7 @@
 		$("#edit-div-name").textbox('setValue',name);
 		$("#edit-div-subName").textbox('setValue',subName);
 		contextEditor.html(content);
+		contextEditor.focus();
 		$("#content").addClass("none");
 		$("#edit-div").removeClass("none");
 	}
@@ -174,14 +175,15 @@
 		var $form = $("#edit-form");
 		$.post($form.attr('action'),$form.serialize(),function(result){
 			if ( result['resultCode'] == 0 ) {
-				$("summary-tag").html(contextEditor.html());
+				$("subname-tag").html($("#edit-div-subName").textbox('getValue'));
 				$('name-tag').html($("#edit-div-name").textbox('getValue'));
-				$('summary-tag').html($("edit-div-subName").textbox('getValue'));
+				$('summary-tag').html(contextEditor.html());
 				$("#desc-banner").attr("src",$('#edit-div-banner').textbox('getValue'));
 				$("#update-btn").linkbutton({
 					text:'修改',
 					iconCls:'icon-edit'
 				});
+				cancel();
 			}else{
 				$.messager.alert('提示',result['msg']);
 			}
@@ -191,7 +193,6 @@
 	}
 	
 	function cancel(){
-		contextEditor.html('');
 		$("#edit-img-banner").addClass('none');
 		$("#content").removeClass("none");
 		$("#edit-div").addClass("none");

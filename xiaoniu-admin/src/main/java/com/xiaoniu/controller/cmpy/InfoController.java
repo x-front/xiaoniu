@@ -51,7 +51,7 @@ public class InfoController extends BaseController<CmpyInfo>{
 			if(r == 0){
 				service.save(vo);
 			}else{
-				service.updateAll(vo);
+				service.updateNotNull(vo);
 			}
 			map.put(Contants.RESULT_CODE, MsgCode.SAVE_SUCCESS.getCode());
 			map.put(Contants.MSG, MsgCode.SAVE_SUCCESS.getMsg());

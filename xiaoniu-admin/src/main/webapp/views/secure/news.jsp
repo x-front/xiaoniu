@@ -106,6 +106,7 @@
 		$("#edit-div-serialNumber").numberbox('setValue',row.serialNumber);
 		$("#edit-div-valid").combobox('setValue',row.valid);
 		contextEditor.html(row.content);
+		contextEditor.focus();
 		$("#edit-form").attr("action",commonTable.updateURI);
 		$(".datagrid").addClass("none");
 		$("#edit-div").removeClass("none");

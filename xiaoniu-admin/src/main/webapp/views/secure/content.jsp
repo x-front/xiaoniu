@@ -77,6 +77,7 @@
 		var content = $("#content").html();
 		$("#content").addClass("none");
 		contextEditor.html(content);
+		contextEditor.focus();
 		$("#edit-div").removeClass("none");
 	}
 	
