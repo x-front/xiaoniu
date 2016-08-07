@@ -4,19 +4,23 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.*;
 
-@Table(name = "cmpy_leader")
-public class CmpyLeader extends BaseVO implements Serializable {
+@Table(name = "cmpy_info")
+public class CmpyInfo extends BaseVO implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private String banner;
+    private String address;
 
-    private String name;
+    private String email;
 
-    private String position;
+    private String fax;
 
-    private String summary;
+    @Column(name = "binary_code")
+    private String binaryCode;
+
+    @Column(name = "hot_line")
+    private String hotLine;
 
     private Integer valid;
 
@@ -25,9 +29,6 @@ public class CmpyLeader extends BaseVO implements Serializable {
 
     @Column(name = "update_time")
     private Date updateTime;
-
-    @Column(name = "serial_number")
-    private Integer serialNumber;
 
     private static final long serialVersionUID = 1L;
 
@@ -46,59 +47,73 @@ public class CmpyLeader extends BaseVO implements Serializable {
     }
 
     /**
-     * @return banner
+     * @return address
      */
-    public String getBanner() {
-        return banner;
+    public String getAddress() {
+        return address;
     }
 
     /**
-     * @param banner
+     * @param address
      */
-    public void setBanner(String banner) {
-        this.banner = banner;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     /**
-     * @return name
+     * @return email
      */
-    public String getName() {
-        return name;
+    public String getEmail() {
+        return email;
     }
 
     /**
-     * @param name
+     * @param email
      */
-    public void setName(String name) {
-        this.name = name;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     /**
-     * @return position
+     * @return fax
      */
-    public String getPosition() {
-        return position;
+    public String getFax() {
+        return fax;
     }
 
     /**
-     * @param position
+     * @param fax
      */
-    public void setPosition(String position) {
-        this.position = position;
+    public void setFax(String fax) {
+        this.fax = fax;
     }
 
     /**
-     * @return summary
+     * @return binary_code
      */
-    public String getSummary() {
-        return summary;
+    public String getBinaryCode() {
+        return binaryCode;
     }
 
     /**
-     * @param summary
+     * @param binaryCode
      */
-    public void setSummary(String summary) {
-        this.summary = summary;
+    public void setBinaryCode(String binaryCode) {
+        this.binaryCode = binaryCode;
+    }
+
+    /**
+     * @return hot_line
+     */
+    public String getHotLine() {
+        return hotLine;
+    }
+
+    /**
+     * @param hotLine
+     */
+    public void setHotLine(String hotLine) {
+        this.hotLine = hotLine;
     }
 
     /**
@@ -141,19 +156,5 @@ public class CmpyLeader extends BaseVO implements Serializable {
      */
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
-    }
-
-    /**
-     * @return serial_number
-     */
-    public Integer getSerialNumber() {
-        return serialNumber;
-    }
-
-    /**
-     * @param serialNumber
-     */
-    public void setSerialNumber(Integer serialNumber) {
-        this.serialNumber = serialNumber;
     }
 }

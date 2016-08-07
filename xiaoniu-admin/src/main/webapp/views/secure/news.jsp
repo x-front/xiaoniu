@@ -21,6 +21,10 @@
 	commonTable.updateURI = "/secure/news/update";
 	commonTable.insertURI = "/secure/news/insert";
 	commonTable.title = "文章列表";
+	commonTable.tableQueryParams = {
+			orderBy:'serial_number asc,id desc',
+			type:'<%=type%>'
+	}
 	commonTable.columns = [
 		{field:'ck',checkbox:true},
 		{field:'id', title: 'ID',align:'center',  hidden:true},
@@ -30,6 +34,7 @@
 		{field:'summary',title: '摘要',align:'center',width:340},
 		publishTimeColumn,
 		{field:'clickTimes',title: '点击次数',align:'center'},
+		{field:'serialNumber',title: '序号',align:'center'},
 		publishColumn,
 		createTimeColumn,
 		updateTimeColumn,
@@ -98,6 +103,7 @@
 			$("#edit-div-publishTime").datetimebox('setValue',dateTools.LongTimeToDateString(row.publishTime));
 		}
 		$("#edit-div-clickTimes").numberbox('setValue',row.clickTimes);
+		$("#edit-div-serialNumber").numberbox('setValue',row.serialNumber);
 		$("#edit-div-valid").combobox('setValue',row.valid);
 		contextEditor.html(row.content);
 		$("#edit-form").attr("action",commonTable.updateURI);
@@ -116,6 +122,8 @@
 		$(".clear-easyui-textbox").textbox('setValue','');
 		$(".clear-easyui-datetimebox").datetimebox('clear');
 		$(".clear-easyui-combobox").combobox('clear');
+		$(".clear-input").val('');
+		$('#edit-img-banner').addClass('none');
 		$("#edit-div").addClass("none");
 		$(".datagrid").removeClass("none");
 	}
@@ -179,7 +187,8 @@
 				<div id="div-content-info" >
 					<input id="edit-div-source" name="source" required="true" class="easyui-textbox clear-easyui-textbox "  prompt="来源"/>
 					<input id="edit-div-publishTime" name="publishTime" required="true" class="easyui-datetimebox clear-easyui-datetimebox " prompt="发布时间"/>
-					<input id="edit-div-clickTimes" name="clickTimes" required="true" class="easyui-numberbox clear-easyui-numberbox " prompt="点击次数"/>
+					<input id="edit-div-clickTimes" name="clickTimes" required="true" class="easyui-numberbox clear-easyui-numberbox " prompt="点击次数" data-options="min:0"/>
+					<input id="edit-div-serialNumber" name="serialNumber" required="true" class="easyui-numberbox clear-easyui-numberbox " prompt="序号(越小排序越靠前)"/>
 					<select class="easyui-combobox clear-easyui-combobox" required="true" id="edit-div-valid" name="valid">
 						<option value="0">提交后不发布</option>
 						<option value="1">提交后直接发布</option>

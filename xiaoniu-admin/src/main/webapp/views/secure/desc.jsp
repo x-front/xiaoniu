@@ -6,7 +6,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>信息管理</title>
+<title>公司描述</title>
 <jsp:include page="../public/common/head.jsp"></jsp:include>
 <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/xiaoniu/CRUD.css'/>"/>
 <link rel="stylesheet" href="/resources/kindeditor-4.1.10/themes/default/default.css" />
@@ -16,13 +16,13 @@
 <body>
 	<div id="main-box" class="none" style="width:1000px;margin: auto;">
 			<c:choose>
-				<c:when test="${not empty content}">
+				<c:when test="${not empty desc}">
 					<div id="tool-bar">
 						<a id="update-btn" class="easyui-linkbutton"  iconCls="icon-edit" onclick="javascript:update();">修改</a> 
 						<hr>
 					</div>
 					<div id="content">
-						${ content.content}
+						${ desc.content}
 					</div>
 				</c:when>
 				<c:otherwise>
@@ -36,21 +36,16 @@
 			</c:choose>
 		
 		<div id="edit-div" class="none">
-			<form action="/secure/content/save" id="edit-form">
-				<textarea name="content" style="visibility:hidden;width: 100%"></textarea>
+			<form action="/secure/desc/save" id="edit-form">
+				<div id="div-banner">
+					<input id="edit-div-banner" required="true" name="banner" class="easyui-textbox clear-easyui-textbox"  prompt="相片(158*209)"/>
+					<input type="button" id="btn-banner-upload" value="选择图片"/>
+					<img id="edit-img-banner" alt="" src="" class="none" style="width: 158px;height: 209px;">
+				</div>
+				
 				<div class="opt_btn"  style="text-align: center;padding-top: 10px;">
 					<a class="easyui-linkbutton" id="import-form-submit-btn" iconCls="icon-ok" onclick="javascript:submit();">确定</a> 
 					<a class="easyui-linkbutton" iconCls="icon-cancel" onclick="cancel();">取消</a>
-				</div>
-				<div id="div-title" >
-					<select class="easyui-combobox clear-easyui-combobox" required="true" id="edit-div-valid" name="valid" style="width:204px">
-						<option value="0">提交后不发布</option>
-						<option value="1">提交后直接发布</option>
-					</select>
-					<input id="edit-div-serialNumber" name="serialNumber" required="true" class="easyui-numberbox clear-easyui-numberbox " prompt="序号(越小排序越靠前)" style="width:490px"/>
-					<input id="edit-div-name" name="name" required="true" class="easyui-textbox clear-easyui-textbox " maxlength="12" prompt="名字" style="width:204px"/>
-					<input id="edit-div-position" name="position" class="easyui-textbox clear-easyui-textbox " maxlength="128" required="true" prompt="职位" style="width:490px"/>
-					<input  id="edit-div-summary" name="summary" class="easyui-textbox clear-easyui-textbox" maxlength="512" required="true" data-options="multiline:true" prompt="描述" style="width: 703px;height: 178px;"/>
 				</div>
 				<div class="loading none" style="text-align: center; padding-top: 10px; vertical-align:middle;">
 					<img alt="" src="/resources/images/loading.gif" style="vertical-align:middle;">

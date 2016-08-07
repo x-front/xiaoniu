@@ -18,6 +18,7 @@ var commonTable ={
 		draggable:true,
 		pagination:true,
 		rownumbers:true,
+		nowrap:true,
 		init:function(){
 			$("#html_table").datagrid({
 				title:this.title,
@@ -25,6 +26,7 @@ var commonTable ={
 				url	   :	this.loadDateURI,
 				fitColumns:this.fitColumns,
 				fit:this.fit,
+				nowrap:this.nowrap,
 				queryParams : this.tableQueryParams,
 				pageNumber: this.pageNum,
 				toolbar:this.toolbar,

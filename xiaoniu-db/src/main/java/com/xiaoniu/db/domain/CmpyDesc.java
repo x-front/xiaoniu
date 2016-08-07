@@ -4,8 +4,8 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.*;
 
-@Table(name = "cmpy_leader")
-public class CmpyLeader extends BaseVO implements Serializable {
+@Table(name = "cmpy_desc")
+public class CmpyDesc extends BaseVO implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -14,9 +14,8 @@ public class CmpyLeader extends BaseVO implements Serializable {
 
     private String name;
 
-    private String position;
-
-    private String summary;
+    @Column(name = "sub_name")
+    private String subName;
 
     private Integer valid;
 
@@ -26,8 +25,7 @@ public class CmpyLeader extends BaseVO implements Serializable {
     @Column(name = "update_time")
     private Date updateTime;
 
-    @Column(name = "serial_number")
-    private Integer serialNumber;
+    private String summary;
 
     private static final long serialVersionUID = 1L;
 
@@ -74,31 +72,17 @@ public class CmpyLeader extends BaseVO implements Serializable {
     }
 
     /**
-     * @return position
+     * @return sub_name
      */
-    public String getPosition() {
-        return position;
+    public String getSubName() {
+        return subName;
     }
 
     /**
-     * @param position
+     * @param subName
      */
-    public void setPosition(String position) {
-        this.position = position;
-    }
-
-    /**
-     * @return summary
-     */
-    public String getSummary() {
-        return summary;
-    }
-
-    /**
-     * @param summary
-     */
-    public void setSummary(String summary) {
-        this.summary = summary;
+    public void setSubName(String subName) {
+        this.subName = subName;
     }
 
     /**
@@ -144,16 +128,16 @@ public class CmpyLeader extends BaseVO implements Serializable {
     }
 
     /**
-     * @return serial_number
+     * @return summary
      */
-    public Integer getSerialNumber() {
-        return serialNumber;
+    public String getSummary() {
+        return summary;
     }
 
     /**
-     * @param serialNumber
+     * @param summary
      */
-    public void setSerialNumber(Integer serialNumber) {
-        this.serialNumber = serialNumber;
+    public void setSummary(String summary) {
+        this.summary = summary;
     }
 }

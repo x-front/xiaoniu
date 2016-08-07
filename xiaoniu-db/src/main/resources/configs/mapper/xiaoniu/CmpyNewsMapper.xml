@@ -16,6 +16,7 @@
     <result column="click_times" jdbcType="INTEGER" property="clickTimes" />
     <result column="summary" jdbcType="VARCHAR" property="summary" />
     <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="serial_number" jdbcType="INTEGER" property="serialNumber" />
     <result column="content" jdbcType="LONGVARCHAR" property="content" />
   </resultMap>
 </mapper>
