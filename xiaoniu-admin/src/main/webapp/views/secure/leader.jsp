@@ -175,7 +175,7 @@
 					<a class="easyui-linkbutton" id="import-form-submit-btn" iconCls="icon-ok" onclick="javascript:save();">确定</a> 
 					<a class="easyui-linkbutton" iconCls="icon-cancel" onclick="cancel();">取消</a>
 				</div>
-				<div class="loading none" style="text-align: center; padding-top: 10px; vertical-align:middle;">
+				<div class="loading none" style="text-align: center; padding-top: 250px; vertical-align:middle;">
 					<img alt="" src="/resources/images/loading.gif" style="vertical-align:middle;">
 					<span style="vertical-align:middle;">请稍后...</span>
 				</div>

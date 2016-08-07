@@ -41,6 +41,14 @@
 		margin: 0;
 	}
 	
+	#div-banner{
+		width:470px;
+		float: left;
+	}
+	#div-title{
+		width:647px;
+		float: right;
+	}
 </style>
 </head>
 <body>
@@ -61,29 +69,31 @@
 			</c:choose>
 			<div id="content">
 				<img alt="" src="${desc.banner }" id="desc-banner">
-				<h2 id="desc-name">${desc.name }<small id="desc-subName">&nbsp;&nbsp;&nbsp;${desc.subName }</small></h2>
-				${desc.summary }
+				<h2 id="desc-name"><name-tag>${desc.name }</name-tag><small id="desc-subName">&nbsp;&nbsp;&nbsp;<subname-tag>${desc.subName }</subname-tag></small></h2>
+				<summary-tag>
+					${desc.summary }
+				</summary-tag>
 			</div>
 		
 		<div id="edit-div" class="none">
 			<form action="/secure/desc/save" id="edit-form">
 				<div id="div-banner">
-					<input id="edit-div-banner" required="true" name="banner" class="easyui-textbox clear-easyui-textbox"  prompt="相片(158*209)"/>
-					<input type="button" id="btn-banner-upload" value="选择图片"/>
-					<img id="edit-img-banner" alt="" src="" class="none" style="width: 158px;height: 209px;">
+					<input id="edit-div-banner" required="true" name="banner" style="width:300px;" class="easyui-textbox clear-easyui-textbox"  prompt="相片(465*272)"/>
+					<input type="button" id="btn-banner-upload" value="选择图片" />
+					<img id="edit-img-banner" alt="" src="" class="none" style="width: 465px;height: 272px; ">
 				</div>
 				
 				<div id="div-title" >
-					<input id="edit-div-name" name="name" required="true" class="easyui-textbox clear-easyui-textbox " maxlength="12" prompt="名字" style="width:204px"/>
-					<input id="edit-div-subName" name="subName" class="easyui-textbox clear-easyui-textbox " maxlength="128" required="true" prompt="职位" style="width:490px"/>
-					<textarea name="summary" style="visibility:hidden;width: 100%"></textarea>
+					<input id="edit-div-name" name="name" required="true" class="easyui-textbox clear-easyui-textbox " maxlength="12" prompt="小牛资本" style="width:200px"/>
+					<input id="edit-div-subName" name="subName" class="easyui-textbox clear-easyui-textbox " maxlength="128" required="true" prompt="副标题" style="width:439px;"/>
+					<textarea name="summary" style="visibility:hidden;width: 100%;"></textarea>
 				</div>
 				
-				<div class="opt_btn"  style="text-align: center;padding-top: 10px;">
+				<div class="opt_btn"  style="text-align: center;padding-top: 350px;">
 					<a class="easyui-linkbutton" id="import-form-submit-btn" iconCls="icon-ok" onclick="javascript:submit();">确定</a> 
 					<a class="easyui-linkbutton" iconCls="icon-cancel" onclick="cancel();">取消</a>
 				</div>
-				<div class="loading none" style="text-align: center; padding-top: 10px; vertical-align:middle;">
+				<div class="loading none" style="text-align: center; padding-top: 350px; vertical-align:middle;">
 					<img alt="" src="/resources/images/loading.gif" style="vertical-align:middle;">
 					<span style="vertical-align:middle;">请稍后...</span>
 				</div>
@@ -106,7 +116,17 @@
 				uploadJson : '/secure/aliyunOss/upload_json',
 				fileManagerJson : '/secure/aliyunOss/file_manager_json',
 				allowFileManager : true,
-				height:contentHeight - 100,
+				height:300,
+				newlineTag:'br',
+				items:[
+				        'source', '|', 'undo', 'redo', '|', 'preview',  'code', 'cut', 'copy', 'paste',
+				        'plainpaste', 'wordpaste', '|', 'justifyleft', 'justifycenter', 'justifyright',
+				        'justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', 'subscript',
+				        'superscript', 'clearhtml', 'quickformat',  '|',  '/',
+				        'formatblock', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold',
+				        'italic', 'underline', 'strikethrough', 'lineheight', 'removeformat', '|', 'image', 'multiimage',
+				         'hr',  'link', 'unlink'
+					],
 				afterBlur: function(){this.sync();}
 			});
 			PluginUpload = K.editor({
@@ -133,6 +153,17 @@
 	});
 	
 	function update(){
+		var img = $("#desc-banner").attr("src");
+		if(img){
+			$("#edit-img-banner").attr('src',img).removeClass('none');
+			$("#edit-div-banner").textbox('setValue',img);
+		}
+		var name = $("name-tag").html();
+		var subName = $("subname-tag").html();
+		var content = $('summary-tag').html();
+		$("#edit-div-name").textbox('setValue',name);
+		$("#edit-div-subName").textbox('setValue',subName);
+		contextEditor.html(content);
 		$("#content").addClass("none");
 		$("#edit-div").removeClass("none");
 	}
@@ -143,10 +174,10 @@
 		var $form = $("#edit-form");
 		$.post($form.attr('action'),$form.serialize(),function(result){
 			if ( result['resultCode'] == 0 ) {
-				$("#content").html(contextEditor.html());
-				$("#edit-div").addClass("none");
-				$("#content").removeClass("none");
-				contextEditor.html('');
+				$("summary-tag").html(contextEditor.html());
+				$('name-tag').html($("#edit-div-name").textbox('getValue'));
+				$('summary-tag').html($("edit-div-subName").textbox('getValue'));
+				$("#desc-banner").attr("src",$('#edit-div-banner').textbox('getValue'));
 				$("#update-btn").linkbutton({
 					text:'修改',
 					iconCls:'icon-edit'
@@ -161,6 +192,7 @@
 	
 	function cancel(){
 		contextEditor.html('');
+		$("#edit-img-banner").addClass('none');
 		$("#content").removeClass("none");
 		$("#edit-div").addClass("none");
 	}
