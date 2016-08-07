@@ -12,17 +12,44 @@
 <link rel="stylesheet" href="/resources/kindeditor-4.1.10/themes/default/default.css" />
 <script type="text/javascript" src="/resources/kindeditor-4.1.10/kindeditor-all-min.js"></script>
 <script type="text/javascript" src="/resources/kindeditor-4.1.10/lang/zh_CN.js"></script>
+<style type="text/css">
+	#desc-name {
+	    display: block;
+	    font-size: 1.5em;
+	    -webkit-margin-before: 0.83em;
+	    -webkit-margin-after: 0.83em;
+	    -webkit-margin-start: 0px;
+	    -webkit-margin-end: 0px;
+	    font-size: 24px;
+	    line-height: 80px;
+	    color: #a7810c;
+	    font-weight: normal;
+	    margin: 0;
+	}
+	#desc-name small {
+	    font-size: 12px;
+	    color: #6a6969;
+	}
+	#desc-banner{
+		float: left;
+    	margin-right: 88px;
+    	margin-top: 15px;
+	}
+	#content p{
+		line-height: 24px;
+		padding-bottom: 22px;
+		margin: 0;
+	}
+	
+</style>
 </head>
 <body>
-	<div id="main-box" class="none" style="width:1000px;margin: auto;">
+	<div id="main-box" class="none" style="width:1200px;margin: auto;">
 			<c:choose>
 				<c:when test="${not empty desc}">
 					<div id="tool-bar">
 						<a id="update-btn" class="easyui-linkbutton"  iconCls="icon-edit" onclick="javascript:update();">修改</a> 
 						<hr>
-					</div>
-					<div id="content">
-						${ desc.content}
 					</div>
 				</c:when>
 				<c:otherwise>
@@ -30,10 +57,13 @@
 						<a id="update-btn" class="easyui-linkbutton"  iconCls="icon-add" onclick="javascript:update();">新增</a> 
 						<hr>
 					</div>
-					<div id="content">
-					</div>
 				</c:otherwise>
 			</c:choose>
+			<div id="content">
+				<img alt="" src="${desc.banner }" id="desc-banner">
+				<h2 id="desc-name">${desc.name }<small id="desc-subName">&nbsp;&nbsp;&nbsp;${desc.subName }</small></h2>
+				${desc.summary }
+			</div>
 		
 		<div id="edit-div" class="none">
 			<form action="/secure/desc/save" id="edit-form">
@@ -41,6 +71,12 @@
 					<input id="edit-div-banner" required="true" name="banner" class="easyui-textbox clear-easyui-textbox"  prompt="相片(158*209)"/>
 					<input type="button" id="btn-banner-upload" value="选择图片"/>
 					<img id="edit-img-banner" alt="" src="" class="none" style="width: 158px;height: 209px;">
+				</div>
+				
+				<div id="div-title" >
+					<input id="edit-div-name" name="name" required="true" class="easyui-textbox clear-easyui-textbox " maxlength="12" prompt="名字" style="width:204px"/>
+					<input id="edit-div-subName" name="subName" class="easyui-textbox clear-easyui-textbox " maxlength="128" required="true" prompt="职位" style="width:490px"/>
+					<textarea name="summary" style="visibility:hidden;width: 100%"></textarea>
 				</div>
 				
 				<div class="opt_btn"  style="text-align: center;padding-top: 10px;">
@@ -52,8 +88,7 @@
 					<span style="vertical-align:middle;">请稍后...</span>
 				</div>
 				<div id="display-none-input" class="none">
-					<input id="display-none-id" name="id" value="${id}">
-					<input id="display-none-type" name="type" value="${type}">
+					<input id="display-none-id" name="id" value="1">
 					<input id="display-none-valid" name="valid" value="1">
 				</div>
 			</form>
@@ -62,11 +97,11 @@
 	</div>	
 </body>
 <script type="text/javascript">
-	var contextEditor,contentHeight;
+	var contextEditor,contentHeight,PluginUpload;
 	$(function(){
 		contentHeight = jQuery(window).height();
 		KindEditor.ready(function(K) {
-			contextEditor = K.create('textarea[name="content"]', {
+			contextEditor = K.create('textarea[name="summary"]', {
 				cssPath : '/resources/kindeditor-4.1.10/plugins/code/prettify.css',
 				uploadJson : '/secure/aliyunOss/upload_json',
 				fileManagerJson : '/secure/aliyunOss/file_manager_json',
@@ -74,14 +109,31 @@
 				height:contentHeight - 100,
 				afterBlur: function(){this.sync();}
 			});
+			PluginUpload = K.editor({
+				cssPath : '/resources/kindeditor-4.1.10/plugins/code/prettify.css',
+				uploadJson : '/secure/aliyunOss/upload_json',
+				fileManagerJson : '/secure/aliyunOss/file_manager_json',
+				allowFileManager : true,
+			});
+			
+			$("#btn-banner-upload").click(function(){
+				PluginUpload.loadPlugin('image',function(){
+					PluginUpload.plugin.imageDialog({
+						imageUrl : $("#edit-div-banner").textbox('getValue'),
+						clickFn : function(url, title, width, height, border, align){
+							$('#edit-div-banner').textbox('setValue',url);
+							$('#edit-img-banner').attr('src',url).removeClass('none');
+							PluginUpload.hideDialog();
+						}
+					});
+				});
+			});
 		});
 		$("#main-box").removeClass("none");
 	});
 	
 	function update(){
-		var content = $("#content").html();
 		$("#content").addClass("none");
-		contextEditor.html(content);
 		$("#edit-div").removeClass("none");
 	}
 	

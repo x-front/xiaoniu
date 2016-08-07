@@ -42,16 +42,6 @@
 					<a class="easyui-linkbutton" id="import-form-submit-btn" iconCls="icon-ok" onclick="javascript:submit();">确定</a> 
 					<a class="easyui-linkbutton" iconCls="icon-cancel" onclick="cancel();">取消</a>
 				</div>
-				<div id="div-title" >
-					<select class="easyui-combobox clear-easyui-combobox" required="true" id="edit-div-valid" name="valid" style="width:204px">
-						<option value="0">提交后不发布</option>
-						<option value="1">提交后直接发布</option>
-					</select>
-					<input id="edit-div-serialNumber" name="serialNumber" required="true" class="easyui-numberbox clear-easyui-numberbox " prompt="序号(越小排序越靠前)" style="width:490px"/>
-					<input id="edit-div-name" name="name" required="true" class="easyui-textbox clear-easyui-textbox " maxlength="12" prompt="名字" style="width:204px"/>
-					<input id="edit-div-position" name="position" class="easyui-textbox clear-easyui-textbox " maxlength="128" required="true" prompt="职位" style="width:490px"/>
-					<input  id="edit-div-summary" name="summary" class="easyui-textbox clear-easyui-textbox" maxlength="512" required="true" data-options="multiline:true" prompt="描述" style="width: 703px;height: 178px;"/>
-				</div>
 				<div class="loading none" style="text-align: center; padding-top: 10px; vertical-align:middle;">
 					<img alt="" src="/resources/images/loading.gif" style="vertical-align:middle;">
 					<span style="vertical-align:middle;">请稍后...</span>
