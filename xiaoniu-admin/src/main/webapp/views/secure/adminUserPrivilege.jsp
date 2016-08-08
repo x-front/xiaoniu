@@ -77,7 +77,9 @@
 			selectOnNavigation:false,
 			url:"<c:url value='/secure/adminUserInfo/queryAll'/>",
 			onSelect:function(rec){
-				tableQueryParams.userId = rec.id;
+				var tableQueryParams = {
+					userId : rec.id
+				};
 				$("#html_table").datagrid("load",tableQueryParams);
 			}
 		});
@@ -116,7 +118,7 @@
 		privilegeMaxId = 0;
 		var pvgName = $('#ss_privilege').searchbox('getValue'),
 		userQueryParams = {
-			'pvgName' : pvgName
+			'name' : pvgName
 		};
 		$("#edit_form_privilege").combogrid('grid').datagrid("load",userQueryParams);
 	}
@@ -131,7 +133,7 @@
 	
 	<!-- tool bar -->
 	<div id="table_tb" style="padding:5px;height:auto" class="none">
-		<input id="adminUser-input" />
+		<input id="adminUser-input"  prompt="根据用户查询其权限"/>
 		<a href="javascript:void(0);" onclick="javascript:commonTable.initAddWindow()"class="easyui-linkbutton" title="添加" plain="true" iconCls="icon-add" id="addBtn">为管理员添加权限</a>
 		<a href="javascript:void(0);" onclick="javascript:commonTable.batchDelete()"class="easyui-linkbutton" title="删除" plain="true" iconCls="icon-cut" id="delBtn">删除</a>
 	</div>

@@ -16,7 +16,58 @@
     <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/xiaoniu/default.css'/>"/>
     <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/xiaoniu/CRUD.css'/>"/>
     <script type="text/javascript" src="/resources/js/xiaoniu/index.js"></script>
-    
+    <style type="text/css">
+    	
+	    body {
+			overflow-y: hidden;
+			margin:0; 
+			scroll=no;
+	    }
+    	#header-inner {
+			text-align: left;
+			width: 100%;
+			padding: 10px 0;
+			font-size:14px !important;
+		}
+		
+		#topmenu {
+			text-align: right;
+		}
+		
+		#topmenu a {
+			display: inline-block;
+			padding: 1px 3px;
+			text-decoration: none;
+			color: #fff;
+			font-size:12px;
+		}
+    	
+    	#footer {
+    		height: 30px;
+    		background: #D2E0F2;
+    	 	display: none;
+    	}
+    	#indexTab {
+    		display: none;
+    	}
+    	#indexTab ul li{
+    		margin-top:10px;
+    		font-size: 14px;
+    		line-height: 20px;
+    	}
+    	#loading {
+    		position:absolute;
+			width:300px;
+			height:50px;
+			top:50%;
+			left:50%;
+			margin:-25px 0 0 -150px;
+			text-align:center;
+			z-index:99999;
+			font-size: 16px;
+			color: #000;
+    	}
+    </style>
 </head>
 <body class="easyui-layout">
     <div region="north" border="false" style="background-color: rgb(102, 102, 102); color:white; text-align: center; width: 100%;  background-position: initial initial; background-repeat: initial initial;" title="" class="panel-body panel-body-noheader panel-body-noborder layout-body ">

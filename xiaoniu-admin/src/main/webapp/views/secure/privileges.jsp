@@ -63,9 +63,9 @@
 	
 	function searchPrivilege(){
 		var name = $('#ss_privilege').searchbox('getValue');
-		maxId = 0;
-		tableQueryParams.maxId = maxId;
-		tableQueryParams.name = name;
+		var tableQueryParams = {
+				name:name
+		}
 		$("#html_table").datagrid("load",tableQueryParams);
 	}
 </script>
