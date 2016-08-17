@@ -6,7 +6,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>核心团队信息</title>
+<title>荣誉资质</title>
 <jsp:include page="../public/common/head.jsp"></jsp:include>
 <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/xiaoniu/CRUD.css'/>"/>
 <link rel="stylesheet" href="/resources/kindeditor-4.1.10/themes/default/default.css" />
@@ -15,11 +15,11 @@
 <script type="text/javascript" src="/resources/kindeditor-4.1.10/kindeditor-all-min.js"></script>
 <script type="text/javascript" src="/resources/kindeditor-4.1.10/lang/zh_CN.js"></script>
 <script type="text/javascript">
-	commonTable.loadDateURI = "/secure/leader/queryList";
-	commonTable.batchUpdateValidURI = "/secure/leader/batchUpdateValid?strIds=";
-	commonTable.batchDeleteURI = "/secure/leader/batchDelete?strIds=";
-	commonTable.updateURI = "/secure/leader/update";
-	commonTable.insertURI = "/secure/leader/insert";
+	commonTable.loadDateURI = "/secure/honor/queryList";
+	commonTable.batchUpdateValidURI = "/secure/honor/batchUpdateValid?strIds=";
+	commonTable.batchDeleteURI = "/secure/honor/batchDelete?strIds=";
+	commonTable.updateURI = "/secure/honor/update";
+	commonTable.insertURI = "/secure/honor/insert";
 	commonTable.title = "团队列表";
 	commonTable.nowrap = false;
 	commonTable.tableQueryParams = {
@@ -42,7 +42,7 @@
 		updateTimeColumn,
 		{field:'operator',title: '操作',align:'center',
 			formatter: function(value,row,index){
-					return "<a href='#' onclick='javascript:initUpdateLeaderWindow("+index+")'>修改</a>";
+					return "<a href='#' onclick='javascript:initUpdatehonorWindow("+index+")'>修改</a>";
 				}
 		},
 	];
@@ -78,12 +78,10 @@
 		});
 	});
 	
-	function initUpdateLeaderWindow(index){
+	function initUpdatehonorWindow(index){
 		var rows = $("#html_table").datagrid("getRows"),
 		row = rows[index];
 		$("#display-none-id").val(row.id);
-		$("#edit-div-name").textbox('setValue',row.name);
-		$("#edit-div-position").textbox('setValue',row.position);
 		$("#edit-div-banner").textbox('setValue',row.banner);
 		$('#edit-img-banner').attr('src',row.banner).removeClass('none');
 		$("#edit-div-summary").textbox('setValue',row.summary);
@@ -94,7 +92,7 @@
 		$("#edit-div").removeClass("none");
 	}
 	
-	function initAddLeaderWindow(){
+	function initAddhonorWindow(){
 		$(".datagrid").addClass("none");
 		$("#edit-div").removeClass("none");
 		$("#edit-form").attr("action",commonTable.insertURI);
@@ -145,7 +143,7 @@
 		
 		<!-- tool bar -->
 		<div id="table_tb" style="padding:5px;height:auto" class="none">
-			<a href="javascript:void(0);" onclick="javascript:initAddLeaderWindow()"class="easyui-linkbutton" title="添加" plain="true" iconCls="icon-add" id="addBtn">添加</a>
+			<a href="javascript:void(0);" onclick="javascript:initAddhonorWindow()"class="easyui-linkbutton" title="添加" plain="true" iconCls="icon-add" id="addBtn">添加</a>
 			<a href="javascript:void(0);" onclick="javascript:commonTable.batchDelete()"class="easyui-linkbutton" title="删除" plain="true" iconCls="icon-cancel" id="delBtn">删除</a>
 			<a href="javascript:void(0);" onclick="javascript:commonTable.batchPublish()"class="easyui-linkbutton" title="发布" plain="true" iconCls="icon-ok">发布</a>
 			<a href="javascript:void(0);" onclick="javascript:commonTable.batchCancelPublish()"class="easyui-linkbutton" title="撤销" plain="true" iconCls="icon-undo">撤销发布</a>
@@ -155,9 +153,9 @@
 		<div id="edit-div" class="none" >
 			<form id="edit-form" method="post">
 				<div id="div-banner">
-					<input id="edit-div-banner" required="true" name="banner" class="easyui-textbox clear-easyui-textbox"  prompt="相片(158*209)"/>
+					<input id="edit-div-banner" required="true" name="banner" class="easyui-textbox clear-easyui-textbox"  prompt="相片(322*231)"/>
 					<input type="button" id="btn-banner-upload" value="选择图片"/>
-					<img id="edit-img-banner" alt="" src="" class="none" style="width: 158px;height: 209px;">
+					<img id="edit-img-banner" alt="" src="" class="none" style="width: 322px;height: 231px;">
 				</div>
 				
 				<div id="div-title" >
@@ -166,8 +164,6 @@
 						<option value="1">提交后直接发布</option>
 					</select>
 					<input id="edit-div-serialNumber" name="serialNumber" required="true" class="easyui-numberbox clear-easyui-numberbox " prompt="序号(越小排序越靠前)" style="width:490px"/>
-					<input id="edit-div-name" name="name" required="true" class="easyui-textbox clear-easyui-textbox " maxlength="12" prompt="名字" style="width:204px"/>
-					<input id="edit-div-position" name="position" class="easyui-textbox clear-easyui-textbox " maxlength="128" required="true" prompt="职位" style="width:490px"/>
 					<input  id="edit-div-summary" name="summary" class="easyui-textbox clear-easyui-textbox" maxlength="512" required="true" data-options="multiline:true" prompt="描述" style="width: 703px;height: 178px;"/>
 				</div>
 				
