@@ -15,4 +15,10 @@ public class PageIntroductionController extends BaseController<CmpyPageIntroduct
 		ModelAndView mv = new ModelAndView("secure/pageIntrodution");
 		return mv;
 	}
+	
+	@RequestMapping("who.html")
+	public ModelAndView whoHtml(){
+		ModelAndView mv = new ModelAndView("secure/who");
+		return mv;
+	}
 }
