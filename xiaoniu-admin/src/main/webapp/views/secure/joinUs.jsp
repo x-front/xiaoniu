@@ -28,7 +28,7 @@
 	commonTable.columns = [
 		{field:'ck',checkbox:true},
 		{field:'id', title: 'ID',align:'center',  hidden:true},
-		{field:'position',title: '职位',align:'center'},
+		{field:'position',title: '职位',align:'center',width:120},
 		{field:'summary',title: '描述',align:'left',width:340},
 		{field:'serialNumber',title: '序号',align:'center'},
 		validColumn,
@@ -50,11 +50,13 @@
 		commonTable.init();
 		removePageLoading();
 		KindEditor.ready(function(K) {
-			contextEditor = K.editor('textarea[name="content"]', {
+			contextEditor = K.create('textarea[name="content"]', {
 				cssPath : '/resources/kindeditor-4.1.10/plugins/code/prettify.css',
 				uploadJson : '/secure/aliyunOss/upload_json',
 				fileManagerJson : '/secure/aliyunOss/file_manager_json',
 				allowFileManager : true,
+				height:contentHeight - 310,
+				afterBlur: function(){this.sync();}
 			});
 			
 		});
@@ -64,6 +66,7 @@
 		var rows = $("#html_table").datagrid("getRows"),
 		row = rows[index];
 		$("#display-none-id").val(row.id);
+		$("#edit-div-position").textbox('setValue',row.position);
 		$("#edit-div-summary").textbox('setValue',row.summary);
 		$("#edit-div-serialNumber").numberbox('setValue',row.serialNumber);
 		$("#edit-div-valid").combobox('setValue',row.valid);
@@ -87,6 +90,7 @@
 		$('#edit-img-banner').addClass('none');
 		$("#edit-div").addClass("none");
 		$(".datagrid").removeClass("none");
+		contextEditor.html('');
 	}
 	
 	function save(){
@@ -107,7 +111,7 @@
 	
 </script>
 <style type="text/css">
-	#edit-div{width: 1000px;margin: auto;margin-top: 30px;}
+	#edit-div{width: 770px;margin: auto;margin-top: 30px;}
 
 	#edit-div .textbox {margin-bottom:5px}
 </style>
@@ -129,19 +133,19 @@
 			<form id="edit-form" method="post">
 				
 				<div id="div-title" >
-					<select class="easyui-combobox clear-easyui-combobox" required="true" id="edit-div-valid" name="valid" style="width:204px">
+					<input id="edit-div-position" name="position" class="easyui-textbox clear-easyui-textbox" prompt="职位" required="true" style="width:770px;">
+					<select class="easyui-combobox clear-easyui-combobox" required="true" id="edit-div-valid" name="valid" style="width:270px;">
 						<option value="0">提交后不发布</option>
 						<option value="1">提交后直接发布</option>
 					</select>
 					<input id="edit-div-serialNumber" name="serialNumber" required="true" class="easyui-numberbox clear-easyui-numberbox " prompt="序号(越小排序越靠前)" style="width:490px"/>
-					<br>
-					<input  id="edit-div-summary" name="summary" class="easyui-textbox clear-easyui-textbox" maxlength="512" required="true" data-options="multiline:true" prompt="描述" style="width: 703px;height: 178px;"/>
+					<input  id="edit-div-summary" name="summary" class="easyui-textbox clear-easyui-textbox" maxlength="512" required="true" data-options="multiline:true" prompt="描述" style="width: 770px;height: 168px;"/>
 				</div>
-				<div id="">
-					<textarea name="content" style="height:400px;width:100%; visibility:hidden;"></textarea>
+				<div id="div-content">
+					<textarea name="content" style="width:770px; visibility:hidden;"></textarea>
 				</div>
 				
-				<div class="opt_btn"  style="text-align: center;padding-top: 250px;">
+				<div class="opt_btn"  style="text-align: center;padding-top: 10px;">
 					<a class="easyui-linkbutton" id="import-form-submit-btn" iconCls="icon-ok" onclick="javascript:save();">确定</a> 
 					<a class="easyui-linkbutton" iconCls="icon-cancel" onclick="cancel();">取消</a>
 				</div>

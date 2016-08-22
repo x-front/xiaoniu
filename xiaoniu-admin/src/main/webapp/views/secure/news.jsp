@@ -145,6 +145,30 @@
 		});
 	}
 	
+	function set2Top(){
+		var rows = $('#html_table').datagrid('getSelections');	
+		if(rows.length == 1){
+			$.messager.confirm('操作记录', '置顶是将该文章放到首位展示。只能将一篇新闻放到首位，若是之前某篇设置了置顶，则其将会被取消置顶，并将其序列号置为1。\n您确定要将选中的记录置顶?', function(r){ 	
+				if(r){
+					var id = rows[i]['id'];
+					$.post("/secure/news/setTop?id="+id,function(result){
+						$('#html_table').datagrid('loaded');
+						if(result['resultCode'] == 0) {
+							$.messager.alert('提示',"成功置顶！");
+							$("#html_table").datagrid("reload");
+						} else {
+							$.messager.alert('提示',result['msg']);
+						}
+						return false;
+					});	
+				}	
+			});		
+		} else if(rows.length < 1){
+			$.messager.alert('提示','请选择要置顶的文章');
+		}else {
+			$.messager.alert('提示','只能将一篇文章置顶');
+		}
+	}
 </script>
 <style type="text/css">
 	#edit-div{width: 1000px;margin: auto;margin-top: 10px;}
@@ -174,13 +198,31 @@
 			<a href="javascript:void(0);" onclick="javascript:commonTable.batchDelete()"class="easyui-linkbutton" title="删除" plain="true" iconCls="icon-cancel" id="delBtn">删除</a>
 			<a href="javascript:void(0);" onclick="javascript:commonTable.batchPublish()"class="easyui-linkbutton" title="发布" plain="true" iconCls="icon-ok">发布</a>
 			<a href="javascript:void(0);" onclick="javascript:commonTable.batchCancelPublish()"class="easyui-linkbutton" title="撤销" plain="true" iconCls="icon-undo">撤销发布</a>
+			<c:if test="${type ge 1 and type le 4}">
+				<a href="javascript:void(0);" onclick="javascript:set2Top()"class="easyui-linkbutton" title="置顶" plain="true" iconCls="icon-filter">置顶</a>
+			</c:if>
 		</div>
 		
 		<!-- 添加 -->
 		<div id="edit-div" class="none" >
 			<form id="edit-form" method="post">
 				<div id="div-banner">
-					<input id="edit-div-banner" required="true" name="banner" class="easyui-textbox clear-easyui-textbox"  prompt="封面图(203*102)"/>
+					
+					<c:choose>
+						<c:when test="${type == 10 }">
+							<input id="edit-div-banner" required="true" name="banner" class="easyui-textbox clear-easyui-textbox"  prompt="封面图(641*425)"/>
+						</c:when>
+						<c:when test="${type == 11 }">
+							<input id="edit-div-banner" required="true" name="banner" class="easyui-textbox clear-easyui-textbox"  prompt="封面图(981*499)"/>
+						</c:when>
+						<c:when test="${type ge 1 and type le 4}">
+							<input id="edit-div-banner" required="true" name="banner" class="easyui-textbox clear-easyui-textbox"  prompt="封面图(981*499)"/>
+						</c:when>
+						<c:otherwise>
+							<input id="edit-div-banner" required="true" name="banner" class="easyui-textbox clear-easyui-textbox"  prompt="封面图(354*185)"/>
+						</c:otherwise>
+					</c:choose>
+					
 					<input type="button" id="btn-banner-upload" value="选择图片"/>
 					<img id="edit-img-banner" alt="" src="" class="none" style="width: 203px;height: 102px;">
 				</div>

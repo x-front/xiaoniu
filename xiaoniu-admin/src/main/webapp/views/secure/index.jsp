@@ -123,7 +123,7 @@
  	
  	<!-- 更新密码窗口 -->
 	<div id="htm_pass">
-		<form id="pass_form" action="/secure/adminUserInfo/update" method="post">
+		<form id="pass_form" action="/secure/adminUserInfo/updateAdminUserInfo" method="post">
 			<table class="htm_edit_table"  width="480" class="none">
 				<tbody>
 					<tr>
