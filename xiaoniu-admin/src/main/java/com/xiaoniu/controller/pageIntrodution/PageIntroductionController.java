@@ -21,8 +21,25 @@ public class PageIntroductionController extends BaseController<CmpyPageIntroduct
 	
 	private Logger log = Logger.getLogger(PageIntroductionController.class);
 	
+	@RequestMapping("welcome.html")
+	public ModelAndView welcomeHtml(){
+		ModelAndView mv = new ModelAndView("secure/welcome");
+		try{
+			mv.addObject("voice", service.selectByKey(19));
+			mv.addObject("family", service.selectByKey(25));
+			mv.addObject("sports", service.selectByKey(26));
+			mv.addObject("welfare", service.selectByKey(27));
+			mv.addObject("education", service.selectByKey(28));
+			mv.addObject("who", service.selectByKey(23));
+			mv.addObject("doWhat", service.selectByKey(24));
+		}catch(Exception e){
+			log.error(e);
+		}
+		return mv;
+	}
+	
 	@RequestMapping("doWhat.html")
-	public ModelAndView pageIntrodutionHtml(){
+	public ModelAndView doWhatHtml(){
 		ModelAndView mv = new ModelAndView("secure/doWhat");
 		try{
 			mv.addObject("who", service.selectByKey(7));

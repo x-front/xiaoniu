@@ -56,7 +56,7 @@
 	});
 	
 	function initUpdateWhoWindow(type,index){
-		
+		$("#display-none-index").val(index);
 		$("#display-none-id").val(type);
 		$("#display-none-type").val(type);
 		$("#edit-div-h2").html($("#main-div .content-h2:eq("+ index +")").html());
@@ -111,7 +111,7 @@
 			$("#edit-form .opt_btn").show();
 			$("#edit-form .loading").hide();
 			if ( result['resultCode'] == 0 ) {
-				var index = $("#display-none-id").val() - 1;
+				var index = $("#display-none-index").val();
 				$("#main-div .content-p:eq("+ index +")").html($("#edit-div-introdution").textbox('getValue'));
 				$("#main-div .content-img:eq("+ index +")").attr('src',$("#edit-div-banner").textbox('getValue'));
 				cancel();
@@ -217,7 +217,7 @@
 					<a class="easyui-linkbutton" id="import-form-submit-btn" iconCls="icon-ok" onclick="javascript:save();">确定</a> 
 					<a class="easyui-linkbutton" iconCls="icon-cancel" onclick="cancel();">取消</a>
 				</div>
-				<div class="loading none" style="text-align: center; padding-top: 250px; vertical-align:middle;">
+				<div class="loading none" style="text-align: center; padding-top: 20px; vertical-align:middle;">
 					<img alt="" src="/resources/images/loading.gif" style="vertical-align:middle;">
 					<span style="vertical-align:middle;">请稍后...</span>
 				</div>
@@ -226,6 +226,7 @@
 					<input id="display-none-id" name="id" class="clear-input">
 					<input id="display-none-type" name="type" class="clear-input">
 					<input id="display-none-valid" name="valid" value="1">
+					<input id="display-none-index" >
 				</div>
 			</form>
 		</div>
