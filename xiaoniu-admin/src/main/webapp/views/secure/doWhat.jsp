@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>我们是谁</title>
+<title>我们做什么</title>
 <jsp:include page="../public/common/head.jsp"></jsp:include>
 <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/xiaoniu/CRUD.css'/>"/>
 <link rel="stylesheet" href="/resources/kindeditor-4.1.10/themes/default/default.css" />
@@ -71,18 +71,34 @@
 				$("#main-div .content-img:eq("+ index +")").attr('media'));
 		
 		
-		if(type == 1){
+		if(type == 7){
 			$("#edit-media-showOrHide").removeClass('none');
 			$("#edit-banner-showOrHide").removeClass('none');
 			if($('#edit-img-banner').attr('src') != ""){
 				$('#edit-img-banner').removeClass('none');
 			}
-		}else if(type == 6){
+		}else if(type == 8){
+			$("#edit-banner-showOrHide").removeClass('none');
+			if($('#edit-img-banner').attr('src') != ""){
+				$('#edit-img-banner').removeClass('none');
+			}
+		}else if(type == 9){
+			$("#edit-banner-showOrHide").removeClass('none');
+			if($('#edit-img-banner').attr('src') != ""){
+				$('#edit-img-banner').removeClass('none');
+			}
+		}else if(type == 10){
+			$("#edit-banner-showOrHide").removeClass('none');
+			if($('#edit-img-banner').attr('src') != ""){
+				$('#edit-img-banner').removeClass('none');
+			}
+		}else if(type == 11){
 			$("#edit-banner-showOrHide").removeClass('none');
 			if($('#edit-img-banner').attr('src') != ""){
 				$('#edit-img-banner').removeClass('none');
 			}
 		}
+		
 		
 		$("#main-div").addClass("none");
 		$("#edit-div").removeClass("none");
@@ -111,7 +127,7 @@
 			$("#edit-form .opt_btn").show();
 			$("#edit-form .loading").hide();
 			if ( result['resultCode'] == 0 ) {
-				var index = $("#display-none-id").val() - 1;
+				var index = $("#display-none-id").val() - 7;
 				$("#main-div .content-p:eq("+ index +")").html($("#edit-div-introdution").textbox('getValue'));
 				$("#main-div .content-img:eq("+ index +")").attr('src',$("#edit-div-banner").textbox('getValue'));
 				cancel();
@@ -120,7 +136,14 @@
 			}
 		});
 	}
-	
+	function showMore(obj){
+		$(obj).prev().toggle();
+		if($(obj).attr('display').length > 0){
+			
+		}else{
+			
+		}
+	}
 </script>
 <style type="text/css">
 	.float-right{float: right;}
@@ -133,6 +156,17 @@
 		letter-spacing: 2px;
 		margin: 0 auto;
 		padding-bottom: 42px;
+	}
+	.content-show-more{
+		font-size: 16px;
+		line-height: 33px;
+		background-color: #aaa;
+		width: 702px;
+		max-width: 702px;
+		letter-spacing: 2px;
+		margin: 0 auto;
+		cursor: pointer;
+		margin-top: 10px;
 	}
 	#main-div{width: 1140px;margin: auto;}
 	.content-div{margin: auto;}
@@ -154,44 +188,45 @@
 		<div id="main-div">
 			<div class="content-div">
 				<div class="description-div">
-					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(1,0)" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
-					<h2 class="content-h2">我们是谁</h2>
+					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(7,0)" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
+					<h2 class="content-h2">小牛普惠</h2>
 					<p class="content-p">${who.introdution }</p>
 					<img class="who-img content-img" alt="" src="${who.extCover }" media="${who.extMedia }">
 				</div>
 				
 				<div class="description-div">
-					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(2,1)" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
-					<h2 class="content-h2">核心竞争力</h2>
+					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(8,1)" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
+					<h2 class="content-h2">小牛在线</h2>
 					<p class="content-p">${advance.introdution }</p>
 					<img class="who-img content-img none" alt="" src="${advance.extCover }" media="${advance.extMedia }">
+					<p class="content-show-more" onclick="javascript:showMore(this)">显示更多</p>
 				</div>
 				
 				<div class="description-div">
-					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(3,2)" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
-					<h2 class="content-h2">高管团队</h2>
+					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(9,2)" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
+					<h2 class="content-h2">小牛新财富</h2>
 					<p class="content-p">${manager.introdution }</p>
 					<img class="who-img content-img none" alt="" src="${manager.extCover }" media="${manager.extMedia }">
 				</div>
 				
 				<div class="description-div">
-					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(4,3)" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
-					<h2 class="content-h2">经营原则</h2>
+					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(10,3)" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
+					<h2 class="content-h2">小牛分期</h2>
 					<p class="content-p">${princeple.introdution }</p>
 					<img class="who-img content-img none" alt="" src="${princeple.extCover }" media="${princeple.extMedia }">
 				</div>
 				
 				<div class="description-div">
-					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(5,4)" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
-					<h2 class="content-h2">荣誉资质</h2>
+					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(11,4)" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
+					<h2 class="content-h2">小牛投资</h2>
 					<p class="content-p">${honor.introdution }</p>
 					<img class="who-img content-img none" alt="" src="${honor.extCover }" media="${honor.extMedia }">
 				</div>
 				
 				<div class="description-div">
-					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(6,5)" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
-					<h2 class="content-h2">牛人文化</h2>
-					<img class="culture-img content-img " alt="" src="${culture.extCover }" media="${culture.extMedia }">
+					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(12,5)" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
+					<h2 class="content-h2">牛鼎丰科技</h2>
+					<img class="culture-img content-img none" alt="" src="${culture.extCover }" media="${culture.extMedia }">
 					<p class="content-p">${culture.introdution }</p>
 				</div>
 			</div>
