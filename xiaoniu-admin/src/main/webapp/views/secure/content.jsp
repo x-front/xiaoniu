@@ -12,6 +12,11 @@
 <link rel="stylesheet" href="/resources/kindeditor-4.1.10/themes/default/default.css" />
 <script type="text/javascript" src="/resources/kindeditor-4.1.10/kindeditor-all-min.js"></script>
 <script type="text/javascript" src="/resources/kindeditor-4.1.10/lang/zh_CN.js"></script>
+<style type="text/css">
+#content{text-align: center;}
+#content hr{border:1px solid #eee;}
+#content p{width: 702px;margin: 0 auto;letter-spacing: 2px;font-size: 16px;line-height: 33px;color: #585858;}
+</style>
 </head>
 <body>
 	<div id="main-box" class="none" style="width:1000px;margin: auto;">

@@ -41,6 +41,7 @@
 			ap.group_id=#{groupId}
 			and aup.user_id=#{userId}
 			and aup.valid=1
+			and ap.valid=1
 		order by ap.serial_number asc,ap.id desc
 	</select>
 </mapper>
