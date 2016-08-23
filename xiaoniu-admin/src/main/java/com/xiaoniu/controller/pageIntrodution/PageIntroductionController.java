@@ -21,11 +21,63 @@ public class PageIntroductionController extends BaseController<CmpyPageIntroduct
 	
 	private Logger log = Logger.getLogger(PageIntroductionController.class);
 	
+	@RequestMapping("joinUsHead.html")
+	public ModelAndView joinUsHeadHtml(){
+		ModelAndView mv = new ModelAndView("secure/joinUsHead");
+		try{
+			mv.addObject("joinUsHead", service.selectByKey(22));
+		}catch(Exception e){
+			log.error(e);
+		}
+		return mv;
+	}
+	
+	@RequestMapping("beauty.html")
+	public ModelAndView beautyHtml(){
+		ModelAndView mv = new ModelAndView("secure/beauty");
+		try{
+			mv.addObject("family", service.selectByKey(18));
+			mv.addObject("sports", service.selectByKey(19));
+			mv.addObject("welfare", service.selectByKey(20));
+			mv.addObject("education", service.selectByKey(21));
+		}catch(Exception e){
+			log.error(e);
+		}
+		return mv;
+	}
+	
+	@RequestMapping("dongtai.html")
+	public ModelAndView dongtaiHtml(){
+		ModelAndView mv = new ModelAndView("secure/dongtai");
+		try{
+			mv.addObject("news", service.selectByKey(16));
+			mv.addObject("report", service.selectByKey(17));
+		}catch(Exception e){
+			log.error(e);
+		}
+		return mv;
+	}
+	
+	@RequestMapping("voice.html")
+	public ModelAndView voiceHtml(){
+		ModelAndView mv = new ModelAndView("secure/voice");
+		try{
+			mv.addObject("voice", service.selectByKey(13));
+			mv.addObject("thinking", service.selectByKey(14));
+			mv.addObject("video", service.selectByKey(15));
+			mv.addObject("journal", service.selectByKey(30));
+		}catch(Exception e){
+			log.error(e);
+		}
+		return mv;
+	}
+	
+	
 	@RequestMapping("welcome.html")
 	public ModelAndView welcomeHtml(){
 		ModelAndView mv = new ModelAndView("secure/welcome");
 		try{
-			mv.addObject("voice", service.selectByKey(19));
+			mv.addObject("voice", service.selectByKey(29));
 			mv.addObject("family", service.selectByKey(25));
 			mv.addObject("sports", service.selectByKey(26));
 			mv.addObject("welfare", service.selectByKey(27));
