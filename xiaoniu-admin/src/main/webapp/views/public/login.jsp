@@ -37,7 +37,7 @@
 </head>
 <body class="login_bg">
 	<header>
-    	<h3>华睿信内容管理系统</h3>
+    	<h3>小牛资本内容管理系统</h3>
     </header>
     <div class="content">
     	<div class="tm_bd"><div class="tm_bg"></div> </div>
@@ -56,7 +56,7 @@
 				</p>
 				<p class="yzm"><span>验证码：</span><input type="text" name="j_validate_code" maxlength="4"><em><img src="<c:url value='/public/validateImage'/>" id="validateImg" width="85px" height="30p"></em></p>
 				<p class="btn">
-					<input type="submit" class="login_btn" value="">
+					<input type="button" class="login_btn" value="" onclick="loginSubmit()">
 					<input type="button" class="reset_btn" onclick="$('#loginForm').find('input').val('')">
 				</p>
 			</form>

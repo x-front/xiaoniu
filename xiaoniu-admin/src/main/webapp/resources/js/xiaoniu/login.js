@@ -20,7 +20,7 @@ $(function(){
 		$(this).parent().removeClass('password_color');
 	});
 	$("#validateImg").click(function(){
-			validateImg="<c:url value='/public/validateImage'/>";
+			validateImg='/public/validateImage';
 			$("#validateImg").attr("src",validateImg+"?"+Math.random());
 		});
 	$("input[name=j_validate_code]").blur(function(){
@@ -44,20 +44,16 @@ function loginSubmit(){
 			return ;
 		}
 		$.post("/j_spring_security_check",$("#loginForm").serialize(),function(result){
-			if(result.resultCode == 0){
-				window.location.href = "/secure/index.html";
-			}else{
-				if(result.msg){
-					if(result.msg == "Bad credentials"){
-						$("#login-tips").html("账户或密码错误");
-					}else{
-						$("#login-tips").html(result.msg);
-					}
-				}else{
+			if(result.msg){
+				if(result.msg == "Bad credentials"){
 					$("#login-tips").html("账户或密码错误");
+				}else{
+					$("#login-tips").html(result.msg);
 				}
 				$("#login-tips").removeClass("display-none");
 				$("#validateImg").click();
+			}else{
+				window.location.href = "/secure/index";
 			}
 		});
 	}

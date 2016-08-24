@@ -9,7 +9,6 @@
   </parent>
   
   <artifactId>xiaoniu-web</artifactId>
-  <version>0.0.1</version>
   <packaging>war</packaging>
   <name>xiaoniu-web Maven Webapp</name>
   <url>http://maven.apache.org</url>
@@ -41,9 +40,128 @@
     	<version>${project.version}</version>
     </dependency>
     
+    <!-- spring -->
+    <dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-web</artifactId>
+		<version>${spring.version}</version>
+	</dependency>
+
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-webmvc</artifactId>
+		<version>${spring.version}</version>
+	</dependency>
+	
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-tx</artifactId>
+		<version>${spring.version}</version>
+	</dependency>
+	
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-jdbc</artifactId>
+		<version>${spring.version}</version>
+	</dependency>
+	
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-context</artifactId>
+	    <version>${spring.version}</version>
+	</dependency>
+	
+	<!-- end spring -->
+	
+	<!-- mysql mybatis-->
+	<dependency>
+		<groupId>mysql</groupId>
+		<artifactId>mysql-connector-java</artifactId>
+		<version>${mysql.version}</version>
+	</dependency>
+	
+	<dependency>
+		<groupId>org.mybatis</groupId>
+		<artifactId>mybatis</artifactId>
+		<version>${mybatis.version}</version>
+	</dependency>
+	
+	<dependency>
+          <groupId>org.mybatis</groupId>
+          <artifactId>mybatis-spring</artifactId>
+          <version>${mybatis.spring.version}</version>
+      </dependency>
+	<!-- end mysql mybatis -->
+	
+	<dependency>
+		<groupId>com.fasterxml.jackson.core</groupId>
+		<artifactId>jackson-core</artifactId>
+		<version>2.5.1</version>
+	</dependency>
+	
+	<dependency>
+		<groupId>org.codehaus.jackson</groupId>
+		<artifactId>jackson-mapper-asl</artifactId>
+		<version>1.9.13</version>
+	</dependency>
+	
+	<dependency>
+	    <groupId>com.fasterxml.jackson.core</groupId>
+	    <artifactId>jackson-databind</artifactId>
+	    <version>2.4.2</version>
+	</dependency>
+	
+	<dependency>
+		<groupId>com.alibaba</groupId>
+		<artifactId>fastjson</artifactId>
+		<version>1.2.6</version>
+	</dependency>
+	
+	<dependency>
+		<groupId>com.alibaba</groupId>
+		<artifactId>druid</artifactId>
+		<version>1.0.4</version>
+	</dependency>
+    
+    <dependency>
+		<groupId>log4j</groupId>
+		<artifactId>log4j</artifactId>
+		<version>1.2.17</version>
+	</dependency>
+	
+	<dependency>
+		<groupId>org.apache.logging.log4j</groupId>
+		<artifactId>log4j-web</artifactId>
+		<version>2.3</version>
+	</dependency>
+    
   </dependencies>
   <build>
     <finalName>xiaoniu-web</finalName>
+    
+    <filters>
+		<filter>src/main/filters/filter-${env}.properties</filter>
+	</filters>
+    
+    <resources>
+    	<resource>
+    		<directory>src/main/resources</directory>
+    		<excludes>
+    			<exclude>configs/jdbc.properties</exclude>
+    			<exclude>configs/config.properties</exclude>
+    		</excludes>
+    		<filtering>false</filtering>
+    	</resource>
+    	<resource>
+    		<directory>src/main/resources</directory>
+    		<includes>
+    			<include>configs/jdbc.properties</include>
+    			<include>configs/config.properties</include>
+    		</includes>
+    		<filtering>true</filtering>
+    	</resource>
+    </resources>
+    
     <plugins>
 	    <plugin>
 				<!-- YUI Compressor Maven压缩插件 -->
@@ -52,7 +170,7 @@
 				<version>1.4.0</version>
 				<executions>
 					<execution>
-						<phase>prepare-package</phase>
+						<phase>install</phase>
 						<goals>
 							<goal>compress</goal>
 						</goals>
@@ -78,4 +196,22 @@
 			</plugin>
 		</plugins>
   </build>
+  
+  <profiles>
+  	<profile>
+  		<id>test</id>
+  		<properties>
+  			<env>test</env>
+  		</properties>
+  		<activation>
+			<activeByDefault>true</activeByDefault>
+		</activation>
+  	</profile>
+  	<profile>
+  		<id>product</id>
+  		<properties>
+  			<env>product</env>
+  		</properties>
+  	</profile>
+  </profiles>
 </project>

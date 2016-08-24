@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+		
+	
+	<!-- 打开SpringMVC注解支持 -->
+	<!-- 
+	<mvc:annotation-driven validator="validator"/>
+	 -->
+	 <mvc:annotation-driven/>
+
+	<!-- 当HTTP GET请求地址是/resources/**下的资源时候，不需要DispatchServlet处理，
+		直接转到 ${webappRoot}/resources目录下的资源，有利于提高静态资源访问效率 -->
+	<mvc:resources mapping="/resources/**" location="/resources/" />
+	<mvc:resources mapping="/static/**" location="/static/" />
+	<mvc:resources location="/static/index.html" mapping="/index.html"/>
+	<mvc:resources location="/resources/images/favicon.ico" mapping="/favicon.ico"/>
+
+	<!-- 视图资源配置，处理控制器组件返回的view，自动加上前缀及后缀 -->
+	<!-- <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:prefix="/WEB-INF/views/" p:suffix=".jsp" /> -->
+	<bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+		<property name="contentNegotiationManager">
+			<bean class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+				<property name="mediaTypes">
+					<map>
+						<entry key="json" value="application/json"/>
+						<entry key="xml" value="application/xml"/>
+						<entry key="html" value="text/html"/>
+					</map>
+				</property>
+			</bean>
+		</property>
+		<property name="viewResolvers">
+			<list>
+				<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+					<!-- <property name="prefix" value="/views/"/>
+					<property name="suffix" value=".jsp"/> -->
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- 完成请求和注解POJO的映射 -->
+    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" />
+	
+	<!-- 扫描所有controller组件 -->
+	<context:component-scan base-package="com.xiaoniu.controller" />
+	
+	<!-- 配置web应用的默的视图为 -->
+	<mvc:view-controller path="/" view-name="/index.html" />
+	
+</beans>
