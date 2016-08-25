@@ -209,10 +209,10 @@ a:hover {  color: #bd2429  }
 .section4 .good:hover .en {  opacity: 0;  display: none  }
 .section4 .good:hover .cn {  opacity: 1;  display: block  }
 .section4 .good:hover .filter {  opacity:0.2;  }
-.section4 .g1 .bg {  background: url(../images/family.jpg) no-repeat 50%;  }
+/* .section4 .g1 .bg {  background: url(../images/family.jpg) no-repeat 50%;  }
 .section4 .g2 .bg {  background: url(../images/sports.jpg) no-repeat 50% ; }
 .section4 .g3 .bg {  background: url(../images/Welfare.jpg) no-repeat 50% ;}
-.section4 .g4 .bg {  background: url(../images/education.jpg) no-repeat 50% ; }
+.section4 .g4 .bg {  background: url(../images/education.jpg) no-repeat 50% ; } */
 
 .uicolor {  color: #bc8745  }
 .section5{background:#1e1b1f;}
