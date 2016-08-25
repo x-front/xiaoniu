@@ -123,6 +123,7 @@
 		$(".clear-easyui-textbox").textbox('setValue','');
 		$(".clear-easyui-datetimebox").datetimebox('clear');
 		$(".clear-easyui-combobox").combobox('clear');
+		$(".clear-easyui-numberbox").combobox('clear');
 		$(".clear-input").val('');
 		$('#edit-img-banner').addClass('none');
 		$("#edit-div").addClass("none");
@@ -148,9 +149,9 @@
 	function set2Top(){
 		var rows = $('#html_table').datagrid('getSelections');	
 		if(rows.length == 1){
-			$.messager.confirm('操作记录', '置顶是将该文章放到首位展示。只能将一篇新闻放到首位，若是之前某篇设置了置顶，则其将会被取消置顶，并将其序列号置为1。\n您确定要将选中的记录置顶?', function(r){ 	
+			$.messager.confirm('操作记录', '置顶是将该文章放到首位展示。只能将一篇新闻放到首位，若是之前某篇设置了置顶，则其将会被取消置顶，并将其序列号置为1.您确定要将选中的记录置顶?', function(r){ 	
 				if(r){
-					var id = rows[i]['id'];
+					var id = rows[0]['id'];
 					$.post("/secure/news/setTop?id="+id,function(result){
 						$('#html_table').datagrid('loaded');
 						if(result['resultCode'] == 0) {
@@ -182,9 +183,7 @@
 	#div-content-info{height: 150px;width: 255px;float: left;text-align: center;overflow: hidden;}
 	#div-content-info input{margin-bottom: 5px;width: 170px;}
 	#div-content-info select{width: 174px;}
-	
 	#div-title{height: 150px;width: 490px;float: right;}
-	
 	#edit-div .textbox {margin-bottom:5px}
 </style>
 </head>
@@ -198,7 +197,7 @@
 			<a href="javascript:void(0);" onclick="javascript:commonTable.batchDelete()"class="easyui-linkbutton" title="删除" plain="true" iconCls="icon-cancel" id="delBtn">删除</a>
 			<a href="javascript:void(0);" onclick="javascript:commonTable.batchPublish()"class="easyui-linkbutton" title="发布" plain="true" iconCls="icon-ok">发布</a>
 			<a href="javascript:void(0);" onclick="javascript:commonTable.batchCancelPublish()"class="easyui-linkbutton" title="撤销" plain="true" iconCls="icon-undo">撤销发布</a>
-			<c:if test="${type ge 1 and type le 4}">
+			<c:if test="${type ge 1 and type le 4 or type eq 9}">
 				<a href="javascript:void(0);" onclick="javascript:set2Top()"class="easyui-linkbutton" title="置顶" plain="true" iconCls="icon-filter">置顶</a>
 			</c:if>
 		</div>
@@ -232,7 +231,7 @@
 					<input id="edit-div-publishTime" name="publishTime" required="true" class="easyui-datetimebox clear-easyui-datetimebox " prompt="发布时间"/>
 					<input id="edit-div-clickTimes" name="clickTimes" required="true" class="easyui-numberbox clear-easyui-numberbox " prompt="点击次数" data-options="min:0"/>
 					<input id="edit-div-serialNumber" name="serialNumber" required="true" class="easyui-numberbox clear-easyui-numberbox " prompt="序号(越小排序越靠前)"/>
-					<select class="easyui-combobox clear-easyui-combobox" required="true" id="edit-div-valid" name="valid">
+					<select class="easyui-combobox" required="true" id="edit-div-valid" name="valid">
 						<option value="0">提交后不发布</option>
 						<option value="1">提交后直接发布</option>
 					</select>
@@ -258,6 +257,7 @@
 				<div id="display-none-input" class="none">
 					<input id="display-none-id" name="id" class="clear-input">
 					<input id="display-none-type" name="type" class="clear-input">
+					<input id="display-none-top" name="top" class="" value="0">
 				</div>
 			</form>
 		</div>

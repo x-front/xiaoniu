@@ -18,7 +18,7 @@ public class CmpyNews extends BaseVO implements Serializable {
     private Date publishTime;
 
     /**
-     * 1.美好家庭，2.美好体育，3美好公益，4.美好教育，5最新动态，6媒体报道，7小牛思想，8小牛声音,9牛人文化
+     * 1.美好家庭，2.美好体育，3美好公益，4.美好教育，5最新动态，6媒体报道，7小牛思想，8小牛声音,9牛人文化,10小牛思想声音，11小牛新闻
      */
     private Integer type;
 
@@ -39,6 +39,8 @@ public class CmpyNews extends BaseVO implements Serializable {
 
     @Column(name = "serial_number")
     private Integer serialNumber;
+
+    private Integer top;
 
     private String content;
 
@@ -101,18 +103,18 @@ public class CmpyNews extends BaseVO implements Serializable {
     }
 
     /**
-     * 获取1.美好家庭，2.美好体育，3美好公益，4.美好教育，5最新动态，6媒体报道，7小牛思想，8小牛声音,9牛人文化
+     * 获取1.美好家庭，2.美好体育，3美好公益，4.美好教育，5最新动态，6媒体报道，7小牛思想，8小牛声音,9牛人文化,10小牛思想声音，11小牛新闻
      *
-     * @return type - 1.美好家庭，2.美好体育，3美好公益，4.美好教育，5最新动态，6媒体报道，7小牛思想，8小牛声音,9牛人文化
+     * @return type - 1.美好家庭，2.美好体育，3美好公益，4.美好教育，5最新动态，6媒体报道，7小牛思想，8小牛声音,9牛人文化,10小牛思想声音，11小牛新闻
      */
     public Integer getType() {
         return type;
     }
 
     /**
-     * 设置1.美好家庭，2.美好体育，3美好公益，4.美好教育，5最新动态，6媒体报道，7小牛思想，8小牛声音,9牛人文化
+     * 设置1.美好家庭，2.美好体育，3美好公益，4.美好教育，5最新动态，6媒体报道，7小牛思想，8小牛声音,9牛人文化,10小牛思想声音，11小牛新闻
      *
-     * @param type 1.美好家庭，2.美好体育，3美好公益，4.美好教育，5最新动态，6媒体报道，7小牛思想，8小牛声音,9牛人文化
+     * @param type 1.美好家庭，2.美好体育，3美好公益，4.美好教育，5最新动态，6媒体报道，7小牛思想，8小牛声音,9牛人文化,10小牛思想声音，11小牛新闻
      */
     public void setType(Integer type) {
         this.type = type;
@@ -214,6 +216,20 @@ public class CmpyNews extends BaseVO implements Serializable {
      */
     public void setSerialNumber(Integer serialNumber) {
         this.serialNumber = serialNumber;
+    }
+
+    /**
+     * @return top
+     */
+    public Integer getTop() {
+        return top;
+    }
+
+    /**
+     * @param top
+     */
+    public void setTop(Integer top) {
+        this.top = top;
     }
 
     /**

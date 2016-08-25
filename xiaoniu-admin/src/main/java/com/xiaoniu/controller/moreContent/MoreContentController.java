@@ -28,16 +28,13 @@ public class MoreContentController {
 	private ModelAndView principleHtml(){
 		ModelAndView mv = new ModelAndView("secure/principle");
 		try{
-			mv.addObject("p1", service.selectByKey(51));
-			mv.addObject("pp1", service.selectByKey(52));
-			mv.addObject("pp2", service.selectByKey(53));
-			mv.addObject("pp3", service.selectByKey(54));
-			mv.addObject("p2", service.selectByKey(61));
-			mv.addObject("p3", service.selectByKey(62));
-			mv.addObject("p4", service.selectByKey(63));
-			mv.addObject("p5", service.selectByKey(64));
-			mv.addObject("p6", service.selectByKey(65));
-			mv.addObject("p7", service.selectByKey(66));
+			mv.addObject("p1", service.selectByKey(11));
+			mv.addObject("p2", service.selectByKey(12));
+			mv.addObject("p3", service.selectByKey(13));
+			mv.addObject("p4", service.selectByKey(14));
+			mv.addObject("p5", service.selectByKey(15));
+			mv.addObject("p6", service.selectByKey(16));
+			mv.addObject("p7", service.selectByKey(17));
 		}catch(Exception e){
 			log.error(e);
 		}
@@ -48,13 +45,16 @@ public class MoreContentController {
 	private ModelAndView advanceHtml(){
 		ModelAndView mv = new ModelAndView("secure/advance");
 		try{
-			mv.addObject("p1", service.selectByKey(11));
-			mv.addObject("p2", service.selectByKey(12));
-			mv.addObject("p3", service.selectByKey(13));
-			mv.addObject("p4", service.selectByKey(14));
-			mv.addObject("p5", service.selectByKey(15));
-			mv.addObject("p6", service.selectByKey(16));
-			mv.addObject("p7", service.selectByKey(17));
+			mv.addObject("p1", service.selectByKey(51));
+			mv.addObject("pp1", service.selectByKey(52));
+			mv.addObject("pp2", service.selectByKey(53));
+			mv.addObject("pp3", service.selectByKey(54));
+			mv.addObject("p2", service.selectByKey(61));
+			mv.addObject("p3", service.selectByKey(62));
+			mv.addObject("p4", service.selectByKey(63));
+			mv.addObject("p5", service.selectByKey(64));
+			mv.addObject("p6", service.selectByKey(65));
+			mv.addObject("p7", service.selectByKey(66));
 		}catch(Exception e){
 			log.error(e);
 		}

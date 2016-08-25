@@ -287,13 +287,13 @@ a:hover {  color: #bd2429  }
 .about-yz{padding:240px 0 200px;background-repeat: no-repeat;background-size:cover;}
 .about-yz p{font-size:16px;color:#FFF;line-height: 34px;;letter-spacing: 2px;}
 .about-y3 p,.about-y6 p,.about-y7 p{color:#4e312b;}
-.about-y1{background-image:url(../images/about/about-y_01.jpg);}
+/* .about-y1{background-image:url(../images/about/about-y_01.jpg);}
 .about-y2{background-image:url(../images/about/about-y_03.jpg);}
 .about-y3{background-image:url(../images/about/about-y_04.jpg);}
 .about-y4{background-image:url(../images/about/about-y_05.jpg);}
 .about-y5{background-image:url(../images/about/about-y_06.jpg);}
 .about-y6{background-image:url(../images/about/about-y_07.jpg);}
-.about-y7{background-image:url(../images/about/about-y_08.jpg);}
+.about-y7{background-image:url(../images/about/about-y_08.jpg);} */
 .about-ry p{padding-bottom: 100px;}
 .about-ry ul{width:702px;margin:0 auto 43px;}
 .about-ry ul li{float:left;}

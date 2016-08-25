@@ -33,8 +33,6 @@
 				return "<img title='无效' style='width:39px;height:52px;' class='htm_column_img' src='" + value + "'/>";
 			}	
 		},
-		{field:'name',title: '名称', align:'center',},
-		{field:'position',title: '职位',align:'center'},
 		{field:'summary',title: '描述',align:'left',width:340},
 		{field:'serialNumber',title: '序号',align:'center'},
 		validColumn,
@@ -101,6 +99,7 @@
 		$(".clear-easyui-textbox").textbox('setValue','');
 		$(".clear-easyui-datetimebox").datetimebox('clear');
 		$(".clear-easyui-combobox").combobox('clear');
+		$(".clear-easyui-numberbox").combobox('clear');
 		$(".clear-input").val('');
 		$('#edit-img-banner').addClass('none');
 		$("#edit-div").addClass("none");
@@ -159,7 +158,7 @@
 				</div>
 				
 				<div id="div-title" >
-					<select class="easyui-combobox clear-easyui-combobox" required="true" id="edit-div-valid" name="valid" style="width:204px">
+					<select class="easyui-combobox" required="true" id="edit-div-valid" name="valid" style="width:204px">
 						<option value="0">提交后不发布</option>
 						<option value="1">提交后直接发布</option>
 					</select>

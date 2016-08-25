@@ -34,25 +34,28 @@ public class CmpyNewsController extends BaseController<CmpyNews>{
 	public Map<String,Object> setTop(Integer id){
 		Map<String,Object> map = new HashMap<String,Object>();
 		try{
-			Date now = new Date();
-			CmpyNews entity = new CmpyNews();
-			entity.setId(id);
-			entity.setSerialNumber(-9999);
-			entity.setUpdateTime(now);
-			service.save(entity);
-			service.updateNotNull(entity);
 			
 			CmpyNews tmp = new CmpyNews();
-			tmp.setSerialNumber(-9999);
+			tmp.setTop(1);
 			List<CmpyNews> list = service.select(tmp);
 			if(list != null && list.size() > 0 ){
 				for(int i=0; i<list.size(); i++){
 					CmpyNews en = new CmpyNews();
 					en.setId(list.get(i).getId());
 					en.setSerialNumber(1);
-					service.updateNotNull(entity);
+					en.setTop(0);
+					service.updateNotNull(en);
 				}
 			}
+			
+			Date now = new Date();
+			CmpyNews entity = new CmpyNews();
+			entity.setId(id);
+			entity.setSerialNumber(-9999);
+			entity.setTop(1);
+			entity.setUpdateTime(now);
+			service.save(entity);
+			service.updateNotNull(entity);
 			
 			map.put(Contants.RESULT_CODE, MsgCode.SAVE_SUCCESS.getCode());
 			map.put(Contants.MSG, MsgCode.SAVE_SUCCESS.getMsg());

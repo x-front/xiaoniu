@@ -40,7 +40,7 @@ public class NewsController {
 	
 	@RequestMapping("list")
 	@ResponseBody
-	public Map<String,Object> report(Integer page,Integer  rows,CmpyNews entity){
+	public Map<String,Object> list(Integer page,Integer  rows,CmpyNews entity){
 		Map<String,Object> map = new HashMap<String,Object>();
 		try{
 			if(page == null || page < 0){
