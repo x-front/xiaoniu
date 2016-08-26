@@ -37,7 +37,7 @@ function _xn_init(){
 	$.post("/news/list",{
 		'page':1,
 		'rows':3,
-		'type':5
+		'type':11
 	},function(result){
 		if(result.resultCode == 0){
 			if(result.rows){
