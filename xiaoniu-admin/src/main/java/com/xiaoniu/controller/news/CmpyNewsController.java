@@ -8,6 +8,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.xiaoniu.service.news.CmpyNewsService;
@@ -31,6 +32,7 @@ public class CmpyNewsController extends BaseController<CmpyNews>{
 	}
 	
 	@RequestMapping("setTop")
+	@ResponseBody
 	public Map<String,Object> setTop(Integer id){
 		Map<String,Object> map = new HashMap<String,Object>();
 		try{
@@ -54,7 +56,6 @@ public class CmpyNewsController extends BaseController<CmpyNews>{
 			entity.setSerialNumber(-9999);
 			entity.setTop(1);
 			entity.setUpdateTime(now);
-			service.save(entity);
 			service.updateNotNull(entity);
 			
 			map.put(Contants.RESULT_CODE, MsgCode.SAVE_SUCCESS.getCode());
