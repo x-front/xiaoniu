@@ -45,4 +45,19 @@ public class JoinUsController {
 		}
 		return map;
 	}
+	
+	@RequestMapping("find")
+	@ResponseBody
+	public Map<String,Object> find(Integer id){
+		Map<String,Object> map = new HashMap<String,Object>();
+		try{
+			map.put("entity", service.selectByKey(id));
+			map.put(Contants.RESULT_CODE, MsgCode.SUCCESS.getCode());
+		}catch(Exception e){
+			log.error(e);
+			map.put(Contants.RESULT_CODE, MsgCode.FAILED.getCode());
+			map.put(Contants.MSG, MsgCode.FAILED.getMsg());
+		}
+		return map;
+	}
 }
