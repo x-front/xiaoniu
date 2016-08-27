@@ -152,7 +152,8 @@
 			$.messager.confirm('操作记录', '置顶是将该文章放到首位展示。只能将一篇新闻放到首位，若是之前某篇设置了置顶，则其将会被取消置顶，并将其序列号置为1.您确定要将选中的记录置顶?', function(r){ 	
 				if(r){
 					var id = rows[0]['id'];
-					$.post("/secure/news/setTop?id="+id,function(result){
+					var type = rows[0]['type'];
+					$.post("/secure/news/setTop",{'id':id,'type':type},function(result){
 						$('#html_table').datagrid('loaded');
 						if(result['resultCode'] == 0) {
 							$.messager.alert('提示',"成功置顶！");

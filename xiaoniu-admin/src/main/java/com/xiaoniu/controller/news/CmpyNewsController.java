@@ -33,12 +33,13 @@ public class CmpyNewsController extends BaseController<CmpyNews>{
 	
 	@RequestMapping("setTop")
 	@ResponseBody
-	public Map<String,Object> setTop(Integer id){
+	public Map<String,Object> setTop(Integer id,Integer type){
 		Map<String,Object> map = new HashMap<String,Object>();
 		try{
 			
 			CmpyNews tmp = new CmpyNews();
 			tmp.setTop(1);
+			tmp.setType(type);
 			List<CmpyNews> list = service.select(tmp);
 			if(list != null && list.size() > 0 ){
 				for(int i=0; i<list.size(); i++){
