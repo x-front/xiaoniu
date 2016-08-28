@@ -28,7 +28,14 @@ public class NewsController {
 	public Map<String,Object> find(Integer id){
 		Map<String,Object> map = new HashMap<String,Object>();
 		try{
-			map.put("entity", service.selectByKey(id));
+			CmpyNews entity = service.selectByKey(id);
+			map.put("entity", entity);
+			if(entity != null){
+				CmpyNews tmp = new CmpyNews();
+				tmp.setId(id);
+				tmp.setClickTimes(entity.getClickTimes());
+				service.updateNotNull(entity);
+			}
 			map.put(Contants.RESULT_CODE, MsgCode.SUCCESS.getCode());
 		}catch(Exception e){
 			log.error(e);

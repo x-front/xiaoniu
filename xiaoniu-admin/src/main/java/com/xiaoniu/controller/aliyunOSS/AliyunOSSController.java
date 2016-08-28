@@ -43,31 +43,34 @@ public class AliyunOSSController {
 	
 	private Logger log = Logger.getLogger(AliyunOSSController.class);
 	
+    private  String ACCESS_ID="hSiKp8YurMRk3LeY";
+    private  String ACCESS_KEY="FRP5rKt4TPKQmC8mQOv7NUzSAAX9oG";
+	private  String BUCKET_NAME="xiaoniu-66";
+	private  String OSS_DOMAIN="http://xiaoniu-66.oss-cn-shenzhen.aliyuncs.com";
+	private  String OSS_ENDPOINT="http://oss-cn-shenzhen.aliyuncs.com";
+	
 	/**
      * 阿里云ACCESS_ID
      */
-//    private  String ACCESS_ID="hSiKp8YurMRk3LeY";
-	private  String ACCESS_ID="kXjQw7tA2BCqHjZV";
-    /**
-     * 阿里云ACCESS_KEY
-     */
-//    private  String ACCESS_KEY="FRP5rKt4TPKQmC8mQOv7NUzSAAX9oG";
-	private  String ACCESS_KEY="2L1DQ8BzUCeoVkftIdz5Akywp97XYp";
-    /**
-     * 阿里云OSS_ENDPOINT  
-     */
-    private  String OSS_ENDPOINT="http://oss-cn-shenzhen.aliyuncs.com";
-     
-    /**
-     * 阿里云BUCKET_NAME  OSS
-     */
-    private String BUCKET_NAME="xiaoniu66-web";
-	
-	/**
-     * 阿里云OSS 绑定的域名
-     */
-//	private String OSS_DOMAIN="http://xiaoniu-66.oss-cn-shenzhen.aliyuncs.com";
-	private String OSS_DOMAIN="http://xiaoniu66-web.oss-cn-shenzhen.aliyuncs.com";
+//	private  String ACCESS_ID="kXjQw7tA2BCqHjZV";
+//    /**
+//     * 阿里云ACCESS_KEY
+//     */
+//	private  String ACCESS_KEY="2L1DQ8BzUCeoVkftIdz5Akywp97XYp";
+//    /**
+//     * 阿里云OSS_ENDPOINT  
+//     */
+//    private  String OSS_ENDPOINT="http://oss-cn-shenzhen.aliyuncs.com";
+//     
+//    /**
+//     * 阿里云BUCKET_NAME  OSS
+//     */
+//    private String BUCKET_NAME="xiaoniu66-web";
+//	
+//	/**
+//     * 阿里云OSS 绑定的域名
+//     */
+//	private String OSS_DOMAIN="http://xiaoniu66-web.oss-cn-shenzhen.aliyuncs.com";
 	
 	
 	

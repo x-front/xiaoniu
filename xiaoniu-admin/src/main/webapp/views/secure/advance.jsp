@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>经营原则</title>
+<title>核心竞争力</title>
 <jsp:include page="../public/common/head.jsp"></jsp:include>
 <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/xiaoniu/CRUD.css'/>"/>
 <link rel="stylesheet" href="/resources/kindeditor-4.1.10/themes/default/default.css" />
@@ -56,15 +56,31 @@
 		$("#display-none-index").val(index);
 		$("#display-none-id").val(type);
 		
-		$("#edit-div-content").textbox('setValue',$("#main-div .content-p:eq("+ index +")").html());
+		$("#edit-div-content").textbox('setValue',$("#main-div description-div:eq("+index+") .content-p:eq(0)").html());
 		$("#edit-div-banner").textbox('setValue',
-				$("#main-div .content-img:eq("+ index +")").attr('src'));
+				$("#main-div description-div:eq("+index+") .content-img:eq(0)").attr('src'));
 		$('#edit-img-banner').attr('src',
-				$("#main-div .content-img:eq("+ index +")").attr('src'));
+				$("#main-div description-div:eq("+index+") .content-img:eq(0)").attr('src'));
 
 		if($('#edit-img-banner').attr('src') != ""){
 			$('#edit-img-banner').removeClass('none');
 		}
+		
+		var moreDiv = $('#main-div description-div:eq(0)').children('.more-div');
+		if(moreDiv.length > 0 ){
+			ContentEditor.html(moreDiv.html());
+			$('#edit-more-showOrHide').removeClass('none');
+		}
+		
+		if(type > 54){
+			$('#edit-content-showOrHide').removeClass('none');
+			$('#edit-banner-showOrHide').removeClass('none');
+		}
+		
+		if(type == 51 ){
+			$('#edit-banner-showOrHide').removeClass('none');
+		}
+		
 		
 		$("#main-div").addClass("none");
 		$("#edit-div").removeClass("none");
@@ -91,8 +107,8 @@
 			$("#edit-form .loading").hide();
 			if ( result['resultCode'] == 0 ) {
 				var index = $("#display-none-index").val();
-				$("#main-div .content-p:eq("+ index +")").html($("#edit-div-content").textbox('getValue'));
-				$("#main-div .content-img:eq("+ index +")").attr('src',$("#edit-div-banner").textbox('getValue'));
+				$("#main-div description-div:eq("+index+") .content-p:eq(0").html($("#edit-div-content").textbox('getValue'));
+				$("#main-div description-div:eq("+index+") .content-img:eq(0)").attr('src',$("#edit-div-banner").textbox('getValue'));
 				if(index == 4 || index == 7 || index == 8){
 					$('.description-div:eq('+ index +')').css('background-image','url("'+$("#edit-div-banner").textbox('getValue')+'")');
 				}
@@ -132,6 +148,7 @@
 					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(51,0)" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
 					<p class="content-p">${p1.content }</p>
 					<img class="who-img content-img none" alt="" src="${p1.banner }" >
+					<p class="bannerDesc-p"></p>
 				</div>
 				
 				<div class="description-div">
@@ -139,6 +156,7 @@
 					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(52,1)" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
 					<p class="content-p">${pp1.content }</p>
 					<img class="who-img content-img none" alt="" src="${pp1.banner }" >
+					<div class="more-div none">${pp1.more }</div>
 				</div>
 				
 				<div class="description-div">
@@ -146,6 +164,7 @@
 					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(53,2)" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
 					<p class="content-p">${pp2.content }</p>
 					<img class="who-img content-img none" alt="" src="${pp2.banner }" >
+					<div class="more-div none">${pp2.more }</div>
 				</div>
 				
 				<div class="description-div">
@@ -153,6 +172,7 @@
 					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(54,3)" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
 					<p class="content-p">${pp3.content }</p>
 					<img class="who-img content-img none" alt="" src="${pp3.banner }" >
+					<div class="more-div none">${pp3.more }</div>
 				</div>
 				
 				<div class="description-div">
@@ -165,12 +185,14 @@
 					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(62,5)" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
 					<p class="content-p">${p3.content }</p>
 					<img class="who-img content-img none" alt="" src="${p3.banner }" ">
+					<div class="more-div none">${p3.more }</div>
 				</div>
 				
 				<div class="description-div">
 					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(63,6)" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
 					<p class="content-p">${p4.content }</p>
 					<img class="who-img content-img none" alt="" src="${p4.banner }" ">
+					<div class="more-div none">${p4.more }</div>
 				</div>
 				
 				<div class="description-div">
@@ -199,12 +221,16 @@
 				<div class="">
 					<input  id="edit-div-title" name="title" class="easyui-textbox clear-easyui-textbox" maxlength="255" required="true"  prompt="标题" style="width: 703px;"/>
 					<div class="none " id="edit-content-showOrHide">
-						<input  id="edit-div-content" name="content" class="easyui-textbox clear-easyui-textbox" maxlength="512" required="true" data-options="multiline:true" prompt="描述" style="width: 703px;height: 158px;"/>
+						<input  id="edit-div-content" name="content" class="easyui-textbox clear-easyui-textbox" maxlength="512" data-options="multiline:true" prompt="描述" style="width: 703px;height: 158px;"/>
 					</div>
 					<div class="none " id="edit-banner-showOrHide">
 						<input id="edit-div-banner"  name="banner" class="easyui-textbox clear-easyui-textbox"   prompt="背景图片" style="width:628px;"/>
 						<input type="button" id="btn-banner-upload"  value="选择图片"/><br>
 						<img id="edit-img-banner" alt="" src="" class="none" style="max-width: 908px;">
+					</div>
+					
+					<div class="none " id="edit-bannerDesc-showOrHide">
+						<input  id="edit-div-bannerDesc" name="bannerDesc" class="easyui-textbox clear-easyui-textbox" maxlength="512" data-options="multiline:true" prompt="图片描述" style="width: 703px;height: 148px;"/>
 					</div>
 					
 					<div class="none " id="edit-more-showOrHide">

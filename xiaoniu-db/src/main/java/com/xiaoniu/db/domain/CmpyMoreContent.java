@@ -14,6 +14,12 @@ public class CmpyMoreContent extends BaseVO implements Serializable {
 
     private String banner;
 
+    @Column(name = "banner_desc")
+    private String bannerDesc;
+
+    /**
+     * 1核心竞争力,2经营原则
+     */
     private Integer type;
 
     private Integer valid;
@@ -73,14 +79,32 @@ public class CmpyMoreContent extends BaseVO implements Serializable {
     }
 
     /**
-     * @return type
+     * @return banner_desc
+     */
+    public String getBannerDesc() {
+        return bannerDesc;
+    }
+
+    /**
+     * @param bannerDesc
+     */
+    public void setBannerDesc(String bannerDesc) {
+        this.bannerDesc = bannerDesc;
+    }
+
+    /**
+     * 获取1核心竞争力,2经营原则
+     *
+     * @return type - 1核心竞争力,2经营原则
      */
     public Integer getType() {
         return type;
     }
 
     /**
-     * @param type
+     * 设置1核心竞争力,2经营原则
+     *
+     * @param type 1核心竞争力,2经营原则
      */
     public void setType(Integer type) {
         this.type = type;
