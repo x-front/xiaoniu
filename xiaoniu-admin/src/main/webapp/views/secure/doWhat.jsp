@@ -97,6 +97,11 @@
 			if($('#edit-img-banner').attr('src') != ""){
 				$('#edit-img-banner').removeClass('none');
 			}
+		}else if(type == 12){
+			$("#edit-banner-showOrHide").removeClass('none');
+			if($('#edit-img-banner').attr('src') != ""){
+				$('#edit-img-banner').removeClass('none');
+			}
 		}
 		
 		

@@ -56,20 +56,29 @@
 		$("#display-none-index").val(index);
 		$("#display-none-id").val(type);
 		
-		$("#edit-div-content").textbox('setValue',$("#main-div description-div:eq("+index+") .content-p:eq(0)").html());
+		$("#edit-div-content").textbox('setValue',$("#main-div .description-div:eq("+index+") .content-p:eq(0)").html());
 		$("#edit-div-banner").textbox('setValue',
-				$("#main-div description-div:eq("+index+") .content-img:eq(0)").attr('src'));
+				$("#main-div .description-div:eq("+index+") .content-img:eq(0)").attr('src'));
 		$('#edit-img-banner').attr('src',
-				$("#main-div description-div:eq("+index+") .content-img:eq(0)").attr('src'));
+				$("#main-div .description-div:eq("+index+") .content-img:eq(0)").attr('src'));
 
 		if($('#edit-img-banner').attr('src') != ""){
 			$('#edit-img-banner').removeClass('none');
 		}
 		
-		var moreDiv = $('#main-div description-div:eq(0)').children('.more-div');
+		$('#edit-div-title').textbox('setValue',$('#main-div .description-div:eq('+index+') .content-title:eq(0)').html());
+		
+		var moreDiv = $('#main-div .description-div:eq('+index+')').children('.more-div');
 		if(moreDiv.length > 0 ){
 			ContentEditor.html(moreDiv.html());
+			ContentEditor.focus();
 			$('#edit-more-showOrHide').removeClass('none');
+		}
+		
+		var bannerDescDiv = $('#main-div .description-div:eq('+index+')').children('.bannerDesc-p');
+		if(bannerDescDiv.length > 0 ){
+			$('#edit-div-bannerDesc').textbox('setValue',bannerDescDiv.html())
+			$('#edit-bannerDesc-showOrHide').removeClass('none');
 		}
 		
 		if(type > 54){
@@ -93,9 +102,15 @@
 		$(".clear-input").val('');
 		
 		$('#edit-img-banner').addClass('none');
+		$('#edit-bannerDesc-showOrHide').addClass('none');
+		$('#edit-banner-showOrHide').addClass('none');
+		$('#edit-more-showOrHide').addClass('none');
+		$('#edit-content-showOrHide').addClass('none');
 		
 		$("#edit-div").addClass("none");
 		$("#main-div").removeClass("none");
+		
+		ContentEditor.html('');
 	}
 	
 	function save(){
@@ -107,11 +122,18 @@
 			$("#edit-form .loading").hide();
 			if ( result['resultCode'] == 0 ) {
 				var index = $("#display-none-index").val();
-				$("#main-div description-div:eq("+index+") .content-p:eq(0").html($("#edit-div-content").textbox('getValue'));
-				$("#main-div description-div:eq("+index+") .content-img:eq(0)").attr('src',$("#edit-div-banner").textbox('getValue'));
+				$("#main-div .description-div:eq("+index+") .content-p:eq(0)").html($("#edit-div-content").textbox('getValue'));
+				$("#main-div .description-div:eq("+index+") .content-img:eq(0)").attr('src',$("#edit-div-banner").textbox('getValue'));
 				if(index == 4 || index == 7 || index == 8){
 					$('.description-div:eq('+ index +')').css('background-image','url("'+$("#edit-div-banner").textbox('getValue')+'")');
 				}
+				var moreDiv = $('#main-div .description-div:eq('+index+')').children('.more-div');
+				if(moreDiv.length > 0 ){
+					moreDiv.html(ContentEditor.html());
+				}
+				var title = $('#edit-div-title').textbox('getValue');
+				$("#main-div .description-div:eq("+index+") .content-title:eq(0)").html(title);
+				
 				cancel();
 			} else {
 				$.messager.alert('提示',result['msg']);
@@ -144,15 +166,15 @@
 		<div id="main-div">
 			<div class="content-div">
 				<div class="description-div">
-					<h2>${p1.title }</h2>
+					<h2 class="content-title">${p1.title }</h2>
 					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(51,0)" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
 					<p class="content-p">${p1.content }</p>
-					<img class="who-img content-img none" alt="" src="${p1.banner }" >
-					<p class="bannerDesc-p"></p>
+					<img class="who-img content-img" alt="" src="${p1.banner }" >
+					<p class="bannerDesc-p">${p1.bannerDesc }</p>
 				</div>
 				
 				<div class="description-div">
-					<span>${pp1.title }</span>
+					<span class="content-title">${pp1.title }</span>
 					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(52,1)" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
 					<p class="content-p">${pp1.content }</p>
 					<img class="who-img content-img none" alt="" src="${pp1.banner }" >
@@ -160,7 +182,7 @@
 				</div>
 				
 				<div class="description-div">
-					<span>${pp2.title }</span>
+					<span class="content-title">${pp2.title }</span>
 					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(53,2)" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
 					<p class="content-p">${pp2.content }</p>
 					<img class="who-img content-img none" alt="" src="${pp2.banner }" >
@@ -168,49 +190,57 @@
 				</div>
 				
 				<div class="description-div">
-					<span>${pp3.title }</span>
+					<span class="content-title">${pp3.title }</span>
 					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(54,3)" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
 					<p class="content-p">${pp3.content }</p>
 					<img class="who-img content-img none" alt="" src="${pp3.banner }" >
 					<div class="more-div none">${pp3.more }</div>
 				</div>
 				
-				<div class="description-div">
+				<div class="description-div" style="background-image:url(${p2.banner});">
+					<h2 class="content-title">${p2.title }</h2>
 					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(61,4)" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
 					<p class="content-p">${p2.content }</p>
 					<img class="who-img content-img none" alt="" src="${p2.banner }" ">
 				</div>
 				
 				<div class="description-div">
+					<h2 class="content-title">${p3.title }</h2>
 					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(62,5)" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
 					<p class="content-p">${p3.content }</p>
-					<img class="who-img content-img none" alt="" src="${p3.banner }" ">
+					<img class="who-img content-img" alt="" src="${p3.banner }" ">
+					<p class="bannerDesc-p">${p3.bannerDesc }</p>
 					<div class="more-div none">${p3.more }</div>
 				</div>
 				
 				<div class="description-div">
+					<h2 class="content-title">${p4.title }</h2>
 					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(63,6)" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
 					<p class="content-p">${p4.content }</p>
 					<img class="who-img content-img none" alt="" src="${p4.banner }" ">
+					<p class="bannerDesc-p">${p4.bannerDesc }</p>
 					<div class="more-div none">${p4.more }</div>
 				</div>
 				
-				<div class="description-div">
+				<div class="description-div" style="background-image:url(${p5.banner});">
+					<h2 class="content-title">${p5.title }</h2>
 					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(64,7)" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
 					<p class="content-p">${p5.content }</p>
 					<img class="who-img content-img none" alt="" src="${p5.banner }" ">
 				</div>
 				
-				<div class="description-div">
+				<div class="description-div" style="background-image:url(${p6.banner});">
+					<h2 class="content-title">${p6.title }</h2>
 					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(65,8)" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
 					<p class="content-p">${p6.content }</p>
 					<img class="who-img content-img none" alt="" src="${p6.banner }" ">
 				</div>
 				
 				<div class="description-div">
+					<h2 class="content-title">${p7.title }</h2>
 					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(66,9)" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
 					<p class="content-p">${p7.content }</p>
-					<img class="who-img content-img none" alt="" src="${p7.banner }" ">
+					<img class="who-img content-img " alt="" src="${p7.banner }" ">
 				</div>
 				
 			</div>
@@ -220,10 +250,10 @@
 			<form id="edit-form" method="post" action="/secure/moreContent/save">
 				<div class="">
 					<input  id="edit-div-title" name="title" class="easyui-textbox clear-easyui-textbox" maxlength="255" required="true"  prompt="标题" style="width: 703px;"/>
-					<div class="none " id="edit-content-showOrHide">
+					<div class="none " id="edit-content-showOrHide" >
 						<input  id="edit-div-content" name="content" class="easyui-textbox clear-easyui-textbox" maxlength="512" data-options="multiline:true" prompt="描述" style="width: 703px;height: 158px;"/>
 					</div>
-					<div class="none " id="edit-banner-showOrHide">
+					<div class="none " id="edit-banner-showOrHide" >
 						<input id="edit-div-banner"  name="banner" class="easyui-textbox clear-easyui-textbox"   prompt="背景图片" style="width:628px;"/>
 						<input type="button" id="btn-banner-upload"  value="选择图片"/><br>
 						<img id="edit-img-banner" alt="" src="" class="none" style="max-width: 908px;">
@@ -233,7 +263,7 @@
 						<input  id="edit-div-bannerDesc" name="bannerDesc" class="easyui-textbox clear-easyui-textbox" maxlength="512" data-options="multiline:true" prompt="图片描述" style="width: 703px;height: 148px;"/>
 					</div>
 					
-					<div class="none " id="edit-more-showOrHide">
+					<div class="none " id="edit-more-showOrHide" style="width:772px;margin: auto;">
 						<textarea  id="edit-div-more" name="more" style="width: 769px;height: 358px;"></textarea>
 					</div>
 					
