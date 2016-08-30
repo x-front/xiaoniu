@@ -9,6 +9,7 @@
 <jsp:include page="../public/common/head.jsp"></jsp:include>
 <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/xiaoniu/CRUD.css'/>"/>
 <link rel="stylesheet" href="/resources/kindeditor-4.1.10/themes/default/default.css" />
+<link rel="stylesheet" href="/resources/css/xiaoniu/advance.css" />
 <script type="text/javascript" src="<c:url value='/resources/js/xiaoniu/dateTool.js'/>?r=1134"></script>
 <script type="text/javascript" src="<c:url value='/resources/js/xiaoniu/common.js'/>?r=31"></script>
 <script type="text/javascript" src="/resources/kindeditor-4.1.10/kindeditor-all-min.js"></script>
@@ -165,36 +166,40 @@
 		
 		<div id="main-div">
 			<div class="content-div">
-				<div class="description-div">
-					<h2 class="content-title">${p1.title }</h2>
-					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(51,0)" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
-					<p class="content-p">${p1.content }</p>
-					<img class="who-img content-img" alt="" src="${p1.banner }" >
-					<p class="bannerDesc-p">${p1.bannerDesc }</p>
-				</div>
-				
-				<div class="description-div">
-					<span class="content-title">${pp1.title }</span>
-					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(52,1)" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
-					<p class="content-p">${pp1.content }</p>
-					<img class="who-img content-img none" alt="" src="${pp1.banner }" >
-					<div class="more-div none">${pp1.more }</div>
-				</div>
-				
-				<div class="description-div">
-					<span class="content-title">${pp2.title }</span>
-					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(53,2)" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
-					<p class="content-p">${pp2.content }</p>
-					<img class="who-img content-img none" alt="" src="${pp2.banner }" >
-					<div class="more-div none">${pp2.more }</div>
-				</div>
-				
-				<div class="description-div">
-					<span class="content-title">${pp3.title }</span>
-					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(54,3)" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
-					<p class="content-p">${pp3.content }</p>
-					<img class="who-img content-img none" alt="" src="${pp3.banner }" >
-					<div class="more-div none">${pp3.more }</div>
+				<div class="about-j1">
+					<div class="description-div about-j1-l">
+						<h2 class="content-title">${p1.title }</h2>
+						<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(51,0)" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
+						<p class="content-p none">${p1.content }</p>
+						<div id="p1-banner">
+							<img class="who-img content-img" alt="" src="${p1.banner }" >
+							<p class="bannerDesc-p">${p1.bannerDesc }</p>
+						</div>
+					</div>
+					
+					<div class="description-div" id="pp1-div">
+						<span class="content-title">${pp1.title }</span>
+						<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(52,1)" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
+						<p class="content-p">${pp1.content }</p>
+						<img class="who-img content-img none" alt="" src="${pp1.banner }" >
+						<div class="more-div none">${pp1.more }</div>
+					</div>
+					
+					<div class="description-div">
+						<span class="content-title">${pp2.title }</span>
+						<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(53,2)" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
+						<p class="content-p">${pp2.content }</p>
+						<img class="who-img content-img none" alt="" src="${pp2.banner }" >
+						<div class="more-div none">${pp2.more }</div>
+					</div>
+					
+					<div class="description-div">
+						<span class="content-title">${pp3.title }</span>
+						<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(54,3)" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
+						<p class="content-p">${pp3.content }</p>
+						<img class="who-img content-img none" alt="" src="${pp3.banner }" >
+						<div class="more-div none">${pp3.more }</div>
+					</div>
 				</div>
 				
 				<div class="description-div" style="background-image:url(${p2.banner});">
