@@ -41,6 +41,7 @@ public class MoreContentController {
 	}
 	
 	@RequestMapping("advance")
+	@ResponseBody
 	private Map<String,Object> advanceHtml(){
 		Map<String,Object> map = new HashMap<String,Object>();
 		try{

@@ -99,7 +99,7 @@
 		$(".clear-easyui-textbox").textbox('setValue','');
 		$(".clear-easyui-datetimebox").datetimebox('clear');
 		$(".clear-easyui-combobox").combobox('clear');
-		$(".clear-easyui-numberbox").combobox('clear');
+		$(".clear-easyui-numberbox").numberbox('clear');
 		$(".clear-input").val('');
 		$('#edit-img-banner').addClass('none');
 		$("#edit-div").addClass("none");

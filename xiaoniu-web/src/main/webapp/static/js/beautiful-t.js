@@ -9,7 +9,7 @@ function _xn_init(){
 			$("#wrap .about-w-banner-pic img:eq(0)").attr('src',head.banner);
 			$("#wrap .about-w-banner h3:eq(0)").html(head.title);
 			$("#wrap .about-w-banner p:eq(0)").html(head.summary);
-			$(".about-w-banner a:eq(0)").attr('href','/static/beautiful-t-inside.html?id='+head.id);
+			$(".about-w-link").attr('href','/static/beautiful-t-inside.html?id='+head.id);
 		}
 	},"json");
 	seeMore();
