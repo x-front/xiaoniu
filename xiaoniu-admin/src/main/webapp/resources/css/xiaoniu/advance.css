@@ -1,7 +1,7 @@
 .about-j1{  
 	padding: 50px 0 80px;
 	width: 1140px;
-	height:230px;
+	min-height:230px;
     margin: 0 auto;
 }
 
@@ -12,5 +12,30 @@
 
 #pp1-div{
 	float: left;
-	
+	width: 530px;
+	text-align: left;
+	clear:left;
+}
+#pp2-div{
+	float: left;
+	width: 530px;
+	text-align: left;
+	clear:left;
+}
+#pp3-div{
+	float: left;
+	width: 530px;
+	text-align: left;
+	clear:left;
+}
+.clearfix{
+	clear: both;
+}
+.more-title{
+	cursor: pointer;
+}
+
+.about-j2 {
+    background-size: cover;
+    padding: 90px 0 130px;
 }
