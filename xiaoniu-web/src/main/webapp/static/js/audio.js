@@ -35,7 +35,7 @@ function seeMore(){
 function buildNewsDiv(entity){
 	var html = '';
 	html += '<li><a href="/static/audio-inside.html?id='+entity.id+'">';
-	html += '<div class="iN-img wow fadeInUp"><img src="'+entity.banner+'"/></div>';
+	html += '<div class="iN-img wow fadeInUp"><img src="'+entity.banner+'"/><img class="playBtn" src="/static/images/idV/play.png"/></div>';
 	html += '<p>'+entity.title+'</p>';
 	html += '<span>'+entity.summary+'</span>';
 	html += '</a>';
