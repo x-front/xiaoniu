@@ -69,14 +69,14 @@
 		
 		$('#edit-div-title').textbox('setValue',$('#main-div .description-div:eq('+index+') .content-title:eq(0)').html());
 		
-		var moreDiv = $('#main-div .description-div:eq('+index+')').children('.more-div');
+		var moreDiv = $('#main-div .description-div:eq('+index+') .more-div');
 		if(moreDiv.length > 0 ){
 			ContentEditor.html(moreDiv.html());
 			ContentEditor.focus();
 			$('#edit-more-showOrHide').removeClass('none');
 		}
 		
-		var bannerDescDiv = $('#main-div .description-div:eq('+index+')').children('.bannerDesc-p');
+		var bannerDescDiv = $('#main-div .description-div:eq('+index+') .bannerDesc-p');
 		if(bannerDescDiv.length > 0 ){
 			$('#edit-div-bannerDesc').textbox('setValue',bannerDescDiv.html())
 			$('#edit-bannerDesc-showOrHide').removeClass('none');
@@ -128,10 +128,17 @@
 				if(index == 4 || index == 7 || index == 8){
 					$('.description-div:eq('+ index +')').parent().css('background-image','url("'+$("#edit-div-banner").textbox('getValue')+'")');
 				}
-				var moreDiv = $('#main-div .description-div:eq('+index+')').children('.more-div');
+				var moreDiv = $('#main-div .description-div:eq('+index+') .more-div');
 				if(moreDiv.length > 0 ){
 					moreDiv.html(ContentEditor.html());
 				}
+				
+				
+				var bannerDescDiv = $('#main-div .description-div:eq('+index+') .bannerDesc-p');
+				if(bannerDescDiv.length > 0 ){
+					bannerDescDiv.html($('#edit-div-bannerDesc').textbox('getValue'));
+				}
+				
 				var title = $('#edit-div-title').textbox('getValue');
 				$("#main-div .description-div:eq("+index+") .content-title:eq(0)").html(title);
 				
@@ -355,10 +362,12 @@
 					</div>
 					
 					<div class="none " id="edit-bannerDesc-showOrHide">
-						<input  id="edit-div-bannerDesc" name="bannerDesc" class="easyui-textbox clear-easyui-textbox" maxlength="512" data-options="multiline:true" prompt="图片描述" style="width: 703px;height: 148px;"/>
+						<span>图片描述：</span><input  id="edit-div-bannerDesc" name="bannerDesc" class="easyui-textbox clear-easyui-textbox" maxlength="512" data-options="multiline:true" prompt="图片描述" style="width: 660px;height: 148px;"/>
 					</div>
 					
-					<div class="none " id="edit-more-showOrHide" style="width:772px;margin: auto;">
+					<div class="none " id="edit-more-showOrHide" style="width:772px;margin: auto;text-align: left;">
+						<br>
+						<div style="background-color: yellow;">下面的编辑器是编辑See more里面的内容</div>
 						<textarea  id="edit-div-more" name="more" style="width: 769px;height: 358px;"></textarea>
 					</div>
 					

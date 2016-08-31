@@ -24,7 +24,7 @@ function seeMore(){
 				var html = buildNewsRows(rows,0,3);
 				$('#idV-i').append(html);
 			}
-			
+			page = $("#idV-i .idea-ul").length;
 			if((page + 1)*3 >= result.total){
 				$("#idea-more").css("display",'none');
 			}

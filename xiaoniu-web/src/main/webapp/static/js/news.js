@@ -5,11 +5,11 @@ function _xn_init(){
 	$.post("/pageInfo/dongtai",function(result){
 		if(result.resultCode == 0){
 			if(result.news){
-				$("#news-t p:eq(0)").html(result.news.introdution);
+//				$("#news-t p:eq(0)").html(result.news.introdution);
 			}
 			
 			if(result.report){
-				$("#news-m p:eq(0)").html(result.report.introdution);
+//				$("#news-m p:eq(0)").html(result.report.introdution);
 			}
 			
 		}else{

@@ -86,7 +86,7 @@
 				$("#main-div .content-p:eq("+ index +")").html($("#edit-div-content").textbox('getValue'));
 				$("#main-div .content-img:eq("+ index +")").attr('src',$("#edit-div-banner").textbox('getValue'));
 				
-				$('.description-div:eq('+ index +')').css('background-image','url("'+$("#edit-div-banner").textbox('getValue')+'")');
+				$('.description-div:eq('+ index +')').parent().css('background-image','url("'+$("#edit-div-banner").textbox('getValue')+'")');
 				
 				cancel();
 			} else {
@@ -97,70 +97,97 @@
 	
 </script>
 <style type="text/css">
-	.float-right{float: right;}
+	.content-float-right{float: right;}
 	.content-p{
 		font-size: 16px;
 		line-height: 33px;
 		color: #585858;
-		width: 702px;
-		max-width: 702px;
 		letter-spacing: 2px;
 		margin: 0 auto;
 		padding-bottom: 42px;
 	}
-	#main-div{width: 1140px;margin: auto;}
+	#main-div{min-width: 1140px;margin: auto;}
 	.content-div{margin: auto;}
-	.description-div{text-align: center;margin: auto;padding-top: 10px;padding-bottom: 10px;}
+	.description-div{width: 1140px;text-align: center;margin: auto;padding: 200px 0 280px 0;}
 	#edit-div{text-align: center;}
 	#edit-div .textbox {margin-bottom:5px}
+	.content-float-left{float:left;width: 570px;text-align: left;}
+	.content-float-right{float:right;width: 570px;text-align: left;}
+	.float-right{float:right;}
 </style>
 </head>
 <body>
-		
 		<div id="main-div">
 			<div class="content-div">
-				<div class="description-div">
-					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(11,0)" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
-					<p class="content-p">${p1.content }</p>
-					<img class="who-img content-img none" alt="" src="${p1.banner }" >
+				<div style="background-image:url(${p1.banner});">
+					<div class="description-div">
+						<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(11,0)" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
+						<div class="content-float-right">
+							<p class="content-p">${p1.content }</p>
+							<img class="who-img content-img none" alt="" src="${p1.banner }" >
+						</div>
+					</div>
 				</div>
 				
-				<div class="description-div">
-					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(12,1)" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
-					<p class="content-p">${p2.content }</p>
-					<img class="who-img content-img none" alt="" src="${p2.banner }" ">
+				<div style="background-image:url(${p2.banner});">
+					<div class="description-div">
+						<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(12,1)" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
+						<div class="content-float-left">
+							<p class="content-p">${p2.content }</p>
+							<img class="who-img content-img none" alt="" src="${p2.banner }">
+						</div>
+					</div>
 				</div>
 				
-				<div class="description-div">
-					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(13,2)" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
-					<p class="content-p">${p3.content }</p>
-					<img class="who-img content-img none" alt="" src="${p3.banner }" ">
+				<div style="background-image:url(${p3.banner});">
+					<div class="description-div">
+						<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(13,2)" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
+						<div class="content-float-right">
+							<p class="content-p">${p3.content }</p>
+							<img class="who-img content-img none" alt="" src="${p3.banner }">
+						</div>
+					</div>
 				</div>
 				
-				<div class="description-div">
-					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(14,3)" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
-					<p class="content-p">${p4.content }</p>
-					<img class="who-img content-img none" alt="" src="${p4.banner }" ">
+				<div style="background-image:url(${p4.banner});">
+					<div class="description-div">
+						<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(14,3)" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
+						<div class="content-float-left">
+							<p class="content-p">${p4.content }</p>
+							<img class="who-img content-img none" alt="" src="${p4.banner }">
+						</div>
+					</div>
 				</div>
 				
-				<div class="description-div">
-					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(15,4)" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
-					<p class="content-p">${p5.content }</p>
-					<img class="who-img content-img none" alt="" src="${p5.banner }" ">
+				<div style="background-image:url(${p5.banner});">
+					<div class="description-div">
+						<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(15,4)" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
+						<div class="content-float-right">
+							<p class="content-p">${p5.content }</p>
+							<img class="who-img content-img none" alt="" src="${p5.banner }">
+						</div>
+					</div>
 				</div>
 				
-				<div class="description-div">
-					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(16,5)" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
-					<p class="content-p">${p6.content }</p>
-					<img class="who-img content-img none" alt="" src="${p6.banner }" ">
+				<div style="background-image:url(${p6.banner});">
+					<div class="description-div">
+						<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(16,5)" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
+						<div class="content-float-left">
+							<p class="content-p">${p6.content }</p>
+							<img class="who-img content-img none" alt="" src="${p6.banner }">
+						</div>
+					</div>
 				</div>
 				
-				<div class="description-div">
-					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(17,6)" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
-					<p class="content-p">${p7.content }</p>
-					<img class="who-img content-img none" alt="" src="${p7.banner }" ">
+				<div style="background-image:url(${p7.banner});">
+					<div class="description-div">
+						<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(17,6)" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
+						<div class="content-float-right">
+							<p class="content-p">${p7.content }</p>
+							<img class="who-img content-img none" alt="" src="${p7.banner }">
+						</div>
+					</div>
 				</div>
-				
 			</div>
 		</div>
 		<!-- 添加 -->
@@ -168,6 +195,7 @@
 			<form id="edit-form" method="post" action="/secure/moreContent/save">
 				<div class="">
 					<input  id="edit-div-content" name="content" class="easyui-textbox clear-easyui-textbox" maxlength="512" required="true" data-options="multiline:true" prompt="描述" style="width: 703px;height: 158px;"/>
+					<br>
 					<input id="edit-div-banner"  name="banner" class="easyui-textbox clear-easyui-textbox"   prompt="背景图片" style="width:628px;"/>
 					<input type="button" id="btn-banner-upload"  value="选择图片"/><br>
 					<img id="edit-img-banner" alt="" src="" class="none" style="max-width: 908px;">
