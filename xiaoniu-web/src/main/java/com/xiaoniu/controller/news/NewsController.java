@@ -3,6 +3,8 @@ package com.xiaoniu.controller.news;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.swing.text.html.HTML.Tag;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -56,6 +58,7 @@ public class NewsController {
 			if(rows == null || rows < 1 || rows > 20){
 				rows = 20;
 			}
+			entity.setValid(MsgCode.TRUE.getCode());
 			PageInfo<CmpyNews> pageInfo = service.queryList(page, rows, " serial_number asc,id desc ", entity);
 			map.put(Contants.TOTAL, pageInfo.getTotal());
 			map.put(Contants.ROWS, pageInfo.getList());

@@ -25,7 +25,7 @@ public class JoinUsController {
 	
 	@RequestMapping("list")
 	@ResponseBody
-	public Map<String,Object> report(Integer page,Integer  rows,CmpyJoinUs entity){
+	public Map<String,Object> list(Integer page,Integer  rows,CmpyJoinUs entity){
 		Map<String,Object> map = new HashMap<String,Object>();
 		try{
 			if(page == null || page < 0){
@@ -34,6 +34,7 @@ public class JoinUsController {
 			if(rows == null || rows < 1 || rows > 20){
 				rows = 20;
 			}
+			entity.setValid(MsgCode.TRUE.getCode());
 			PageInfo<CmpyJoinUs> pageInfo = service.queryList(page, rows, " serial_number asc,id desc ", entity);
 			map.put(Contants.TOTAL, pageInfo.getTotal());
 			map.put(Contants.ROWS, pageInfo.getList());

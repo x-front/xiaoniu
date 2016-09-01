@@ -25,7 +25,7 @@ public class LeaderController {
 	
 	@RequestMapping("list")
 	@ResponseBody
-	public Map<String,Object> report(Integer page,Integer  rows,CmpyLeader entity){
+	public Map<String,Object> list(Integer page,Integer  rows,CmpyLeader entity){
 		Map<String,Object> map = new HashMap<String,Object>();
 		try{
 			if(page == null || page < 0){
@@ -34,6 +34,7 @@ public class LeaderController {
 			if(rows == null || rows < 1 || rows > 20){
 				rows = 20;
 			}
+			entity.setValid(MsgCode.TRUE.getCode());
 			PageInfo<CmpyLeader> pageInfo = service.queryList(page, rows, " serial_number asc,id desc ", entity);
 			map.put(Contants.TOTAL, pageInfo.getTotal());
 			map.put(Contants.ROWS, pageInfo.getList());
