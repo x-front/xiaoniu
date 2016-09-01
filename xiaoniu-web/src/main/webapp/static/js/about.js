@@ -7,8 +7,7 @@ function _xn_init(){
 		if(result.resultCode == 0){
 			if(result.who){
 				$("#about-us p:eq(0)").html(result.who.introdution);
-				$("#about-us video:eq(0)").attr('src',result.who.extMedia);
-				$("#about-us video:eq(0)").attr('poster',result.who.extCover);
+				$("#about-us img:eq(0)").attr('src',result.who.extCover);
 			}
 			
 			if(result.advance){

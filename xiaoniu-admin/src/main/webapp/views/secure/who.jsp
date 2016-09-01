@@ -72,7 +72,7 @@
 		
 		
 		if(type == 1){
-			$("#edit-media-showOrHide").removeClass('none');
+//			$("#edit-media-showOrHide").removeClass('none');
 			$("#edit-banner-showOrHide").removeClass('none');
 			if($('#edit-img-banner').attr('src') != ""){
 				$('#edit-img-banner').removeClass('none');
