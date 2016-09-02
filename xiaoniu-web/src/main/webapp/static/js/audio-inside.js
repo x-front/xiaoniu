@@ -9,7 +9,7 @@ function _xn_init(){
 				$('.news-item1 .audio-title h3:eq(0)').html(result.entity.title);
 				$('.news-item1 .audio-title span:eq(0)').html('文章来源：'+result.entity.source+'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 浏览次数：'+result.entity.clickTimes);
 				var content = result.entity.content;
-				content = content.replace(/\<embed/g,'<video controls="controls" autoplay="autoplay" ');
+				content = content.replace(/\<embed/g,'<video controls="controls"  ');
 				$('.news-item2:eq(0)').html(content);
 			}
 		}else{
