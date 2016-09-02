@@ -35,8 +35,8 @@ public class NewsController {
 			if(entity != null){
 				CmpyNews tmp = new CmpyNews();
 				tmp.setId(id);
-				tmp.setClickTimes(entity.getClickTimes());
-				service.updateNotNull(entity);
+				tmp.setClickTimes(entity.getClickTimes()+1);
+				service.updateNotNull(tmp);
 			}
 			map.put(Contants.RESULT_CODE, MsgCode.SUCCESS.getCode());
 		}catch(Exception e){
