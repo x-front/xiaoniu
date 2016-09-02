@@ -12,7 +12,7 @@ function _xn_init(){
 			console.log(result.msg);
 		}
 	},"json");
-	seeMore();
+//	seeMore();
 }
 
 function seeMore(){
