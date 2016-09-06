@@ -35,11 +35,11 @@ function seeMore(){
 function buildNewsDiv(entity){
 	var html = '';
 	html += '<li><a href="/static/news-t-inside.html?id='+entity.id+'">';
-	html += '<div class="iN-img wow fadeInUp"><img src="'+entity.banner+'"/></div>';
+	html += '<div class="iN-img"><img src="'+entity.banner+'"/></div>';
 	html += '<p>'+entity.title+'</p>';
 	html += '<span>'+entity.summary+'</span>';
 	html += '</a>';
-	html += '<a href="/static/news-t-inside.html?id='+entity.id+'" class="more wow fadeInUp">See more<span></span></a></li>';
+	html += '<a href="/static/news-t-inside.html?id='+entity.id+'" class="more">See more<span></span></a></li>';
 	return html;
 }
 

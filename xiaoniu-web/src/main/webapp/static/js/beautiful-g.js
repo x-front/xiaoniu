@@ -34,10 +34,10 @@ function seeMore(){
 
 function buildNewsDiv(entity,index){
 	
-	var html = '<div class="about-w-item about-w-item'+(index%2 + 1)+'"><a href="/static/beautiful-g-inside.html?id='+entity.id +'"><div class="about-wh-img wow fadeInUp"><img src="' + entity.banner +'"/></div>';
-	html += '<h3 class="wow fadeInUp">' + entity.title +'</h3>';
-	html += '<p class="wow fadeInUp">' + entity.summary + '</p></a>';
-	html += '<a href="/static/beautiful-g-inside.html?id='+entity.id+'" class="more wow fadeInUp">See more<span></span></a>';
+	var html = '<div class="about-w-item about-w-item'+(index%2 + 1)+' wow fadeInUp"><a href="/static/beautiful-g-inside.html?id='+entity.id +'"><div class="about-wh-img"><img src="' + entity.banner +'"/></div>';
+	html += '<h3>' + entity.title +'</h3>';
+	html += '<p>' + entity.summary + '</p></a>';
+	html += '<a href="/static/beautiful-g-inside.html?id='+entity.id+'" class="more">See more<span></span></a>';
 	html += '</div>';
 	return html;
 }
