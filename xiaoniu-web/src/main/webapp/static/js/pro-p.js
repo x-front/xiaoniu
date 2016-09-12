@@ -6,8 +6,9 @@ function _xn_init(){
 		if(result.resultCode == 0){
 			if(result.entity){
 				$('#pro-ph .pro-p1 p:eq(0)').html(result.entity.introdution);
-				$('#pro-ph .pro-p1 video:eq(0)').attr('src',result.entity.extMedia);
-				$('#pro-ph .pro-p1 video:eq(0)').attr('poster',result.entity.extCover);
+//				$('#pro-ph .pro-p1 video:eq(0)').attr('src',result.entity.extMedia);
+//				$('#pro-ph .pro-p1 video:eq(0)').attr('poster',result.entity.extCover);
+				$('#pro-ph .pro-img img:eq(0)').attr('src',result.entity.extCover);
 			}
 		}else{
 			console.log(result.msg);
