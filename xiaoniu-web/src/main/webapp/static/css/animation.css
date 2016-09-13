@@ -2,16 +2,32 @@
 .a-bounce,.a-flip,.a-flash,.a-shake,.a-swing,.a-wobble,.a-ring{-webkit-animation:1s ease;-moz-animation:1s ease;-ms-animation:1s ease;animation:1s ease;}
 .a-fadein,.a-fadeinT,.a-fadeinR,.a-fadeinB,.a-fadeinL,.a-bouncein,.a-bounceinT,.a-bounceinR,.a-bounceinB,.a-bounceinL,.a-rotatein,.a-rotateinLT,.a-rotateinLB,.a-rotateinRT,.a-rotateinRB,.a-flipin,.a-flipinX,.a-flipinY{-webkit-animation:1s ease-out backwards;-moz-animation:1s ease-out backwards;-ms-animation:1s ease-out backwards;animation:1s ease-out backwards;}
 .a-fadeout,.a-fadeoutT,.a-fadeoutR,.a-fadeoutB,.a-fadeoutL,.a-bounceout,.a-bounceoutT,.a-bounceoutR,.a-bounceoutB,.a-bounceoutL,.a-rotateout,.a-rotateoutLT,.a-rotateoutLB,.a-rotateoutRT,.a-rotateoutRB,.a-flipout,.a-flipoutX,.a-flipoutY{-webkit-animation:1s ease-in forwards;-moz-animation:1s ease-in forwards;-ms-animation:1s ease-in forwards;animation:1s ease-in forwards;}
+.a-fadeinL1,.a-fadeinR1,.a-fadeinT1{-webkit-animation:1s 0.3s ease-out backwards;-moz-animation:1s 0.3s ease-out backwards;-ms-animation:1s 0.3s ease-out backwards;animation:1s 0.3s ease-out backwards;}
+.a-fadeinL2,.a-fadeinR2,.a-fadeinT2{-webkit-animation:1s 0.6s ease-out backwards;-moz-animation:1s 0.6s ease-out backwards;-ms-animation:1s 0.6s ease-out backwards;animation:1s 0.6s ease-out backwards;}
+.a-fadeinB1{-webkit-animation:1s 0.2s ease-out backwards;-moz-animation:1s 0.2s ease-out backwards;-ms-animation:1s 0.2s ease-out backwards;animation:1s 0.2s ease-out backwards;}
+.a-fadeinB2{-webkit-animation:1s 0.4s ease-out backwards;-moz-animation:1s 0.4s ease-out backwards;-ms-animation:1s 0.4s ease-out backwards;animation:1s 0.4s ease-out backwards;}
+.a-fadeinB3{-webkit-animation:1s 0.6s ease-out backwards;-moz-animation:1s 0.6s ease-out backwards;-ms-animation:1s 0.6s ease-out backwards;animation:1s 0.6s ease-out backwards;}
+.a-fadeinB4{-webkit-animation:1s 0.8s ease-out backwards;-moz-animation:1s 0.8s ease-out backwards;-ms-animation:1s 0.8s ease-out backwards;animation:1s 0.8s ease-out backwards;}
 /* 淡入 */
 .a-fadein{-webkit-animation-name:fadein;-moz-animation-name:fadein;-ms-animation-name:fadein;animation-name:fadein;}
 /* 淡入-从上 */
 .a-fadeinT{-webkit-animation-name:fadeinT;-moz-animation-name:fadeinT;-ms-animation-name:fadeinT;animation-name:fadeinT;}
+.a-fadeinT1{-webkit-animation-name:fadeinT;-moz-animation-name:fadeinT;-ms-animation-name:fadeinT;animation-name:fadeinT;}
+.a-fadeinT2{-webkit-animation-name:fadeinT;-moz-animation-name:fadeinT;-ms-animation-name:fadeinT;animation-name:fadeinT;}
 /* 淡入-从右 */
 .a-fadeinR{-webkit-animation-name:fadeinR;-moz-animation-name:fadeinR;-ms-animation-name:fadeinR;animation-name:fadeinR;}
+.a-fadeinR1{-webkit-animation-name:fadeinR;-moz-animation-name:fadeinR;-ms-animation-name:fadeinR;animation-name:fadeinR;}
+.a-fadeinR2{-webkit-animation-name:fadeinR;-moz-animation-name:fadeinR;-ms-animation-name:fadeinR;animation-name:fadeinR;}
 /* 淡入-从下 */
 .a-fadeinB{-webkit-animation-name:fadeinB;-moz-animation-name:fadeinB;-ms-animation-name:fadeinB;animation-name:fadeinB;}
+.a-fadeinB1{-webkit-animation-name:fadeinB;-moz-animation-name:fadeinB;-ms-animation-name:fadeinB;animation-name:fadeinB;}
+.a-fadeinB2{-webkit-animation-name:fadeinB;-moz-animation-name:fadeinB;-ms-animation-name:fadeinB;animation-name:fadeinB;}
+.a-fadeinB3{-webkit-animation-name:fadeinB;-moz-animation-name:fadeinB;-ms-animation-name:fadeinB;animation-name:fadeinB;}
+.a-fadeinB4{-webkit-animation-name:fadeinB;-moz-animation-name:fadeinB;-ms-animation-name:fadeinB;animation-name:fadeinB;}
 /* 淡入-从左 */
 .a-fadeinL{-webkit-animation-name:fadeinL;-moz-animation-name:fadeinL;-ms-animation-name:fadeinL;animation-name:fadeinL;}
+.a-fadeinL1{-webkit-animation-name:fadeinL;-moz-animation-name:fadeinL;-ms-animation-name:fadeinL;animation-name:fadeinL;}
+.a-fadeinL2{-webkit-animation-name:fadeinL;-moz-animation-name:fadeinL;-ms-animation-name:fadeinL;animation-name:fadeinL;}
 /* 淡出 */
 .a-fadeout{-webkit-animation-name:fadeout;-moz-animation-name:fadeout;-ms-animation-name:fadeout;animation-name:fadeout;}
 /* 淡出-向上 */
