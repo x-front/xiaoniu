@@ -15,7 +15,7 @@
 <script type="text/javascript" src="/resources/kindeditor-4.1.10/kindeditor-all-min.js"></script>
 <script type="text/javascript" src="/resources/kindeditor-4.1.10/lang/zh_CN.js"></script>
 <script type="text/javascript">
-	commonTable.loadDateURI = "/secure/joinUs/queryList";
+	commonTable.loadDateURI = "/secure/joinUs/queryJoinUsList";
 	commonTable.batchUpdateValidURI = "/secure/joinUs/batchUpdateValid?strIds=";
 	commonTable.batchDeleteURI = "/secure/joinUs/batchDelete?strIds=";
 	commonTable.updateURI = "/secure/joinUs/update";
@@ -29,7 +29,9 @@
 		{field:'ck',checkbox:true},
 		{field:'id', title: 'ID',align:'center',  hidden:true},
 		{field:'position',title: '职位',align:'center',width:120},
-		{field:'summary',title: '描述',align:'left',width:340},
+		/* {field:'summary',title: '描述',align:'left',width:300}, */
+		{field:'address',title: '工作地点',align:'center',width:120},
+		{field:'count',title: '招聘人数',align:'center',width:90},
 		{field:'serialNumber',title: '序号',align:'center'},
 		validColumn,
 		createTimeColumn,
@@ -67,9 +69,12 @@
 		row = rows[index];
 		$("#display-none-id").val(row.id);
 		$("#edit-div-position").textbox('setValue',row.position);
-		$("#edit-div-summary").textbox('setValue',row.summary);
+//		$("#edit-div-summary").textbox('setValue',row.summary);
 		$("#edit-div-serialNumber").numberbox('setValue',row.serialNumber);
+		$("#edit-div-count").numberbox('setValue',row.count);
 		$("#edit-div-valid").combobox('setValue',row.valid);
+		$("#edit-div-type").combobox('setValue',row.type);
+		$("#edit-div-address").combobox('setValues',row.address.split(','));
 		contextEditor.html(row.content);
 		contextEditor.focus();
 		$("#edit-form").attr("action",commonTable.updateURI);
@@ -133,13 +138,25 @@
 			<form id="edit-form" method="post">
 				
 				<div id="div-title" >
-					<input id="edit-div-position" name="position" class="easyui-textbox clear-easyui-textbox" prompt="职位" required="true" style="width:770px;">
-					<select class="easyui-combobox clear-easyui-combobox" required="true" id="edit-div-valid" name="valid" style="width:270px;">
+					<input id="edit-div-position" name="position" class="easyui-textbox clear-easyui-textbox" prompt="职位" required="true" style="width:270px;">
+					<input  id="edit-div-address" name="address" class="easyui-combobox clear-easyui-combobox"  required="true" 
+						data-options="valueField:'address',textField:'address',url:'/secure/workAddr/queryAll',multiple:true" prompt="工作地点" style="width: 370px;"/>
+					<input id="edit-div-count" name="count" required="true" class="easyui-numberbox clear-easyui-numberbox " prompt="招聘人数" style="width:100px"/>
+					<select class="easyui-combobox clear-easyui-combobox" required="true" id="edit-div-type" name="type" style="width:270px;">
+						<option value="1">技术类</option>
+						<option value="2">市场类</option>
+						<option value="3">投资类</option>
+						<option value="4">风控类</option>
+						<option value="5">销售类</option>
+						<option value="6">职能类</option>
+					</select>
+					<select class="easyui-combobox clear-easyui-combobox" required="true" id="edit-div-valid" name="valid" style="width:370px;">
 						<option value="0">提交后不发布</option>
 						<option value="1">提交后直接发布</option>
 					</select>
-					<input id="edit-div-serialNumber" name="serialNumber" required="true" class="easyui-numberbox clear-easyui-numberbox " prompt="序号(越小排序越靠前)" style="width:490px"/>
-					<input  id="edit-div-summary" name="summary" class="easyui-textbox clear-easyui-textbox" maxlength="512" required="true" data-options="multiline:true" prompt="描述" style="width: 770px;height: 168px;"/>
+					<input id="edit-div-serialNumber" name="serialNumber" required="true" class="easyui-numberbox clear-easyui-numberbox " prompt="序号(越小排序越靠前)" style="width:100px"/>
+					
+					<!-- <input  id="edit-div-summary" name="summary" class="easyui-textbox clear-easyui-textbox" maxlength="512" required="true" data-options="multiline:true" prompt="描述" style="width: 770px;height: 168px;"/> -->
 				</div>
 				<div id="div-content">
 					<textarea name="content" style="width:770px; visibility:hidden;"></textarea>
@@ -149,7 +166,7 @@
 					<a class="easyui-linkbutton" id="import-form-submit-btn" iconCls="icon-ok" onclick="javascript:save();">确定</a> 
 					<a class="easyui-linkbutton" iconCls="icon-cancel" onclick="cancel();">取消</a>
 				</div>
-				<div class="loading none" style="text-align: center; padding-top: 250px; vertical-align:middle;">
+				<div class="loading none" style="text-align: center; padding-top: 10px; vertical-align:middle;">
 					<img alt="" src="/resources/images/loading.gif" style="vertical-align:middle;">
 					<span style="vertical-align:middle;">请稍后...</span>
 				</div>

@@ -11,6 +11,9 @@
     <result column="valid" jdbcType="INTEGER" property="valid" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="count" jdbcType="VARCHAR" property="count" />
     <result column="summary" jdbcType="LONGVARCHAR" property="summary" />
     <result column="content" jdbcType="LONGVARCHAR" property="content" />
   </resultMap>
