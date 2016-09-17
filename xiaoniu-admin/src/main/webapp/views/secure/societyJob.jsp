@@ -1,65 +1,46 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<% String type = request.getParameter("type"); %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>招聘职位</title>
+<title>社会招聘</title>
 <jsp:include page="../public/common/head.jsp"></jsp:include>
 <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/xiaoniu/CRUD.css'/>"/>
 <link rel="stylesheet" href="/resources/kindeditor-4.1.10/themes/default/default.css" />
 <script type="text/javascript" src="<c:url value='/resources/js/xiaoniu/dateTool.js'/>?r=1134"></script>
-<script type="text/javascript" src="<c:url value='/resources/js/xiaoniu/common.js'/>?r=31"></script>
+<script type="text/javascript" src="<c:url value='/resources/js/xiaoniu/common.js'/>?r=44"></script>
 <script type="text/javascript" src="/resources/kindeditor-4.1.10/kindeditor-all-min.js"></script>
 <script type="text/javascript" src="/resources/kindeditor-4.1.10/lang/zh_CN.js"></script>
 <script type="text/javascript">
-	commonTable.loadDateURI = "/secure/joinUs/queryJoinUsList";
-	commonTable.batchUpdateValidURI = "/secure/joinUs/batchUpdateValid?strIds=";
-	commonTable.batchDeleteURI = "/secure/joinUs/batchDelete?strIds=";
-	commonTable.updateURI = "/secure/joinUs/update";
-	commonTable.insertURI = "/secure/joinUs/insert";
-	commonTable.title = "招聘职位列表";
-	commonTable.nowrap = false;
+	commonTable.loadDateURI = "/secure/news/queryList";
+	commonTable.batchUpdateValidURI = "/secure/news/batchUpdateValid?strIds=";
+	commonTable.batchDeleteURI = "/secure/news/batchDelete?strIds=";
+	commonTable.updateURI = "/secure/news/update";
+	commonTable.insertURI = "/secure/news/insert";
+	commonTable.title = "社会招聘列表";
 	commonTable.tableQueryParams = {
-			orderBy:'serial_number asc,id desc'
+			orderBy:'id asc',
+			type:13
 	}
 	commonTable.columns = [
 		{field:'ck',checkbox:true},
 		{field:'id', title: 'ID',align:'center',  hidden:true},
-		{field:'position',title: '职位',align:'center',width:120},
-		/* {field:'summary',title: '描述',align:'left',width:300}, */
-		{field:'address',title: '工作地点',align:'center',width:120},
-		{field:'count',title: '招聘人数',align:'center',width:90},
-		{field:'type',title: '类型',align:'center',
-			formatter: function(value,row,index){
-					var result ='';
-					switch(value){
-					case 1:result = '技术类';break;
-					case 2:result = '市场类';break;
-					case 3:result = '投资类';break;
-					case 4:result = '风控类';break;
-					case 5:result = '销售类';break;
-					case 6:result = '职能类';break;
-					}
-					return result;
-				}
-		},
-		{field:'serialNumber',title: '序号',align:'center'},
-		validColumn,
+		{field:'content',title: '内容',align:'left',width:340},
 		createTimeColumn,
 		updateTimeColumn,
 		{field:'operator',title: '操作',align:'center',
 			formatter: function(value,row,index){
-					return "<a href='#' onclick='javascript:initUpdatejoinUsWindow("+index+")'>修改</a>";
+					return "<a href='#' onclick='javascript:initUpdateNewsWindow("+index+")'>修改</a>";
 				}
 		},
 	];
 	
 	var contextEditor;
+	var PluginUpload;
 	var contentHeight;
-	var type = <%=type%>;
+	var type = 13;
 	$(function(){
 		contentHeight = jQuery(window).height();
 		showPageLoading();
@@ -71,24 +52,41 @@
 				uploadJson : '/secure/aliyunOss/upload_json',
 				fileManagerJson : '/secure/aliyunOss/file_manager_json',
 				allowFileManager : true,
-				height:contentHeight - 310,
+				height:contentHeight - 200,
 				afterBlur: function(){this.sync();}
+			}); 
+			
+			PluginUpload = K.editor({
+				cssPath : '/resources/kindeditor-4.1.10/plugins/code/prettify.css',
+				uploadJson : '/secure/aliyunOss/upload_json',
+				fileManagerJson : '/secure/aliyunOss/file_manager_json',
+				allowFileManager : true,
 			});
 			
+			$("#btn-banner-upload").click(function(){
+				PluginUpload.loadPlugin('image',function(){
+					PluginUpload.plugin.imageDialog({
+						imageUrl : $("#edit-div-banner").textbox('getValue'),
+						clickFn : function(url, title, width, height, border, align){
+							$('#edit-div-banner').textbox('setValue',url);
+							$('#edit-img-banner').attr('src',url).removeClass('none');
+							PluginUpload.hideDialog();
+						}
+					});
+				});
+			});
 		});
+		
+		
+		
 	});
 	
-	function initUpdatejoinUsWindow(index){
+	function initUpdateNewsWindow(index){
 		var rows = $("#html_table").datagrid("getRows"),
 		row = rows[index];
 		$("#display-none-id").val(row.id);
-		$("#edit-div-position").textbox('setValue',row.position);
-//		$("#edit-div-summary").textbox('setValue',row.summary);
+		$('#display-none-type').val(row.type);
 		$("#edit-div-serialNumber").numberbox('setValue',row.serialNumber);
-		$("#edit-div-count").numberbox('setValue',row.count);
-		$("#edit-div-valid").combobox('setValue',row.valid);
-		$("#edit-div-type").combobox('setValue',row.type);
-		$("#edit-div-address").combobox('setValues',row.address.split(','));
 		contextEditor.html(row.content);
 		contextEditor.focus();
 		$("#edit-form").attr("action",commonTable.updateURI);
@@ -96,20 +94,22 @@
 		$("#edit-div").removeClass("none");
 	}
 	
-	function initAddjoinUsWindow(){
+	function initAddNewsWindow(){
+		$('#display-none-type').val(type);
 		$(".datagrid").addClass("none");
 		$("#edit-div").removeClass("none");
 		$("#edit-form").attr("action",commonTable.insertURI);
 	}
 	function cancel(){
+		contextEditor.html('');
 		$(".clear-easyui-textbox").textbox('setValue','');
 		$(".clear-easyui-datetimebox").datetimebox('clear');
 		$(".clear-easyui-combobox").combobox('clear');
+		$(".clear-easyui-numberbox").numberbox('clear');
 		$(".clear-input").val('');
 		$('#edit-img-banner').addClass('none');
 		$("#edit-div").addClass("none");
 		$(".datagrid").removeClass("none");
-		contextEditor.html('');
 	}
 	
 	function save(){
@@ -130,9 +130,8 @@
 	
 </script>
 <style type="text/css">
-	#edit-div{width: 770px;margin: auto;margin-top: 30px;}
+	#edit-div{width: 1000px;margin: auto;margin-top: 10px;}
 
-	#edit-div .textbox {margin-bottom:5px}
 </style>
 </head>
 <body>
@@ -141,7 +140,7 @@
 		
 		<!-- tool bar -->
 		<div id="table_tb" style="padding:5px;height:auto" class="none">
-			<a href="javascript:void(0);" onclick="javascript:initAddjoinUsWindow()"class="easyui-linkbutton" title="添加" plain="true" iconCls="icon-add" id="addBtn">添加</a>
+			<a href="javascript:void(0);" onclick="javascript:initAddNewsWindow()"class="easyui-linkbutton" title="添加" plain="true" iconCls="icon-add" id="addBtn">添加</a>
 			<a href="javascript:void(0);" onclick="javascript:commonTable.batchDelete()"class="easyui-linkbutton" title="删除" plain="true" iconCls="icon-cancel" id="delBtn">删除</a>
 			<a href="javascript:void(0);" onclick="javascript:commonTable.batchPublish()"class="easyui-linkbutton" title="发布" plain="true" iconCls="icon-ok">发布</a>
 			<a href="javascript:void(0);" onclick="javascript:commonTable.batchCancelPublish()"class="easyui-linkbutton" title="撤销" plain="true" iconCls="icon-undo">撤销发布</a>
@@ -150,30 +149,8 @@
 		<!-- 添加 -->
 		<div id="edit-div" class="none" >
 			<form id="edit-form" method="post">
-				
-				<div id="div-title" >
-					<input id="edit-div-position" name="position" class="easyui-textbox clear-easyui-textbox" prompt="职位" required="true" style="width:270px;">
-					<input  id="edit-div-address" name="address" class="easyui-combobox clear-easyui-combobox"  required="true" 
-						data-options="valueField:'address',textField:'address',url:'/secure/workAddr/queryAll',multiple:true" prompt="工作地点" style="width: 370px;"/>
-					<input id="edit-div-count" name="count" required="true" class="easyui-numberbox clear-easyui-numberbox " prompt="招聘人数" style="width:100px"/>
-					<select class="easyui-combobox clear-easyui-combobox" required="true" id="edit-div-type" name="type" style="width:270px;">
-						<option value="1">技术类</option>
-						<option value="2">市场类</option>
-						<option value="3">投资类</option>
-						<option value="4">风控类</option>
-						<option value="5">销售类</option>
-						<option value="6">职能类</option>
-					</select>
-					<select class="easyui-combobox clear-easyui-combobox" required="true" id="edit-div-valid" name="valid" style="width:370px;">
-						<option value="0">提交后不发布</option>
-						<option value="1">提交后直接发布</option>
-					</select>
-					<input id="edit-div-serialNumber" name="serialNumber" required="true" class="easyui-numberbox clear-easyui-numberbox " prompt="序号(越小排序越靠前)" style="width:100px"/>
-					
-					<!-- <input  id="edit-div-summary" name="summary" class="easyui-textbox clear-easyui-textbox" maxlength="512" required="true" data-options="multiline:true" prompt="描述" style="width: 770px;height: 168px;"/> -->
-				</div>
-				<div id="div-content">
-					<textarea name="content" style="width:770px; visibility:hidden;"></textarea>
+				<div>
+					<textarea name="content" style="height:400px;width:100%; visibility:hidden;"></textarea>
 				</div>
 				
 				<div class="opt_btn"  style="text-align: center;padding-top: 10px;">
@@ -187,6 +164,12 @@
 				
 				<div id="display-none-input" class="none">
 					<input id="display-none-id" name="id" class="clear-input">
+					<input id="display-none-type" name="type" class="clear-input">
+					<input id="display-none-top" name="top" class="" value="0">
+					<input id="display-none-valid" name="valid" class="" value="0">
+					<input id="display-none-serialNumber" name="serialNumber" class="" value="0">
+					<input id="display-none-clickTimes" name="clickTimes" value="0"/>
+					<input id="display-none-publishTime" name="publishTime" value="2016-10-10 00:00:00"/>
 				</div>
 			</form>
 		</div>
