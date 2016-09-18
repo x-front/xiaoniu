@@ -23,6 +23,18 @@ public class CmpyJoinUs extends BaseVO implements Serializable {
     @Column(name = "update_time")
     private Date updateTime;
 
+    private String address;
+
+    /**
+     *  1技术类 2市场类 3投资类 4风控类 5销售类 6职能类
+     */
+    private Integer type;
+
+    /**
+     * 招聘数量
+     */
+    private String count;
+
     private String summary;
 
     private String content;
@@ -111,6 +123,56 @@ public class CmpyJoinUs extends BaseVO implements Serializable {
      */
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    /**
+     * @return address
+     */
+    public String getAddress() {
+        return address;
+    }
+
+    /**
+     * @param address
+     */
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    /**
+     * 获取 1技术类 2市场类 3投资类 4风控类 5销售类 6职能类
+     *
+     * @return type -  1技术类 2市场类 3投资类 4风控类 5销售类 6职能类
+     */
+    public Integer getType() {
+        return type;
+    }
+
+    /**
+     * 设置 1技术类 2市场类 3投资类 4风控类 5销售类 6职能类
+     *
+     * @param type  1技术类 2市场类 3投资类 4风控类 5销售类 6职能类
+     */
+    public void setType(Integer type) {
+        this.type = type;
+    }
+
+    /**
+     * 获取招聘数量
+     *
+     * @return count - 招聘数量
+     */
+    public String getCount() {
+        return count;
+    }
+
+    /**
+     * 设置招聘数量
+     *
+     * @param count 招聘数量
+     */
+    public void setCount(String count) {
+        this.count = count;
     }
 
     /**
