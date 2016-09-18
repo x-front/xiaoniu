@@ -1,6 +1,7 @@
 package com.xiaoniu.controller.joinUs;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
@@ -36,6 +37,13 @@ public class JoinUsController {
 			}
 			entity.setValid(MsgCode.TRUE.getCode());
 			PageInfo<CmpyJoinUs> pageInfo = service.queryList(page, rows, " serial_number asc,id desc ", entity);
+			
+			List<CmpyJoinUs> list = pageInfo.getList();
+			if(list != null){
+				for(int i=0;i<list.size();i++){
+					list.get(i).setContent("");
+				}
+			}
 			map.put(Contants.TOTAL, pageInfo.getTotal());
 			map.put(Contants.ROWS, pageInfo.getList());
 			map.put(Contants.RESULT_CODE, MsgCode.SUCCESS.getCode());

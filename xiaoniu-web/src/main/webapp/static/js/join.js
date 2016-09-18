@@ -12,41 +12,55 @@ function _xn_init(){
 			console.log(result.msg);
 		}
 	},"json");
-//	seeMore();
+	societyJob();
+	schoolJob();
+	jobNews();
 }
 
-function seeMore(){
-	var page = $("#join-list .join-ul").length;
-	if(page >= 0){
-		$.post("/joinUs/list",{'page':page/2+1,'rows':3},function(result){
-			if(result.resultCode == 0 && result.rows.length > 0){
+function societyJob(){
+	$.post("/joinUs/list",{'page':1,'rows':5},function(result){
+		if(result.resultCode == 0 && result.rows.length > 0){
 				var rows = result.rows;
-				var html = buildNewsRows(rows,0,3);
-				$('#join-list').append(html);
-			}
-			
-			if((page + 1)*3 >= result.total){
-				$("#join-more").css('display',"none");
-			}
-		},"json");
-	}
+				var html = buildJobRow(rows);
+				$('#wrap .hr-index .hr-index-item ul:eq(0)').append(html);
+		}else{
+			console.log(result.msg);
+		}
+	},'json');
 }
 
-function buildNewsDiv(entity,index){
-	var html = '<li class="wow fadeInUp">';
-	html += '<h3>' + entity.position +'</h3>';
-	html += '<p>' + entity.summary + '</p>';
-	html += '<a href="/static/join-inside.html?id='+entity.id+'" class="more wow fadeInUp">查看职位</a>';
-	html += '</li>';
+function schoolJob(){
+	$.post("/joinUs/list",{'page':1,'rows':5},function(result){
+		if(result.resultCode == 0 && result.rows.length > 0){
+				var rows = result.rows;
+				var html = buildJobRow(rows);
+				$('#wrap .hr-index .hr-index-item2 ul:eq(0)').append(html);
+		}else{
+			console.log(result.msg);
+		}
+	},'json');
+}
+
+function buildJobRow(rows){
+	var html ='';
+	for(var i=0; i< rows.length; i++){
+		html += '<li><a href="hr-x-inside.html?id='+rows[i].id+'">'+rows[i].position+'</a></li>';
+	}
 	return html;
 }
 
-function buildNewsRows(rows,beginIndex,colNum){
-	var html = '<ul class="join-ul">';
-	for(var i=beginIndex; i< rows.length; i++){
-		var newsDiv = buildNewsDiv(rows[i],i-beginIndex);
-		html += newsDiv;
-	}
-	html += '</ul>';
-	return html;
+function jobNews(){
+	$.post('/news/list',{'type':12,'page':1,'rows':5,'top':0},function(result){
+		if(result.resultCode == 0){
+			var rows = result.rows;
+			var html = '';
+			for(var i=0; i<rows.length; i++){
+				var entity = rows[i];
+				html += '<li><a href="hr-d.html?id='+entity.id+'">'+entity.title+'</a></li>'
+			} 
+			$('#wrap .hr-index .hr-index-item3 ul:eq(0)').append(html);
+		}else{
+			console.log(result.msg);
+		}
+	});
 }
