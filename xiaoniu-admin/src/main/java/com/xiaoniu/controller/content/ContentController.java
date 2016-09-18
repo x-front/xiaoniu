@@ -33,6 +33,35 @@ public class ContentController extends BaseController<CmpyContent>{
 		return mv;
 	}
 	
+	
+	@RequestMapping("hr-xc.html")
+	public ModelAndView xcHtml(Integer type,Integer id){
+		ModelAndView mv = new ModelAndView("secure/hr-xc");
+		mv.addObject("type", type);
+		mv.addObject("id", id);
+		try {
+			CmpyContent entity = service.selectByKey(id);
+			mv.addObject("content", entity);
+		} catch (Exception e) {
+			log.error(e);
+		}
+		return mv;
+	}
+	
+	@RequestMapping("hr-j.html")
+	public ModelAndView hrjHtml(Integer type,Integer id){
+		ModelAndView mv = new ModelAndView("secure/hr-j");
+		mv.addObject("type", type);
+		mv.addObject("id", id);
+		try {
+			CmpyContent entity = service.selectByKey(id);
+			mv.addObject("content", entity);
+		} catch (Exception e) {
+			log.error(e);
+		}
+		return mv;
+	}
+	
 	@RequestMapping("save")
 	@ResponseBody
 	public Map<String,Object> save(CmpyContent entity){

@@ -35,6 +35,11 @@ public class CmpyJoinUs extends BaseVO implements Serializable {
      */
     private String count;
 
+    /**
+     * 1热门招聘,0非热门招聘
+     */
+    private Integer hot;
+
     private String summary;
 
     private String content;
@@ -173,6 +178,24 @@ public class CmpyJoinUs extends BaseVO implements Serializable {
      */
     public void setCount(String count) {
         this.count = count;
+    }
+
+    /**
+     * 获取1热门招聘,0非热门招聘
+     *
+     * @return hot - 1热门招聘,0非热门招聘
+     */
+    public Integer getHot() {
+        return hot;
+    }
+
+    /**
+     * 设置1热门招聘,0非热门招聘
+     *
+     * @param hot 1热门招聘,0非热门招聘
+     */
+    public void setHot(Integer hot) {
+        this.hot = hot;
     }
 
     /**

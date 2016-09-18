@@ -43,6 +43,12 @@ public class CmpyNewsController extends BaseController<CmpyNews>{
 		return mv;
 	}
 	
+	@RequestMapping("jobQA.html")
+	public ModelAndView jobQAHtml(Integer type){
+		ModelAndView mv = new ModelAndView("secure/jobQA");
+		return mv;
+	}
+	
 	@RequestMapping("setTop")
 	@ResponseBody
 	public Map<String,Object> setTop(Integer id,Integer type){
