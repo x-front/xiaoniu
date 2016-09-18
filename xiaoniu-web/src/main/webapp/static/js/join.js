@@ -56,7 +56,7 @@ function jobNews(){
 			var html = '';
 			for(var i=0; i<rows.length; i++){
 				var entity = rows[i];
-				html += '<li><a href="hr-d.html?id='+entity.id+'">'+entity.title+'</a></li>'
+				html += '<li><a href="hr-d-inside.html?id='+entity.id+'">'+entity.title+'</a></li>'
 			} 
 			$('#wrap .hr-index .hr-index-item3 ul:eq(0)').append(html);
 		}else{
