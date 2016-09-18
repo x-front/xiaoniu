@@ -25,6 +25,7 @@
 .hr.about h2{color:#000;font-size: 28px;line-height: 106px;}
 .hr.about p{padding-bottom:20px;letter-spacing: 1px;text-align: left;}
 .hr.about .hr-d p{padding-bottom:0;width:100%;max-width: 100%;}
+.hr.about .hr-d p:hover{color:#eea807;}
 .hr.about .hr-d .hr-s-c{padding:15px 0;}
 .hr-i-pic{width:702px;margin:20px auto 0;}
 .hr-i-pic img{width:100%;}
@@ -105,7 +106,7 @@
 .hr-s-c a span{float:right;font-size:14px;}
 .hr-s-b{padding-top:20px;}
 .hr-s-b a{color:#eea807;}
-@media screen and (max-width:1140px) { .idV,.about-i,.header-inside,.sub_nav,.footer-inner,.join-title{width:100%;margin:0;}.join,.about-w-inside,#sub-nav,#footer,#header-inside,.header-inside,.sub_nav,.footer-inner,.idV-ul,.about-j1,.about-j3,.inside-inner{width:96%;padding:0 2%;}.about-i,.about-i.about-y{padding:2% 2% 7%}.inside-nav li{margin-left:20px;}.idV-ul li{width:30%;margin-right:5%;} .iN-img,.idV-ul li p{width:100%;} .beautiful{width:96%;padding:3% 2%;background-size:cover;}  .about-w-item{width:45%;}  .about-wh-img,.about-w-item p{width:100%;}  #wrap{width:100%;padding:0;}  .about-yz{padding:50px 0;}    .hr-index,.hr-index-b ul{width:100%;}
+@media screen and (max-width:1140px) { .idV,.header-inside,.sub_nav,.footer-inner,.join-title{width:100%;margin:0;}.join,.about-w-inside,#sub-nav,#footer,#header-inside,.header-inside,.sub_nav,.footer-inner,.idV-ul,.about-j1,.about-j3,.inside-inner{width:96%;padding:0 2%;}.about-i,.about-i.about-y{width:96%;padding:2% 2% 7%}.inside-nav li{margin-left:20px;}.idV-ul li{width:30%;margin-right:5%;} .iN-img,.idV-ul li p{width:100%;} .beautiful{width:96%;padding:3% 2%;background-size:cover;}  .about-w-item{width:45%;}  .about-wh-img,.about-w-item p{width:100%;}  #wrap{width:100%;padding:0;}  .about-yz{padding:50px 0;}    .hr-index,.hr-index-b ul{width:100%;}
     .hr-s{width:790px;margin:0 auto;}
     .hr-p{width:742px;margin:0 auto;}
     .hr-p .idV-ul li{width:45%;margin-right:10%;}
@@ -130,4 +131,5 @@
     .sub_nav.hr-sub_nav ul li{margin-right:10px;}
     .about-j ul{margin:20px auto 0}
     .hr-p .idV-ul li{width:100%;}
+    .about p img{width:100%;}
 } @media screen and (max-width:400px){.idV-pic{width:300px;height:300px;margin:20px auto 0;} .idV-img,.idV-img ul li{width:300px;height:200px;} .idV-txt,.idV-txt ul li{width:300px;height:80px;overflow: hidden;} .idV-pic-c{margin:10px auto;}}

@@ -71,10 +71,9 @@
 				uploadJson : '/secure/aliyunOss/upload_json',
 				fileManagerJson : '/secure/aliyunOss/file_manager_json',
 				allowFileManager : true,
-				height:contentHeight - 310,
+				height:contentHeight - 150,
 				afterBlur: function(){this.sync();}
 			});
-			
 		});
 	});
 	
