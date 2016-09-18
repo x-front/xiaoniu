@@ -166,7 +166,7 @@
 					<input id="display-none-id" name="id" class="clear-input">
 					<input id="display-none-type" name="type" class="clear-input">
 					<input id="display-none-top" name="top" class="" value="0">
-					<input id="display-none-valid" name="valid" class="" value="0">
+					<input id="display-none-valid" name="valid" class="" value="1">
 					<input id="display-none-serialNumber" name="serialNumber" class="" value="0">
 					<input id="display-none-clickTimes" name="clickTimes" value="0"/>
 					<input id="display-none-publishTime" name="publishTime" value="2016-10-10 00:00:00"/>
