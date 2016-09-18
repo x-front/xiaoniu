@@ -35,7 +35,7 @@ public class JoinUsController extends BaseController<CmpyJoinUs>{
 			if(orderBy == null || "".equals(orderBy.trim())){
 				orderBy = " id desc";
 			}
-			PageInfo<CmpyJoinUs> pageInfo = service.queryByAddressOrType(page, rows, orderBy, entity.getAddress(), entity.getType());
+			PageInfo<CmpyJoinUs> pageInfo = service.queryByAddressOrType(page, rows, orderBy, entity.getAddress(), entity.getType(),entity.getPosition());
 			map.put(Contants.TOTAL, pageInfo.getTotal());
 			map.put(Contants.ROWS, pageInfo.getList());
 		}catch(Exception e){

@@ -45,12 +45,38 @@ public class JoinUsController {
 				}
 			}
 			map.put(Contants.TOTAL, pageInfo.getTotal());
-			map.put(Contants.ROWS, pageInfo.getList());
+			map.put(Contants.ROWS, list);
 			map.put(Contants.RESULT_CODE, MsgCode.SUCCESS.getCode());
 		}catch(Exception e){
 			log.error(e);
 			map.put(Contants.RESULT_CODE, MsgCode.FAILED.getCode());
 			map.put(Contants.MSG, MsgCode.FAILED.getMsg());
+		}
+		return map;
+	}
+	
+	@RequestMapping("queryJoinUsList")
+	@ResponseBody
+	public Map<String,Object> queryList(Integer page,Integer  rows, String orderBy,CmpyJoinUs entity){
+		Map<String,Object> map = new HashMap<String,Object>();
+		try{
+			if(orderBy == null || "".equals(orderBy.trim())){
+				orderBy = " id desc";
+			}
+			PageInfo<CmpyJoinUs> pageInfo = service.queryByAddressOrType(page, rows, " serial_number asc,id desc ", entity.getAddress(), entity.getType(),entity.getPosition());
+			
+			List<CmpyJoinUs> list = pageInfo.getList();
+			if(list != null){
+				for(int i=0;i<list.size();i++){
+					list.get(i).setContent("");
+				}
+			}
+			
+			map.put(Contants.TOTAL, pageInfo.getTotal());
+			map.put(Contants.ROWS, list);
+		}catch(Exception e){
+			map.put(Contants.RESULT_CODE, MsgCode.FALSE.getCode());
+			map.put(Contants.MSG, e);
 		}
 		return map;
 	}
