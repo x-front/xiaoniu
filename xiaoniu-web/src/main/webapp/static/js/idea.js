@@ -16,9 +16,9 @@ function _xn_init(){
 }
 
 function seeMore(){
-	var page = $("#idV-i .idV-i-ul").length;
+	var page = $("#idV-i .idV-ul").length;
 	if(page >= 0){
-		$.post("/news/list",{'type':7,'page':page/2+1,'rows':6,'top':0},function(result){
+		$.post("/news/list",{'type':7,'page':Math.ceil(page/2)+1,'rows':6,'top':0},function(result){
 			if(result.resultCode == 0 && result.rows.length > 0){
 				var rows = result.rows;
 				var html = buildNewsRows(rows,0,3);

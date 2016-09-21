@@ -60,6 +60,12 @@ public class JoinUsController {
 	public Map<String,Object> queryList(Integer page,Integer  rows, String orderBy,CmpyJoinUs entity){
 		Map<String,Object> map = new HashMap<String,Object>();
 		try{
+			if(page == null || page < 0){
+				page = 1;
+			}
+			if(rows == null || rows < 1 || rows > 20){
+				rows = 20;
+			}
 			if(orderBy == null || "".equals(orderBy.trim())){
 				orderBy = " id desc";
 			}
