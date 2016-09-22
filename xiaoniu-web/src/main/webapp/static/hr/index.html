@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>小牛新闻 | 小牛资本</title>
+    <style type="text/css">
+    	body {
+			padding: 0;
+			margin: 0;
+		}
+    </style>
+</head>
+<script type="text/javascript">
+function changeFrameHeight(){
+    var ifm= document.getElementById("iframepage"); 
+    ifm.height=document.documentElement.clientHeight;
+    ifm.width=document.documentElement.clientWidth;
+}
+window.onresize=function(){  
+     changeFrameHeight();  
+} 
+</script>
+
+<body>
+	<iframe id="iframepage" onload="changeFrameHeight()" frameborder="0" scrolling="no" style="border:0px;" src="http://sc.wintalent.cn/wt/neocapital/web/index"></iframe>
+</body>
+</html>
