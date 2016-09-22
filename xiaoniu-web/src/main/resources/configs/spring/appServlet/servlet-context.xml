@@ -22,7 +22,7 @@
 	<mvc:resources mapping="/favicon.ico" location="/static/images/favicon.ico" />
 	<mvc:resources mapping="/static/**" location="/static/" />
 	<mvc:resources mapping="/index.html" location="/static/index.html" />
-	<mvc:resources mapping="/hr/index.h" location="/static/f.html" />
+	<mvc:resources mapping="/hr/**" location="/static/hr/" />
 	<!-- 视图资源配置，处理控制器组件返回的view，自动加上前缀及后缀 -->
 	<!-- <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:prefix="/WEB-INF/views/" p:suffix=".jsp" /> -->
 	
