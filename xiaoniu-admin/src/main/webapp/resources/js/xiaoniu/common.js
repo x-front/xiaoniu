@@ -187,6 +187,7 @@ var commonTable ={
 				minimizable : false,
 				maximizable : false,
 				collapsible : false,
+				draggable : true,
 				iconCls : 'icon-add',
 				resizable : false,
 				onClose : function(){

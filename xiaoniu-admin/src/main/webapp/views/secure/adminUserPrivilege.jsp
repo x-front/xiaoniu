@@ -44,7 +44,7 @@
 		    panelHeight:320,
 		    title:"权限列表",
 		    loadMsg:'加载中，请稍后...',
-			pageList: [8,20],
+			pageList: [10,50,100],
 			editable: false,
 		    multiple: true,
 		    fitColumns:true,
