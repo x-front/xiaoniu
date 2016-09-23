@@ -16,7 +16,7 @@ function seeMore(){
 			var html = '';
 			for(var i=0; i<rows.length; i++){
 				var entity = rows[i];
-				html += '<div class="hr-s-c"><a href="hr-d-inside.html?id='+entity.id+'"><p>'+entity.title+'<span>'+dateTools.LongTimeToSimpleFormatDate(entity.updateTime)+'</span></p></a></div>';
+				html += '<div class="hr-s-c"><a href="/static/hr-d-inside.html?id='+entity.id+'"><p>'+entity.title+'<span>'+dateTools.LongTimeToSimpleFormatDate(entity.updateTime)+'</span></p></a></div>';
 			} 
 			$('#about-us').append(html);
 			length = ('#about-us .hr-s-c').length;

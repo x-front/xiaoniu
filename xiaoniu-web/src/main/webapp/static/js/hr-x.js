@@ -44,7 +44,7 @@ function seeMore(){
 function buildJobRow(rows){
 	var html ='';
 	for(var i=0; i< rows.length; i++){
-		html += '<tr><td><input type="checkbox"><a href="hr-x-inside.html?id='+rows[i].id+'">'
+		html += '<tr><td><input type="checkbox"><a href="/static/hr-x-inside.html?id='+rows[i].id+'">'
 				+ rows[i].position +'</a></td><td>'+rows[i].count+'</td><td>'+jobType(rows[i].type)
 				+'</td><td>'+rows[i].address+'</td><td>'+dateTools.LongTimeToSimpleFormatDate(rows[i].updateTime)+'</td></tr>'
 	}

@@ -44,7 +44,7 @@ function schoolJob(){
 function buildJobRow(rows){
 	var html ='';
 	for(var i=0; i< rows.length; i++){
-		html += '<li><a href="hr-x-inside.html?id='+rows[i].id+'">'+rows[i].position+'</a></li>';
+		html += '<li><a href="/static/hr-x-inside.html?id='+rows[i].id+'">'+rows[i].position+'</a></li>';
 	}
 	return html;
 }
@@ -56,7 +56,7 @@ function jobNews(){
 			var html = '';
 			for(var i=0; i<rows.length; i++){
 				var entity = rows[i];
-				html += '<li><a href="hr-d-inside.html?id='+entity.id+'">'+entity.title+'</a></li>'
+				html += '<li><a href="/static/hr-d-inside.html?id='+entity.id+'">'+entity.title+'</a></li>'
 			} 
 			$('#wrap .hr-index .hr-index-item3 ul:eq(0)').append(html);
 		}else{
