@@ -192,6 +192,8 @@ var commonTable ={
 				resizable : false,
 				onClose : function(){
 					$("#htm_edit .clear-input").val('');
+					$("#htm_edit .clear-textbox").textbox('setValue','');
+					$("#htm_edit .clear-numberbox").numberbox('setValue',1);
 					$("#htm_edit .clear-combobox").combobox('setValue',1);
 					commonTable.addWindowCloseCallBack();
 				},

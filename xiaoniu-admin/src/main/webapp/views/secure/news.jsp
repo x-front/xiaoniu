@@ -171,6 +171,31 @@
 			$.messager.alert('提示','只能将一篇文章置顶');
 		}
 	}
+	
+	function set2IndexNews(){
+		var rows = $('#html_table').datagrid('getSelections');
+		if(isSelected(rows)){
+			$.messager.confirm('操作记录', "确定添加到首页新闻列表？", function(r){ 
+				if(r){	
+					for(var i=0;i<rows.length;i+=1){
+						$.post("/secure/indexNews/save",{
+							'id':rows[i]['id'],
+							'title':rows[i]['title'],
+							'valid':0,
+							'serialNumber':1000
+						},function(result){
+							if(result.resultCode == 0){
+								$.messager.alert('提示', "成功添加！");
+								console.log('success to  save ' + rows[i]['id'] + ' to index news');
+							}else{
+								console.log('failed to save ' + rows[i]['id'] + ' to index news');
+							}
+						},'json');
+					}
+				}
+			});
+		}
+	}
 </script>
 <style type="text/css">
 	#edit-div{width: 1000px;margin: auto;margin-top: 10px;}
@@ -201,6 +226,7 @@
 			<c:if test="${type ge 1 and type le 4 or type eq 9}">
 				<a href="javascript:void(0);" onclick="javascript:set2Top()"class="easyui-linkbutton" title="置顶" plain="true" iconCls="icon-filter">置顶</a>
 			</c:if>
+			<a href="javascript:void(0);" onclick="javascript:set2IndexNews()"class="easyui-linkbutton" title="添加" plain="true" iconCls="icon-edit" >添加到首页新闻列表</a>
 		</div>
 		
 		<!-- 添加 -->

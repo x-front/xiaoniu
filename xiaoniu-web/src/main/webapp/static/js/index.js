@@ -53,4 +53,20 @@ function _xn_init(){
 			console.log(result.msg);
 		}
 	},"json");
+	$.post("/indexNews/list",{
+		'page':1,
+		'rows':20
+	},function(result){
+		if(result.resultCode == 0){
+			var html = "";
+			for(var i = 0; i < result.total ; i++){
+				var entity = result.rows[i];
+				html += '<li><a href="/static/news-t-inside.html?id='+entity.id+'">'+entity.title+'</a></li>';
+			}
+			$("#dowebok .b-news ul").html(html);
+		}else{
+			console.log(result.msg);
+		}
+	},'json');
+	
 }
