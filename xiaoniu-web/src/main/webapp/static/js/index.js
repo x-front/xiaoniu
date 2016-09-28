@@ -53,4 +53,24 @@ function _xn_init(){
 			console.log(result.msg);
 		}
 	},"json");
+	$.post("/indexNews/list",{
+		'page':1,
+		'rows':20
+	},function(result){
+		if(result.resultCode == 0){
+			var html = "";
+			for(var i = 0; i < result.total ; i++){
+				var entity = result.rows[i];
+				html += '<li><a href="/static/news-t-inside.html?id='+entity.id+'">'+entity.title+'</a></li>';
+			}
+			$("#dowebok .b-news ul").html(html);
+				$(".b-news").slide({mainCell:".bd ul",autoPage:true,effect:"topLoop",autoPlay:true,vis:1,startFun:function(){
+					var timer = $(".b-news .timer");
+					timer.stop(true,true).animate({ "width":"0%" },0).animate({ "width":"90%" },2500);
+				}});
+		}else{
+			console.log(result.msg);
+		}
+	},'json');
+	
 }

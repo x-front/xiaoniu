@@ -22,6 +22,10 @@ function seeMore(){
 			if(result.resultCode == 0 && result.rows.length > 0){
 				var rows = result.rows;
 				var html = buildNewsRows(rows,0,3);
+				if($(window).width()<=500){
+					html = buildNewsRows1(rows,0,3);
+				}
+
 				$('#idV-i').append(html);
 			}
 			
@@ -55,6 +59,25 @@ function buildNewsRows(rows,beginIndex,colNum){
 			block ='<ul class="idV-ul news-t-ul wow fadeInUp">';
 		}
 	}
+
+	if((rows.length - beginIndex) % colNum != 0){
+		block += '<div class="clearfix"></div></ul>';
+		html += block;
+	}
+	return html;
+}function buildNewsRows1(rows,beginIndex,colNum){
+	var html = '';
+	var block ='<ul class="idV-ul idea-ul">';
+	for(var i=beginIndex; i< rows.length; i++){
+		var newsDiv = buildNewsDiv(rows[i],i-beginIndex);
+		block += newsDiv;
+		if( (i-beginIndex +1)%colNum == 0){
+			block += '<div class="clearfix"></div></ul>';
+			html += block;
+			block ='<ul class="idV-ul news-t-ul">';
+		}
+	}
+
 	if((rows.length - beginIndex) % colNum != 0){
 		block += '<div class="clearfix"></div></ul>';
 		html += block;

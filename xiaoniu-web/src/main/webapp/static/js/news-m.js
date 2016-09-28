@@ -1,63 +1,79 @@
-$(function(){
-	_xn_init();
+$(function () {
+    _xn_init()
 });
-function _xn_init(){
-	$.post("/pageInfo/find",{'id':17},function(result){
-		if(result.resultCode == 0){
-			if(result.entity){
-				$("#news-m p:eq(0)").html(result.entity.introdution);
-			}
-		}else{
-			console.log(result.msg);
-		}
-	},"json");
-	
-	seeMore();
+function _xn_init() {
+    $.post("/pageInfo/find", {id: 17}, function (a) {
+        if (a.resultCode == 0) {
+            if (a.entity) {
+                $("#news-m p:eq(0)").html(a.entity.introdution);
+            }
+        } else {
+            console.log(a.msg)
+        }
+    }, "json");
+    seeMore()
 }
-
-function seeMore(){
-	var page = $("#news-m .news-m-ul").length;
-	if(page >= 0){
-		$.post("/news/list",{'type':6,'page':page/2+1,'rows':6,'top':0},function(result){
-			if(result.resultCode == 0 && result.rows.length > 0){
-				var rows = result.rows;
-				var html = buildNewsRows(rows,0,3);
-				$('#news-m').append(html);
-			}
-			
-			if((page + 1)*3 >= result.total){
-				$("#news-m-more").css("display",'none');
-			}
-		},"json");
-	}
+function seeMore() {
+    var a = $("#news-m .news-m-ul").length;
+    if (a >= 0) {
+        $.post("/news/list", {type: 6, page: a / 2 + 1, rows: 6, top: 0}, function (b) {
+            if (b.resultCode == 0 && b.rows.length > 0) {
+                var d = b.rows;
+                var c = buildNewsRows(d, 0, 3);
+                if($(window).width()<=500){
+                    c=buildNewsRows1(d, 0, 3);
+                }
+                $("#news-m").append(c)
+            }
+            if ((a + 1) * 3 >= b.total) {
+                $("#news-m-more").css("display", "none")
+            }
+        }, "json")
+    }
 }
-
-function buildNewsDiv(entity){
-	var html = '';
-	html += '<li><a href="/static/news-m-inside.html?id='+entity.id+'">';
-	html += '<div class="iN-img"><img src="'+entity.banner+'"/></div>';
-	html += '<p>'+entity.title+'</p>';
-	html += '<span>'+entity.summary+'</span>';
-	html += '</a>';
-	html += '<a href="/static/news-m-inside.html?id='+entity.id+'" class="more">See more<span></span></a></li>';
-	return html;
+function buildNewsDiv(a) {
+    var b = "";
+    b += '<li><a href="/static/news-m-inside.html?id=' + a.id + '">';
+    b += '<div class="iN-img"><img src="' + a.banner + '"/></div>';
+    b += "<p>" + a.title + "</p>";
+    b += "<span>" + a.summary + "</span>";
+    b += "</a>";
+    b += '<a href="/static/news-m-inside.html?id=' + a.id + '" class="more">See more<span></span></a></li>';
+    return b
 }
-
-function buildNewsRows(rows,beginIndex,colNum){
-	var html = '';
-	var block ='<ul class="idV-ul news-m-ul wow fadeInUp">';
-	for(var i=beginIndex; i< rows.length; i++){
-		var newsDiv = buildNewsDiv(rows[i],i-beginIndex);
-		block += newsDiv;
-		if( (i-beginIndex +1)%colNum == 0){
-			block += '<div class="clearfix"></div></ul>';
-			html += block;
-			block ='<ul class="idV-ul news-m-ul wow fadeInUp">';
-		}
-	}
-	if((rows.length - beginIndex) % colNum != 0){
-		block += '<div class="clearfix"></div></ul>';
-		html += block;
-	}
-	return html;
+function buildNewsRows(f, e, a) {
+    var d = "";
+    var g = '<ul class="idV-ul news-m-ul wow fadeInUp">';
+    for (var c = e; c < f.length; c++) {
+        var b = buildNewsDiv(f[c], c - e);
+        g += b;
+        if ((c - e + 1) % a == 0) {
+            g += '<div class="clearfix"></div></ul>';
+            d += g;
+            g = '<ul class="idV-ul news-m-ul wow fadeInUp">'
+        }
+    }
+    if ((f.length - e) % a != 0) {
+        g += '<div class="clearfix"></div></ul>';
+        d += g
+    }
+    return d
 }
+function buildNewsRows1(f, e, a) {
+    var d = "";
+    var g = '<ul class="idV-ul news-m-ul">';
+    for (var c = e; c < f.length; c++) {
+        var b = buildNewsDiv(f[c], c - e);
+        g += b;
+        if ((c - e + 1) % a == 0) {
+            g += '<div class="clearfix"></div></ul>';
+            d += g;
+            g = '<ul class="idV-ul news-m-ul">'
+        }
+    }
+    if ((f.length - e) % a != 0) {
+        g += '<div class="clearfix"></div></ul>';
+        d += g
+    }
+    return d
+};
