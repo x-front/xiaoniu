@@ -64,13 +64,10 @@ function _xn_init(){
 				html += '<li><a href="/static/news-t-inside.html?id='+entity.id+'">'+entity.title+'</a></li>';
 			}
 			$("#dowebok .b-news ul").html(html);
-<<<<<<< HEAD
 				$(".b-news").slide({mainCell:".bd ul",autoPage:true,effect:"topLoop",autoPlay:true,vis:1,startFun:function(){
 					var timer = $(".b-news .timer");
 					timer.stop(true,true).animate({ "width":"0%" },0).animate({ "width":"90%" },2500);
 				}});
-=======
->>>>>>> branch 'master' of git@github.com:zengxianxian/xiaoniu.git
 		}else{
 			console.log(result.msg);
 		}
