@@ -15,10 +15,11 @@
     <link rel="stylesheet" type="text/css" href="http://code.uemo.net/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="http://code.uemo.net/css/animate.min.css">
     <script type="text/javascript" src="/static/js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="/static/js/jquery.SuperSlide.2.1.2.js"></script>
     <script type="text/javascript" src="/static/js/lib.v1.min.js"></script>
     <script type="text/javascript" src="/static/js/org.js"></script>
     <script type="text/javascript" src="/static/js/idV.js"></script>
-    <script type="text/javascript" src="/static/js/newsPlay.js"></script>
+   <!-- <script type="text/javascript" src="/static/js/newsPlay.js"></script>-->
     <!--[if !IE]><style>.idV-pic-t,.idV-pic-b{height:auto;position:absolute;top:0;left:0;display:flex;justify-content: space-between;display:-webkit-flex;-webkit-justify-content: space-between;}</style><![end if]-->
     <!--[if IE]><style>.idV-img ul li,.idV-txt ul li{float:left;}</style><![end if]-->
 
@@ -75,14 +76,16 @@
 <!--        <h2 class="wow fadeInUp">小牛思想.声音</h2>
         <p class="wow fadeInUp"></p>-->
         <div class="idV-pic">
-        	<div class="idV-img">
-            <ul class="idV-pic-t wow fadeInUp">
+        	<div class="idV-img bd">
+            <ul class="idV-pic-t">
             </ul>
             </div>
-            <ul class="idV-pic-c wow fadeInUp">
+            <div class="hd">
+            <ul class="idV-pic-c">
             </ul>
-            <div class="idV-txt">
-            <ul class="idV-pic-b wow fadeInUp">
+            </div>
+            <div class="idV-txt bd">
+            <ul class="idV-pic-b">
             </ul>
             </div>
         </div>
@@ -131,6 +134,11 @@
 </div>
 </div>
 <a class="scrollTop" href="javascript:scroll(0,0);"></a>
+<!--
+<script type="text/javascript">
+    $(".idV-pic").slide({mainCell:".bd ul",autoPlay:true,effect:"leftLoop",interTime:3000});
+</script>
+-->
 <script src="/static/js/common.js"></script>
 </body>
 </html>

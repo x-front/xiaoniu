@@ -1,78 +1,94 @@
-$(function(){
-	_xn_init();
+$(function () {
+    _xn_init()
 });
-function _xn_init(){
-	$.post("/pageInfo/dongtai",function(result){
-		if(result.resultCode == 0){
-			if(result.news){
-//				$("#news-t p:eq(0)").html(result.news.introdution);
-			}
-			
-			if(result.report){
-//				$("#news-m p:eq(0)").html(result.report.introdution);
-			}
-			
-		}else{
-			console.log(result.msg);
-		}
-	},"json");
-	
-	$.post('/news/list',{'type':11,'page':1,'rows':4,'top':0},function(result){
-		if(result.resultCode == 0){
-			var rows = result.rows;
-			var picHtml = '',titleHtml='',dotHtml='';
-			for(var i=0; i<rows.length; i++){
-				var entity = rows[i];
-				picHtml += '<li><a href="/static/news-t-inside.html?id='+entity.id+'"><img src="'+entity.banner+'"/></a></li>';
-				dotHtml += '<li><a href="javascript:;"></a></li>';
-				titleHtml += '<li><h3>'+entity.title+'</h3><p>'+entity.summary+'</p></li>';
-			} 
-			$('.news-pic ul:eq(0)').html(picHtml);
-			$('.news-pic ul:eq(1)').html(dotHtml);
-			$('.news-pic ul:eq(2)').html(titleHtml);
-		}else{
-			console.log(result.msg);
-		}
-	});
-	
-	$.post('/news/list',{'type':5,'page':1,'rows':3,'top':0},function(result){
-		if(result.resultCode == 0){
-			var rows = result.rows;
-			var html = '';
-			for(var i=0; i<rows.length; i++){
-				entity = rows[i];
-				html += '<li><a href="/static/news-t-inside.html?id='+entity.id+'">';
-				html += '<div class="iN-img"><img src="'+entity.banner+'"/></div>';
-				html += '<p>'+entity.title+'</p>';
-				html += '<span>'+entity.summary+'</span>';
-				html += '</a>';
-				html += '<a href="/static/news-t-inside.html?id='+entity.id+'" class="more">See more<span></span></a></li>';
-			}
-			html += '<div class="clearfix"></div>';
-			$('#news-t ul:eq(0)').html(html);
-		}else{
-			console.log(result.msg);
-		}
-	});
-	
-	$.post('/news/list',{'type':6,'page':1,'rows':3,'top':0},function(result){
-		if(result.resultCode == 0){
-			var rows = result.rows;
-			var html = '';
-			for(var i=0; i<rows.length; i++){
-				entity = rows[i];
-				html += '<li><a href="/static/news-m-inside.html?id='+entity.id+'">';
-				html += '<div class="iN-img"><img src="'+entity.banner+'"/></div>';
-				html += '<p>'+entity.title+'</p>';
-				html += '<span>'+entity.summary+'</span>';
-				html += '</a>';
-				html += '<a href="/static/news-m-inside.html?id='+entity.id+'" class="more">See more<span></span></a></li>';
-			}
-			html += '<div class="clearfix"></div>';
-			$('#news-m ul:eq(0)').html(html);
-		}else{
-			console.log(result.msg);
-		}
-	});
-	
-}
+function _xn_init() {
+    $.post("/pageInfo/dongtai", function (a) {
+        if (a.resultCode == 0) {
+            if (a.news) {
+            }
+            if (a.report) {
+            }
+        } else {
+            console.log(a.msg)
+        }
+    }, "json");
+    $.post("/news/list", {type: 11, page: 1, rows: 4, top: 0}, function (a) {
+        if (a.resultCode == 0) {
+            var g = a.rows;
+            var e = "", f = "", b = "";
+            for (var d = 0; d < g.length; d++) {
+                var c = g[d];
+                e += '<li><a href="/static/news-t-inside.html?id=' + c.id + '"><img src="' + c.banner + '"/></a></li>';
+                b += '<li><a href="javascript:;"></a></li>';
+                f += "<li><h3>" + c.title + "</h3><p>" + c.summary + "</p></li>"
+            }
+            $(".news-pic ul:eq(0)").html(e);
+            $(".news-pic ul:eq(1)").html(b);
+            $(".news-pic ul:eq(2)").html(f);
+            var w = $(".idV-img").css("width").slice(0, -2);
+            var w1 = $(".idV-txt").css("width").slice(0, -2);
+            var n = $(".idV-pic-t li").size();
+            $(".idV-pic-t,.idV-pic-b").css("width",w*n+"px");
+            var i=0;
+            var id= setInterval(p, 3000);
+            function p(){
+                $(".idV-img ul").animate({"margin-left": -w * i + "px"});
+                $(".idV-txt ul").animate({"margin-left": -w1 * i + "px"});
+                $(".idV-pic-c li").eq(i).addClass("active").siblings().removeClass("active");
+                i++;
+                if (i >= $(".idV-img ul li").length) {
+                    i = 0
+                }
+            }
+            $(".idV-pic-c li").hover(function(){
+                clearInterval(id);
+                var i=$(this).index();
+                $(".idV-img ul").animate({"margin-left": -w * i + "px"});
+                $(".idV-txt ul").animate({"margin-left": -w1 * i + "px"});
+                $(this).addClass("acitve").siblings().removeClass("active");
+            },function(){
+                id= setInterval(p, 3000);
+            })
+        } else {
+            console.log(a.msg)
+        }
+    });
+    $.post("/news/list", {type: 5, page: 1, rows: 3, top: 0}, function (a) {
+        if (a.resultCode == 0) {
+            var d = a.rows;
+            var c = "";
+            for (var b = 0; b < d.length; b++) {
+                entity = d[b];
+                c += '<li><a href="/static/news-t-inside.html?id=' + entity.id + '">';
+                c += '<div class="iN-img"><img src="' + entity.banner + '"/></div>';
+                c += "<p>" + entity.title + "</p>";
+                c += "<span>" + entity.summary + "</span>";
+                c += "</a>";
+                c += '<a href="/static/news-t-inside.html?id=' + entity.id + '" class="more">See more<span></span></a></li>'
+            }
+            c += '<div class="clearfix"></div>';
+            $("#news-t ul:eq(0)").html(c)
+        } else {
+            console.log(a.msg)
+        }
+    });
+    $.post("/news/list", {type: 6, page: 1, rows: 3, top: 0}, function (a) {
+        if (a.resultCode == 0) {
+            var d = a.rows;
+            var c = "";
+            for (var b = 0; b < d.length; b++) {
+                entity = d[b];
+                c += '<li><a href="/static/news-m-inside.html?id=' + entity.id + '">';
+                c += '<div class="iN-img"><img src="' + entity.banner + '"/></div>';
+                c += "<p>" + entity.title + "</p>";
+                c += "<span>" + entity.summary + "</span>";
+                c += "</a>";
+                c += '<a href="/static/news-m-inside.html?id=' + entity.id + '" class="more">See more<span></span></a></li>'
+            }
+            c += '<div class="clearfix"></div>';
+            $("#news-m ul:eq(0)").html(c)
+        } else {
+            console.log(a.msg)
+        }
+    })
+};
