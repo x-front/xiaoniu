@@ -66,7 +66,7 @@ function _xn_init(){
 			$("#dowebok .b-news ul").html(html);
 				$(".b-news").slide({mainCell:".bd ul",autoPage:true,effect:"topLoop",autoPlay:true,vis:1,startFun:function(){
 					var timer = $(".b-news .timer");
-					timer.stop(true,true).animate({ "width":"0%" },0).animate({ "width":"90%" },2500);
+					timer.stop(true,true).animate({ "width":"0%" },0).animate({ "width":"100%" },2500);
 				}});
 		}else{
 			console.log(result.msg);

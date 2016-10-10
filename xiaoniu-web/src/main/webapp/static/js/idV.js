@@ -28,7 +28,7 @@ function _xn_init() {
                 var c = g[d];
                 e += '<li><a href="/static/idea-inside.html?id=' + c.id + '"><img src="' + c.banner + '"/></a></li>';
                 b += '<li><a href="javascript:;"></a></li>';
-                f += "<li><p>" + c.summary + "</p></li>"
+                f += '<li><a href="/static/idea-inside.html?id=' + c.id + '"><p>' + c.summary + '</p></li>'
             }
             $(".idV-pic ul:eq(0)").html(e);
             $(".idV-pic ul:eq(1)").html(b);
@@ -37,6 +37,10 @@ function _xn_init() {
             var w1 = $(".idV-txt").css("width").slice(0, -2);
             var n = $(".idV-pic-t li").size();
             $(".idV-pic-t,.idV-pic-b").css("width",w*n+"px");
+            if($(window).width()<400){
+                $(".idV-img ul li").css("width",100/n+'%');
+                $(".idV-txt ul li").css("width",100/n+'%');
+            }
             var i=0;
             var id= setInterval(p, 3000);
             function p(){
