@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>媒体报道 | 小牛新闻 | 小牛资本</title>
+    <title>小牛新闻|小牛资本</title>
     <meta name="robots" content="index,follow"/>
     <meta name="renderer" content="webkit">
     <meta http-equiv="Cache-Control" content="no-siteapp,no-transform"/>
@@ -10,14 +10,16 @@
     <meta name="author" content="深圳网站建设公司|中为科技 www.lonwin.net|jungley"/>
     <meta name="format-detection" content="telephone=no,email=no"/>
     <meta name="msapplication-tap-highlight" content="no">
-    <link rel="stylesheet" href="/static/css/animation.css">
+	<link rel="stylesheet" href="/static/css/animation.css">
     <link rel="stylesheet" href="/static/css/index.css">
     <link rel="stylesheet" type="text/css" href="http://code.uemo.net/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="http://code.uemo.net/css/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/share.css">
     <script type="text/javascript" src="/static/js/jquery-1.8.3.min.js"></script>
     <script type="text/javascript" src="/static/js/lib.v1.min.js"></script>
     <script type="text/javascript" src="/static/js/org.js"></script>
-    <script type="text/javascript" src="/static/js/news-m.js"></script>
+    <script type="text/javascript" src="/static/js/param.js"></script>
+	<script type="text/javascript" src="/static/js/news-m-inside.js"></script>
 </head>
 <body>
 <div id="header-inside">
@@ -60,18 +62,29 @@
 <div id="sub-nav">
     <div class="sub_nav">
         <ul>
-            <li><a href="/static/news-t.html">最新动态</a></li>
-            <li class="sub_active"><a href="/static/news-m.html">媒体报道</a></li>
-            <li><a href="/static/news-w.html">小牛看世界</a></li>
+            <li><a href="/static/news-t.html" name="news-t">最新动态</a></li>
+            <li><a href="/static/news-m.html" name="news-m">媒体报道</a></li>
+            <li class="sub_active"><a href="/static/news-w.html">小牛看世界</a></li>
         </ul>
     </div>
 </div>
 <div id="wrap">
-    <div class="wrap about idV">
-    <div id="news-m" class="idV-v news-m news-mt">
-        <h2 class="wow fadeInUp">媒体报道</h2>
-    </div>
-    <a href="javascript:seeMore();" id="news-m-more" class="idV-more wow fadeInUp"><span></span></a>
+<div class="about wrap news-inside">
+        <div class="news-item1 f1">
+            <div class="f1 news-title">
+                <h3></h3>
+                <span></span>
+            </div>
+            <ul id="ckepop">
+                <li><a class="jiathis_button_tsina"></a></li>
+                <li><a class="jiathis_button_weixin"></a></li>
+                <li><a class="jiathis_button_fb"></a></li>
+                <li><a class="jiathis_button_twitter"></a></li>
+                <script type="text/javascript" src="http://v2.jiathis.com/code/jia.js" charset="utf-8"></script>
+            </ul>
+        </div>
+        <div class="news-item2">
+        </div>
     </div>
 </div>
 <div id="footer">
@@ -82,6 +95,6 @@
 </div>
 </div>
 <a class="scrollTop" href="javascript:scroll(0,0);"></a>
-<script src="/static/js/common.js"></script>
+<script src="js/common.js"></script>
 </body>
 </html>

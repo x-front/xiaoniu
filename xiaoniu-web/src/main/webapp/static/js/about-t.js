@@ -27,17 +27,17 @@ function _xn_init() {
                         f = '<ul class="">';
                     }
                 }
-                f += '<li><a href=""><div class="t-p"><img src="' + b.banner + '"/></div><br/><h4>' + b.name + "</h4><span>" + b.summary + "</span></a></li>"
+                f += '<li><div class="t-p"><img src="' + b.banner + '"/></div><br/><h4>' + b.name + "</h4><span>" + b.summary + "</span></li>"
             }
             if (a.rows.length != 0) {
                 f += "</ul>";
                 d += f
             }
-            ;
+
             if ($(window).width() <= 500) {
                 $("*").removeClass("wow fadeInUp");
             }
             $("#about-t").append(d)
         }
     }, "json")
-};
+}

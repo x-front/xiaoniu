@@ -40,7 +40,8 @@
 		updateTimeColumn,
 		{field:'operator',title: '操作',align:'center',
 			formatter: function(value,row,index){
-					return "<a href='#' onclick='javascript:initUpdateNewsWindow("+index+")'>修改</a>";
+					var str = "<a href='#' onclick='javascript:initUpdateNewsWindow("+index+")'>修改</a>";
+					str += "<br/><a href='#' onclick='javascript:initChangeTypeWindow("+index+")'>移动</a>"
 				}
 		},
 	];
@@ -84,7 +85,24 @@
 				});
 			});
 		});
-		
+		$("#move-div").window({
+			title : '移动',
+			modal : true,
+			width : 300,
+			height : 150,
+			shadow : false,
+			closed : true,
+			minimizable : false,
+			maximizable : false,
+			collapsible : false,
+			draggable : true,
+			iconCls : 'icon-add',
+			resizable : false,
+			onClose : function(){
+				$("#move-div-display-none-id").val('');
+				$("#move-div-title").html('');
+			},
+		});
 		
 		
 	});
@@ -140,6 +158,36 @@
 			if ( result['resultCode'] == 0 ) {
 				$("#html_table").datagrid("reload");
 				cancel();
+			} else {
+				$.messager.alert('提示',result['msg']);
+			}
+		});
+	}
+	
+	function initChangeTypeWindow(index){
+		var rows = $("#html_table").datagrid("getRows"),
+		row = rows[index];
+		$("#move-div-display-none-id").val(row.id);
+		$("#move-div-title").html(row.title);
+		$('#more-div-type').combobox('setValue',row.type);
+		$("#move-form .opt_btn").hide();
+		$("#move-form .loading").show();
+		$("#move-div").window('open');
+		$("#move-form .opt_btn").show();
+		$("#move-form .loading").hide();
+	}
+	
+	function changeType(){
+		var $form = $("#move-form");
+		$("#move-form .opt_btn").hide();
+		$("#move-form .loading").show();
+		$.post($form.attr('action'),$form.serialize(),function(result){
+			$("#move-form .opt_btn").show();
+			$("#move-form .loading").hide();
+			if ( result['resultCode'] == 0 ) {
+				$("#html_table").datagrid("reload");
+				$(".clear-input").val('');
+				$("#move-div-title").html('');
 			} else {
 				$.messager.alert('提示',result['msg']);
 			}
@@ -227,6 +275,42 @@
 				<a href="javascript:void(0);" onclick="javascript:set2Top()"class="easyui-linkbutton" title="置顶" plain="true" iconCls="icon-filter">置顶</a>
 			</c:if>
 			<a href="javascript:void(0);" onclick="javascript:set2IndexNews()"class="easyui-linkbutton" title="添加" plain="true" iconCls="icon-edit" >添加到首页新闻列表</a>
+		</div>
+		
+		<!-- 移动 -->
+		<div id="move-div" class='none'>
+			<form id="move-form" action="/secure/news/update">
+				<div>
+					<span id='move-div-title'></span>
+				</div>
+				<div>
+					<select class="easyui-combobox" required="true" id="more-div-type" name="type">
+						<option value="1">美好家庭</option>
+						<option value="2">美好体育</option>
+						<option value="3">美好公益</option>
+						<option value="4">美好教育</option>
+						<option value="5">最新动态</option>
+						<option value="6">媒体报道</option>
+						<option value="7">小牛思想</option>
+						<option value="8">小牛视频</option>
+						<option value="9">牛人文化</option>
+						<option value="10">小牛思想声音</option>
+						<option value="11">小牛新闻</option>
+					</select>
+				</div>
+				<div class="opt_btn"  style="text-align: center;padding-top: 10px;">
+					<a class="easyui-linkbutton" id="import-form-submit-btn" iconCls="icon-ok" onclick="javascript:changeType();">确定</a> 
+					<a class="easyui-linkbutton" iconCls="icon-cancel" onclick="cancel();">取消</a>
+				</div>
+				<div class="loading display-none" style="text-align: center; padding-top: 10px; vertical-align:middle;">
+					<img alt="" src="/resources/images/loading.gif" style="vertical-align:middle;">
+					<span style="vertical-align:middle;">请稍后...</span>
+				</div>
+				
+				<div id="move-div-display-none-input" class="none">
+					<input id="move-div-display-none-id" name="id" class="clear-input">
+				</div>
+			</form>
 		</div>
 		
 		<!-- 添加 -->
