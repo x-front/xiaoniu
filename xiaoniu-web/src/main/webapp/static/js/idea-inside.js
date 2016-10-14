@@ -12,14 +12,10 @@ function _xn_init() {
                 if (c.indexOf("application/x-shockwave-flash") == -1) {
                     c = c.replace(/\<embed/g, '<video controls="controls"  ');
                 }
-                $(".meta").attr("content", b.entity.title);
+                $(".meta").attr("content", c);
+                $("title").html(b.entity.title);
                 $(".news-item2:eq(0)").html(c);
                 $("embed").attr("height", "400");
-                var ua = navigator.userAgent.toLowerCase();
-                if (/iphone|ipad|ipod/.test(ua)) {
-                    $("video").attr("autoplay","autoplay");
-                    $("video").removeAttr("controls");
-                }
             } else {
                 console.log(b.msg)
             }

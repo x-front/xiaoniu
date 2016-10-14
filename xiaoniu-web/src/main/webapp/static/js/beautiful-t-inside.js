@@ -13,6 +13,7 @@ function _xn_init() {
                     c = c.replace(/\<embed/g, '<video controls="controls"  ');
                 }
                 $(".meta").attr("content", b.entity.title);
+                $("title").html(b.entity.title);
                 $(".news-item2:eq(0)").html(c);
                 $("embed").attr("height", "400");
             }
