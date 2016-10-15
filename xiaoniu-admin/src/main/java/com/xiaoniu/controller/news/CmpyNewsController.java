@@ -85,4 +85,19 @@ public class CmpyNewsController extends BaseController<CmpyNews>{
 		}
 		return map;
 	}
+	
+	@RequestMapping("find")
+	@ResponseBody
+	public Map<String,Object> find(Integer id){
+		Map<String,Object> map = new HashMap<String,Object>();
+		try{
+			CmpyNews entity = service.selectByKey(id);
+			map.put("entity", entity);
+			map.put(Contants.RESULT_CODE, MsgCode.SUCCESS.getCode());
+		}catch(Exception e){
+			map.put(Contants.RESULT_CODE, MsgCode.FAILED.getCode());
+			map.put(Contants.MSG, MsgCode.FAILED.getMsg());
+		}
+		return map;
+	}
 }

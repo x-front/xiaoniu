@@ -27,7 +27,7 @@
 	}
 	commonTable.columns = [
 		{field:'ck',checkbox:true},
-		{field:'id', title: 'ID',align:'center',  hidden:true},
+		{field:'id', title: 'ID',align:'center'},
 		{field:'banner', title: '封面图',align:'center',  hidden:true},
 		{field:'title',title: '标题', align:'center',width:200},
 		{field:'source',title: '来源',align:'center'},
@@ -41,7 +41,31 @@
 		{field:'operator',title: '操作',align:'center',
 			formatter: function(value,row,index){
 					var str = "<a href='#' onclick='javascript:initUpdateNewsWindow("+index+")'>修改</a>";
-					str += "<br/><a href='#' onclick='javascript:initChangeTypeWindow("+index+")'>移动</a>"
+					str += "<br/><a href='#' onclick='javascript:initChangeTypeWindow("+index+")'>移动</a>";
+					return str;
+				}
+		},
+		{field:'preview',title: '预览',align:'center',
+			formatter: function(value,row,index){
+					var str = "";
+					
+					var typeStr = "";
+					switch(row.type){
+					case 1:typeStr = "beautiful-f-inside.html";break;
+					case 2:typeStr = "beautiful-t-inside.html";break;
+					case 3:typeStr = "beautiful-g-inside.html";break;
+					case 4:typeStr = "beautiful-j-inside.html";break;
+					case 5:typeStr = "news-t-inside.html";break;
+					case 6:typeStr = "news-m-inside.html";break;
+					case 7:typeStr = "idea-inside.html";break;
+					case 8:typeStr = "audio-inside.html";break;
+					case 9:typeStr = "about-w-inside.html";break;
+					case 10:typeStr = "idea-inside.html";break;
+					case 11:typeStr = "news-t-inside.html";break;
+					}
+					
+					str += "<a target='_blank' href='/resources/static/"+typeStr+"?id="+row.id+"'>预览</a>";
+					return str;
 				}
 		},
 	];
@@ -89,7 +113,7 @@
 			title : '移动',
 			modal : true,
 			width : 300,
-			height : 150,
+			height : 180,
 			shadow : false,
 			closed : true,
 			minimizable : false,
@@ -181,10 +205,14 @@
 		var $form = $("#move-form");
 		$("#move-form .opt_btn").hide();
 		$("#move-form .loading").show();
-		$.post($form.attr('action'),$form.serialize(),function(result){
+		$.post($form.attr('action'),{
+			'id':$('#move-div-display-none-id').val(),
+			'type':$('#more-div-type').combobox('getValue')
+			},function(result){
 			$("#move-form .opt_btn").show();
 			$("#move-form .loading").hide();
 			if ( result['resultCode'] == 0 ) {
+				$("#move-div").window('close');
 				$("#html_table").datagrid("reload");
 				$(".clear-input").val('');
 				$("#move-div-title").html('');
@@ -278,34 +306,44 @@
 		</div>
 		
 		<!-- 移动 -->
-		<div id="move-div" class='none'>
+		<div id="move-div" >
 			<form id="move-form" action="/secure/news/update">
-				<div>
-					<span id='move-div-title'></span>
-				</div>
-				<div>
-					<select class="easyui-combobox" required="true" id="more-div-type" name="type">
-						<option value="1">美好家庭</option>
-						<option value="2">美好体育</option>
-						<option value="3">美好公益</option>
-						<option value="4">美好教育</option>
-						<option value="5">最新动态</option>
-						<option value="6">媒体报道</option>
-						<option value="7">小牛思想</option>
-						<option value="8">小牛视频</option>
-						<option value="9">牛人文化</option>
-						<option value="10">小牛思想声音</option>
-						<option value="11">小牛新闻</option>
-					</select>
-				</div>
-				<div class="opt_btn"  style="text-align: center;padding-top: 10px;">
-					<a class="easyui-linkbutton" id="import-form-submit-btn" iconCls="icon-ok" onclick="javascript:changeType();">确定</a> 
-					<a class="easyui-linkbutton" iconCls="icon-cancel" onclick="cancel();">取消</a>
-				</div>
-				<div class="loading display-none" style="text-align: center; padding-top: 10px; vertical-align:middle;">
-					<img alt="" src="/resources/images/loading.gif" style="vertical-align:middle;">
-					<span style="vertical-align:middle;">请稍后...</span>
-				</div>
+				<table  width="280">
+					<tbody>
+						<tr>
+							<td style="width:60px;color: #444;text-align: right;">文     章:</td>
+							<td><div id="move-div-title" style="height: 50px;width: 200px;"></div></td>
+						</tr>
+						<tr>
+							<td style="width:60px;color: #444;text-align: right;">移动到:</td>
+							<td>
+								<select class="easyui-combobox" required="true" id="more-div-type" name="type" style="width:200px;">
+									<option value="1">美好家庭</option>
+									<option value="2">美好体育</option>
+									<option value="3">美好公益</option>
+									<option value="4">美好教育</option>
+									<option value="5">最新动态</option>
+									<option value="6">媒体报道</option>
+									<option value="7">小牛思想</option>
+									<option value="8">小牛视频</option>
+									<option value="9">牛人文化</option>
+									<option value="10">小牛思想声音</option>
+									<option value="11">小牛新闻</option>
+								</select>
+							</td>
+						</tr>
+					<tr>
+						<td class="opt_btn" colspan="2" style="text-align: center;padding-top: 10px;">
+							<a class="easyui-linkbutton" id="edit_form_submit_btn" iconCls="icon-ok" onclick="javascript:changeType();">确定</a> 
+							<a class="easyui-linkbutton" iconCls="icon-cancel" onclick="$('#move-div').window('close');">取消</a>
+						</td>
+					</tr>
+					<tr class="loading none">
+						<td colspan="2" style="text-align: center; padding-top: 10px; vertical-align:middle;">
+							<img alt="" src="/resources/images/loading.gif" style="vertical-align:middle;">
+							<span style="vertical-align:middle;">请稍后...</span>
+						</td>
+					</tr>
 				
 				<div id="move-div-display-none-input" class="none">
 					<input id="move-div-display-none-id" name="id" class="clear-input">
