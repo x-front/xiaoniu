@@ -62,6 +62,7 @@
 					case 9:typeStr = "about-w-inside.html";break;
 					case 10:typeStr = "idea-inside.html";break;
 					case 11:typeStr = "news-t-inside.html";break;
+					case 15:typeStr = "news-w-inside.html";break;
 					}
 					
 					str += "<a target='_blank' href='/resources/static/"+typeStr+"?id="+row.id+"'>预览</a>";
@@ -329,25 +330,28 @@
 									<option value="9">牛人文化</option>
 									<option value="10">小牛思想声音</option>
 									<option value="11">小牛新闻</option>
+									<option value="15">小牛看世界</option>
 								</select>
 							</td>
 						</tr>
-					<tr>
-						<td class="opt_btn" colspan="2" style="text-align: center;padding-top: 10px;">
-							<a class="easyui-linkbutton" id="edit_form_submit_btn" iconCls="icon-ok" onclick="javascript:changeType();">确定</a> 
-							<a class="easyui-linkbutton" iconCls="icon-cancel" onclick="$('#move-div').window('close');">取消</a>
-						</td>
-					</tr>
-					<tr class="loading none">
-						<td colspan="2" style="text-align: center; padding-top: 10px; vertical-align:middle;">
-							<img alt="" src="/resources/images/loading.gif" style="vertical-align:middle;">
-							<span style="vertical-align:middle;">请稍后...</span>
-						</td>
-					</tr>
+						<tr>
+							<td class="opt_btn" colspan="2" style="text-align: center;padding-top: 10px;">
+								<a class="easyui-linkbutton" id="edit_form_submit_btn" iconCls="icon-ok" onclick="javascript:changeType();">确定</a> 
+								<a class="easyui-linkbutton" iconCls="icon-cancel" onclick="$('#move-div').window('close');">取消</a>
+							</td>
+						</tr>
+						<tr class="loading none">
+							<td colspan="2" style="text-align: center; padding-top: 10px; vertical-align:middle;">
+								<img alt="" src="/resources/images/loading.gif" style="vertical-align:middle;">
+								<span style="vertical-align:middle;">请稍后...</span>
+							</td>
+						</tr>
 				
-				<div id="move-div-display-none-input" class="none">
-					<input id="move-div-display-none-id" name="id" class="clear-input">
-				</div>
+						<div id="move-div-display-none-input" class="none">
+							<input id="move-div-display-none-id" name="id" class="clear-input">
+						</div>
+					</tbody>
+				</table>
 			</form>
 		</div>
 		
