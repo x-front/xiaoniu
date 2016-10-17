@@ -94,5 +94,24 @@ function _xn_init() {
         } else {
             console.log(a.msg)
         }
+    });
+    $.post("/news/list", {type: 15, page: 1, rows: 3, top: 0}, function (a) {
+        if (a.resultCode == 0) {
+            var d = a.rows;
+            var c = "";
+            for (var b = 0; b < d.length; b++) {
+                entity = d[b];
+                c += '<li><a href="/static/news-m-inside.html?id=' + entity.id + '">';
+                c += '<div class="iN-img"><img src="' + entity.banner + '"/></div>';
+                c += "<p>" + entity.title + "</p>";
+                c += "<span>" + entity.summary + "</span>";
+                c += "</a>";
+                c += '<a href="/static/news-m-inside.html?id=' + entity.id + '" class="more">See more<span></span></a></li>'
+            }
+            c += '<div class="clearfix"></div>';
+            $("#news-w ul:eq(0)").html(c)
+        } else {
+            console.log(a.msg)
+        }
     })
 };

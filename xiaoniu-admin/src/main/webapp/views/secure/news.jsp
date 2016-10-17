@@ -40,8 +40,8 @@
 		updateTimeColumn,
 		{field:'operator',title: '操作',align:'center',
 			formatter: function(value,row,index){
-					var str = "<a href='#' onclick='javascript:initUpdateNewsWindow("+index+")'>修改</a>";
-					str += "<br/><a href='#' onclick='javascript:initChangeTypeWindow("+index+")'>移动</a>";
+					var str = "<div style='margin: 8px 0;'><a href='#' onclick='javascript:initUpdateNewsWindow("+index+")'>修改</a><div>";
+					str += "<div style='margin: 8px 0;'><a href='#' onclick='javascript:initChangeTypeWindow("+index+")'>移动</a></div>";
 					return str;
 				}
 		},
@@ -87,6 +87,7 @@
 				fileManagerJson : '/secure/aliyunOss/file_manager_json',
 				allowFileManager : true,
 				height:contentHeight - 200,
+				newlineTag : "br",
 				afterBlur: function(){this.sync();}
 			}); 
 			
