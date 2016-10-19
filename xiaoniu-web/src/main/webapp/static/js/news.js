@@ -57,7 +57,7 @@ function _xn_init() {
             console.log(a.msg)
         }
     });
-    $.post("/news/list", {type: 5, page: 1, rows: 3, top: 0}, function (a) {
+    $.post("/news/list", {type: 5, page: 1, rows: 6, top: 0}, function (a) {
         if (a.resultCode == 0) {
             var d = a.rows;
             var c = "";
@@ -76,7 +76,7 @@ function _xn_init() {
             console.log(a.msg)
         }
     });
-    $.post("/news/list", {type: 6, page: 1, rows: 3, top: 0}, function (a) {
+    $.post("/news/list", {type: 6, page: 1, rows: 6, top: 0}, function (a) {
         if (a.resultCode == 0) {
             var d = a.rows;
             var c = "";
@@ -95,7 +95,7 @@ function _xn_init() {
             console.log(a.msg)
         }
     });
-    $.post("/news/list", {type: 15, page: 1, rows: 3, top: 0}, function (a) {
+    $.post("/news/list", {type: 15, page: 1, rows: 6, top: 0}, function (a) {
         if (a.resultCode == 0) {
             var d = a.rows;
             var c = "";

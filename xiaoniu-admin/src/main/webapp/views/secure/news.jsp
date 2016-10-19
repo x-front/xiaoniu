@@ -87,7 +87,7 @@
 				fileManagerJson : '/secure/aliyunOss/file_manager_json',
 				allowFileManager : true,
 				height:contentHeight - 200,
-				newlineTag : "br",
+//				newlineTag : "br",
 				afterBlur: function(){this.sync();}
 			}); 
 			
