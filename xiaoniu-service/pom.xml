@@ -9,7 +9,6 @@
   </parent>
   
   <artifactId>xiaoniu-service</artifactId>
-  <version>1.0.0</version>
   <name>xiaoniu-service</name>
   <url>http://maven.apache.org</url>
   <properties>

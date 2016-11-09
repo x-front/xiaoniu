@@ -366,7 +366,7 @@
 							<input id="edit-div-banner" required="true" name="banner" class="easyui-textbox clear-easyui-textbox"  prompt="封面图(641*425)"/>
 						</c:when>
 						<c:when test="${type == 11 }">
-							<input id="edit-div-banner" required="true" name="banner" class="easyui-textbox clear-easyui-textbox"  prompt="封面图(981*499)"/>
+							<input id="edit-div-banner" required="true" name="banner" class="easyui-textbox clear-easyui-textbox"  prompt="封面图(641*425)"/>
 						</c:when>
 						<c:when test="${type ge 1 and type le 4}">
 							<input id="edit-div-banner" required="true" name="banner" class="easyui-textbox clear-easyui-textbox"  prompt="封面图(981*499)"/>
