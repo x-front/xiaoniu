@@ -20,7 +20,7 @@
      a{text-decoration: none;outline: none;color:#FFF;text-align: center;}
      img{vertical-align: middle;width:100%;max-width: 100%;}
      .clear{clear:both}
-     .wrap{width:1000px;margin:100px auto 0;border:1px solid #000;padding:20px}
+     .wrap{width:1000px;margin:0 auto 0;padding:20px}
      .btns{margin-bottom: 20px;}
      .btns a{display:inline-block;width:150px;height:50px;line-height: 50px;font-size: 16px;color:#FFF;border-radius: 5px;background: #ce2f10;margin-right: 20px;}
      .btns .btn2{background: #4863ff}
@@ -32,6 +32,8 @@
      .main_c ul{position:absolute;left:0;top:0;}
      .main_c li{width:200px;;margin:0 5px;border:1px solid #d03cff;float:left;height:600px;box-sizing: border-box;position:relative}
      .main_c li p{position:absolute;bottom:0;left:0;font-size: 16px;line-height: 24px;width:100%}
+     
+     .left-td{width:90px;}
  </style>
 <script type="text/javascript">
     $(function(){
@@ -102,8 +104,8 @@
 		$("#htm_edit").window({
 			title : '添加',
 			modal : true,
-			width : width,
-			height : height,
+			width : 500,
+			height : 500,
 			shadow : false,
 			closed : true,
 			minimizable : false,
@@ -158,6 +160,9 @@
 		
 	}
 	
+	function initAddImageWindow(){
+		$("#htm_edit").window('open');
+	}
 </script>
 </head>
 <body>
@@ -166,7 +171,7 @@
 		
 		<!-- tool bar -->
 		<div id="table_tb" style="padding:5px;height:auto" class="none">
-			<a href="javascript:void(0);" onclick="javascript:commonTable.initAddWindow()"class="easyui-linkbutton" title="添加" plain="true" iconCls="icon-add" id="addBtn">添加</a>
+			<a href="javascript:void(0);" onclick="javascript:initAddNewsWindow()"class="easyui-linkbutton" title="添加" plain="true" iconCls="icon-add" id="addBtn">添加</a>
 			<a href="javascript:void(0);" onclick="javascript:commonTable.batchDelete()"class="easyui-linkbutton" title="删除" plain="true" iconCls="icon-cancel" id="delBtn">删除</a>
 			<a href="javascript:void(0);" onclick="javascript:commonTable.batchPublish()"class="easyui-linkbutton" title="发布" plain="true" iconCls="icon-ok">发布</a>
 			<a href="javascript:void(0);" onclick="javascript:commonTable.batchCancelPublish()"class="easyui-linkbutton" title="撤销" plain="true" iconCls="icon-undo">撤销发布</a>
@@ -178,7 +183,7 @@
 				<!-- 图片 -->
 				<div class="wrap">
 				    <div class="btns">
-				        <a class="btn1" href="javascript:;">按钮一</a>
+				        <a class="btn1" href="javascript:initAddImageWindow();">添加图片</a>
 				        <a class="btn2" href="javascript:;">按钮二</a>
 				        <a class="btn3" href="javascript:;">按钮三</a>
 				    </div>
@@ -227,23 +232,25 @@
 		
 		<div id="htm_edit">
 			<form id="edit_form" method="post">
-				<table id="htm_edit_table" width="450">
+				<table id="htm_edit_table" width="480">
 					<tr>
-						<td>选择图片</td>
-						<td>
-							<input id="edit-div-banner" class="clear-input">
-							<input type="button" id="btn-banner-upload" value="选择图片"/>
+						<td class="left-td">选择图片</td>
+						<td class="right-td">
+							<input id="edit-div-banner" class="clear-textbox easyui-textbox" style="width:250px;">
+							<input type="button" id="btn-banner-upload" value="选择图片" style="width:80px;"/>
 						</td>
 					</tr>
 					<tr>
 						<td>图片预览</td>
 						<td>
-							<img alt="" src="" id="htm_edit_img_preview" class="none">
+							<div id="htm_edit_img_div" style="width:340px;height: 250px;text-align: center;overflow: hidden;">
+								<img alt="" src="" id="htm_edit_img_preview" class="none">
+							</div>
 						</td>
 					</tr>
 					<tr>
 						<td>文字说明</td>
-						<td><textarea cols="" rows="10" id="htm_edit_img_desc"></textarea></td>
+						<td><textarea style="width: 340px;height: 100px;" id="htm_edit_img_desc"></textarea></td>
 					</tr>
 					<tr>
 						<td><input style="display:none"  readonly="readonly" id="htm_edit_index"  class="clear-input"></td>

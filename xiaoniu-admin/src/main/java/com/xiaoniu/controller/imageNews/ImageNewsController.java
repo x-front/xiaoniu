@@ -18,5 +18,10 @@ import com.xiaoniu.db.domain.CmpyImageNews;
 @Controller
 @RequestMapping("/secure/imageNews")
 public class ImageNewsController extends BaseController<CmpyImageNews>{
+	
+	@RequestMapping("imageNews.html")
+	public String imageNewsHtml(){
+		return "secure/imageNews";
+	}
 
 }
