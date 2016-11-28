@@ -18,25 +18,25 @@
      *{margin:0;padding:0}
      ul,li{list-style: none}
      a{text-decoration: none;outline: none;color:#FFF;text-align: center;}
-     img{vertical-align: middle;width:100%;max-width: 100%;}
+     .main_c li img{vertical-align: middle;width:100%;max-width: 100%;}
      .clear{clear:both}
      .wrap{width:1000px;margin:0 auto 0;padding:20px}
      .btns{margin-bottom: 20px;}
      .btns a{display:inline-block;width:150px;height:50px;line-height: 50px;font-size: 16px;color:#FFF;border-radius: 5px;background: #ce2f10;margin-right: 20px;}
      .btns .btn2{background: #4863ff}
      .btns .btn3{background: #29bd4d}
-     .main a{display:inline-block;width:50px;height:600px;line-height: 600px;border-radius: 25px;font-size: 40px;}
+     .main a{display:inline-block;width:50px;height:400px;line-height: 600px;border-radius: 25px;font-size: 40px;}
      .left{float:left;background:#3fb9be}
      .right{float:right;background:#3fb9be}
-     .main_c{float:left;width:840px;;margin-left:30px;;overflow: hidden;border:1px solid #ff9829;height:600px;text-align: center;position:relative;box-sizing: border-box}
+     .main_c{float:left;width:840px;;margin-left:30px;;overflow: hidden;border:1px solid #ff9829;height:400px;text-align: center;position:relative;box-sizing: border-box}
      .main_c ul{position:absolute;left:0;top:0;}
-     .main_c li{width:200px;;margin:0 5px;border:1px solid #d03cff;float:left;height:600px;box-sizing: border-box;position:relative}
+     .main_c li{width:200px;;margin:0 5px;border:1px solid #d03cff;float:left;height:400px;box-sizing: border-box;position:relative}
      .main_c li p{position:absolute;bottom:0;left:0;font-size: 16px;line-height: 24px;width:100%}
      
      .left-td{width:90px;}
  </style>
 <script type="text/javascript">
-    $(function(){
+    function resizeImageList(){
         var w=parseInt($(".main_c ul li").css("width").slice(0,-2));
         var i=$(".main_c ul li").length;
         $(".main_c ul").css("width",i*(w+10)+"px");
@@ -68,14 +68,14 @@
                 }
             }
         })
-    })
+    };
 </script>
 <script type="text/javascript">
 	commonTable.loadDateURI = "/secure/imageNews/queryList";
 	commonTable.batchUpdateValidURI = "/secure/imageNews/batchUpdateValid?strIds=";
 	commonTable.batchDeleteURI = "/secure/imageNews/batchDelete?strIds=";
-	commonTable.updateURI = "/secure/imageNews/save";
-	commonTable.insertURI = "/secure/imageNews/save";
+	commonTable.updateURI = "/secure/imageNews/insert";
+	commonTable.insertURI = "/secure/imageNews/insert";
 	commonTable.title = "新闻图集";
 	commonTable.nowrap = false;
 	commonTable.tableQueryParams = {
@@ -85,7 +85,8 @@
 		{field:'ck',checkbox:true},
 		{field:'id', title: 'ID',align:'center',  hidden:true},
 		{field:'newsId',title: '新闻ID',align:'left'},
-		{field:'image',title: '图片连接',align:'left',width:340},
+		{field:'image',title: '图片连接',align:'left',width:240},
+		{field:'content',title: '文字描述',align:'left',width:340},
 		{field:'serialNumber',title: '序号',align:'center'},
 		validColumn,
 		createTimeColumn,
@@ -156,12 +157,42 @@
 		$("#edit-form").attr("action",commonTable.insertURI);
 	}
 	
-	function addSingleImage(){
+	function closeAddNewsWindow(){
+		$(".clear-input").val('');
+		$(".clear-textbox").textbox('setValue','');
+	}
+	
+	function submitNewsWindow(){
+		var length = $('.main_c li').length;
+		var newsId = $('#edit-div-newsId').textbox('getValue');
+		for(var i=0; i<length; i++){
+			var node = $('.main_c li:eq('+i+')'); 
+			var imgUrl = node.find('img:eq(0)').attr('src');
+			var content = node.find('p:eq(0)').html();
+			$.post(commonTable.insertURI,{
+				'newsId':newsId,
+				'image':imgUrl,
+				'content':content,
+				'valid':1,
+				'serialNumber':i
+			},'json');
+		}
 		
+		$(".datagrid").removeClass("none");
+		$("#edit-div").addClass("none");
 	}
 	
 	function initAddImageWindow(){
 		$("#htm_edit").window('open');
+	}
+	
+	function addSingleImage(){
+		var content = $('#htm_edit_img_desc').val();
+		var imgUrl = $('#edit-div-banner').textbox('getValue');
+		var html = '<li><img src="'+imgUrl+'" alt=""/><p>'+content+'</p></li>';
+		$(".main_c ul:eq(0)").append(html);
+		resizeImageList();
+		$("#htm_edit").window('close');
 	}
 </script>
 </head>
@@ -183,6 +214,7 @@
 				<!-- 图片 -->
 				<div class="wrap">
 				    <div class="btns">
+				    	<span>新闻ID</span><input style="width:100px;" class="easyui-textbox clear-textbox" id="edit-div-newsId" prompt="请输入新闻ID" required="required">
 				        <a class="btn1" href="javascript:initAddImageWindow();">添加图片</a>
 				        <a class="btn2" href="javascript:;">按钮二</a>
 				        <a class="btn3" href="javascript:;">按钮三</a>
@@ -191,21 +223,6 @@
 				        <a class="left" href="javascript:;"><</a>
 				        <div class="main_c">
 				            <ul>
-				                <li><img src="" alt="图片1"/><p>文字一</p></li>
-				                <li><img src="" alt="图片2"/><p>文字二</p></li>
-				                <li><img src="" alt="图片3"/><p>文字三</p></li>
-				                <li><img src="" alt="图片4"/><p>文字四</p></li>
-				                <li><img src="" alt="图片5"/><p>文字五</p></li>
-				                <li><img src="" alt="图片6"/><p>文字六</p></li>
-				                <li><img src="" alt="图片7"/><p>文字七</p></li>
-				                <li><img src="" alt="图片8"/><p>文字八</p></li>
-				                <li><img src="" alt="图片9"/><p>文字九</p></li>
-				                <li><img src="" alt="图片10"/><p>文字十</p></li>
-				                <li><img src="" alt="图片11"/><p>文字十一</p></li>
-				                <li><img src="" alt="图片12"/><p>文字二</p></li>
-				                <li><img src="" alt="图片13"/><p>文字十三</p></li>
-				                <li><img src="" alt="图片14"/><p>文字十四</p></li>
-				                <li><img src="" alt="图片15"/><p>文字十五</p></li>
 				            </ul>
 				        </div>
 				        <a class="right" href="javascript:;">></a>
@@ -214,7 +231,7 @@
 				</div>
 				
 				<div class="opt_btn"  style="text-align: center;padding-top: 10px;">
-					<a class="easyui-linkbutton" id="import-form-submit-btn" iconCls="icon-ok" onclick="javascript:save();">确定</a> 
+					<a class="easyui-linkbutton" id="import-form-submit-btn" iconCls="icon-ok" onclick="javascript:submitNewsWindow();">确定</a> 
 					<a class="easyui-linkbutton" iconCls="icon-cancel" onclick="cancel();">取消</a>
 				</div>
 				<div class="loading display-none" style="text-align: center; padding-top: 10px; vertical-align:middle;">
@@ -250,7 +267,7 @@
 					</tr>
 					<tr>
 						<td>文字说明</td>
-						<td><textarea style="width: 340px;height: 100px;" id="htm_edit_img_desc"></textarea></td>
+						<td><textarea style="width: 340px;height: 100px;" id="htm_edit_img_desc" class="clear-input"></textarea></td>
 					</tr>
 					<tr>
 						<td><input style="display:none"  readonly="readonly" id="htm_edit_index"  class="clear-input"></td>
