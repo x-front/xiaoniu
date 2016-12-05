@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -17,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.xiaoniu.db.domain.AdminUserInfo;
 import com.xiaoniu.db.domain.AdminUserInfoVO;
 import com.xiaoniu.db.domain.AdminUserRole;
+import com.xiaoniu.domain.AdminUserDetailsVO;
 import com.xiaoniu.service.adminUserInfo.AdminUserInfoService;
 import com.xiaoniu.service.adminUserRole.AdminUserRoleService;
 import com.xiaoniu.utils.ZxxzxjDESPasswordEncoder;
@@ -121,6 +123,40 @@ public class AdminUserInfoController {
 		}catch(Exception e){
 			map.put(Contants.RESULT_CODE, MsgCode.SAVE_FAILED.getCode());
 			map.put(Contants.MSG, e);
+		}
+		return map;
+	} 
+	
+	@RequestMapping("updateAdminSelfInfo")
+	@ResponseBody
+	public Map<String,Object> updateAdminSelfInfo(AdminUserInfo entity,Integer roleId){
+		Map<String,Object> map = new HashMap<String,Object>();
+		try{
+			Date now = new Date();
+			if(entity.getPassword() != null && !"".equals(entity.getPassword().trim())){
+				ZxxzxjDESPasswordEncoder des = new ZxxzxjDESPasswordEncoder();
+				String encPassword = des.encodePassword(entity.getPassword(), null);
+				entity.setPassword(encPassword);
+			}
+			entity.setUpdateTime(now);
+			
+			Object obj = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			if ( obj instanceof AdminUserDetailsVO){
+				AdminUserDetailsVO user = (AdminUserDetailsVO) obj;
+				entity.setId(user.getAdminUserInfo().getId());
+				entity.setLoginCode(user.getAdminUserInfo().getLoginCode());
+				service.updateNotNull(entity);
+				
+				map.put(Contants.RESULT_CODE, MsgCode.SAVE_SUCCESS.getCode());
+				map.put(Contants.MSG, MsgCode.SAVE_SUCCESS.getMsg());
+			}else{
+				map.put(Contants.RESULT_CODE, MsgCode.SAVE_FAILED.getCode());
+				map.put(Contants.MSG, "未登陆用户");
+			}
+			
+		}catch(Exception e){
+			map.put(Contants.RESULT_CODE, MsgCode.SAVE_FAILED.getCode());
+			map.put(Contants.MSG, e.getMessage());
 		}
 		return map;
 	} 
