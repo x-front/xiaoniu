@@ -74,8 +74,6 @@
 	commonTable.loadDateURI = "/secure/imageNews/queryList";
 	commonTable.batchUpdateValidURI = "/secure/imageNews/batchUpdateValid?strIds=";
 	commonTable.batchDeleteURI = "/secure/imageNews/batchDelete?strIds=";
-	commonTable.updateURI = "/secure/imageNews/insert";
-	commonTable.insertURI = "/secure/imageNews/insert";
 	commonTable.title = "新闻图集";
 	commonTable.nowrap = false;
 	commonTable.tableQueryParams = {
@@ -149,12 +147,42 @@
 		
 		commonTable.init();
 		removePageLoading();
+		
+		$(".main_c ul li").onclick(function(){
+			$(".main_c ul li").removeClass("selected");
+			$(this).addClass("selected");
+		});
 	});
 	
 	function initAddNewsWindow(){
 		$(".datagrid").addClass("none");
 		$("#edit-div").removeClass("none");
-		$("#edit-form").attr("action",commonTable.insertURI);
+	}
+	
+	function initUpdateNewsWindow(index){
+		var rows = $("#html_table").datagrid("getRows"),
+		row = rows[index];
+		$.post("/secure/imageNews/queryImageNewsByNewsId",{'newsId':newsId},function(result){
+			if(result.resultCode == 0){
+				$('#edit-div-newsId').textbox('setValue',row['newsId']);
+				var list = result.list;
+				for(var item in list){
+					var html = '';
+					if(row['id'] == item.id){
+						html = '<li class="selected"><img src="'+item.image+'" alt=""/><p>'+item.content+'</p></li>';
+					}else{
+						html = '<li><img src="'+item.image+'" alt=""/><p>'+item.content+'</p></li>';
+					}
+					$(".main_c ul:eq(0)").append(html);
+				}
+				$(".datagrid").addClass("none");
+				$("#edit-div").removeClass("none");
+				resizeImageList();
+				initUpdateImageWindow();
+			}else{
+				$.messager.alert('提示',result['msg']);
+			}
+		},"json");
 	}
 	
 	function closeAddNewsWindow(){
@@ -165,21 +193,35 @@
 	function submitNewsWindow(){
 		var length = $('.main_c li').length;
 		var newsId = $('#edit-div-newsId').textbox('getValue');
+		var postData = [];
 		for(var i=0; i<length; i++){
 			var node = $('.main_c li:eq('+i+')'); 
 			var imgUrl = node.find('img:eq(0)').attr('src');
 			var content = node.find('p:eq(0)').html();
-			$.post(commonTable.insertURI,{
+			postData.push({
 				'newsId':newsId,
 				'image':imgUrl,
 				'content':content,
 				'valid':1,
-				'serialNumber':i
+				'serialNumber':i});
+		}
+		if(postData.length > 0){
+			$.post("/secure/imageNews/saveImageNews",{
+				'data':postData
+			},function(result){
+				if(result.resultCode == 0){
+					$.messager.alert('提示',result['msg']);
+					$(".datagrid").removeClass("none");
+					$("#edit-div").addClass("none");
+				}else{
+					$.messager.alert('提示',result['msg']);
+				}
 			},'json');
+		}else{
+			$.messager.alert('提示',"没有内容，不能提交");
 		}
 		
-		$(".datagrid").removeClass("none");
-		$("#edit-div").addClass("none");
+		
 	}
 	
 	function initAddImageWindow(){
@@ -193,6 +235,31 @@
 		$(".main_c ul:eq(0)").append(html);
 		resizeImageList();
 		$("#htm_edit").window('close');
+	}
+	
+	function LiMoveToPre(){
+		$(".main_c ul li selected").prev().before($(".main_c ul li selected"));
+	}
+	
+	function LiMoveToNext(){
+		$(".main_c ul li selected").next().after($(".main_c ul li selected"));
+	}
+	
+	function initUpdateImageWindow(){
+		var node = $(".main_c ul li selected");
+		if(node.length <= 0){
+			$.messager.alert('提示',"请选择图文");
+			return;
+		}
+		var imgUrl = node.find("img").eq(0).attr("src");
+		var html = node.find("p").eq(0).html();
+		$('#htm_edit_img_desc').val(html);
+		$('#edit-div-banner').textbox('setValue',imgUrl);
+		$("#htm_edit").window('open');
+	}
+	
+	function removeLi(){
+		$(".main_c ul li selected").remove();
 	}
 </script>
 </head>
@@ -215,9 +282,11 @@
 				<div class="wrap">
 				    <div class="btns">
 				    	<span>新闻ID</span><input style="width:100px;" class="easyui-textbox clear-textbox" id="edit-div-newsId" prompt="请输入新闻ID" required="required">
-				        <a class="btn1" href="javascript:initAddImageWindow();">添加图片</a>
-				        <a class="btn2" href="javascript:;">按钮二</a>
-				        <a class="btn3" href="javascript:;">按钮三</a>
+				        <a class="btn1" href="javascript:initAddImageWindow();">添加图文</a>
+				        <a class="btn2" href="javascript:initUpdateImageWindow();">修改图文</a>
+				        <a class="btn3" href="javascript:removeLi();">图文向前移动</a>
+				        <a class="btn1" href="javascript:LiMoveToPre();">图文向前移动</a>
+				        <a class="btn2" href="javascript:LiMoveToNext();">图文向后移动</a>
 				    </div>
 				    <div class="main">
 				        <a class="left" href="javascript:;"><</a>

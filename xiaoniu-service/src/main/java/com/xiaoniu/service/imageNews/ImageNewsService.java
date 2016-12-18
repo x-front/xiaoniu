@@ -13,5 +13,7 @@ import com.xiaoniu.service.base.BaseService;
  *
  */
 public interface ImageNewsService extends BaseService<CmpyImageNews>{
-
+	public void deleteImageNewsByNewsId(Integer newsId)throws Exception;
+	
+	public void updateImageNewsValidByNewsId(Integer newsId,Integer valid)throws Exception;
 }
