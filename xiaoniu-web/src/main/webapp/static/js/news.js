@@ -25,8 +25,8 @@ function _xn_init() {
             $(".news-pic ul:eq(0)").html(e);
             $(".news-pic ul:eq(1)").html(b);
             $(".news-pic ul:eq(2)").html(f);
-            var w = $(".idV-img").css("width").slice(0, -2);
-            var w1 = $(".idV-txt").css("width").slice(0, -2);
+            var w = $(".idV-img").width();
+            var w1 = $(".idV-txt").width();
             var n = $(".idV-pic-t li").size();
             $(".idV-pic-t,.idV-pic-b").css("width",w*n+"px");
             if($(window).width()<400){
