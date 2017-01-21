@@ -20,7 +20,7 @@ img{border:none;vertical-align: middle;display:inline-block;max-width: 100%;}
 .s8{background:url(../images/bg8.jpg) no-repeat top center;padding:0 0 116px 0;overflow: hidden;}
 .s9{background:url(../images/bg9.jpg) no-repeat top center;padding:125px 0 215px 0;overflow: hidden;}
 .s10{background:url(../images/bg10.jpg) no-repeat top center;padding:884px 0 200px 0}
-.s11{background:url(../images/bg11.jpg) no-repeat top center;padding:0 0 160px 0;}
+.s11{background:url(../images/bg11.jpg) no-repeat top center;padding:0 0 160px 0;display:none;}
 .s12{background:url(../images/bg12.jpg) no-repeat top center;padding:949px 0 0 0;}
 .s13{background:url(../images/bg13.jpg) no-repeat top center;padding:200px 0  210px 0;overflow: hidden;background-size:100%}
 .s15{background:url(../images/bg15.jpg) no-repeat top center;padding:0 0 255px 0;overflow: hidden;background-size:100%;}

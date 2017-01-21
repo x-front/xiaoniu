@@ -20,7 +20,7 @@ img{border:none;vertical-align: middle;display:inline-block;max-width: 100%}
 .s8{background:url(../mobile/images/bg_06.jpg) no-repeat center top;padding-bottom: 110px;}
 .s9{padding-bottom:110px;}
 .s10{background:url(../mobile/images/bg_07.jpg) no-repeat center top;padding-bottom:210px;}
-.s11{background:url(../mobile/images/bg_08.jpg) no-repeat center top;padding-bottom:190px}
+.s11{background:url(../mobile/images/bg_08.jpg) no-repeat center top;padding-bottom:190px;display:none;}
 .s12{background:url(../mobile/images/bg_09.jpg) no-repeat center top;padding-bottom:200px}
 .s13{background:url(../mobile/images/bg_10.jpg) no-repeat center;padding-bottom: 145px;}
 .s14{background:url(../mobile/images/bg_11.jpg) no-repeat center top;padding-bottom: 180px;}
