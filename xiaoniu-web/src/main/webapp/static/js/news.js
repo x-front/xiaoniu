@@ -15,7 +15,8 @@ function _xn_init() {
     $.post("/news/list", {type: 11, page: 1, rows: 4, top: 0}, function (a) {
         if (a.resultCode == 0) {
             var g = a.rows;
-            var e = "", f = "", b = "";
+//            var e = "", f = "", b = "";
+            var e = '<li><a href="/static/zlbg.pdf"><img src="/static/images/lbt.jpg"/></a></li>', f = '<li><a href="/static/zlbg.pdf"><h3>小牛资本金融科技战略报告</h3><p></p></a></li>', b = '<li><a href="javascript:;"></a></li>';
             for (var d = 0; d < g.length; d++) {
                 var c = g[d];
                 e += '<li><a href="/static/news-t-inside.html?id=' + c.id + '"><img src="' + c.banner + '"/></a></li>';

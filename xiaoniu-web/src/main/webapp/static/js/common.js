@@ -4,6 +4,26 @@
  * @Copyright 2016
  */
 $(function () {
+    /*s1_video*/
+    $(".s1_video .close").click(function(){
+        $(".s1_zz").fadeOut(500);
+        $(".s1_video").fadeOut(500);
+        $(".s1_video video")[0].pause();
+    });
+    var u = navigator.userAgent;
+    var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+    if (isiOS) {
+        $(".s1_video .play").hide();
+        $(".s1_video video").attr({"controls":"controls","autoplay":"autoplay"});
+    }else{
+        $(".s1_video .play").click(function(){
+            $(".s1_video video")[0].play();
+            $(".s1_video video").attr("controls","controls");
+            $(this).animate({opacity:0},500)
+        });
+
+    }
+    /*nav*/
     $(".menu").click(function () {
         $(".sidebar").animate({right: 0}, 500);
         $(this).animate({opacity: 0}, 500);
@@ -97,5 +117,19 @@ $(function () {
     }
     $(".idV-more").append("<p>More</p>");
     $(".menu").html("<span class='ms1'></span><span class='ms2'></span><span class='ms1 ms3'></span>");
+/*pics*/
+    var p_i_l=$(".pics_img_l"),p_i_r=$(".pics_img_r"),p_i_ul=$(".pics_img ul"),p_i_li=$(".pics_img ul li"),p_i1=$(".pics_txt .num .i1"),p_i3=$(".pics_txt .num .i3"),p_t_li=$(".pics_txt ul li"),p_b_l=$(".pics_b_l"),p_b_r=$(".pics_b_r"),p_b_li=$(".pics_in_list ul li");
+    var pi=0;
+    p_i3.text(p_i_li.length);
+    for(var i=0;i<p_i_li.length;i++){
+        if(p_i_li.eq(i).hasClass("on")){
+            p_i1.text(i+1);
+        }
+    }
+    p_i_l.click(function(){
 
+    });
+    p_i_r.click(function(){
+
+    })
 });
