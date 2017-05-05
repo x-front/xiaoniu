@@ -92,10 +92,10 @@ public class AliyunOSSController {
 		String saveUrl = "";
 		//定义允许上传的文件扩展名
 		HashMap<String, String> extMap = new HashMap<String, String>();
-		extMap.put("image", "gif,jpg,jpeg,png,bmp");
+		extMap.put("image", "gif,jpg,jpeg,png,bmp,pdf");
 		extMap.put("flash", "swf,flv");
 		extMap.put("media", "swf,flv,mp3,mp4,wav,wma,wmv,mid,avi,mpg,asf,rm,rmvb");
-		extMap.put("file", "doc,docx,xls,xlsx,ppt,htm,html,txt,zip,rar,gz,bz2");
+		extMap.put("file", "doc,docx,xls,xlsx,ppt,htm,html,txt,zip,rar,gz,bz2,pdf");
 
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter writer = null;
@@ -169,7 +169,7 @@ public class AliyunOSSController {
 		
 		Map<String,Object> resultMap = new HashMap<String, Object>();
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		String[] fileTypes = new String[]{"gif", "jpg", "jpeg", "png", "bmp"};
+		String[] fileTypes = new String[]{"gif", "jpg", "jpeg", "png", "bmp","pdf"};
 		
 		String dirName = request.getParameter("dir");
 		if (dirName != null) {
