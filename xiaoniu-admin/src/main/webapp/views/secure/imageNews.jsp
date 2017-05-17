@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>首页新闻</title>
+<title>小牛图集</title>
 <jsp:include page="../public/common/head.jsp"></jsp:include>
 <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/xiaoniu/CRUD.css'/>"/>
 <link rel="stylesheet" href="/resources/kindeditor-4.1.10/themes/default/default.css" />
@@ -16,16 +16,16 @@
 <style type="text/css" rel="stylesheet">
      body{height:100%;width:100%}
      *{margin:0;padding:0}
-     ul,li{list-style: none}
-     a{text-decoration: none;outline: none;color:#FFF;text-align: center;}
+     form ul,li{list-style: none}
+     form a{text-decoration: none;outline: none;color:#FFF;text-align: center;}
      .main_c li img{vertical-align: middle;width:100%;max-width: 100%;}
      .clear{clear:both}
      .wrap{width:1000px;margin:0 auto 0;padding:20px}
      .btns{margin-bottom: 20px;}
-     .btns a{display:inline-block;width:150px;height:50px;line-height: 50px;font-size: 16px;color:#FFF;border-radius: 5px;background: #ce2f10;margin-right: 20px;}
+     .btns a{display:inline-block;width:130px;height:50px;line-height: 50px;font-size: 16px;color:#FFF;border-radius: 5px;background: #ce2f10;margin-right: 18px;}
      .btns .btn2{background: #4863ff}
      .btns .btn3{background: #29bd4d}
-     .main a{display:inline-block;width:50px;height:400px;line-height: 600px;border-radius: 25px;font-size: 40px;}
+     .main a{display:inline-block;width:50px;height:400px;line-height: 400px;border-radius: 25px;font-size: 40px;}
      .left{float:left;background:#3fb9be}
      .right{float:right;background:#3fb9be}
      .main_c{float:left;width:840px;;margin-left:30px;;overflow: hidden;border:1px solid #ff9829;height:400px;text-align: center;position:relative;box-sizing: border-box}
@@ -148,7 +148,7 @@
 		commonTable.init();
 		removePageLoading();
 		
-		$(".main_c ul li").onclick(function(){
+		$(".main_c ul li").click(function(){
 			$(".main_c ul li").removeClass("selected");
 			$(this).addClass("selected");
 		});
@@ -188,6 +188,8 @@
 	function closeAddNewsWindow(){
 		$(".clear-input").val('');
 		$(".clear-textbox").textbox('setValue','');
+		$(".datagrid").removeClass("none");
+		$("#edit-div").addClass("none");
 	}
 	
 	function submitNewsWindow(){
@@ -301,7 +303,7 @@
 				
 				<div class="opt_btn"  style="text-align: center;padding-top: 10px;">
 					<a class="easyui-linkbutton" id="import-form-submit-btn" iconCls="icon-ok" onclick="javascript:submitNewsWindow();">确定</a> 
-					<a class="easyui-linkbutton" iconCls="icon-cancel" onclick="cancel();">取消</a>
+					<a class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:closeAddNewsWindow();">取消</a>
 				</div>
 				<div class="loading display-none" style="text-align: center; padding-top: 10px; vertical-align:middle;">
 					<img alt="" src="/resources/images/loading.gif" style="vertical-align:middle;">
