@@ -301,7 +301,7 @@
 			<a href="javascript:void(0);" onclick="javascript:commonTable.batchDelete()"class="easyui-linkbutton" title="删除" plain="true" iconCls="icon-cancel" id="delBtn">删除</a>
 			<a href="javascript:void(0);" onclick="javascript:commonTable.batchPublish()"class="easyui-linkbutton" title="发布" plain="true" iconCls="icon-ok">发布</a>
 			<a href="javascript:void(0);" onclick="javascript:commonTable.batchCancelPublish()"class="easyui-linkbutton" title="撤销" plain="true" iconCls="icon-undo">撤销发布</a>
-			<c:if test="${type ge 1 and type le 4 or type eq 9}">
+			<c:if test="${type ge 1 and type le 4 or type eq 9 or type eq 12}">
 				<a href="javascript:void(0);" onclick="javascript:set2Top()"class="easyui-linkbutton" title="置顶" plain="true" iconCls="icon-filter">置顶</a>
 			</c:if>
 			<a href="javascript:void(0);" onclick="javascript:set2IndexNews()"class="easyui-linkbutton" title="添加" plain="true" iconCls="icon-edit" >添加到首页新闻列表</a>
@@ -331,6 +331,7 @@
 									<option value="9">牛人文化</option>
 									<option value="10">小牛思想声音</option>
 									<option value="11">小牛新闻</option>
+									<option value="11">招聘动态</option>
 									<option value="15">小牛看世界</option>
 								</select>
 							</td>
