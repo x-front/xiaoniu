@@ -44,7 +44,7 @@
     </div>
     <div class="sidebar">
       <div class="sidewrap">
-          <div class="logo"><img src="/static/images/new-logo_03.png"/></div>
+          <div class="logo"><img src="/static/images/logo.svg"/></div>
           <ul class="nav">
               <li><a href="/static/index.html">首页</a></li>
               <Li><a href="/static/fold.html">小牛简介</a></Li>
@@ -100,12 +100,15 @@
       <div class="section banner">
           <div class="content">
               <div class="s1_video_1">
+                  <div class="s1_v">
+                      <video width="100%" height="100%" poster="/static/images/s1.png" src="/static/images/s0.mp4" loop autoplay></video>
+                  </div>
                   <span></span>
                   <a class="play_1" href="javascript:;">
                       <!--<img src="/static/images/play_03.png"/>-->
                   </a>
-                  <a href="javascript:;" class="close"><img src="/static/images/close.png"/></a>
-                  <video width="100%" height="100%" src="/static/images/s0.mp4" loop></video>
+                  <a href="javascript:;" class="close"><img src="/static/images/close.svg"/></a>
+
               </div>
               <!--<div class="s1_zz"></div>-->
 <!--
@@ -115,9 +118,6 @@
               </div>
 -->
               <div class="slogan a-fadeoutT">
-                  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="654" height="97" viewBox="0 0 654 97">
-                      <image id="图层_0" data-name="图层 0" width="654" height="97" xlink:href="data:img/png;base64,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"/>
-                  </svg>
               </div>
               <div class="b-news">
                   <span><i class="i1"></i><i class="i2"></i><i class="i3"></i></span>
@@ -165,22 +165,23 @@
           <div class="content">
               <div class="wrap">
                   <a class="s2-txt" href="/static/pro.html">
-                      <img class="img1 a-fadeoutT" src="/static/images/s2_03.png"/><br/>
-                      <img class="img2 a-fadeoutT" src="/static/images/s2_07.png"/><br/>
+                      <!--<img class="img1 a-fadeoutT" src="/static/images/s2_03.png"/>--><img class="img1 a-fadeoutT" src="/static/images/2.svg"/><br/>
+                      <!--<img class="img2 a-fadeoutT" src="/static/images/s2_07.png"/>--><img class="img2 a-fadeoutT" src="/static/images/2_1.svg"/><br/>
+
                       <span class="img3 a-fadeoutT">我们致力于让金融服务于实体经济，致力于为<br/><br/>
 所有人——无论是高净值家庭还是普通家庭<br/><br/>
 ——创造平等的、美好的金融服务。</span>
                   </a>
                   <a class="s2-txt1" href="/static/pro.html">
-                      <img class="img1 a-fadeoutL" src="/static/images/p_11.png"/><br/>
-                      <img class="img2 a-fadeoutL" src="/static/images/p_15.png"/><br/>
+                      <img class="img1 a-fadeoutL" src="/static/images/2_2.svg"/><br/>
+                      <img class="img2 a-fadeoutL" src="/static/images/2_3.svg"/><br/>
                       <span class="img3 a-fadeoutL">我们致力于让金融服务于实体经济，致力于为<br/><br/>
 所有人——无论是高净值家庭还是普通家庭<br/><br/>
 ——创造平等的、美好的金融服务。</span>
                   </a>
                   <a class="s2-txt2" href="/static/pro.html">
-                      <img class="img1 a-fadeoutL" src="/static/images/320_07.png"/><br/>
-                      <img class="img2 a-fadeoutL" src="/static/images/p_15.png"/><br/>
+                      <img class="img1 a-fadeoutL" src="/static/images/2_4.svg"/><br/>
+                      <img class="img2 a-fadeoutL" src="/static/images/2_3.svg"/><br/>
                       <span class="img3 a-fadeoutL">我们致力于让金融服务于实体经济，致力于为
 所有人——无论是高净值家庭还是普通家庭
 ——创造平等的、美好的金融服务。</span>
@@ -207,8 +208,8 @@
                       </li>
                   </ul>
                   <div class="r-line a-fadeoutB">
-                      <div class="mainxza"><div class="mainxz1"><div clss="mainxz1con"><img src="/static/images/11.png" alt="正向旋转线条" /></div></div></div><!--旋转层1-->
-                      <div class="mainxzb"><div class="mainxz2"><div clss="mainxz2con"><img src="/static/images/111.png" alt="反向旋转线条" /></div></div></div><!--旋转层2-->
+                      <div class="mainxza"><div class="mainxz1"><div clss="mainxz1con"><img src="/static/images/11.svg" alt="正向旋转线条" /></div></div></div><!--旋转层1-->
+                      <div class="mainxzb"><div class="mainxz2"><div clss="mainxz2con"><img src="/static/images/111.svg" alt="反向旋转线条" /></div></div></div><!--旋转层2-->
                   </div>
               </div>
           </div>
@@ -218,24 +219,30 @@
               <div class="wrap">
                   <div class="tit a-fadeoutT">
                       <a href="/static/about.html">
-                          <img src="/static/images/s_11.png"/></a>
+                         <!-- <img src="/static/images/s_11.png"/>-->
+                          <img src="/static/images/3.svg"/>
+                      </a>
                   </div>
                   <div class="tit11 a-fadeoutR">
                       <a href="/static/about.html">
-                          <img src="/static/images/p_19.png"/></a>
+                          <img src="/static/images/3_2.svg"/></a>
                   </div>
                   <div class="tit111 a-fadeoutR">
                       <a href="/static/about.html">
-                          <img src="/static/images/320_15.png"/></a>
+                          <img src="/static/images/3_4.svg"/></a>
                   </div>
                   <br/>
                   <div class="tit2 a-fadeoutT">
                       <a href="/static/about.html">
-                          <img src="/static/images/s_15.png"/></a>
+                          <!--<img src="/static/images/s_15.png"/>-->
+                          <img src="/static/images/3_1.svg"/>
+                      </a>
                   </div>
                   <div class="tit22 a-fadeoutR">
                       <a href="/static/about.html">
-                          <img src="/static/images/p_23.png"/></a>
+                          <img src="/static/images/3_3.svg"/>
+                          <span class="zs index_zs"><i class="i1">></i><i class="i2">></i><i class="i3">></i><i class="i4">></i><i class="i5">></i><i class="i6">></i></span>
+                      </a>
                   </div>
                   <br/>
                   <a href="/static/about.html"><div class="desc a-fadeoutT">
@@ -262,26 +269,29 @@
               <div class="s3-m">
                   <div class="tit a-fadeoutL">
                       <a href="/static/idV.html">
-                          <img src="/static/images/s_19.png"/></a>
+                          <!--<img src="/static/images/s_19.png"/>-->
+                          <img src="/static/images/4.svg"/>
+                      </a>
                   </div>
                   <div class="tit11 a-fadeoutL">
                       <a href="/static/idV.html">
-                          <img src="/static/images/p_27.png"/></a>
+                          <img src="/static/images/4_2.svg"/></a>
                   </div>
                   <div class="tit111 a-fadeoutL">
                       <a href="/static/idV.html">
-                          <img src="/static/images/320_23.png"/></a>
+                          <img src="/static/images/4_4.svg"/></a>
                   </div>
                   <br/>
                   <div class="tit2 a-fadeoutL">
                       <a href="/static/idV.html">
-                          <img src="/static/images/s_22.png"/>
+                          <!--<img src="/static/images/s_22.png"/>-->
+                          <img src="/static/images/4_1.svg"/>
                           <span class="zs index_zs"><i class="i1">></i><i class="i2">></i><i class="i3">></i><i class="i4">></i><i class="i5">></i><i class="i6">></i></span>
                       </a>
                   </div>
                   <div class="tit22 a-fadeoutL">
                       <a href="/static/idV.html">
-                          <img src="/static/images/p_31.png"/>
+                          <img src="/static/images/4_3.svg"/>
                           <span class="zs index_zs"><i class="i1">></i><i class="i2">></i><i class="i3">></i><i class="i4">></i><i class="i5">></i><i class="i6">></i></span>
                       </a>
                   </div>
@@ -300,26 +310,29 @@
               <div class="s5-m">
                   <div class="tit a-fadeoutR">
                       <a href="/static/news.html">
-                          <img src="/static/images/s_26.png"/></a>
+                          <!--<img src="/static/images/s_26.png"/>-->
+                          <img src="/static/images/5.svg"/>
+                      </a>
                   </div>
                   <div class="tit11 a-fadeoutR">
                       <a href="/static/news.html">
-                          <img src="/static/images/p_35.png"/></a>
+                          <img src="/static/images/5_2.svg"/></a>
                   </div>
                   <div class="tit111 a-fadeoutR">
                       <a href="/static/news.html">
-                          <img src="/static/images/320_31.png"/></a>
+                          <img src="/static/images/5_4.svg"/></a>
                   </div>
                   <br/>
                   <div class="tit2 a-fadeoutR">
                       <a href="/static/news.html">
-                          <img src="/static/images/s_29.png"/>
+                          <!--<img src="/static/images/s_29.png"/>-->
+                          <img src="/static/images/5_1.svg"/>
                           <span class="zs index_zs"><i class="i1">></i><i class="i2">></i><i class="i3">></i><i class="i4">></i><i class="i5">></i><i class="i6">></i></span>
                       </a>
                   </div>
                   <div class="tit22 a-fadeoutR">
                       <a href="/static/news.html">
-                          <img src="/static/images/p_39.png"/>
+                          <img src="/static/images/5_3.svg"/>
                           <span class="zs index_zs"><i class="i1">></i><i class="i2">></i><i class="i3">></i><i class="i4">></i><i class="i5">></i><i class="i6">></i></span>
                       </a>
                   </div>
@@ -338,26 +351,29 @@
               <div class="s4-m">
                   <div class="tit a-fadeoutL">
                       <a href="/static/beautiful.html">
-                          <img src="/static/images/s_33.png"/></a>
+                          <!--<img src="/static/images/s_33.png"/>-->
+                          <img src="/static/images/6.svg"/>
+                      </a>
                   </div>
                   <div class="tit11 a-fadeoutL">
                       <a href="/static/beautiful.html">
-                          <img src="/static/images/p_43.png"/></a>
+                          <img src="/static/images/6_2.svg"/></a>
                   </div>
                   <div class="tit111 a-fadeoutL">
                       <a href="/static/beautiful.html">
-                          <img src="/static/images/320_39.png"/></a>
+                          <img src="/static/images/6_4.svg"/></a>
                   </div>
                   <br/>
                   <div class="tit2 a-fadeoutL">
                       <a href="/static/beautiful.html">
-                          <img src="/static/images/s_36.png"/>
+                          <!--<img src="/static/images/s_36.png"/>-->
+                          <img src="/static/images/6_1.svg"/>
                           <span class="zs index_zs"><i class="i1">></i><i class="i2">></i><i class="i3">></i><i class="i4">></i><i class="i5">></i><i class="i6">></i></span>
                       </a>
                   </div>
                   <div class="tit22 a-fadeoutL">
                       <a href="/static/beautiful.html">
-                          <img src="/static/images/p_47.png"/>
+                          <img src="/static/images/6_3.svg"/>
                           <span class="zs index_zs"><i class="i1">></i><i class="i2">></i><i class="i3">></i><i class="i4">></i><i class="i5">></i><i class="i6">></i></span>
                       </a>
                   </div>
@@ -375,26 +391,29 @@
               <div class="s5-m">
                   <div class="tit a-fadeoutR">
                   <a href="/hr/index.html">
-                      <img src="/static/images/s_40.png"/></a>
+                      <!--<img src="/static/images/s_40.png"/>-->
+                      <img src="/static/images/7.svg"/>
+                  </a>
               </div>
                   <div class="tit11 a-fadeoutR">
                   <a href="/hr/index.html">
-                      <img src="/static/images/p_51.png"/></a>
+                      <img src="/static/images/7_2.svg"/></a>
               </div>
                   <div class="tit111 a-fadeoutR">
                   <a href="/hr/index.html">
-                      <img src="/static/images/320_47.png"/></a>
+                      <img src="/static/images/7_4.svg"/></a>
               </div>
                   <br/>
                   <div class="tit2 a-fadeoutR">
                   <a href="/hr/index.html">
-                      <img src="/static/images/s_44.png"/>
+                      <!--<img src="/static/images/s_44.png"/>-->
+                      <img src="/static/images/7_1.svg"/>
                       <span class="zs index_zs"><i class="i1">></i><i class="i2">></i><i class="i3">></i><i class="i4">></i><i class="i5">></i><i class="i6">></i></span>
                   </a>
               </div>
                   <div class="tit22 a-fadeoutR">
                   <a href="/hr/index.html">
-                      <img src="/static/images/p_55.png"/>
+                      <img src="/static/images/7_3.svg"/>
                       <span class="zs index_zs"><i class="i1">></i><i class="i2">></i><i class="i3">></i><i class="i4">></i><i class="i5">></i><i class="i6">></i></span>
                   </a>
               </div>

@@ -10,12 +10,34 @@ $(function(){
     /*s1_video_1*/
     var sv1=$(".s1_video_1");
     var sv= $(".s1_video_1 video");
-    sv[0].play();
+    var ww=$(window).width();
+    if(ww<1025){
+        var u = navigator.userAgent;
+        var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+        if (isiOS) {
+            $(".play_1").css("background","none");
+        }
+    }
+    if(ww<769&&ww>750){
+        sv.attr({"src":"/static/images/s2.mp4","poster":"/static/images/s2.png"})
+    }
+    if(ww<500){
+        sv.attr({"src":"/static/images/s3.mp4","poster":"/static/images/s3.png"})
+    }
+
     var video_w=sv.width();
-    var video_h=video_w*(350/1920);
+    var video_h;
+    if(ww<769&&ww>750){
+        video_h=video_w*(250/768);
+    }else if(ww<500){
+        video_h=video_w*(300/750);
+    }else{
+        video_h=video_w*(350/1920);
+    }
+    console.log(video_h);
     sv1.css("height",video_h+"px");
     $("#header.index-header").css("top",video_h+"px");
-    var ww=$(window).width();
+    sv[0].play();
     var num;
     if(ww<=1280){
         num=100
@@ -34,22 +56,27 @@ $(function(){
     $(".banner").css("background-position-y",video_h-num+"px");
 
     $(".play_1").click(function(){
-        sv.attr({"src":"/static/images/s1.mp4","controls":"controls"});
+        sv.attr({"src":"/static/images/s1.mp4","controls":"controls","poster":"/static/images/s1_video.jpg"});
         sv[0].play();
         var sv_h=video_w*(720/1280);
         sv1.animate({"height":sv_h+"px"},1500,'linear',function(){
-            sv1.css('top','auto');
-            sv1.animate({"bottom":0},1000,function(){
-                $(".s1_video_1 .close").animate({"top":(sv_h-$(window).height()+20)+"px"})
-            });
+            if(ww>1025){
+                sv1.css('top','auto');
+                sv1.animate({"bottom":0},1000,function(){
+                    $(".s1_video_1 .close").animate({"top":(sv_h-$(window).height()+20)+"px"});
+                    /*if(ww>750){
+                        $(".s1_video_1 .close").animate({"top":(sv_h-$(window).height()+20)+"px"})
+                    }else{
+                        $(".s1_video_1 .close").animate({"top":(sv_h-$(window).height()+8)+"px"})
+                    }*/
+                });
+            }else{
+                sv1.animate({'top':'50%'});
+                sv1.css({'transform':'translate(-50%,-50%)'});
+                $(".s1_video_1 .close").animate({"top":-($(window).height()-sv_h)/2+8+"px"})
+            }
+
         });
-/*
-        sv1.hover(function(){
-            $(".s1_video_1 .close").fadeIn(1000);
-        },function(){
-            $(".s1_video_1 .close").fadeOut(1000);
-        });
-*/
         console.log(sv_h);
         $(".banner .slogan").animate({"top":"120%"},700,'linear');
         $("#fp-nav.left").animate({"top":"110%"},700,'linear');
@@ -64,10 +91,6 @@ $(function(){
     $(".s1_video_1 .close").click(function(){
         var sh=sv.height();
         $.fn.fullpage.setAllowScrolling(true);
-/*
-        sv1.css({"top":0,"bottom":"auto"});
-*/
-        /*sv1.animate({"height":0},700,'linear');*/
         sv1.animate({"top":-sh+'px'},700,'linear',function(){
             $(this).hide();
         });
@@ -84,29 +107,15 @@ $(function(){
         },30);
         $(this).css("display","none");
         $(".play_1").fadeOut();
-        $(".index-header .big-logo").animate({"height":"66px"},300,'linear');
+        if(ww>750){
+            $(".index-header .big-logo").animate({"height":"66px"},300,'linear');
+        }
         $(".banner .slogan").animate({"top":"50%"},700,'linear');
         $("#fp-nav.left").animate({"top":"50%"},400,'linear');
         $("#header.index-header").animate({"top":0},700,'linear');
         $(".banner").animate({"background-position-y":"0"},700,'linear');
         $(".b-news").animate({"top":"92%"},300,'linear');
     });
-/*
-        var docElm = document.documentElement;
-        if(docElm.requestFullscreen){    //W3C
-            docElm.requestFullscreen();
-        }
-        else if(docElm.mozRequestFullScreen) {    //FireFox
-            docElm.mozRequestFullScreen();
-        }
-        else if(docElm.webkitRequestFullScreen) {    //Chrome...
-            docElm.webkitRequestFullScreen();
-        }
-        else if(docElm.msRequestFullscreen) {    //IE11
-            docElm.msRequestFullscreen();
-        }
-*/
-
 
     /*s1_video*/
 /*
