@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaoniu.db.mapper.CmpyImageNewsHeadMapper">
+  <resultMap id="BaseResultMap" type="com.xiaoniu.db.domain.CmpyImageNewsHead">
+    <!--
+      WARNING - @mbggenerated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="show_time" jdbcType="BIGINT" property="showTime" />
+    <result column="img_url_1" jdbcType="VARCHAR" property="imgUrl1" />
+    <result column="img_url_2" jdbcType="VARCHAR" property="imgUrl2" />
+    <result column="img_url_3" jdbcType="VARCHAR" property="imgUrl3" />
+    <result column="valid" jdbcType="INTEGER" property="valid" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+</mapper>

@@ -17,6 +17,8 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.xiaoniu.controller.base.BaseController;
 import com.xiaoniu.db.domain.CmpyImageNews;
+import com.xiaoniu.db.domain.CmpyImageNewsHead;
+import com.xiaoniu.service.imageNews.ImageNewsHeadService;
 import com.xiaoniu.service.imageNews.ImageNewsService;
 import com.zxx.common.contants.Contants;
 import com.zxx.common.enums.MsgCode;
@@ -33,6 +35,9 @@ public class ImageNewsController extends BaseController<CmpyImageNews>{
 	@Autowired
 	private ImageNewsService service;
 	
+	@Autowired
+	private ImageNewsHeadService headService;
+	
 	@RequestMapping("imageNews.html")
 	public String imageNewsHtml(){
 		return "secure/imageNews";
@@ -42,19 +47,34 @@ public class ImageNewsController extends BaseController<CmpyImageNews>{
 	public Map<String,Object> saveImageNews(String data){
 		Map<String,Object> map = new HashMap<String,Object>();
 		try{
-			JSONArray jsArray = JSONArray.parseArray(data);
-			if(jsArray != null && jsArray.size() > 0){
-				Integer newsId = jsArray.getJSONObject(0).getInteger("newsId");
+			JSONObject jsObjData = JSONObject.parseObject(data);
+			JSONObject jsObjImgHead = jsObjData.getJSONObject("imgNewsHead");
+			JSONArray jsArray = jsObjData.getJSONArray("imgNewsDataList");
+			if(jsArray != null && jsArray.size() > 3){
+//				Integer newsId = jsArray.getJSONObject(0).getInteger("newsId");
 				Date now = new Date();
+				
+				CmpyImageNewsHead imageNewsHead = new CmpyImageNewsHead();
+				imageNewsHead.setTitle(jsObjImgHead.getString("title"));
+				imageNewsHead.setCreateTime(now);
+				imageNewsHead.setUpdateTime(now);
+				imageNewsHead.setShowTime(jsObjImgHead.getLongValue("showTime"));
+				imageNewsHead.setImgUrl1(jsObjImgHead.getString("image1"));
+				imageNewsHead.setImgUrl2(jsObjImgHead.getString("image2"));
+				imageNewsHead.setImgUrl3(jsObjImgHead.getString("image3"));
+				imageNewsHead.setValid(MsgCode.TRUE.getCode());
+				imageNewsHead = headService.save(imageNewsHead);
+				
+				
 //				service.deleteImageNewsByNewsId(newsId);
-				service.updateImageNewsValidByNewsId(newsId, MsgCode.FALSE.getCode());
+//				service.updateImageNewsValidByNewsId(imageNewsHead.getId(), MsgCode.FALSE.getCode());
 				for(int i=0; i<jsArray.size();i++){
 					JSONObject jsObj = jsArray.getJSONObject(i);
 					CmpyImageNews entity = new CmpyImageNews();
 					entity.setCreateTime(now);
 					entity.setUpdateTime(now);
 					entity.setImage(jsObj.getString("image"));
-					entity.setNewsId(newsId);
+					entity.setNewsId(imageNewsHead.getId());
 					entity.setContent(jsObj.getString("content"));
 					entity.setSerialNumber(jsObj.getInteger("serialNumber"));
 					entity.setValid( MsgCode.TRUE.getCode());
