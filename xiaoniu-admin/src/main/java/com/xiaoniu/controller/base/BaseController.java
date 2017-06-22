@@ -168,12 +168,13 @@ public abstract class BaseController<T extends BaseVO> implements InitializingBe
 		return map;
 	}
 	
+	/*
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		dateFormat.setLenient(true);
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(
 				dateFormat, true));
-	}
+	}*/
 
 }

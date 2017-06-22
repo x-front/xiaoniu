@@ -20,9 +20,9 @@
      form a{text-decoration: none;outline: none;color:#FFF;text-align: center;}
      .main_c li img{vertical-align: middle;width:100%;max-width: 100%;}
      .clear{clear:both}
-     .wrap{width:1000px;margin:0 auto 0;padding:20px}
-     .btns{margin-bottom: 20px;text-align: center;}
-     .btns a{display:inline-block;width:130px;height:50px;line-height: 50px;font-size: 16px;color:#FFF;border-radius: 5px;background: #ce2f10;margin-right: 18px;}
+     .wrap{width:1000px;margin:0 auto 0;padding:20px 20px 0 20px}
+     .btns{text-align: center;}
+     .btns a{display:inline-block;width:110px;height:50px;line-height: 50px;font-size: 16px;color:#FFF;border-radius: 5px;background: #ce2f10;margin-right: 10px;}
      .btns .btn2{background: #4863ff}
      .btns .btn3{background: #29bd4d}
      .main a{display:inline-block;width:50px;height:180px;line-height: 180px;border-radius: 5px;font-size: 40px;}
@@ -30,17 +30,14 @@
      .main_c ul{position:absolute;left:0;top:0;}
      .main_c li{width:200px;;margin:0 5px;float:left;height:400px;box-sizing: border-box;position:relative}
      .main_c li p{position:absolute;bottom:0;left:0;font-size: 16px;line-height: 24px;width:100%;height: 230px;overflow: hidden;}
-     .main_c li div{width:100%;height:128px;overflow: hidden;margin-top: 30px;}
+     .main_c li div{width:100%;height:128px;overflow: hidden;margin-top: 30px;opacity: 0.4;}
      .left-td{width:90px;}
      .left-btn-div{float:left;padding: 100px 0;}
      .left-btn-div a{background:#eeeeee}
      .right-btn-div a{background:#eeeeee}
      .right-btn-div{float:left;padding: 100px 0;}
      .main_c ul .selected div{    
-	     content: '';
-	    background: #000;
-	    opacity: 0.4;
-	    z-index: 1;
+	    opacity: 1;
 	  }
  </style>
 <script type="text/javascript">
@@ -57,9 +54,9 @@
     };
 </script>
 <script type="text/javascript">
-	commonTable.loadDateURI = "/secure/imageNews/queryList";
-	commonTable.batchUpdateValidURI = "/secure/imageNews/batchUpdateValid?strIds=";
-	commonTable.batchDeleteURI = "/secure/imageNews/batchDelete?strIds=";
+	commonTable.loadDateURI = "/secure/imageNews/queryImageHeadList";
+	commonTable.batchUpdateValidURI = "/secure/imageNews/batchUpdateValids?strIds=";
+	commonTable.batchDeleteURI = "/secure/imageNews/batchDel?strIds=";
 	commonTable.title = "新闻图集";
 	commonTable.nowrap = false;
 	commonTable.tableQueryParams = {
@@ -68,10 +65,8 @@
 	commonTable.columns = [
 		{field:'ck',checkbox:true},
 		{field:'id', title: 'ID',align:'center',  hidden:true},
-		{field:'newsId',title: '图集ID',align:'left'},
 		{field:'title',title: '标题',align:'left'},
-		{field:'image',title: '图片连接',align:'left',width:240},
-		{field:'content',title: '文字描述',align:'left',width:340},
+		{field:'imgUrl1',title: '图片连接',align:'left',width:240},
 		{field:'serialNumber',title: '序号',align:'center'},
 		validColumn,
 		createTimeColumn,
@@ -142,11 +137,11 @@
 	        var mw=parseInt($(".main_c").css("width").slice(0,-2));
 	        var l=parseInt($(".main_c ul").css("left").slice(0,-2));
 	        if(l==0){
-	            $(".main_c ul").animate({"left":-w/2+"px" });
+	            $(".main_c ul").animate({"left":-w+"px" });
 	        }else{
-	            if(l==-(uw-mw-(w/2+10))||l==-(uw-mw)){
+	            if(l==-(uw-mw-(w+10))||l==-(uw-mw)){
 	                $(".main_c ul").animate({"left":-(uw-mw)+"px"})
-	            }else if((-(l+w/2))%(w+10)==0||l==-w/2){
+	            }else if((-(l+w))%(w+10)==0||l==-w){
 	                $(".main_c ul").animate({"left":(l-(w+10))+"px" });
 	            }
 	
@@ -158,12 +153,12 @@
         	var mw=parseInt($(".main_c").css("width").slice(0,-2));
 	        var l=parseInt($(".main_c ul").css("left").slice(0,-2));
 	        if(l==-(uw-mw)){
-	            $(".main_c ul").animate({"left":l+(w/2+10)+"px"});
+	            $(".main_c ul").animate({"left":l+(w+10)+"px"});
 	        }else{
-	            if(l==-w/2||l==0){
+	            if(l==-w||l==0){
 	                $(".main_c ul").animate({"left":"0"});
 	
-	            }else if((-(l+w/2))%(w+10)==0){
+	            }else if((-(l+w))%(w+10)==0){
 	                $(".main_c ul").animate({"left":l+(w+10)+"px"});
 	            }
 	        }
@@ -181,20 +176,13 @@
 		var id = row['id'];
 		$.post("/secure/imageNews/queryImageNewsByNewsId",{'id':id},function(result){
 			if(result.resultCode == 0){
-				$('#edit-div-showtime').datatimebox('setValue',row['showtime']);
+				$('#edit-div-showtime').datebox('setValue',row['showtime']);
 				var list = result.list;
 				for(var item in list){
-					var html = '';
-					if(row['id'] == item.id){
-						html = '<li class="selected"><img src="'+item.image+'" alt=""/><p>'+item.content+'</p></li>';
-					}else{
-						html = '<li><img src="'+item.image+'" alt=""/><p>'+item.content+'</p></li>';
-					}
-					$(".main_c ul:eq(0)").append(html);
+					doAddSingleImage(item.content,item.image);
 				}
 				$(".datagrid").addClass("none");
 				$("#edit-div").removeClass("none");
-				resizeImageList();
 				initUpdateImageWindow();
 			}else{
 				$.messager.alert('提示',result['msg']);
@@ -211,9 +199,11 @@
 	
 	function submitNewsWindow(){
 		var length = $('.main_c li').length;
-		var showtime = $('#edit-div-showtime').datatimebox('getValue');
+		var showtime = $('#edit-div-showtime').datebox('getValue');
 		var postData = [];
 		var image1='',image2='',image3='';
+		var title = $("#edit-div-title").textbox("getValue");
+		var valid = $("#edit_form_valid").combobox("getValue");
 		for(var i=0; i<length; i++){
 			var node = $('.main_c li:eq('+i+')'); 
 			var imgUrl = node.find('img:eq(0)').attr('src');
@@ -234,18 +224,20 @@
 			}
 		}
 		
-		var imgHead = {
-				'showtime':showtime,
-				'title':title,
-				'image1':image1,
-				'image2':image2,
-				'image3':image3
-		};
-		
-		if(postData.length > 0){
+		if(!showtime){
+			showtime = (new Date()).getTime();
+		}else{
+			showtime = (new Date(showtime)).getTime();
+		}
+		if(postData.length > 2){
 			$.post("/secure/imageNews/saveImageNews",{
-				'imgNewsDataList':postData,
-				'imgNewsHead':imgHead
+				'showTime':showtime,
+				'title':title,
+				'img1':image1,
+				'img2':image2,
+				'img3':image3,
+				'valid':valid,
+				'data':JSON.stringify(postData)
 			},function(result){
 				if(result.resultCode == 0){
 					$.messager.alert('提示',result['msg']);
@@ -256,7 +248,7 @@
 				}
 			},'json');
 		}else{
-			$.messager.alert('提示',"没有内容，不能提交");
+			$.messager.alert('提示',"至少需要三张图片，不能提交");
 		}
 		
 		
@@ -269,23 +261,31 @@
 	function addSingleImage(){
 		var content = $('#htm_edit_img_desc').val();
 		var imgUrl = $('#edit-div-banner').textbox('getValue');
+		doAddSingleImage(content,imgUrl);
+	}
+	
+	function doAddSingleImage(content,imgUrl){
 		var html = '<li class="selected"><div class="li-div-img"><img src="'+imgUrl+'" alt=""/></div><p>'+content+'</p></li>';
 		$(".main_c ul li").removeClass("selected");
 		$(".main_c ul:eq(0)").append(html);
 		resizeImageList();
+		var liCount=$(".main_c ul li").length;
+		if(liCount >= 5){
+			$(".right").click();
+		}
 		$("#htm_edit").window('close');
 	}
 	
 	function LiMoveToPre(){
-		$(".main_c ul li selected").prev().before($(".main_c ul li selected"));
+		$(".main_c ul  .selected").prev().before($(".main_c ul .selected"));
 	}
 	
 	function LiMoveToNext(){
-		$(".main_c ul li selected").next().after($(".main_c ul li selected"));
+		$(".main_c ul .selected").next().after($(".main_c ul .selected"));
 	}
 	
 	function initUpdateImageWindow(){
-		var node = $(".main_c ul li selected");
+		var node = $(".main_c ul .selected");
 		if(node.length <= 0){
 			$.messager.alert('提示',"请选择图文");
 			return;
@@ -298,7 +298,7 @@
 	}
 	
 	function removeLi(){
-		$(".main_c ul li selected").remove();
+		$(".main_c ul .selected").remove();
 	}
 </script>
 </head>
@@ -319,15 +319,15 @@
 			<form id="edit-form" method="post">
 				<!-- 图片 -->
 				<div class="wrap">
-					<div style="margin-bottom:10px;text-align: center;">
+					<div style="margin-bottom:8px;text-align: center;">
 						<span style="margin-right:10px;">显示时间:</span><input style="width:140px;" class="easyui-datebox clear-datebox" id="edit-div-showtime" prompt="请选择图集时间" >
 						<span style="margin-left:40px;margin-right:10px;">是否发布:</span><select id="edit_form_valid" name="valid" class="easyui-combobox clear-combobox">
 												<option value="0">未发布</option>
 												<option value="1">发布</option>
 											</select>
 					</div>
-					<div style="margin-bottom:10px;text-align: center;">
-						<span>标题：</span><input style="width:600px;" class="easyui-textbox clear-textbox" id="edit-div-title" name="title" prompt="请输入图集标题">
+					<div style="margin-bottom:4px;text-align: center;">
+						<span>标题：</span><input style="width:600px;" class="easyui-textbox clear-textbox" id="edit-div-title" name="title" prompt="请输入图集标题" required="required">
 					</div>
 				    <div class="main">
 				    	<div class="left-btn-div">
@@ -345,9 +345,9 @@
 				    <div class="btns">
 				        <a class="btn1" href="javascript:initAddImageWindow();">添加图文</a>
 				        <a class="btn2" href="javascript:initUpdateImageWindow();">修改图文</a>
-				        <a class="btn3" href="javascript:removeLi();">图文向前移动</a>
-				        <a class="btn1" href="javascript:LiMoveToPre();">图文向前移动</a>
-				        <a class="btn2" href="javascript:LiMoveToNext();">图文向后移动</a>
+				        <a class="btn3" href="javascript:removeLi();">删除图文</a>
+				        <a class="btn1" href="javascript:LiMoveToPre();">向前移动</a>
+				        <a class="btn2" href="javascript:LiMoveToNext();">向后移动</a>
 				        <a class="btn3" href="javascript:preview();">预览</a>
 				    </div>
 				</div>

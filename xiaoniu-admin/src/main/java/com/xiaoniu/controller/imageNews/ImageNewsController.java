@@ -12,9 +12,11 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.github.pagehelper.PageInfo;
 import com.xiaoniu.controller.base.BaseController;
 import com.xiaoniu.db.domain.CmpyImageNews;
 import com.xiaoniu.db.domain.CmpyImageNewsHead;
@@ -22,6 +24,7 @@ import com.xiaoniu.service.imageNews.ImageNewsHeadService;
 import com.xiaoniu.service.imageNews.ImageNewsService;
 import com.zxx.common.contants.Contants;
 import com.zxx.common.enums.MsgCode;
+import com.zxx.common.utils.StringUtils;
 
 /**
  * @author zxx
@@ -43,33 +46,49 @@ public class ImageNewsController extends BaseController<CmpyImageNews>{
 		return "secure/imageNews";
 	}
 	
-	@RequestMapping("saveImageNews")
-	public Map<String,Object> saveImageNews(String data){
+	@RequestMapping("queryImageHeadList")
+	@ResponseBody
+	public Map<String,Object> queryImageHeadList(Integer page,Integer  rows, String orderBy,CmpyImageNewsHead entity){
 		Map<String,Object> map = new HashMap<String,Object>();
 		try{
-			JSONObject jsObjData = JSONObject.parseObject(data);
-			JSONObject jsObjImgHead = jsObjData.getJSONObject("imgNewsHead");
-			JSONArray jsArray = jsObjData.getJSONArray("imgNewsDataList");
-			if(jsArray != null && jsArray.size() > 3){
-//				Integer newsId = jsArray.getJSONObject(0).getInteger("newsId");
+			if(orderBy == null || "".equals(orderBy.trim())){
+				orderBy = " id desc";
+			}
+			PageInfo<CmpyImageNewsHead> pageInfo = headService.queryList(page, rows, orderBy, entity);
+			map.put(Contants.TOTAL, pageInfo.getTotal());
+			map.put(Contants.ROWS, pageInfo.getList());
+		}catch(Exception e){
+			map.put(Contants.RESULT_CODE, MsgCode.FALSE.getCode());
+			map.put(Contants.MSG, e);
+		}
+		return map;
+	}
+	
+	@RequestMapping("saveImageNews")
+	@ResponseBody
+	public Map<String,Object> saveImageNews(Integer valid,String title, Long showTime, String img1,String img2,String img3,String data){
+		Map<String,Object> map = new HashMap<String,Object>();
+		try{
+//			JSONObject jsObjData = JSONObject.parseObject(data);
+//			JSONObject jsObjImgHead = jsObjData.getJSONObject("imgNewsHead");
+//			JSONArray jsArray = jsObjData.getJSONArray("imgNewsDataList");
+			JSONArray list = JSONObject.parseArray(data);
+			if(list != null && list.size() > 2){
 				Date now = new Date();
-				
 				CmpyImageNewsHead imageNewsHead = new CmpyImageNewsHead();
-				imageNewsHead.setTitle(jsObjImgHead.getString("title"));
+				imageNewsHead.setValid(valid);
+				imageNewsHead.setTitle(title);
 				imageNewsHead.setCreateTime(now);
 				imageNewsHead.setUpdateTime(now);
-				imageNewsHead.setShowTime(jsObjImgHead.getLongValue("showTime"));
-				imageNewsHead.setImgUrl1(jsObjImgHead.getString("image1"));
-				imageNewsHead.setImgUrl2(jsObjImgHead.getString("image2"));
-				imageNewsHead.setImgUrl3(jsObjImgHead.getString("image3"));
-				imageNewsHead.setValid(MsgCode.TRUE.getCode());
+				imageNewsHead.setShowTime(showTime);
+				imageNewsHead.setImgUrl1(img1);
+				imageNewsHead.setImgUrl2(img2);
+				imageNewsHead.setImgUrl3(img3);
 				imageNewsHead = headService.save(imageNewsHead);
 				
 				
-//				service.deleteImageNewsByNewsId(newsId);
-//				service.updateImageNewsValidByNewsId(imageNewsHead.getId(), MsgCode.FALSE.getCode());
-				for(int i=0; i<jsArray.size();i++){
-					JSONObject jsObj = jsArray.getJSONObject(i);
+				for(int i=0; i<list.size();i++){
+					JSONObject jsObj = list.getJSONObject(i);
 					CmpyImageNews entity = new CmpyImageNews();
 					entity.setCreateTime(now);
 					entity.setUpdateTime(now);
@@ -84,7 +103,7 @@ public class ImageNewsController extends BaseController<CmpyImageNews>{
 				map.put(Contants.MSG, MsgCode.SAVE_SUCCESS.getMsg());
 			}else{
 				map.put(Contants.RESULT_CODE, MsgCode.SAVE_FAILED.getCode());
-				map.put(Contants.MSG, "json解析出错。\ndata："+data);
+				map.put(Contants.MSG, "json解析出错。");
 			}
 			
 		}catch(Exception e){
@@ -96,6 +115,7 @@ public class ImageNewsController extends BaseController<CmpyImageNews>{
 	
 	
 	@RequestMapping("queryImageNewsByNewsId")
+	@ResponseBody
 	public Map<String,Object> queryImageNewsByNewsId(Integer newsId){
 		Map<String,Object> map = new HashMap<String,Object>();
 		try{
@@ -106,6 +126,41 @@ public class ImageNewsController extends BaseController<CmpyImageNews>{
 			map.put("list", list);
 		}catch(Exception e){
 			map.put(Contants.RESULT_CODE, MsgCode.SAVE_FAILED.getCode());
+			map.put(Contants.MSG, e);
+		}
+		return map;
+	}
+	
+	@RequestMapping("batchUpdateValids")
+	@ResponseBody
+	public Map<String,Object> batchUpdateValid(String strIds,Integer valid){
+		Map<String,Object> map = new HashMap<String,Object>();
+		try{
+			Integer[] ids = StringUtils.convertStringToIds(strIds);
+			headService.batchUpdateValid(valid, ids);
+			map.put(Contants.RESULT_CODE, MsgCode.UPDATE_SUCCESS.getCode());
+			map.put(Contants.MSG, MsgCode.UPDATE_SUCCESS.getMsg());
+		}catch(Exception e){
+			map.put(Contants.RESULT_CODE, MsgCode.UPDATE_FAILED.getCode());
+			map.put(Contants.MSG, e);
+		}
+		return map;
+	}
+	
+	@RequestMapping("batchDel")
+	@ResponseBody
+	public Map<String,Object> batchDel(String strIds){
+		Map<String,Object> map = new HashMap<String,Object>();
+		try{
+			Integer[] ids = StringUtils.convertStringToIds(strIds);
+			headService.delete(ids);
+			for (int i = 0; i < ids.length; i++) {
+				service.deleteImageNewsByNewsId(ids[i]);
+			}
+			map.put(Contants.RESULT_CODE, MsgCode.DELETE_SUCCESS.getCode());
+			map.put(Contants.MSG, MsgCode.DELETE_SUCCESS.getMsg());
+		}catch(Exception e){
+			map.put(Contants.RESULT_CODE, MsgCode.DELETE_FAILED.getCode());
 			map.put(Contants.MSG, e);
 		}
 		return map;
