@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>小牛资本</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="robots" content="index,follow"/>
     <meta name="renderer" content="webkit">
     <meta http-equiv="Cache-Control" content="no-siteapp,no-transform"/>
@@ -10,6 +10,10 @@
     <meta name="author" content="深圳网站建设公司|中为科技 www.lonwin.net|jungley"/>
     <meta name="format-detection" content="telephone=no,email=no"/>
     <meta name="msapplication-tap-highlight" content="no">
+    <meta name="description" content="">
+    <div id='wx_pic' style='margin:0 auto;display:none;'>
+        <img src="/static/images/share.jpg"/>
+    </div>
     <link rel="stylesheet" href="/static/css/animation.css">
     <link rel="stylesheet" href="/static/css/index.css">
     <link rel="stylesheet" type="text/css" href="http://code.uemo.net/css/font-awesome.min.css">
@@ -17,42 +21,19 @@
     <script type="text/javascript" src="/static/js/jquery-1.8.3.min.js"></script>
     <script type="text/javascript" src="/static/js/lib.v1.min.js"></script>
     <script type="text/javascript" src="/static/js/org.js"></script>
+    <script src="/static/js/common.js"></script>
     <script type="text/javascript" src="/static/js/dateTool.js"></script>
     <script type="text/javascript" src="/static/js/news.js"></script>
     <!--[if !IE]><style>.idV-pic-t,.idV-pic-b{height:auto;position:absolute;top:0;left:0;display:flex;justify-content: space-between;display:-webkit-flex;-webkit-justify-content: space-between;}</style><![end if]-->
     <!--[if IE]><style>.idV-img ul li,.idV-txt ul li{float:left;}</style><![end if]-->
 </head>
 <body>
-<div id="header-inside">
-    <div class="header-inside">
-        <a href="/static/index.html" class="big-logo"></a>
-        <ul class="inside-nav hr-nav">
-            <!--<li><a href="/static/index.html">首页</a></li>
-            <li><a href="/static/hr-s.html">社会招聘</a></li>
-            <li><a href="/static/hr-s1.html">校园招聘</a></li>-->
-            <li class="active"><a href="/static/hr-x.html">招聘动态</a></li>
-            <li><a href="/static/hr-r.html">认识小牛</a></li>
-        </ul>
-        <a class="menu inside-menu" href="javascript:;">
-            <img src="/static/images/burger_white.png" alt="">
-        </a>
-        <div class="sidebar">
-            <div class="sidewrap">
-                <div class="logo"><img src="/static/images/logo_07.png"/></div>
-                <ul class="nav">
-                    <!--<li><a href="/static/index.html">首页</a></li>
-                    <li><a href="/static/hr-s.html">社会招聘</a></li>
-                    <li><a href="/static/hr-s1.html">校园招聘</a></li>-->
-                    <li><a href="/static/hr-x.html">招聘动态</a></li>
-                    <li><a href="/static/hr-r.html">认识小牛</a></li>
-                </ul>
-                <div class="search"><a href="javascript:;"><img src="/static/images/nav_share_03.png"/></a><input type="text"/></div>
-                <div class="ce"><a href="" class="active">中</a><a href="">EN</a></sp></div>
-                <a href="javascript:;" class="close"><img src="/static/images/close_white_small.png"/></a>
-            </div>
-        </div>
-    </div>
-</div>
+<!--nav-->
+<div id="header-inside"></div>
+<script type="text/javascript">
+    $("#header-inside").load("publicFile/hr_nav.html");
+</script>
+<!--nav end-->
 <!--<div class="hr-banner">
     <img src="/static/images/hr/hr-banner_02.jpg"/>
 </div>-->
@@ -68,7 +49,7 @@
     </div>
 </div>
 -->
-<div id="wrap">
+<div id="wrap" class="hr-x_wrap">
     <div class="wrap about idV">
         <div class="about-i">
             <div class="idV-pic news-pic">
@@ -117,14 +98,12 @@
 -->
     </div>
 </div>
-<div id="footer">
-    <div class="footer-inner">
-        <p><span>版权所有 &nbsp;&nbsp;&nbsp;&nbsp;小牛资本管理集团有限公司&nbsp;&nbsp;</span>  <a href="http://www.miitbeian.gov.cn/state/outPortal/loginPortal.action" target="_blank">粤ICP备14054585号-1</a></p>
-        <a href="http://www.lonwin.net">BY : LONWIN</a>
-    </div>
-</div>
-</div>
+<!--footer-->
+<div id="footer"></div>
+<script type="text/javascript">
+    $("#footer").load("publicFile/footer.html");
+</script>
+<!--footer end-->
 <a class="scrollTop" href="javascript:scroll(0,0);"></a>
-<script src="/static/js/common.js"></script>
 </body>
 </html>
