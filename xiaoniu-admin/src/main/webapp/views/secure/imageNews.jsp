@@ -300,6 +300,10 @@
 	function removeLi(){
 		$(".main_c ul .selected").remove();
 	}
+	
+	function preview(){
+		
+	}
 </script>
 </head>
 <body>
@@ -348,7 +352,7 @@
 				        <a class="btn3" href="javascript:removeLi();">删除图文</a>
 				        <a class="btn1" href="javascript:LiMoveToPre();">向前移动</a>
 				        <a class="btn2" href="javascript:LiMoveToNext();">向后移动</a>
-				        <a class="btn3" href="javascript:preview();">预览</a>
+				        <!-- <a class="btn3" href="javascript:preview();">预览</a> -->
 				    </div>
 				</div>
 				

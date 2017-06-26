@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>小牛图集 | 小牛资本</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="robots" content="index,follow"/>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp,no-transform"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <meta name="author" content="深圳网站建设公司|中为科技 www.lonwin.net|jungley"/>
+    <meta name="format-detection" content="telephone=no,email=no"/>
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="description" content="">
+    <div id='wx_pic' style='margin:0 auto;display:none;'>
+        <img src="/resources/static/images/share.jpg"/>
+    </div>
+    <link rel="stylesheet" href="/resources/static/css/animation.css">
+    <link rel="stylesheet" href="/resources/static/css/index.css">
+    <link rel="stylesheet" type="text/css" href="http://code.uemo.net/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="http://code.uemo.net/css/animate.min.css">
+    <script type="text/javascript" src="/resources/static/js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="/resources/static/js/lib.v1.min.js"></script>
+    <script type="text/javascript" src="/resources/static/js/org.js"></script>
+    <script src="/resources/static/js/common.js"></script>
+	<script type="text/javascript" src="/resources/static/js/param.js"></script>
+	<script type="text/javascript" src="/resources/static/js/dateTool.js"></script>
+</head>
+<body class="fff">
+<!--nav-->
+<div id="header-inside"></div>
+<script type="text/javascript">
+    $("#header-inside").load("/resources/static/publicFile/nav.html");
+</script>
+<script type="text/javascript">
+	var id;
+	$(function(){
+		id=getParam("id");
+		$.post("/secure/secure/imageNews/queryImageNews",{"id":id},function(result){
+			if(result.resultCode == 0){
+				var head = result.data.hd;
+				var imgs = result.data.imgs;
+				var showtimes = result.data.dl;
+				buildShowTime(showtimes);
+				buildPreImg(imgs);
+				buildText(imgs);
+				buildTitle(head);
+			}else{
+				$.messager.alert('提示',result['msg']);
+			}
+		},"json");
+	});
+	function buildShowTime(showtimes){
+		for(var i=0; i<showtimes.length; i++){
+			var showtime = showtime[i];
+			var title = showtime["title"];
+			var strDay = dateTools.LongTimeToSimpleFormatDate(showtime.showTime);
+			strDay = strDay.substring(5, 10);
+			var href = "";
+			var html = '<li><a href="' + href+'">'+strDay+"</a>"+'<p>'+title+'</p></li>';
+			$(".num_nav ul"),apped(html);
+		}
+	}
+	
+	function buildPreImg(imgs){
+		for (var i = 0; i < imgs.length; i++) {
+			var img = imgs[i].image;
+			var html = '<li><img src="'+img+"/></li>";
+			$(".pics_img ul").append(html);
+		}
+	}
+	
+	function buildText(imgs){
+		for (var i = 0; i < imgs.length; i++) {
+			var content = imgs[i].content;
+			var html = '<li>'+content+"</li>";
+			$(".pics_txt ul").append(html);
+		}
+	}
+	
+	function buildTitle(head){
+		$("#pic-title").val(head.title);
+	}
+</script>
+<!--nav end-->
+<div id="sub-nav">
+    <div class="sub_nav">
+        <ul>
+            <li class="sub_active"><a href="/resources/static/pics.html">小牛图集</a></li>
+        </ul>
+    </div>
+</div>
+<div id="wrap" class="pics_in_wrap">
+    <div class="num_nav">
+        <h4>最近</h4>
+        <ul>
+        </ul>
+    </div>
+    <div class="wrap about pics_in">
+        <h4 id="pic-title"></h4>
+        <div class="pics_img">
+            <a href="javascript:;" class="pics_img_l"></a>
+            <a href="javascript:;" class="pics_img_r"></a>
+            <ul>
+            </ul>
+        </div>
+        <div class="pics_txt">
+            <div class="num">
+                <i class="i1"></i>
+                <i class="i2">/</i>
+                <i class="i3"></i>
+            </div>
+            <ul>
+            </ul>
+        </div>
+        <div class="pics_in_b">
+            <a href="javascript:;" class="pics_b_l"><img src="/resources/static/images/pics/left.png"/></a>
+            <a href="javascript:;" class="pics_b_r"><img src="/resources/static/images/pics/right.png"/></a>
+            <div class="pics_in_list">
+                <ul>
+                   <li class="on"><img src="/resources/static/images/pics/pics_in_03.jpg"/></li>
+                   <li><img src="/resources/static/images/pics/pics_in_03.jpg"/></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!--footer-->
+<div id="footer"></div>
+<script type="text/javascript">
+    $("#footer").load("/resources/static/publicFile/footer.html");
+</script>
+<!--footer end-->
+<a class="scrollTop" href="javascript:scroll(0,0);"></a>
+</body>
+</html>
