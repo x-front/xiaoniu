@@ -26,7 +26,7 @@
      .btns .btn2{background: #4863ff}
      .btns .btn3{background: #29bd4d}
      .main a{display:inline-block;width:50px;height:180px;line-height: 180px;border-radius: 5px;font-size: 40px;}
-     .main_c{float:left;width:840px;overflow: hidden;border:1px solid #eeeeee;height:400px;text-align: center;position:relative;box-sizing: border-box}
+     .main_c{float:left;width:840px;overflow: hidden;overflow-x:scroll;border:1px solid #eeeeee;height:400px;text-align: center;position:relative;box-sizing: border-box}
      .main_c ul{position:absolute;left:0;top:0;}
      .main_c li{width:200px;;margin:0 5px;float:left;height:400px;box-sizing: border-box;position:relative}
      .main_c li p{position:absolute;bottom:0;left:0;font-size: 16px;line-height: 24px;width:100%;height: 230px;overflow: hidden;}
@@ -73,11 +73,10 @@
 		updateTimeColumn,
 		{field:'operator',title: '操作',align:'center',
 			formatter: function(value,row,index){
-				return "<a href='#' onclick='javascript:commonTable.initUpdateWindow("+index+")'>修改</a>";
+				return "<a href='#' onclick='javascript:initUpdateNewsWindow("+index+")'>修改</a>";
 				}
 		},
 	];
-	
 	
 	$(function(){
 		showPageLoading();
@@ -171,28 +170,34 @@
 	}
 	
 	function initUpdateNewsWindow(index){
+		showPageLoading();
 		var rows = $("#html_table").datagrid("getRows"),
 		row = rows[index];
 		var id = row['id'];
-		$.post("/secure/imageNews/queryImageNewsByNewsId",{'id':id},function(result){
+		$.post("/secure/imageNews/queryImageNewsByNewsId",{'newsId':id},function(result){
 			if(result.resultCode == 0){
 				$('#edit-div-showtime').datebox('setValue',row['showtime']);
 				var list = result.list;
-				for(var item in list){
+				for(var i=0;i<list.length;i++){
+					var item = list[i];
 					doAddSingleImage(item.content,item.image);
 				}
+				$("#edit-div-title").textbox("setValue",row.title);
+				$("#edit_form_valid").combobox("setValue",row.valid);
+				$('#edit-div-showtime').datebox('setValue',dateTools.LongTimeToSimpleFormatDate(row.showTime));
 				$(".datagrid").addClass("none");
 				$("#edit-div").removeClass("none");
-				initUpdateImageWindow();
 			}else{
 				$.messager.alert('提示',result['msg']);
 			}
 		},"json");
+		removePageLoading();
 	}
 	
 	function closeAddNewsWindow(){
 		$(".clear-input").val('');
 		$(".clear-textbox").textbox('setValue','');
+		clearOldImgs();
 		$(".datagrid").removeClass("none");
 		$("#edit-div").addClass("none");
 	}
@@ -274,6 +279,10 @@
 			$(".right").click();
 		}
 		$("#htm_edit").window('close');
+	}
+	
+	function clearOldImgs(){
+		$(".main_c ul:eq(0)").val('');
 	}
 	
 	function LiMoveToPre(){
