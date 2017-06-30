@@ -147,7 +147,7 @@
 	        }
 	    });
 	    $(".left").click(function(){
-	    var w=parseInt($(".main_c ul li").css("width").slice(0,-2));
+	    	var w=parseInt($(".main_c ul li").css("width").slice(0,-2));
 	    	var uw=parseInt($(".main_c ul").css("width").slice(0,-2));
         	var mw=parseInt($(".main_c").css("width").slice(0,-2));
 	        var l=parseInt($(".main_c ul").css("left").slice(0,-2));
@@ -182,6 +182,7 @@
 					var item = list[i];
 					doAddSingleImage(item.content,item.image);
 				}
+				$("#display-none-id").val(id);
 				$("#edit-div-title").textbox("setValue",row.title);
 				$("#edit_form_valid").combobox("setValue",row.valid);
 				$('#edit-div-showtime').datebox('setValue',dateTools.LongTimeToSimpleFormatDate(row.showTime));
@@ -209,6 +210,7 @@
 		var image1='',image2='',image3='';
 		var title = $("#edit-div-title").textbox("getValue");
 		var valid = $("#edit_form_valid").combobox("getValue");
+		var id = $("#display-none-id").val();
 		for(var i=0; i<length; i++){
 			var node = $('.main_c li:eq('+i+')'); 
 			var imgUrl = node.find('img:eq(0)').attr('src');
@@ -236,6 +238,7 @@
 		}
 		if(postData.length > 2){
 			$.post("/secure/imageNews/saveImageNews",{
+				'id':id,
 				'showTime':showtime,
 				'title':title,
 				'img1':image1,
@@ -266,7 +269,15 @@
 	function addSingleImage(){
 		var content = $('#htm_edit_img_desc').val();
 		var imgUrl = $('#edit-div-banner').textbox('getValue');
-		doAddSingleImage(content,imgUrl);
+		var index = $('#htm_edit_index').val();
+		if(index != 1){
+			doAddSingleImage(content,imgUrl);
+		}else{
+			var node = $(".main_c ul .selected");
+			node.find("img").eq(0).attr("src",imgUrl);
+			node.find("p").eq(0).html(content);
+		}
+		$("#htm_edit").window('close');
 	}
 	
 	function doAddSingleImage(content,imgUrl){
@@ -278,7 +289,6 @@
 		if(liCount >= 5){
 			$(".right").click();
 		}
-		$("#htm_edit").window('close');
 	}
 	
 	function clearOldImgs(){
@@ -303,6 +313,7 @@
 		var html = node.find("p").eq(0).html();
 		$('#htm_edit_img_desc').val(html);
 		$('#edit-div-banner').textbox('setValue',imgUrl);
+		$('#htm_edit_index').val(1);
 		$("#htm_edit").window('open');
 	}
 	
@@ -377,7 +388,7 @@
 				<div id="display-none-input" class="none">
 					<input id="display-none-id" name="id" class="clear-input">
 					<input id="display-none-type" name="type" class="clear-input">
-					<input id="display-none-top" name="top" class="" value="0">
+					<input id="display-none-top" name="top" class="clear-input" value="0">
 				</div>
 			</form>
 		</div>

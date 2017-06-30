@@ -70,13 +70,19 @@ public class ImageNewsController extends BaseController<CmpyImageNews>{
 	
 	@RequestMapping("saveImageNews")
 	@ResponseBody
-	public Map<String,Object> saveImageNews(Integer valid,String title, Long showTime, String img1,String img2,String img3,String data){
+	public Map<String,Object> saveImageNews(Integer id,Integer valid,String title, Long showTime, String img1,String img2,String img3,String data){
 		Map<String,Object> map = new HashMap<String,Object>();
 		try{
+			CmpyImageNewsHead imageNewsHead = new CmpyImageNewsHead();
+			if(id != null && id > 0){
+				service.deleteImageNewsByNewsId(id);
+				headService.delete(id);
+				imageNewsHead.setId(id);
+			}
+			
 			JSONArray list = JSONObject.parseArray(data);
 			if(list != null && list.size() > 2){
 				Date now = new Date();
-				CmpyImageNewsHead imageNewsHead = new CmpyImageNewsHead();
 				imageNewsHead.setValid(valid);
 				imageNewsHead.setTitle(title);
 				imageNewsHead.setCreateTime(now);
@@ -86,7 +92,6 @@ public class ImageNewsController extends BaseController<CmpyImageNews>{
 				imageNewsHead.setImgUrl2(img2);
 				imageNewsHead.setImgUrl3(img3);
 				imageNewsHead = headService.save(imageNewsHead);
-				
 				
 				for(int i=0; i<list.size();i++){
 					JSONObject jsObj = list.getJSONObject(i);
