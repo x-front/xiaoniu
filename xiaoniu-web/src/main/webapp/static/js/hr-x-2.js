@@ -72,16 +72,16 @@ function _xn_init() {
 function seeMore() {
     var a = $(".news-t .idV-ul").length;
     if (a >= 0) {
-        $.post("/news/list", {type: 12, page: a / 3 + 1, rows: 6, top: 0}, function (b) {
+        $.post("/news/list", {type: 12, page: Math.ceil(a / 6) + 1, rows: 6, top: 0}, function (b) {
             if (b.resultCode == 0 && b.rows.length > 0) {
                 var d = b.rows;
                 var c = buildNewsRows(d, 0, 3);
                 if($(window).width()<=500){
                     c=buildNewsRows1(d, 0, 3);
                 }
-                $("#news-m").append(c)
+                $(".news-t .idV-ul").append(c)
             }
-            if ((a + 1) * 3 >= b.total) {
+            if ((a + 1) * 6 >= b.total) {
                 $(".news-t .idV-more").css("display", "none")
             }
         }, "json")

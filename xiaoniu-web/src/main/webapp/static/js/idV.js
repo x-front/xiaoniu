@@ -33,7 +33,7 @@ function _xn_init() {
             $(".idV-pic ul:eq(0)").html(e);
             $(".idV-pic ul:eq(1)").html(b);
             $(".idV-pic ul:eq(2)").html(f);
-            var w = $(".idV-img").width();
+            /*var w = $(".idV-img").width();
             var w1 = $(".idV-txt").width();
             var n = $(".idV-pic-t li").size();
             $(".idV-pic-t,.idV-pic-b").css("width",w*n+"px");
@@ -60,7 +60,7 @@ function _xn_init() {
                 $(this).addClass("acitve").siblings().removeClass("active");
             },function(){
                 id= setInterval(p, 3000);
-            })
+            })*/
         } else {
             console.log(a.msg)
         }

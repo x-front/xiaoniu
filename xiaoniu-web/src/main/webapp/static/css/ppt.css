@@ -105,7 +105,7 @@ img{border:none;vertical-align: middle;display:inline-block}
     .s60 img:first-child{width:60%}
 }
 @media screen and (max-width: 769px){
-    img{width:96%;max-width: 88%}
+    img{width:96%}
     .search img,.scan img,.h-mei{width:auto}
     .share li img{width:auto;vertical-align: top}
     /* ppt1 */
@@ -172,7 +172,6 @@ img{border:none;vertical-align: middle;display:inline-block}
     .s60 img:last-child{float:left;margin:5% 0 0 3%;width:30%;}
 }
 @media screen and (max-width: 500px){
-    img{max-width: 96%}
     .s32 .pc{display:none;}
     .s32 .pl{display:block;width:100%;}
 }
