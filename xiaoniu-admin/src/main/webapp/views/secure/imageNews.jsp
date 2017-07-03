@@ -26,19 +26,22 @@
      .btns .btn2{background: #4863ff}
      .btns .btn3{background: #29bd4d}
      .main a{display:inline-block;width:50px;height:180px;line-height: 180px;border-radius: 5px;font-size: 40px;}
-     .main_c{float:left;width:840px;overflow: hidden;overflow-x:scroll;border:1px solid #eeeeee;height:400px;text-align: center;position:relative;box-sizing: border-box}
+     .main_c{float:left;width:100%;overflow: hidden;overflow-x:scroll;border:1px solid #eeeeee;height:400px;text-align: center;position:relative;box-sizing: border-box}
      .main_c ul{position:absolute;left:0;top:0;}
      .main_c li{width:200px;;margin:0 5px;float:left;height:400px;box-sizing: border-box;position:relative}
      .main_c li p{position:absolute;bottom:0;left:0;font-size: 16px;line-height: 24px;width:100%;height: 230px;overflow: hidden;}
      .main_c li div{width:100%;height:128px;overflow: hidden;margin-top: 30px;opacity: 0.4;}
      .left-td{width:90px;}
-     .left-btn-div{float:left;padding: 100px 0;}
-     .left-btn-div a{background:#eeeeee}
-     .right-btn-div a{background:#eeeeee}
-     .right-btn-div{float:left;padding: 100px 0;}
      .main_c ul .selected div{    
 	    opacity: 1;
 	  }
+	  #div-preview{width: 100%;height: 100%;}
+	  #preview-iframe {
+	  	width:100%;frameborder:0;
+	  	height: 100%;
+	  }
+	  .close-preview-btn{position: absolute;top: 5px;left: 4px;}
+	  .close-preview-btn a{display:inline-block;width:110px;height:50px;line-height: 50px;font-size: 16px;color:#FFF;border-radius: 5px;background: #ce2f10;margin-right: 10px;text-align: center;}
  </style>
 <script type="text/javascript">
     function resizeImageList(){
@@ -322,7 +325,14 @@
 	}
 	
 	function preview(){
-		
+		$("#edit-div").addClass("none");
+		$("#preview-iframe").attr("src","/resources/static/pics_in.html");
+		$("#div-preview").show();
+	}
+	
+	function closePreview(){
+		$("#div-preview").hide();
+		$("#edit-div").removeClass("none");
 	}
 </script>
 </head>
@@ -354,16 +364,16 @@
 						<span>标题：</span><input style="width:600px;" class="easyui-textbox clear-textbox" id="edit-div-title" name="title" prompt="请输入图集标题" required="required">
 					</div>
 				    <div class="main">
-				    	<div class="left-btn-div">
+				    	<!-- <div class="left-btn-div">
 				        	<a class="left" href="javascript:;"><</a>
-				        </div>
+				        </div> -->
 				        <div class="main_c">
 				            <ul>
 				            </ul>
 				        </div>
-				        <div class="right-btn-div">
+				        <!-- <div class="right-btn-div">
 				        	<a class="right" href="javascript:;">></a>
-				        </div>
+				        </div> -->
 				        <div class="clear"></div>
 				    </div>
 				    <div class="btns">
@@ -372,7 +382,7 @@
 				        <a class="btn3" href="javascript:removeLi();">删除图文</a>
 				        <a class="btn1" href="javascript:LiMoveToPre();">向前移动</a>
 				        <a class="btn2" href="javascript:LiMoveToNext();">向后移动</a>
-				        <!-- <a class="btn3" href="javascript:preview();">预览</a> -->
+				        <a class="btn3" href="javascript:preview();">预览</a>
 				    </div>
 				</div>
 				
@@ -427,6 +437,15 @@
 					</tr>
 				</table>
 			</form>
+		</div>
+		
+		<!-- iframe -->
+		<div id="div-preview" class="none">
+			<div class="close-preview-btn">
+				<a class="btn1" href="javascript:closePreview();">关闭预览</a>		
+			</div>
+			<iframe id="preview-iframe">
+			</iframe>
 		</div>
 </body>
 </html>

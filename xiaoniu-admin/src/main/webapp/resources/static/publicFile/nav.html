@@ -1,0 +1,92 @@
+    <script type=text/javascript>
+        $(function(){
+        var url=window.location.pathname;
+        var i=-1;
+        if(url.indexOf('pro')!=-1){
+            i=1
+        }else if(url.indexOf('about')!=-1){
+            i=2
+        }else if(url.indexOf('idV')!=-1||url.indexOf('audio')!=-1||url.indexOf('idea')!=-1||url.indexOf('report')!=-1||url.indexOf('periodical')!=-1){
+            i=3
+        }else if(url.indexOf('news')!=-1){
+            i=4
+        }else if(url.indexOf('beautiful')!=-1){
+            i=5
+        }else if(url.indexOf('pics')!=-1){
+            i=7
+        }else{
+            i=-1
+        }
+        console.log(i);
+        $(".inside-nav li").eq(i).addClass("active").siblings("li").removeClass("active");
+            var a=0;
+            $(".menu").click(function () {
+                a=0;
+                console.log(222);
+                $(".sidebar").animate({right: 0}, 500);
+                $(this).animate({opacity: 0}, 500);
+                $(".sidewrap").css({"opacity":1,"filter":"alpha(opacity=100)","-webkit-transform":"translateX(0)","-moz-transform":"translateX(0)","-ms-transform":"translateX(0)","transform":"translateX(0)"});
+
+            });
+            $(".s2").click(function () {
+                $(this).addClass("s2-active").siblings().removeClass("s2-active");
+            });
+            $(".sidebar .close").click(function () {
+                close();
+            });
+            function close(){
+                $(".menu").animate({opacity: 1}, 500);
+                $(".sidebar").animate({right: "-100%"}, 500);
+                $(".sidewrap").css({"opacity":0,"filter":"alpha(opacity=0)","-webkit-transform":"translateX(50px)","-moz-transform":"translateX(50px)","-ms-transform":"translateX(50px)","transform":"translateX(50px)"});
+
+            }
+            $(window).scroll(function(){
+                if(a==0){
+                    close();
+                }
+                a++;
+            });
+
+        })
+    </script>
+    <div class="header-inside">
+        <a href="/static/index.html" class="big-logo"></a>
+        <ul class="inside-nav">
+            <li><a href="/static/index.html">首页</a></li>
+        <!--<li><a href="/static/fold.html">小牛简介</a></li>-->
+            <li><a href="/static/pro.html">我们做什么</a></li>
+            <li><a href="/static/about.html">我们是谁</a></li>
+            <li><a href="/static/idV.html">小牛思想·声音</a></li>
+            <li><a href="/static/news.html">小牛新闻</a></li>
+            <li><a href="/static/beautiful.html">美好小牛</a></li>
+            <li><a href="/hr/index.html">加入小牛</a></li>
+            <li><a href="/static/pics.html">小牛图集</a></li>
+        </ul>
+        <a class="menu inside-menu" href="javascript:;">
+            <span class='ms1'></span>
+            <span class='ms2'></span>
+            <span class='ms1 ms3'></span>
+        </a>
+        <div class="sidebar">
+            <div class="sidewrap">
+                <div class="logo"><img src="/static/images/logo_07.png"/></div>
+                <ul class="nav">
+                    <li><a href="/static/index.html">首页</a></li>
+                <!--<li><a href="/static/fold.html">小牛简介</a></li>-->
+                    <li><a href="/static/pro.html">我们做什么</a></li>
+                    <li><a href="/static/about.html">我们是谁</a></li>
+                    <li><a href="/static/idV.html">小牛思想·声音</a></li>
+                    <li><a href="/static/news.html">小牛新闻</a></li>
+                    <li><a href="/static/beautiful.html">美好小牛</a></li>
+                    <li><a href="/hr/index.html">加入小牛</a></li>
+                    <li><a href="/static/pics.html">小牛图集</a></li>
+                </ul>
+                <div class="search"><a href="javascript:;"><img src="/static/images/nav_share_03.png"/></a><input type="text"/></div>
+                <div class="ce"><a href="" class="active">中</a><a href="">EN</a></div>
+                <p class="copy">深圳市福田区北环彩田立交桥新浩E都A座43层</p>
+                <p class="copy">0755-32981999</p>
+                <a href="javascript:;" class="close"><img src="/static/images/menu_close.svg"/></a>
+            </div>
+        </div>
+
+    </div>

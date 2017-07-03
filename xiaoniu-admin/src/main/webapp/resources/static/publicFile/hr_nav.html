@@ -1,0 +1,71 @@
+            <script type=text/javascript>
+            $(function(){
+            var url=window.location.pathname;
+            var i=-1;
+            if(url.indexOf('hr-x')!=-1){
+                i=0
+            }else{
+                i=1
+            }
+            console.log(i);
+            $(".inside-nav li").eq(i).addClass("active").siblings("li").removeClass("active");
+                var a=0;
+                $(".menu").click(function () {
+                    a=0;
+                    console.log(222);
+                    $(".sidebar").animate({right: 0}, 500);
+                    $(this).animate({opacity: 0}, 500);
+                    $(".sidewrap").css({"opacity":1,"filter":"alpha(opacity=100)","-webkit-transform":"translateX(0)","-moz-transform":"translateX(0)","-ms-transform":"translateX(0)","transform":"translateX(0)"});
+
+                });
+                $(".s2").click(function () {
+                    $(this).addClass("s2-active").siblings().removeClass("s2-active");
+                });
+                $(".sidebar .close").click(function () {
+                    close();
+                });
+                function close(){
+                    $(".menu").animate({opacity: 1}, 500);
+                    $(".sidebar").animate({right: "-100%"}, 500);
+                    $(".sidewrap").css({"opacity":0,"filter":"alpha(opacity=0)","-webkit-transform":"translateX(50px)","-moz-transform":"translateX(50px)","-ms-transform":"translateX(50px)","transform":"translateX(50px)"});
+
+                }
+                $(window).scroll(function(){
+                    if(a==0){
+                        close();
+                    }
+                    a++;
+                });
+
+            })
+            </script>
+        <div class="header-inside">
+        <a href="/static/index.html" class="big-logo"></a>
+        <ul class="inside-nav hr-nav">
+        <!--<li><a href="/static/index.html">首页</a></li>
+        <li><a href="/static/hr-s.html">社会招聘</a></li>
+        <li><a href="/static/hr-s1.html">校园招聘</a></li>-->
+        <li><a href="/static/hr-x.html">招聘动态</a></li>
+        <li class="active"><a href="/static/hr-r.html">认识小牛</a></li>
+        </ul>
+        <a class="menu inside-menu" href="javascript:;">
+            <span class='ms1'></span>
+            <span class='ms2'></span>
+            <span class='ms1 ms3'></span>
+        </a>
+        <div class="sidebar">
+        <div class="sidewrap">
+        <div class="logo"><img src="/static/images/logo_07.png"/></div>
+        <ul class="nav">
+        <!--<li><a href="/static/index.html">首页</a></li>
+        <li><a href="/static/hr-s.html">社会招聘</a></li>
+        <li><a href="/static/hr-s1.html">校园招聘</a></li>-->
+        <li><a href="/static/hr-x.html">招聘动态</a></li>
+        <li><a href="/static/hr-r.html">认识小牛</a></li>
+        </ul>
+        <div class="search"><a href="javascript:;"><img src="/static/images/nav_share_03.png"/></a><input type="text"/></div>
+        <div class="ce"><a href="" class="active">中</a><a href="">EN</a></div>
+        <a href="javascript:;" class="close"><img src="/static/images/menu_close.svg"/></a>
+        </div>
+        </div>
+        </div>
