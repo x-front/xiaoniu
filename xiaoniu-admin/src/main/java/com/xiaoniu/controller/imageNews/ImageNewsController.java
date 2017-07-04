@@ -92,14 +92,19 @@ public class ImageNewsController extends BaseController<CmpyImageNews>{
 				imageNewsHead.setImgUrl2(img2);
 				imageNewsHead.setImgUrl3(img3);
 				imageNewsHead = headService.save(imageNewsHead);
-				
+				Integer newId = null;
+				if(id != null && id > 0){
+					newId = id;
+				}else{
+					newId = imageNewsHead.getId();
+				}
 				for(int i=0; i<list.size();i++){
 					JSONObject jsObj = list.getJSONObject(i);
 					CmpyImageNews entity = new CmpyImageNews();
 					entity.setCreateTime(now);
 					entity.setUpdateTime(now);
 					entity.setImage(jsObj.getString("image"));
-					entity.setNewsId(imageNewsHead.getId());
+					entity.setNewsId(newId);
 					entity.setContent(jsObj.getString("content"));
 					entity.setSerialNumber(jsObj.getInteger("serialNumber"));
 					entity.setValid( MsgCode.TRUE.getCode());

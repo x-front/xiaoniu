@@ -21,7 +21,7 @@ function sc(){
 }
 var i=6;
 function db(){
-    $("#about-us p span *").eq(i).css("display","block");
+    $("#about-us p span *").eq(i).css("display","inline-block");
     i++;
     if(i== ($("#about-us p span *").length-1)){
         $("#about-us p:last-child span").append("<p>亲，已经是最底部啦...</p>");

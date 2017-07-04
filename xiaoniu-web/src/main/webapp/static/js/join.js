@@ -12,11 +12,12 @@ function _xn_init(){
 			console.log(result.msg);
 		}
 	},"json");
-	societyJob();
-	schoolJob();
+/*	societyJob();
+	schoolJob();*/
 	jobNews();
 }
 
+/*
 function societyJob(){
 	$.post("/joinUs/list",{'page':1,'rows':5},function(result){
 		if(result.resultCode == 0 && result.rows.length > 0){
@@ -41,6 +42,7 @@ function schoolJob(){
 	},'json');
 }
 
+
 function buildJobRow(rows){
 	var html ='';
 	for(var i=0; i< rows.length; i++){
@@ -48,7 +50,7 @@ function buildJobRow(rows){
 	}
 	return html;
 }
-
+ */
 function jobNews(){
 	$.post('/news/list',{'type':12,'page':1,'rows':5,'top':0},function(result){
 		if(result.resultCode == 0){
