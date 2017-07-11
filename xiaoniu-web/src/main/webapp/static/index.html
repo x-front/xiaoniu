@@ -25,6 +25,15 @@
   <script src="/static/js/jquery-1.8.3.min.js"></script>
   <script src="/static/js/jquery.SuperSlide.2.1.2.js"></script>
   <script src="/static/js/jquery.fullPage.min.js"></script>
+    <style>
+        html,body{height:100%;}
+        .loading{position:fixed;top:0;left:0;width:100%;height:100%;background:#4d4d4d;z-index: 9999;text-align: center;}
+        .loading .img{position:absolute;top:50%;left:50%;-webkit-transform: translate(-50%,-50%);transform: translate(-50%,-50%);opacity:0.7;}
+        .loading .img span{display:inline-block;width:110px;height:12px;border:2px solid #FFF;border-radius: 10px;margin-top: 20px;position:relative}
+        .loading .img span i{position:absolute;left:3px;top:3px;height:6px;width:0;background:#FFF;border-radius: 3px;opacity:0.7}
+        .loading .img .img1{width:140px;}
+    </style>
+
     <!--
       <script src="/static/js/yanhua.js"></script>
     -->
@@ -36,6 +45,23 @@
  </script>
 </head>
 <body>
+<!--加载中-->
+<div class="loading">
+    <div class="img">
+        <img class="img1" src="/static/images/logo.svg"/><br/>
+        <span><i></i></span>
+    </div>
+</div>
+<script>
+    $(document).ready(function(){
+        $('.loading .img span i').animate({'width':'104px'},1000,function(){
+            $('.loading').fadeOut(200);
+        });
+
+    })
+</script>
+<!--加载中 结束-->
+
   <div id="header" class="index-header">
     <div class="wrapper">
         <a href="/static/index.html" class="big-logo"></a>

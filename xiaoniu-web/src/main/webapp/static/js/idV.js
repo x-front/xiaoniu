@@ -28,7 +28,7 @@ function _xn_init() {
                 var c = g[d];
                 e += '<li><a href="/static/idea-inside.html?id=' + c.id + '"><img src="' + c.banner + '"/></a></li>';
                 b += '<li><a href="javascript:;"></a></li>';
-                f += '<li><a href="/static/idea-inside.html?id=' + c.id + '"><p>' + c.summary + '</p></li>'
+                f += '<li><a href="/static/idea-inside.html?id=' + c.id + '"><p>' + c.title + '</p></li>'
             }
             $(".idV-pic ul:eq(0)").html(e);
             $(".idV-pic ul:eq(1)").html(b);

@@ -22,7 +22,9 @@
     <script type="text/javascript" src="/static/js/lib.v1.min.js"></script>
     <script type="text/javascript" src="/static/js/org.js"></script>
     <script src="/static/js/common.js"></script>
-
+	<script src="/static/js/param.js"></script>
+	<script src="/static/js/dateTool.js"></script>
+	<script src="/static/js/pics-in.js"></script>
 </head>
 <body class="fff">
 <!--nav-->
@@ -42,62 +44,14 @@
     <div class="num_nav">
         <h4>最近</h4>
         <ul>
-            <li>
-                <a href="">4.21</a>
-                <p>贵州21岁脑瘫女孩：我能拥有爱情吗？</p>
-            </li>
-            <li>
-                <a href="">4.21</a>
-                <p>贵州21岁脑瘫女孩：我能拥有爱情吗？</p>
-            </li>
-            <li>
-                <a href="">4.21</a>
-                <p>贵州21岁脑瘫女孩：我能拥有爱情吗？</p>
-            </li>
-            <li>
-                <a href="">4.21</a>
-                <p>贵州21岁脑瘫女孩：我能拥有爱情吗？</p>
-            </li>
-            <li>
-                <a href="">4.21</a>
-                <p>贵州21岁脑瘫女孩：我能拥有爱情吗？</p>
-            </li>
         </ul>
     </div>
     <div class="wrap about pics_in">
-        <h4>贵州21岁脑瘫女孩：我能拥有爱情吗？</h4>
+        <h4 id="pic-title"></h4>
         <div class="pics_img">
             <a href="javascript:;" class="pics_img_l"></a>
             <a href="javascript:;" class="pics_img_r"></a>
             <ul>
-                <li class="on"><img src="/static/images/pics/pics_in_03.jpg"/></li>
-                <li><img src="/static/images/pics/pics_in_03.jpg"/></li>
-                <li><img src="/static/images/pics/pics_in_03.jpg"/></li>
-                <li><img src="/static/images/pics/pics_in_03.jpg"/></li>
-                <li><img src="/static/images/pics/pics_in_03.jpg"/></li>
-                <li><img src="/static/images/pics/pics_in_03.jpg"/></li>
-                <li><img src="/static/images/pics/pics_in_03.jpg"/></li>
-                <li><img src="/static/images/pics/pics_in_03.jpg"/></li>
-                <li><img src="/static/images/pics/pics_in_03.jpg"/></li>
-                <li><img src="/static/images/pics/pics_in_03.jpg"/></li>
-                <li><img src="/static/images/pics/pics_in_03.jpg"/></li>
-                <li><img src="/static/images/pics/pics_in_03.jpg"/></li>
-                <li><img src="/static/images/pics/pics_in_03.jpg"/></li>
-                <li><img src="/static/images/pics/pics_in_03.jpg"/></li>
-                <li><img src="/static/images/pics/pics_in_03.jpg"/></li>
-                <li><img src="/static/images/pics/pics_in_03.jpg"/></li>
-                <li><img src="/static/images/pics/pics_in_03.jpg"/></li>
-                <li><img src="/static/images/pics/pics_in_03.jpg"/></li>
-                <li><img src="/static/images/pics/pics_in_03.jpg"/></li>
-                <li><img src="/static/images/pics/pics_in_03.jpg"/></li>
-                <li><img src="/static/images/pics/pics_in_03.jpg"/></li>
-                <li><img src="/static/images/pics/pics_in_03.jpg"/></li>
-                <li><img src="/static/images/pics/pics_in_03.jpg"/></li>
-                <li><img src="/static/images/pics/pics_in_03.jpg"/></li>
-<!--
-                <li><img src="/static/images/pics/pics_in_03.jpg"/></li>
-                <li><img src="/static/images/pics/pics_in_03.jpg"/></li>
--->
             </ul>
         </div>
         <div class="pics_txt">
@@ -107,34 +61,6 @@
                 <i class="i3"></i>
             </div>
             <ul>
-                <li class="on">梁娟有几年时间迷上了十字绣，每天都坐在家里绣。“绣完了好几张画，有一幅还卖了800块钱。”梁娟说起那幅花几个月才绣成的十字绣，满满的成就感。</li>
-                <li>梁娟有几年时间迷上了十字绣，每天都坐在家里绣。“绣完了好几张画，有一幅还卖了800块钱。”梁娟说起那幅花几个月才绣成的十字绣，满满的成就感。</li>
-                <li>梁娟有几年时间迷上了十字绣，每天都坐在家里绣。“绣完了好几张画，有一幅还卖了800块钱。”梁娟说起那幅花几个月才绣成的十字绣，满满的成就感。</li>
-                <li>梁娟有几年时间迷上了十字绣，每天都坐在家里绣。“绣完了好几张画，有一幅还卖了800块钱。”梁娟说起那幅花几个月才绣成的十字绣，满满的成就感。</li>
-                <li>梁娟有几年时间迷上了十字绣，每天都坐在家里绣。“绣完了好几张画，有一幅还卖了800块钱。”梁娟说起那幅花几个月才绣成的十字绣，满满的成就感。</li>
-                <li>梁娟有几年时间迷上了十字绣，每天都坐在家里绣。“绣完了好几张画，有一幅还卖了800块钱。”梁娟说起那幅花几个月才绣成的十字绣，满满的成就感。</li>
-                <li>梁娟有几年时间迷上了十字绣，每天都坐在家里绣。“绣完了好几张画，有一幅还卖了800块钱。”梁娟说起那幅花几个月才绣成的十字绣，满满的成就感。</li>
-                <li>梁娟有几年时间迷上了十字绣，每天都坐在家里绣。“绣完了好几张画，有一幅还卖了800块钱。”梁娟说起那幅花几个月才绣成的十字绣，满满的成就感。</li>
-                <li>梁娟有几年时间迷上了十字绣，每天都坐在家里绣。“绣完了好几张画，有一幅还卖了800块钱。”梁娟说起那幅花几个月才绣成的十字绣，满满的成就感。</li>
-                <li>梁娟有几年时间迷上了十字绣，每天都坐在家里绣。“绣完了好几张画，有一幅还卖了800块钱。”梁娟说起那幅花几个月才绣成的十字绣，满满的成就感。</li>
-                <li>梁娟有几年时间迷上了十字绣，每天都坐在家里绣。“绣完了好几张画，有一幅还卖了800块钱。”梁娟说起那幅花几个月才绣成的十字绣，满满的成就感。</li>
-                <li>梁娟有几年时间迷上了十字绣，每天都坐在家里绣。“绣完了好几张画，有一幅还卖了800块钱。”梁娟说起那幅花几个月才绣成的十字绣，满满的成就感。</li>
-                <li>梁娟有几年时间迷上了十字绣，每天都坐在家里绣。“绣完了好几张画，有一幅还卖了800块钱。”梁娟说起那幅花几个月才绣成的十字绣，满满的成就感。</li>
-                <li>梁娟有几年时间迷上了十字绣，每天都坐在家里绣。“绣完了好几张画，有一幅还卖了800块钱。”梁娟说起那幅花几个月才绣成的十字绣，满满的成就感。</li>
-                <li>梁娟有几年时间迷上了十字绣，每天都坐在家里绣。“绣完了好几张画，有一幅还卖了800块钱。”梁娟说起那幅花几个月才绣成的十字绣，满满的成就感。</li>
-                <li>梁娟有几年时间迷上了十字绣，每天都坐在家里绣。“绣完了好几张画，有一幅还卖了800块钱。”梁娟说起那幅花几个月才绣成的十字绣，满满的成就感。</li>
-                <li>梁娟有几年时间迷上了十字绣，每天都坐在家里绣。“绣完了好几张画，有一幅还卖了800块钱。”梁娟说起那幅花几个月才绣成的十字绣，满满的成就感。</li>
-                <li>梁娟有几年时间迷上了十字绣，每天都坐在家里绣。“绣完了好几张画，有一幅还卖了800块钱。”梁娟说起那幅花几个月才绣成的十字绣，满满的成就感。</li>
-                <li>梁娟有几年时间迷上了十字绣，每天都坐在家里绣。“绣完了好几张画，有一幅还卖了800块钱。”梁娟说起那幅花几个月才绣成的十字绣，满满的成就感。</li>
-                <li>梁娟有几年时间迷上了十字绣，每天都坐在家里绣。“绣完了好几张画，有一幅还卖了800块钱。”梁娟说起那幅花几个月才绣成的十字绣，满满的成就感。</li>
-                <li>梁娟有几年时间迷上了十字绣，每天都坐在家里绣。“绣完了好几张画，有一幅还卖了800块钱。”梁娟说起那幅花几个月才绣成的十字绣，满满的成就感。</li>
-                <li>梁娟有几年时间迷上了十字绣，每天都坐在家里绣。“绣完了好几张画，有一幅还卖了800块钱。”梁娟说起那幅花几个月才绣成的十字绣，满满的成就感。</li>
-                <li>梁娟有几年时间迷上了十字绣，每天都坐在家里绣。“绣完了好几张画，有一幅还卖了800块钱。”梁娟说起那幅花几个月才绣成的十字绣，满满的成就感。</li>
-                <li>梁娟有几年时间迷上了十字绣，每天都坐在家里绣。“绣完了好几张画，有一幅还卖了800块钱。”梁娟说起那幅花几个月才绣成的十字绣，满满的成就感。</li>
-<!--
-                <li>梁娟有几年时间迷上了十字绣，每天都坐在家里绣。“绣完了好几张画，有一幅还卖了800块钱。”梁娟说起那幅花几个月才绣成的十字绣，满满的成就感。</li>
-                <li>梁娟有几年时间迷上了十字绣，每天都坐在家里绣。“绣完了好几张画，有一幅还卖了800块钱。”梁娟说起那幅花几个月才绣成的十字绣，满满的成就感。</li>
--->
             </ul>
         </div>
         <div class="pics_in_b">
@@ -142,34 +68,6 @@
             <a href="javascript:;" class="pics_b_r"><img src="images/pics/right.png"/></a>
             <div class="pics_in_list">
                 <ul>
-                   <li class="on"><img src="/static/images/pics/pics_in_03.jpg"/></li>
-                   <li><img src="/static/images/pics/pics_in_03.jpg"/></li>
-                   <li><img src="/static/images/pics/pics_in_03.jpg"/></li>
-                   <li><img src="/static/images/pics/pics_in_03.jpg"/></li>
-                   <li><img src="/static/images/pics/pics_in_03.jpg"/></li>
-                   <li><img src="/static/images/pics/pics_in_03.jpg"/></li>
-                   <li><img src="/static/images/pics/pics_in_03.jpg"/></li>
-                   <li><img src="/static/images/pics/pics_in_03.jpg"/></li>
-                   <li><img src="/static/images/pics/pics_in_03.jpg"/></li>
-                   <li><img src="/static/images/pics/pics_in_03.jpg"/></li>
-                   <li><img src="/static/images/pics/pics_in_03.jpg"/></li>
-                   <li><img src="/static/images/pics/pics_in_03.jpg"/></li>
-                   <li><img src="/static/images/pics/pics_in_03.jpg"/></li>
-                   <li><img src="/static/images/pics/pics_in_03.jpg"/></li>
-                   <li><img src="/static/images/pics/pics_in_03.jpg"/></li>
-                   <li><img src="/static/images/pics/pics_in_03.jpg"/></li>
-                   <li><img src="/static/images/pics/pics_in_03.jpg"/></li>
-                   <li><img src="/static/images/pics/pics_in_03.jpg"/></li>
-                   <li><img src="/static/images/pics/pics_in_03.jpg"/></li>
-                   <li><img src="/static/images/pics/pics_in_03.jpg"/></li>
-                   <li><img src="/static/images/pics/pics_in_03.jpg"/></li>
-                   <li><img src="/static/images/pics/pics_in_03.jpg"/></li>
-                   <li><img src="/static/images/pics/pics_in_03.jpg"/></li>
-                   <li><img src="/static/images/pics/pics_in_03.jpg"/></li>
-<!--
-                   <li><img src="/static/images/pics/pics_in_03.jpg"/></li>
-                   <li><img src="/static/images/pics/pics_in_03.jpg"/></li>
--->
                 </ul>
             </div>
         </div>

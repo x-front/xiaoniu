@@ -36,7 +36,7 @@
 	$(function(){
 		/*
 		id=getParam("id");
-		$.post("/secure/secure/imageNews/queryImageNews",{"id":id},function(result){
+		$.post("/secure/imageNews/queryImageNews",{"id":id},function(result){
 			if(result.resultCode == 0){
 				var head = result.data.hd;
 				var imgs = result.data.imgs;
@@ -57,7 +57,7 @@
 	function initImgInfoFromParentWindow(){
 		var imgs = $("#edit-form ul li",parent.document);
 		var title = $("#edit-div-title",parent.document).val();
-		var showtime = (new Date()).getTime();
+		var showtime = parent.getShowTime();
 		var htmlimg = "",htmltxt="";
 		for(var i=0; i<imgs.length; i++) {
 			var img = $(imgs[i]).find("img").attr("src");

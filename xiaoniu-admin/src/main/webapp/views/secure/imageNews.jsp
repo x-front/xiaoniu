@@ -251,9 +251,9 @@
 				'data':JSON.stringify(postData)
 			},function(result){
 				if(result.resultCode == 0){
+					$("#html_table").datagrid("reload");
 					$.messager.alert('提示',result['msg']);
-					$(".datagrid").removeClass("none");
-					$("#edit-div").addClass("none");
+					closeAddNewsWindow();
 				}else{
 					$.messager.alert('提示',result['msg']);
 				}
@@ -261,8 +261,16 @@
 		}else{
 			$.messager.alert('提示',"至少需要三张图片，不能提交");
 		}
-		
-		
+	}
+	
+	function getShowTime(){
+		var showtime = $('#edit-div-showtime').datebox('getValue');
+		if(!showtime){
+			showtime = (new Date()).getTime();
+		}else{
+			showtime = (new Date(showtime)).getTime();
+		}
+		return showtime;
 	}
 	
 	function initAddImageWindow(){
@@ -295,7 +303,7 @@
 	}
 	
 	function clearOldImgs(){
-		$(".main_c ul:eq(0)").val('');
+		$(".main_c ul:eq(0)").html('');
 	}
 	
 	function LiMoveToPre(){
@@ -321,7 +329,11 @@
 	}
 	
 	function removeLi(){
-		$(".main_c ul .selected").remove();
+		$.messager.confirm('操作记录', '您确定要删除已选中的图片?', function(r){ 	
+			if(r){
+				$(".main_c ul .selected").remove();
+			}
+		});
 	}
 	
 	function preview(){
@@ -364,16 +376,10 @@
 						<span>标题：</span><input style="width:600px;" class="easyui-textbox clear-textbox" id="edit-div-title" name="title" prompt="请输入图集标题" required="required">
 					</div>
 				    <div class="main">
-				    	<!-- <div class="left-btn-div">
-				        	<a class="left" href="javascript:;"><</a>
-				        </div> -->
 				        <div class="main_c">
 				            <ul>
 				            </ul>
 				        </div>
-				        <!-- <div class="right-btn-div">
-				        	<a class="right" href="javascript:;">></a>
-				        </div> -->
 				        <div class="clear"></div>
 				    </div>
 				    <div class="btns">
