@@ -63,7 +63,7 @@ public class ImageNewsController {
 	public Map<String,Object> queryImageNews(Integer id,Integer count){
 		Map<String,Object> map = new HashMap<String,Object>();
 		JSONObject jsObj = new JSONObject();
-		List<Long> dl = new ArrayList<Long>();
+		List<CmpyImageNewsHead> dl = new ArrayList<CmpyImageNewsHead>();
 		try{
 			if(count == null || count < 1 || count > 20){
 				count = 10;
@@ -88,7 +88,7 @@ public class ImageNewsController {
 					cu = di / 2 ;
 				}
 				for (int i = cu; i < count && i < dlist.size(); i++) {
-					dl.add(dlist.get(i).getShowTime());
+					dl.add(dlist.get(i));
 				}
 			}
 			
