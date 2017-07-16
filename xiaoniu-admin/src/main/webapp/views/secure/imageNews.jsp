@@ -338,7 +338,7 @@
 	
 	function preview(){
 		$("#edit-div").addClass("none");
-		$("#preview-iframe").attr("src","/resources/static/pics_in.html");
+		$("#preview-iframe").attr("src","/resources/static/pics_in.html?v=1");
 		$("#div-preview").show();
 	}
 	
