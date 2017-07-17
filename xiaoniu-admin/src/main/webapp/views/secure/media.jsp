@@ -128,7 +128,7 @@
 							</td>
 						</tr>
 						<tr >
-							<td>资源:</td>
+							<td>媒体链接:</td>
 							<td>
 								<input id="edit_form_extMedia" name="extMedia" class="clear-numberbox easyui-numberbox" required="true" />
 								<input type="button" id="btn-media-upload"  value="选择资源" style="width:80px"/>

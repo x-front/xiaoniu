@@ -52,7 +52,7 @@ public class ImageNewsController {
 			map.put(Contants.TOTAL, pageInfo.getTotal());
 			map.put(Contants.ROWS, pageInfo.getList());
 		}catch(Exception e){
-			map.put(Contants.RESULT_CODE, MsgCode.FALSE.getCode());
+			map.put(Contants.RESULT_CODE, MsgCode.FAILED.getCode());
 			map.put(Contants.MSG, e);
 		}
 		return map;
@@ -69,7 +69,7 @@ public class ImageNewsController {
 				count = 10;
 			}
 			CmpyImageNewsHead hre = headService.selectByKey(id);
-			if(hre.getValid().equals(MsgCode.TRUE.getCode())){
+			if(hre.getValid().intValue() != MsgCode.TRUE.getCode().intValue()){
 				throw new Exception("not valid");
 			}
 			CmpyImageNews entity = new CmpyImageNews();
@@ -79,6 +79,7 @@ public class ImageNewsController {
 			
 			Example example = new Example(CmpyImageNewsHead.class);
 			Criteria crt = example.createCriteria();
+			crt.andEqualTo("valid", MsgCode.TRUE.getCode());
 			crt.andBetween("id", id - count > 0 ? id -count : 0 , id + count);
 			List<CmpyImageNewsHead> dlist = headService.selectByExample(example );
 			if(dlist!= null && dlist.size() > 0){
@@ -98,8 +99,8 @@ public class ImageNewsController {
 			map.put(Contants.DATA, jsObj);
 			map.put(Contants.RESULT_CODE, MsgCode.SUCCESS.getCode());
 		}catch(Exception e){
-			map.put(Contants.RESULT_CODE, MsgCode.FALSE.getCode());
-			map.put(Contants.MSG, e);
+			map.put(Contants.RESULT_CODE, MsgCode.FAILED.getCode());
+			map.put(Contants.MSG, e.getMessage());
 		}
 		return map;
 	}

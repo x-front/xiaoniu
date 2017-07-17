@@ -32,6 +32,9 @@ public class CmpyImageNewsHead extends BaseVO implements Serializable {
     @Column(name = "update_time")
     private Date updateTime;
 
+    @Column(name = "serial_number")
+    private Integer serialNumber;
+
     private static final long serialVersionUID = 1L;
 
     /**
@@ -158,5 +161,19 @@ public class CmpyImageNewsHead extends BaseVO implements Serializable {
      */
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    /**
+     * @return serial_number
+     */
+    public Integer getSerialNumber() {
+        return serialNumber;
+    }
+
+    /**
+     * @param serialNumber
+     */
+    public void setSerialNumber(Integer serialNumber) {
+        this.serialNumber = serialNumber;
     }
 }

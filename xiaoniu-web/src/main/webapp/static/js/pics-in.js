@@ -4,7 +4,8 @@ $(function(){
 
 function _xn_init(){
 	id=getParam("id");
-	$.post("/imageNews/queryImageNews",{"id":id},function(result){
+	count = getParam("count");
+	$.post("/imageNews/queryImageNews",{"id":id,"count":count},function(result){
 		if(result.resultCode == 0){
 			var head = result.data.hd;
 			var imgs = result.data.imgs;
@@ -13,9 +14,12 @@ function _xn_init(){
 			buildPreImg(imgs);
 			buildText(imgs);
 			buildTitle(head);
+			$(".pics_img ul li:eq(0)").addClass("on");
+			$(".pics_txt ul li:eq(0)").addClass("on");
+			$(".pics_in_list ul li:eq(0)").addClass("on");
 			picPlay();
 		}else{
-			$.messager.alert('提示',result['msg']);
+			console.log('提示',result['msg']);
 		}
 	},"json");
 }
@@ -23,21 +27,21 @@ function _xn_init(){
 function buildShowTime(showtimes){
 	var html = "";
 	for(var i=0; i<showtimes.length; i++){
-		var showtime = showtime[i];
+		var showtime = showtimes[i];
 		var title = showtime["title"];
 		var strDay = dateTools.LongTimeToSimpleFormatDate(showtime.showTime);
 		strDay = strDay.substring(5, 10);
-		var href = "/static/pics_in.html?id="+showtime['id'];
+		var href = "/static/pics_in.html?count=6&id="+showtime['id'];
 		html += '<li><a href="' + href+'">'+strDay+"</a>"+'<p>'+title+'</p></li>';
 	}
-	$(".num_nav ul"),apped(html);
+	$(".num_nav ul").append(html);
 }
 
 function buildPreImg(imgs){
 	var html = "";
 	for (var i = 0; i < imgs.length; i++) {
 		var img = imgs[i].image;
-		html += '<li><img src="'+img+"></li>";
+		html += '<li><img src="'+img+'"></li>';
 	}
 	$(".pics_img ul").append(html);
 	$(".pics_in_list ul").append(html);

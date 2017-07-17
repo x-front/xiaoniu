@@ -14,5 +14,6 @@
     <result column="valid" jdbcType="INTEGER" property="valid" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="serial_number" jdbcType="INTEGER" property="serialNumber" />
   </resultMap>
 </mapper>
