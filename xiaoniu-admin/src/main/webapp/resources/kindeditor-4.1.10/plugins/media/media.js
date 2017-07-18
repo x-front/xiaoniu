@@ -16,6 +16,7 @@ KindEditor.plugin('media', function(K) {
 		filePostName = K.undef(self.filePostName, 'imgFile'),
 		uploadJson = K.undef(self.uploadJson, self.basePath + 'php/upload_json.php');
 	self.plugin.media = {
+		afterClickYesBtn:function(e){},
 		edit : function() {
 			var html = [
 				'<div style="padding:20px;">',
@@ -81,6 +82,7 @@ KindEditor.plugin('media', function(K) {
 								loop : 'true'
 							});
 						self.insertHtml(html).hideDialog().focus();
+						self.plugin.media.afterClickYesBtn(url);
 					}
 				}
 			}),

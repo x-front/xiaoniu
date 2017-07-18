@@ -13,6 +13,7 @@
 <script type="text/javascript" src="<c:url value='/resources/js/xiaoniu/dateTool.js'/>?r=1134"></script>
 <script type="text/javascript" src="<c:url value='/resources/js/xiaoniu/common.js'/>?r=31"></script>
 <script type="text/javascript" src="/resources/kindeditor-4.1.10/kindeditor-all-min.js"></script>
+<script type="text/javascript" src="/resources/kindeditor-4.1.10/plugins/media/media.js?v=4"></script>
 <script type="text/javascript" src="/resources/kindeditor-4.1.10/lang/zh_CN.js"></script>
 <script type="text/javascript">
 	var PluginUpload;
@@ -38,7 +39,7 @@
 		updateTimeColumn,
 		{field:'operator',title: '操作',align:'center',
 			formatter: function(value,row,index){
-					var str = "<div style='margin: 8px 0;'><a href='#' onclick='javascript:initUpdateNewsWindow("+index+")'>修改</a><div>";
+					var str = "<div style='margin: 8px 0;'><a href='#' onclick='javascript:commonTable.initUpdateWindow("+index+")'>修改</a><div>";
 					return str;
 				}
 		},
@@ -53,8 +54,13 @@
 		$("#edit_form_extMedia").textbox('setValue',row.extMedia);
 		$("#edit_form_valid").combobox('setValue',row.valid);
 //		$("#edit_form_serialNumber").numberbox('setValue',row.serialNumber);
+		$('#edit-img-banner').attr('src',row.extCover).removeClass('none');
 		$("#edit-form").attr("action",commonTable.updateURI);
 	};
+	
+	commonTable.addWindowCloseCallBack = function(){
+		$('#edit-img-banner').attr('src','');
+	}
 	
 	$(function(){
 		showPageLoading();
@@ -85,13 +91,11 @@
 			
 			$("#btn-media-upload").click(function(){
 				PluginUpload.loadPlugin('media',function(){
-					PluginUpload.plugin.imageDialog({
-						imageUrl : $("#edit_form_extMedia").textbox('getValue'),
-						clickFn : function(url, title, width, height, border, align){
-							$('#edit_form_extMedia').textbox('setValue',url);
-							PluginUpload.hideDialog();
-						}
-					});
+					PluginUpload.plugin.media['afterClickYesBtn']=function(url){
+						$('#edit_form_extMedia').textbox('setValue',url);
+					}
+					PluginUpload.plugin.media.edit({
+					}); 
 				});
 			});
 		});
@@ -130,7 +134,7 @@
 						<tr >
 							<td>媒体链接:</td>
 							<td>
-								<input id="edit_form_extMedia" name="extMedia" class="clear-numberbox easyui-numberbox" required="true" />
+								<input id="edit_form_extMedia" name="extMedia" class="easyui-textbox clear-textbox" required="true" />
 								<input type="button" id="btn-media-upload"  value="选择资源" style="width:80px"/>
 							</td>
 						</tr>
@@ -154,7 +158,7 @@
 						</tr>
 						<tr>
 							<td><input style="display:none" name="id" readonly="readonly" id="edit_form_id"  class="clear-input">
-								<input style="display:none" name="type" value="<%=request.getParameter("type") %>" readonly="readonly" id="edit_form_id"  class="clear-input">
+								<input style="display:none" name="type" value="<%=request.getParameter("type") %>" readonly="readonly" id="edit_form_id"  class="">
 							</td>
 						</tr>
 						<tr>

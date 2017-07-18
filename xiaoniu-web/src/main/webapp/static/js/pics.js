@@ -20,7 +20,7 @@ function getImageHeadList(page,rows){
 			var imgHtml = "";
 			for(var i = 0; i < rows.length; i++){
 				var row = rows[i];
-				imgHtml += '<li><a href="/static/pics_in.html?count=6&id='+row.id+'">'
+				imgHtml += '<li><a href="/static/pics_in.html?count=5&id='+row.id+'">'
 					+ '<div class="pics_item">'
 					+ '<div class="img img1">'
 					+ '<img src="'+row.imgUrl1+'"/>'

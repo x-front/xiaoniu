@@ -31,7 +31,7 @@ function buildShowTime(showtimes){
 		var title = showtime["title"];
 		var strDay = dateTools.LongTimeToSimpleFormatDate(showtime.showTime);
 		strDay = strDay.substring(5, 10);
-		var href = "/static/pics_in.html?count=6&id="+showtime['id'];
+		var href = "/static/pics_in.html?count=5&id="+showtime['id'];
 		html += '<li><a href="' + href+'">'+strDay+"</a>"+'<p>'+title+'</p></li>';
 	}
 	$(".num_nav ul").append(html);

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.pagehelper.PageInfo;
 import com.xiaoniu.db.domain.CmpyNews;
+import com.xiaoniu.db.domain.NewsSearchVO;
 import com.xiaoniu.service.news.CmpyNewsService;
 import com.zxx.common.contants.Contants;
 import com.zxx.common.enums.MsgCode;
@@ -100,4 +101,34 @@ public class NewsController {
 		}
 		return map;
 	}
+	
+	@RequestMapping("search")
+	@ResponseBody
+	public Map<String,Object> search(Integer page,Integer  rows,Long totalCount,Integer type,Integer isEn,Integer isTop,String keyword){
+		Map<String,Object> map = new HashMap<String,Object>();
+		try{
+			if(page == null || page < 0){
+				page = 1;
+			}
+			if(rows == null || rows < 1 || rows > 20){
+				rows = 20;
+			}
+			List<NewsSearchVO> list = service.search(page, rows, totalCount, type, isEn, isTop, keyword);
+			Long reTotalCount = 0L;
+			if(totalCount != null && totalCount < 1){
+				service.searchTotalCount(type, isEn, isTop, keyword);
+			}else{
+				reTotalCount = totalCount;
+			}
+			map.put(Contants.TOTAL, reTotalCount);
+			map.put(Contants.ROWS, list);
+			map.put(Contants.RESULT_CODE, MsgCode.SUCCESS.getCode());
+		}catch(Exception e){
+			log.error(e);
+			map.put(Contants.RESULT_CODE, MsgCode.FAILED.getCode());
+			map.put(Contants.MSG, MsgCode.FAILED.getMsg());
+		}
+		return map;
+	}
+	
 }
