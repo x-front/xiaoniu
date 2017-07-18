@@ -2,6 +2,8 @@ $(function () {
     _xn_init()
 });
 function _xn_init() {
+	getAbout();
+	getReport();
     $.post("/pageInfo/voice", function (a) {
         if (a.resultCode == 0) {
             if (a.voice) {
@@ -104,3 +106,95 @@ function _xn_init() {
         }
     })
 };
+
+
+function getAbout(){
+	$.post("/media/list",{'page':1,'rows':6,'type':3},function(result){
+		if(result.resultCode == 0){
+			var rows = result.rows;
+			var titleHtml = '';
+			var liHtml = '';
+			var coverHtml = '';
+			var mediaHtml = '';
+			for (var i = 0; i < rows.length; i++) {
+				var row = rows[i];
+				titleHtml += buildTitle(row.introdution);
+				liHtml += buildLi(i);
+				coverHtml += buildCover(row.extCover);
+				mediaHtml += buildMedia(row.extCover);
+			}
+			$(".idV-pic-t:eq(0)").append(coverHtml);
+			$(".idV-pic-c:eq(0)").append(liHtml);
+			$(".idV-pic-b:eq(0)").append(titleHtml);
+			$(".zz_video a:eq(0)").before(mediaHtml);
+			videoPlay();
+		}else{
+			console.log(result.msg);
+		}
+	},"json");
+}
+
+function buildTitle(title){
+	var html ='';
+	html += '<li><a href="javascript:;"><p>'+title+'</p></a></li>';
+	return html;
+}
+
+function buildLi(index){
+	if(index == 0){
+		return '<li class="active"><a href="javascript:;"></a></li>';
+	}else{
+		return '<li><a href="javascript:;"></a></li>';
+	}
+}
+
+function buildCover(img){
+	var html ='';
+	html += '<li><a href="javascript:;">'
+		+ '<img src="'+img+'"/>'
+		+ '<span class="play_btn"><img src="/static/images/idV/play.png"/></span>'
+		+ '</a></li>';
+	return html;
+}
+
+function buildMedia(media){
+	var html = '<video src="'+media+'" controls></video>';
+	return html;
+}
+
+
+// report
+function getReport(page,size){
+	$.post("/media/list",{'page':1,'rows':3,'type':1},function(result){
+		if(result.resultCode == 0){
+			var html = buildReport(result.rows);
+			$("#nk-ul").append(html);
+		}
+	},"json");
+	
+	$.post("/media/list",{'page':1,'rows':3,'type':2},function(result){
+		if(result.resultCode == 0){
+			var html = buildReport(result.rows);
+			$("#journal-ul").append(html);
+		}
+	},"json");
+}
+
+
+
+function buildReport(data){
+	var html = '';
+	for (var i = 0; i < data.length; i++) {
+		var item = data[i];
+		html += '<li><a href="'+ item.extMedia+'" target="_blank">'
+			+ '<div class="iN-img wow fadeInUp"><img src="'+item.extCover+'"/></div>'
+			+ '<p>'+item.introdution+'</p>'
+			+ '</a>'
+			+ '<a href="'+ item.extMedia+'" class="download" download></a></li>';
+		if((i+1) % 3 == 0){
+			html += '<div class="clearfix"></div>';
+		}
+	}
+	return html;
+}
+

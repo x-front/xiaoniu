@@ -33,8 +33,6 @@ function _xn_init(){
 		}else{
 			console.log(result.msg);
 		}
-		
-		
 	},"json");
 	
 }
@@ -57,7 +55,8 @@ function getAbout(){
 			$(".idV-pic-t:eq(0)").append(coverHtml);
 			$(".idV-pic-c:eq(0)").append(liHtml);
 			$(".idV-pic-b:eq(0)").append(titleHtml);
-			
+			$(".zz_video a:eq(0)").before(mediaHtml);
+			videoPlay();
 		}else{
 			console.log(result.msg);
 		}
@@ -88,5 +87,6 @@ function buildCover(img){
 }
 
 function buildMedia(media){
-	
+	var html = '<video src="'+media+'" controls></video>';
+	return html;
 }
