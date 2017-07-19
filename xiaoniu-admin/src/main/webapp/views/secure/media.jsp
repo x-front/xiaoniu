@@ -24,7 +24,7 @@
 	commonTable.insertURI = "/secure/media/insert";
 	commonTable.title = "列表";
 	commonTable.tableQueryParams = {
-			orderBy:'id desc',
+			orderBy:'serial_number desc, id desc',
 			type:'<%=type%>'
 	}
 	commonTable.columns = [

@@ -22,7 +22,7 @@
 	commonTable.insertURI = "/secure/news/insert";
 	commonTable.title = "文章列表";
 	commonTable.tableQueryParams = {
-			orderBy:'serial_number asc,id desc',
+			orderBy:'serial_number desc,id desc',
 			type:'<%=type%>'
 	}
 	commonTable.columns = [
@@ -36,7 +36,7 @@
 		{field:'clickTimes',title: '点击次数',align:'center'},
 		{field:'serialNumber',title: '序号',align:'center'},
 		publishColumn,
-		{field:'top',title: '是否置顶',align:'center',
+		{field:'isTop',title: '是否置顶',align:'center',
 			formatter: function(value,row,index){
 				if(value == 1) {
 						img = "/resources/3rd/easyUI/themes/icons/ok.png";
@@ -267,7 +267,7 @@
 			for(var i=0 ; i<rows.length; i++){
 					var id = rows[i]['id'];
 					var type = rows[i]['type'];
-					$.post("/secure/news/update",{'id':id,'type':type,'top':top},function(result){
+					$.post("/secure/news/update",{'id':id,'type':type,'isTop':top},function(result){
 						$('#html_table').datagrid('loaded');
 						if(result['resultCode'] == 0) {
 							$.messager.alert('提示',"成功置顶！");
@@ -420,7 +420,7 @@
 					<input id="edit-div-source" name="source" required="true" class="easyui-textbox clear-easyui-textbox "  prompt="来源"/>
 					<input id="edit-div-publishTime" name="publishTime" required="true" class="easyui-datetimebox clear-easyui-datetimebox " prompt="发布时间"/>
 					<input id="edit-div-clickTimes" name="clickTimes" required="true" class="easyui-numberbox clear-easyui-numberbox " prompt="点击次数" data-options="min:0"/>
-					<input id="edit-div-serialNumber" name="serialNumber" required="true" class="easyui-numberbox clear-easyui-numberbox " prompt="序号(越小排序越靠前)"/>
+					<input id="edit-div-serialNumber" name="serialNumber" required="true" class="easyui-numberbox clear-easyui-numberbox " prompt="序号(越大排序越靠前)"/>
 					<select class="easyui-combobox" required="true" id="edit-div-valid" name="valid">
 						<option value="0">提交后不发布</option>
 						<option value="1">提交后直接发布</option>
@@ -447,7 +447,7 @@
 				<div id="display-none-input" class="none">
 					<input id="display-none-id" name="id" class="clear-input">
 					<input id="display-none-type" name="type" class="clear-input">
-					<input id="display-none-top" name="top" class="" value="0">
+					<input id="display-none-top" name="isTop" class="" value="0">
 				</div>
 			</form>
 		</div>

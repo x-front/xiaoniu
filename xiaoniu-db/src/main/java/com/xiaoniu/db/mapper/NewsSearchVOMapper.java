@@ -16,8 +16,8 @@ import com.xiaoniu.db.domain.NewsSearchVO;
  *
  */
 public interface NewsSearchVOMapper {
-	public List<NewsSearchVO> search(@Param("start")Integer start, @Param("limit")Integer limit, @Param("type")Integer type, @Param("isEn")Integer isEn,
-			@Param("isTop")Integer isTop, @Param("keyword")String keyword);
+	public List<NewsSearchVO> search(@Param("start")Integer start, @Param("limit")Integer limit, @Param("type")Integer type, @Param("lang")Integer lang,
+			@Param("isTop")Integer isTop, @Param("title")String title, @Param("summary")String summary);
 	
-	public long searchTotalCount( @Param("type")Integer type, @Param("isEn")Integer isEn,@Param("isTop")Integer isTop, @Param("keyword")String keyword);
+	public long searchTotalCount( @Param("type")Integer type, @Param("lang")Integer lang,@Param("isTop")Integer isTop, @Param("title")String title, @Param("summary")String summary);
 }

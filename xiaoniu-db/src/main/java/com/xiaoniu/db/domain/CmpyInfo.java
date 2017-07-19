@@ -30,6 +30,11 @@ public class CmpyInfo extends BaseVO implements Serializable {
     @Column(name = "update_time")
     private Date updateTime;
 
+    /**
+     * 语言：0中文，1英文
+     */
+    private Integer lang;
+
     private static final long serialVersionUID = 1L;
 
     /**
@@ -156,5 +161,23 @@ public class CmpyInfo extends BaseVO implements Serializable {
      */
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    /**
+     * 获取语言：0中文，1英文
+     *
+     * @return lang - 语言：0中文，1英文
+     */
+    public Integer getLang() {
+        return lang;
+    }
+
+    /**
+     * 设置语言：0中文，1英文
+     *
+     * @param lang 语言：0中文，1英文
+     */
+    public void setLang(Integer lang) {
+        this.lang = lang;
     }
 }

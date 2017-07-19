@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiaoniu.db.mapper.NewsSearchVOMapper" >
+	<resultMap type="com.xiaoniu.db.domain.NewsSearchVO" id="NewsSearchMap">
+		<id column="id" property="id"/>
+		<result column="title" property="title"/>
+		<result column="summary" property="summary"/>
+		<result column="valid" property="valid"/>
+		<result column="is_top" property="isTop"/>
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+		<result column="type" property="type"/>
+		<result column="click_times" property="clickTimes"/>
+		<result column="lang" property="lang"/>
+	</resultMap>
+	
+	<select id="search" resultMap="NewsSearchMap">
+		select 
+			id,title, summary, valid, is_top, update_time, type, click_times, lang
+		from
+		    cmpy_news
+		<where>
+			<if test="type != null">
+				type = #{type}
+			</if>
+			<if test="lang != null">
+				and lang = #{lang}
+			</if>
+			<if test="isTop != null">
+				and is_top = #{isTop}
+			</if>
+			<if test="title != null">
+				and title like "%${title}%"
+			</if>
+			<if test="summary != null">
+				and summary like "%${summary}%"
+			</if>
+		</where>
+		order by serial_number desc , id desc
+		limit #{start},#{limit}
+	</select>
+	
+	<select id="searchTotalCount" resultType="long">
+		select 
+			count(*)
+		from
+		    cmpy_news
+		<where>
+			<if test="type != null">
+				type = #{type}
+			</if>
+			<if test="lang != null">
+				and lang = #{lang}
+			</if>
+			<if test="isTop != null">
+				and is_top = #{isTop}
+			</if>
+			<if test="title != null">
+				and title like "%${title}%"
+			</if>
+			<if test="summary != null">
+				and summary = "%${summary}%"
+			</if>
+		</where>
+	</select>
+</mapper>

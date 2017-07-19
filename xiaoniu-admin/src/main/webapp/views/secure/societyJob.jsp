@@ -165,7 +165,7 @@
 				<div id="display-none-input" class="none">
 					<input id="display-none-id" name="id" class="clear-input">
 					<input id="display-none-type" name="type" class="clear-input">
-					<input id="display-none-top" name="top" class="" value="0">
+					<input id="display-none-top" name="isTop" class="" value="0">
 					<input id="display-none-valid" name="valid" class="" value="1">
 					<input id="display-none-serialNumber" name="serialNumber" class="" value="0">
 					<input id="display-none-clickTimes" name="clickTimes" value="0"/>

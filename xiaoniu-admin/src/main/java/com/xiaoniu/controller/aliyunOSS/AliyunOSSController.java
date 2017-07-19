@@ -52,11 +52,11 @@ public class AliyunOSSController {
 	/**
      * 阿里云ACCESS_ID
      */
-	private  String ACCESS_ID="kXjQw7tA2BCqHjZV";
+	private  String ACCESS_ID="LTAIDMmlbTsAPhfu";
     /**
      * 阿里云ACCESS_KEY
      */
-	private  String ACCESS_KEY="2L1DQ8BzUCeoVkftIdz5Akywp97XYp";
+	private  String ACCESS_KEY="D1LJNSRf1uQQAHkkKpkeZenK1LJ5u2";
     /**
      * 阿里云OSS_ENDPOINT  
      */
@@ -65,12 +65,12 @@ public class AliyunOSSController {
     /**
      * 阿里云BUCKET_NAME  OSS
      */
-    private String BUCKET_NAME="xiaoniu66-web";
+    private String BUCKET_NAME="xn66-web";
 	
 	/**
      * 阿里云OSS 绑定的域名
      */
-	private String OSS_DOMAIN="http://xiaoniu66-web.oss-cn-shenzhen.aliyuncs.com";
+	private String OSS_DOMAIN="http://xn66-web.oss-cn-shenzhen.aliyuncs.com";
 	
 	
 	

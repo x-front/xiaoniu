@@ -10,6 +10,8 @@
     <result column="valid" jdbcType="INTEGER" property="valid" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="lang" jdbcType="INTEGER" property="lang" />
+    <result column="terminal" jdbcType="INTEGER" property="terminal" />
     <result column="content" jdbcType="LONGVARCHAR" property="content" />
   </resultMap>
 </mapper>

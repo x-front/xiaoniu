@@ -18,7 +18,7 @@ public class CmpyNews extends BaseVO implements Serializable {
     private Date publishTime;
 
     /**
-     * 1.美好家庭，2.美好体育，3美好公益，4.美好教育，5最新动态，6媒体报道，7小牛思想，8小牛声音,9牛人文化,10小牛思想声音，11小牛新闻
+     * 1.美好家庭，2.美好体育，3美好公益，4.美好教育，5最新动态，6媒体报道，7小牛思想，8小牛声音,9牛人文化,10小牛思想声音，11小牛新闻，12招聘动态，13社会招聘，14校招QA,15小牛看世界
      */
     private Integer type;
 
@@ -40,7 +40,16 @@ public class CmpyNews extends BaseVO implements Serializable {
     @Column(name = "serial_number")
     private Integer serialNumber;
 
-    private Integer top;
+    /**
+     * 语言：0中文，1英文
+     */
+    private Integer lang;
+
+    /**
+     * 是否置顶：0否，1是置顶
+     */
+    @Column(name = "is_top")
+    private Integer isTop;
 
     private String content;
 
@@ -103,18 +112,18 @@ public class CmpyNews extends BaseVO implements Serializable {
     }
 
     /**
-     * 获取1.美好家庭，2.美好体育，3美好公益，4.美好教育，5最新动态，6媒体报道，7小牛思想，8小牛声音,9牛人文化,10小牛思想声音，11小牛新闻
+     * 获取1.美好家庭，2.美好体育，3美好公益，4.美好教育，5最新动态，6媒体报道，7小牛思想，8小牛声音,9牛人文化,10小牛思想声音，11小牛新闻，12招聘动态，13社会招聘，14校招QA,15小牛看世界
      *
-     * @return type - 1.美好家庭，2.美好体育，3美好公益，4.美好教育，5最新动态，6媒体报道，7小牛思想，8小牛声音,9牛人文化,10小牛思想声音，11小牛新闻
+     * @return type - 1.美好家庭，2.美好体育，3美好公益，4.美好教育，5最新动态，6媒体报道，7小牛思想，8小牛声音,9牛人文化,10小牛思想声音，11小牛新闻，12招聘动态，13社会招聘，14校招QA,15小牛看世界
      */
     public Integer getType() {
         return type;
     }
 
     /**
-     * 设置1.美好家庭，2.美好体育，3美好公益，4.美好教育，5最新动态，6媒体报道，7小牛思想，8小牛声音,9牛人文化,10小牛思想声音，11小牛新闻
+     * 设置1.美好家庭，2.美好体育，3美好公益，4.美好教育，5最新动态，6媒体报道，7小牛思想，8小牛声音,9牛人文化,10小牛思想声音，11小牛新闻，12招聘动态，13社会招聘，14校招QA,15小牛看世界
      *
-     * @param type 1.美好家庭，2.美好体育，3美好公益，4.美好教育，5最新动态，6媒体报道，7小牛思想，8小牛声音,9牛人文化,10小牛思想声音，11小牛新闻
+     * @param type 1.美好家庭，2.美好体育，3美好公益，4.美好教育，5最新动态，6媒体报道，7小牛思想，8小牛声音,9牛人文化,10小牛思想声音，11小牛新闻，12招聘动态，13社会招聘，14校招QA,15小牛看世界
      */
     public void setType(Integer type) {
         this.type = type;
@@ -219,17 +228,39 @@ public class CmpyNews extends BaseVO implements Serializable {
     }
 
     /**
-     * @return top
+     * 获取语言：0中文，1英文
+     *
+     * @return lang - 语言：0中文，1英文
      */
-    public Integer getTop() {
-        return top;
+    public Integer getLang() {
+        return lang;
     }
 
     /**
-     * @param top
+     * 设置语言：0中文，1英文
+     *
+     * @param lang 语言：0中文，1英文
      */
-    public void setTop(Integer top) {
-        this.top = top;
+    public void setLang(Integer lang) {
+        this.lang = lang;
+    }
+
+    /**
+     * 获取是否置顶：0否，1是置顶
+     *
+     * @return is_top - 是否置顶：0否，1是置顶
+     */
+    public Integer getIsTop() {
+        return isTop;
+    }
+
+    /**
+     * 设置是否置顶：0否，1是置顶
+     *
+     * @param isTop 是否置顶：0否，1是置顶
+     */
+    public void setIsTop(Integer isTop) {
+        this.isTop = isTop;
     }
 
     /**

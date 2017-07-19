@@ -23,7 +23,7 @@
 	commonTable.title = "团队列表";
 	commonTable.nowrap = false;
 	commonTable.tableQueryParams = {
-			orderBy:'serial_number asc,id desc'
+			orderBy:'serial_number desc,id desc'
 	}
 	commonTable.columns = [
 		{field:'ck',checkbox:true},
@@ -162,7 +162,7 @@
 						<option value="0">提交后不发布</option>
 						<option value="1">提交后直接发布</option>
 					</select>
-					<input id="edit-div-serialNumber" name="serialNumber" required="true" class="easyui-numberbox clear-easyui-numberbox " prompt="序号(越小排序越靠前)" style="width:490px"/>
+					<input id="edit-div-serialNumber" name="serialNumber" required="true" class="easyui-numberbox clear-easyui-numberbox " prompt="序号(越大排序越靠前)" style="width:490px"/>
 					<input  id="edit-div-summary" name="summary" class="easyui-textbox clear-easyui-textbox" maxlength="512" required="true" data-options="multiline:true" prompt="描述" style="width: 703px;height: 178px;"/>
 				</div>
 				

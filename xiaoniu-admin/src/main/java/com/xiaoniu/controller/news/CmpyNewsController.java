@@ -56,7 +56,7 @@ public class CmpyNewsController extends BaseController<CmpyNews>{
 		try{
 			
 			CmpyNews tmp = new CmpyNews();
-			tmp.setTop(1);
+			tmp.setIsTop(1);
 			tmp.setType(type);
 			List<CmpyNews> list = service.select(tmp);
 			if(list != null && list.size() > 0 ){
@@ -64,7 +64,7 @@ public class CmpyNewsController extends BaseController<CmpyNews>{
 					CmpyNews en = new CmpyNews();
 					en.setId(list.get(i).getId());
 					en.setSerialNumber(1);
-					en.setTop(0);
+					en.setIsTop(0);
 					service.updateNotNull(en);
 				}
 			}
@@ -73,7 +73,7 @@ public class CmpyNewsController extends BaseController<CmpyNews>{
 			CmpyNews entity = new CmpyNews();
 			entity.setId(id);
 			entity.setSerialNumber(-9999);
-			entity.setTop(1);
+			entity.setIsTop(1);
 			entity.setUpdateTime(now);
 			service.updateNotNull(entity);
 			

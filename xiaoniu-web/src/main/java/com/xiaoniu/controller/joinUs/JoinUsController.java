@@ -36,7 +36,7 @@ public class JoinUsController {
 				rows = 20;
 			}
 			entity.setValid(MsgCode.TRUE.getCode());
-			PageInfo<CmpyJoinUs> pageInfo = service.queryList(page, rows, " serial_number asc,id desc ", entity);
+			PageInfo<CmpyJoinUs> pageInfo = service.queryList(page, rows, " serial_number desc,id desc ", entity);
 			
 			List<CmpyJoinUs> list = pageInfo.getList();
 			if(list != null){
@@ -69,7 +69,7 @@ public class JoinUsController {
 			if(orderBy == null || "".equals(orderBy.trim())){
 				orderBy = " id desc";
 			}
-			PageInfo<CmpyJoinUs> pageInfo = service.queryByAddressOrType(page, rows, " serial_number asc,id desc ", entity.getAddress(), entity.getType(),entity.getPosition());
+			PageInfo<CmpyJoinUs> pageInfo = service.queryByAddressOrType(page, rows, " serial_number desc,id desc ", entity.getAddress(), entity.getType(),entity.getPosition());
 			
 			List<CmpyJoinUs> list = pageInfo.getList();
 			if(list != null){

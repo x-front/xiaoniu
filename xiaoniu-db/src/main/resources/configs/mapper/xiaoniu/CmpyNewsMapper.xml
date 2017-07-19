@@ -17,7 +17,8 @@
     <result column="summary" jdbcType="VARCHAR" property="summary" />
     <result column="title" jdbcType="VARCHAR" property="title" />
     <result column="serial_number" jdbcType="INTEGER" property="serialNumber" />
-    <result column="top" jdbcType="INTEGER" property="top" />
+    <result column="lang" jdbcType="INTEGER" property="lang" />
+    <result column="is_top" jdbcType="INTEGER" property="isTop" />
     <result column="content" jdbcType="LONGVARCHAR" property="content" />
   </resultMap>
 </mapper>

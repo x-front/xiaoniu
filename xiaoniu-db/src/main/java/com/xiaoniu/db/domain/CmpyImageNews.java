@@ -10,6 +10,9 @@ public class CmpyImageNews extends BaseVO implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    /**
+     * 图集新闻ID
+     */
     @Column(name = "news_id")
     private Integer newsId;
 
@@ -45,14 +48,18 @@ public class CmpyImageNews extends BaseVO implements Serializable {
     }
 
     /**
-     * @return news_id
+     * 获取图集新闻ID
+     *
+     * @return news_id - 图集新闻ID
      */
     public Integer getNewsId() {
         return newsId;
     }
 
     /**
-     * @param newsId
+     * 设置图集新闻ID
+     *
+     * @param newsId 图集新闻ID
      */
     public void setNewsId(Integer newsId) {
         this.newsId = newsId;

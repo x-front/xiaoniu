@@ -18,15 +18,24 @@ public class CmpyNewsServiceImpl extends BaseServiceImpl<CmpyNews> implements Cm
 	private NewsSearchVOMapper searchMapper;
 	
 	@Override
-	public List<NewsSearchVO> search(Integer page, Integer rows, Long totalCount, Integer type, Integer isEn,
+	public List<NewsSearchVO> search(Integer page, Integer rows, Long totalCount, Integer type, Integer lang,
 			Integer isTop, String keyword) {
-		
-		return searchMapper.search((page-1)*rows, rows, type, isEn, isTop, keyword);
+		List<NewsSearchVO> list = null;
+		list =  searchMapper.search((page-1)*rows, rows, type, lang, isTop, keyword,null);
+		if(list == null || list.size() == 0){
+			list = searchMapper.search((page-1)*rows, rows, type, lang, isTop, null,keyword);
+		}
+		return list;
 	}
 
 	@Override
-	public long searchTotalCount(Integer type, Integer isEn, Integer isTop, String keyword) {
-		return searchMapper.searchTotalCount(type, isEn, isTop, keyword);
+	public long searchTotalCount(Integer type, Integer lang, Integer isTop, String keyword) {
+		long re = 0;
+		re =  searchMapper.searchTotalCount(type, lang, isTop, keyword,null);
+		if ( re == 0 ){
+			re = searchMapper.searchTotalCount(type, lang, isTop, null,keyword);
+		}
+		return re;
 	}
 
 }

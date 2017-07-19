@@ -17,7 +17,7 @@ public class CmpyMedia extends BaseVO implements Serializable {
     private String extCover;
 
     /**
-     * 1小牛内刊，2小牛报告
+     * 1小牛内刊，2小牛报告，3公司介绍，4我们是谁，5我们做什么
      */
     private Integer type;
 
@@ -31,6 +31,11 @@ public class CmpyMedia extends BaseVO implements Serializable {
 
     @Column(name = "update_time")
     private Date updateTime;
+
+    /**
+     * 语言：0中文，1英文
+     */
+    private Integer lang;
 
     private String introdution;
 
@@ -79,18 +84,18 @@ public class CmpyMedia extends BaseVO implements Serializable {
     }
 
     /**
-     * 获取1小牛内刊，2小牛报告
+     * 获取1小牛内刊，2小牛报告，3公司介绍，4我们是谁，5我们做什么
      *
-     * @return type - 1小牛内刊，2小牛报告
+     * @return type - 1小牛内刊，2小牛报告，3公司介绍，4我们是谁，5我们做什么
      */
     public Integer getType() {
         return type;
     }
 
     /**
-     * 设置1小牛内刊，2小牛报告
+     * 设置1小牛内刊，2小牛报告，3公司介绍，4我们是谁，5我们做什么
      *
-     * @param type 1小牛内刊，2小牛报告
+     * @param type 1小牛内刊，2小牛报告，3公司介绍，4我们是谁，5我们做什么
      */
     public void setType(Integer type) {
         this.type = type;
@@ -150,6 +155,24 @@ public class CmpyMedia extends BaseVO implements Serializable {
      */
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    /**
+     * 获取语言：0中文，1英文
+     *
+     * @return lang - 语言：0中文，1英文
+     */
+    public Integer getLang() {
+        return lang;
+    }
+
+    /**
+     * 设置语言：0中文，1英文
+     *
+     * @param lang 语言：0中文，1英文
+     */
+    public void setLang(Integer lang) {
+        this.lang = lang;
     }
 
     /**

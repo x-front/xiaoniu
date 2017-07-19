@@ -29,6 +29,16 @@ public class CmpyLeader extends BaseVO implements Serializable {
     @Column(name = "serial_number")
     private Integer serialNumber;
 
+    /**
+     * 语言：0中文，1英文
+     */
+    private Integer lang;
+
+    /**
+     * 终端：0pc端，1手机端
+     */
+    private Integer terminal;
+
     private static final long serialVersionUID = 1L;
 
     /**
@@ -155,5 +165,41 @@ public class CmpyLeader extends BaseVO implements Serializable {
      */
     public void setSerialNumber(Integer serialNumber) {
         this.serialNumber = serialNumber;
+    }
+
+    /**
+     * 获取语言：0中文，1英文
+     *
+     * @return lang - 语言：0中文，1英文
+     */
+    public Integer getLang() {
+        return lang;
+    }
+
+    /**
+     * 设置语言：0中文，1英文
+     *
+     * @param lang 语言：0中文，1英文
+     */
+    public void setLang(Integer lang) {
+        this.lang = lang;
+    }
+
+    /**
+     * 获取终端：0pc端，1手机端
+     *
+     * @return terminal - 终端：0pc端，1手机端
+     */
+    public Integer getTerminal() {
+        return terminal;
+    }
+
+    /**
+     * 设置终端：0pc端，1手机端
+     *
+     * @param terminal 终端：0pc端，1手机端
+     */
+    public void setTerminal(Integer terminal) {
+        this.terminal = terminal;
     }
 }

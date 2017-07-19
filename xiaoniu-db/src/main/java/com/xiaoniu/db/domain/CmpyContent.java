@@ -11,7 +11,7 @@ public class CmpyContent extends BaseVO implements Serializable {
     private Integer id;
 
     /**
-     * 1小牛普惠，2小牛在线，3小牛投资，4小牛新财富，5小牛分期，6牛鼎丰科技,7核心竞争力
+     * 1小牛普惠，2小牛在线，3小牛投资，4小牛新财富，5小牛分期，6牛鼎丰科技,7核心竞争力,8经营原则,9牛人家族，10薪酬福利，11培训发展，12小牛价值观,13校招行程
      */
     private Integer type;
 
@@ -22,6 +22,16 @@ public class CmpyContent extends BaseVO implements Serializable {
 
     @Column(name = "update_time")
     private Date updateTime;
+
+    /**
+     * 语言：0中文，1英文
+     */
+    private Integer lang;
+
+    /**
+     * 终端：0pc端、1手机端
+     */
+    private Integer terminal;
 
     private String content;
 
@@ -42,18 +52,18 @@ public class CmpyContent extends BaseVO implements Serializable {
     }
 
     /**
-     * 获取1小牛普惠，2小牛在线，3小牛投资，4小牛新财富，5小牛分期，6牛鼎丰科技,7核心竞争力
+     * 获取1小牛普惠，2小牛在线，3小牛投资，4小牛新财富，5小牛分期，6牛鼎丰科技,7核心竞争力,8经营原则,9牛人家族，10薪酬福利，11培训发展，12小牛价值观,13校招行程
      *
-     * @return type - 1小牛普惠，2小牛在线，3小牛投资，4小牛新财富，5小牛分期，6牛鼎丰科技,7核心竞争力
+     * @return type - 1小牛普惠，2小牛在线，3小牛投资，4小牛新财富，5小牛分期，6牛鼎丰科技,7核心竞争力,8经营原则,9牛人家族，10薪酬福利，11培训发展，12小牛价值观,13校招行程
      */
     public Integer getType() {
         return type;
     }
 
     /**
-     * 设置1小牛普惠，2小牛在线，3小牛投资，4小牛新财富，5小牛分期，6牛鼎丰科技,7核心竞争力
+     * 设置1小牛普惠，2小牛在线，3小牛投资，4小牛新财富，5小牛分期，6牛鼎丰科技,7核心竞争力,8经营原则,9牛人家族，10薪酬福利，11培训发展，12小牛价值观,13校招行程
      *
-     * @param type 1小牛普惠，2小牛在线，3小牛投资，4小牛新财富，5小牛分期，6牛鼎丰科技,7核心竞争力
+     * @param type 1小牛普惠，2小牛在线，3小牛投资，4小牛新财富，5小牛分期，6牛鼎丰科技,7核心竞争力,8经营原则,9牛人家族，10薪酬福利，11培训发展，12小牛价值观,13校招行程
      */
     public void setType(Integer type) {
         this.type = type;
@@ -99,6 +109,42 @@ public class CmpyContent extends BaseVO implements Serializable {
      */
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    /**
+     * 获取语言：0中文，1英文
+     *
+     * @return lang - 语言：0中文，1英文
+     */
+    public Integer getLang() {
+        return lang;
+    }
+
+    /**
+     * 设置语言：0中文，1英文
+     *
+     * @param lang 语言：0中文，1英文
+     */
+    public void setLang(Integer lang) {
+        this.lang = lang;
+    }
+
+    /**
+     * 获取终端：0pc端、1手机端
+     *
+     * @return terminal - 终端：0pc端、1手机端
+     */
+    public Integer getTerminal() {
+        return terminal;
+    }
+
+    /**
+     * 设置终端：0pc端、1手机端
+     *
+     * @param terminal 终端：0pc端、1手机端
+     */
+    public void setTerminal(Integer terminal) {
+        this.terminal = terminal;
     }
 
     /**

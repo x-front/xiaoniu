@@ -19,7 +19,7 @@
 	commonTable.title = "首页新闻";
 	commonTable.nowrap = false;
 	commonTable.tableQueryParams = {
-			orderBy:'serial_number asc,id desc'
+			orderBy:'serial_number desc,id desc'
 	}
 	commonTable.columns = [
 		{field:'ck',checkbox:true},

@@ -6,6 +6,9 @@ import javax.persistence.*;
 
 @Table(name = "cmpy_more_content")
 public class CmpyMoreContent extends BaseVO implements Serializable {
+    /**
+     * 1-10是经营原则，50-100是核心竞争力
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -30,6 +33,16 @@ public class CmpyMoreContent extends BaseVO implements Serializable {
     @Column(name = "update_time")
     private Date updateTime;
 
+    /**
+     * 语言：0中文，1英文
+     */
+    private Integer lang;
+
+    /**
+     * 终端：0PC端，1手机端
+     */
+    private Integer terminal;
+
     private String content;
 
     private String more;
@@ -37,14 +50,18 @@ public class CmpyMoreContent extends BaseVO implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
-     * @return id
+     * 获取1-10是经营原则，50-100是核心竞争力
+     *
+     * @return id - 1-10是经营原则，50-100是核心竞争力
      */
     public Integer getId() {
         return id;
     }
 
     /**
-     * @param id
+     * 设置1-10是经营原则，50-100是核心竞争力
+     *
+     * @param id 1-10是经营原则，50-100是核心竞争力
      */
     public void setId(Integer id) {
         this.id = id;
@@ -150,6 +167,42 @@ public class CmpyMoreContent extends BaseVO implements Serializable {
      */
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    /**
+     * 获取语言：0中文，1英文
+     *
+     * @return lang - 语言：0中文，1英文
+     */
+    public Integer getLang() {
+        return lang;
+    }
+
+    /**
+     * 设置语言：0中文，1英文
+     *
+     * @param lang 语言：0中文，1英文
+     */
+    public void setLang(Integer lang) {
+        this.lang = lang;
+    }
+
+    /**
+     * 获取终端：0PC端，1手机端
+     *
+     * @return terminal - 终端：0PC端，1手机端
+     */
+    public Integer getTerminal() {
+        return terminal;
+    }
+
+    /**
+     * 设置终端：0PC端，1手机端
+     *
+     * @param terminal 终端：0PC端，1手机端
+     */
+    public void setTerminal(Integer terminal) {
+        this.terminal = terminal;
     }
 
     /**

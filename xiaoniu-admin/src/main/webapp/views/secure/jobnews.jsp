@@ -174,7 +174,7 @@
 			<form id="edit-form" method="post">
 				<div id="div-content-info" >
 					<span>发布时间:</span><input id="edit-div-publishTime" name="publishTime" required="true" class="easyui-datetimebox clear-easyui-datetimebox " prompt="发布时间"/><br>
-					<span>序号:</span><input id="edit-div-serialNumber" name="serialNumber" required="true" class="easyui-numberbox clear-easyui-numberbox " prompt="序号(越小排序越靠前)"/><br>
+					<span>序号:</span><input id="edit-div-serialNumber" name="serialNumber" required="true" class="easyui-numberbox clear-easyui-numberbox " prompt="序号(越大排序越靠前)"/><br>
 					<span>发布状态:</span><select class="easyui-combobox" required="true" id="edit-div-valid" name="valid">
 						<option value="0">提交后不发布</option>
 						<option value="1">提交后直接发布</option>
@@ -201,7 +201,7 @@
 				<div id="display-none-input" class="none">
 					<input id="display-none-id" name="id" class="clear-input">
 					<input id="display-none-type" name="type" class="clear-input">
-					<input id="display-none-top" name="top" class="" value="0">
+					<input id="display-none-top" name="isTop" class="" value="0">
 					<input id="display-none-clickTimes" name="clickTimes" value="0"/>
 				</div>
 			</form>

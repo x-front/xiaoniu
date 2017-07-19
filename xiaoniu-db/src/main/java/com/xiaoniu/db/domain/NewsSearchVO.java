@@ -20,7 +20,7 @@ public class NewsSearchVO {
 	private Date updateTime;
 	private Integer type;
 	private Integer clickTimes;
-	private Integer isEn;
+	private Integer lang;
 	public Integer getId() {
 		return id;
 	}
@@ -70,15 +70,15 @@ public class NewsSearchVO {
 		this.clickTimes = clickTimes;
 	}
 	/**
-	 * @return the isEn
+	 * @return the lang
 	 */
-	public Integer getIsEn() {
-		return isEn;
+	public Integer getLang() {
+		return lang;
 	}
 	/**
-	 * @param isEn the isEn to set
+	 * @param lang the lang to set
 	 */
-	public void setIsEn(Integer isEn) {
-		this.isEn = isEn;
+	public void setLang(Integer lang) {
+		this.lang = lang;
 	}
 }

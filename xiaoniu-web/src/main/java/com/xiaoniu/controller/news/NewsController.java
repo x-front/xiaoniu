@@ -49,7 +49,7 @@ public class NewsController {
 	
 	@RequestMapping("list")
 	@ResponseBody
-	public Map<String,Object> list(Integer page,Integer  rows,CmpyNews entity){
+	public Map<String,Object> list(Integer page,Integer  rows,Integer top,CmpyNews entity){
 		Map<String,Object> map = new HashMap<String,Object>();
 		try{
 			if(page == null || page < 0){
@@ -58,8 +58,11 @@ public class NewsController {
 			if(rows == null || rows < 1 || rows > 20){
 				rows = 20;
 			}
+			if(top != null && entity.getIsTop() == null){
+				entity.setIsTop(top);
+			}
 			entity.setValid(MsgCode.TRUE.getCode());
-			PageInfo<CmpyNews> pageInfo = service.queryList(page, rows, " serial_number asc,id desc ", entity);
+			PageInfo<CmpyNews> pageInfo = service.queryList(page, rows, " serial_number desc,id desc ", entity);
 			List<CmpyNews> list = pageInfo.getList();
 			if(list != null){
 				for(int i=0;i<list.size();i++){
@@ -79,7 +82,7 @@ public class NewsController {
 	
 	@RequestMapping("newsList")
 	@ResponseBody
-	public Map<String,Object> newsList(Integer page,Integer  rows,CmpyNews entity){
+	public Map<String,Object> newsList(Integer page,Integer  rows,Integer top,CmpyNews entity){
 		Map<String,Object> map = new HashMap<String,Object>();
 		try{
 			if(page == null || page < 0){
@@ -87,6 +90,9 @@ public class NewsController {
 			}
 			if(rows == null || rows < 1 || rows > 20){
 				rows = 20;
+			}
+			if(top != null && entity.getIsTop() == null){
+				entity.setIsTop(top);
 			}
 			entity.setValid(MsgCode.TRUE.getCode());
 			PageInfo<CmpyNews> pageInfo = service.queryList(page, rows, " id asc ", entity);

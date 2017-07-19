@@ -35,6 +35,11 @@ public class CmpyImageNewsHead extends BaseVO implements Serializable {
     @Column(name = "serial_number")
     private Integer serialNumber;
 
+    /**
+     * 语言：0中文，1英文
+     */
+    private Integer lang;
+
     private static final long serialVersionUID = 1L;
 
     /**
@@ -175,5 +180,23 @@ public class CmpyImageNewsHead extends BaseVO implements Serializable {
      */
     public void setSerialNumber(Integer serialNumber) {
         this.serialNumber = serialNumber;
+    }
+
+    /**
+     * 获取语言：0中文，1英文
+     *
+     * @return lang - 语言：0中文，1英文
+     */
+    public Integer getLang() {
+        return lang;
+    }
+
+    /**
+     * 设置语言：0中文，1英文
+     *
+     * @param lang 语言：0中文，1英文
+     */
+    public void setLang(Integer lang) {
+        this.lang = lang;
     }
 }

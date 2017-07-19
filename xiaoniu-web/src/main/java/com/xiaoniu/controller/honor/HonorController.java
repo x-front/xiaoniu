@@ -35,7 +35,7 @@ public class HonorController {
 				rows = 20;
 			}
 			entity.setValid(MsgCode.TRUE.getCode());
-			PageInfo<CmpyHonor> pageInfo = service.queryList(page, rows, " serial_number asc,id desc ", entity);
+			PageInfo<CmpyHonor> pageInfo = service.queryList(page, rows, " serial_number desc,id desc ", entity);
 			map.put(Contants.TOTAL, pageInfo.getTotal());
 			map.put(Contants.ROWS, pageInfo.getList());
 			map.put(Contants.RESULT_CODE, MsgCode.SUCCESS.getCode());

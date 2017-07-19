@@ -48,7 +48,7 @@ public class ImageNewsController {
 		try{
 			CmpyImageNewsHead entity = new CmpyImageNewsHead();
 			entity.setValid(MsgCode.TRUE.getCode());
-			PageInfo<CmpyImageNewsHead> pageInfo = headService.queryList(page, rows, "serial_number asc,id desc", entity);
+			PageInfo<CmpyImageNewsHead> pageInfo = headService.queryList(page, rows, "serial_number desc,id desc", entity);
 			map.put(Contants.TOTAL, pageInfo.getTotal());
 			map.put(Contants.ROWS, pageInfo.getList());
 		}catch(Exception e){

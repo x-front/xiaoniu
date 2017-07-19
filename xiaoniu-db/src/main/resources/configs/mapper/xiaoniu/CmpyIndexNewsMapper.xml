@@ -11,5 +11,6 @@
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="title" jdbcType="VARCHAR" property="title" />
     <result column="serial_number" jdbcType="INTEGER" property="serialNumber" />
+    <result column="lang" jdbcType="INTEGER" property="lang" />
   </resultMap>
 </mapper>
