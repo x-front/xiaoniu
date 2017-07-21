@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.pagehelper.PageInfo;
+import com.xiaoniu.controller.constant.LangType;
 import com.xiaoniu.db.domain.CmpyNews;
 import com.xiaoniu.db.domain.NewsSearchVO;
 import com.xiaoniu.service.news.CmpyNewsService;
@@ -60,6 +61,11 @@ public class NewsController {
 			}
 			if(top != null && entity.getIsTop() == null){
 				entity.setIsTop(top);
+			}
+			if(entity != null ){
+				if(entity.getLang() == null){
+					entity.setLang(LangType.CN);
+				}
 			}
 			entity.setValid(MsgCode.TRUE.getCode());
 			PageInfo<CmpyNews> pageInfo = service.queryList(page, rows, " serial_number desc,id desc ", entity);

@@ -32,6 +32,7 @@ var commonTable ={
 				toolbar:this.toolbar,
 				idField:this.recordIdKey,
 				pagination:this.pagination,
+				checkOnSelect:this.checkOnSelect,
 				rownumbers:this.rownumbers,
 				columns:[this.columns],
 				onLoadSuccess:function(){

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.pagehelper.PageInfo;
+import com.xiaoniu.controller.constant.LangType;
 import com.xiaoniu.db.domain.CmpyMedia;
 import com.xiaoniu.service.media.MediaService;
 import com.zxx.common.contants.Contants;
@@ -41,6 +42,11 @@ public class MediaController {
 			}
 			if(rows == null || rows < 1 || rows > 20){
 				rows = 20;
+			}
+			if(entity != null ){
+				if(entity.getLang() == null){
+					entity.setLang(LangType.CN);
+				}
 			}
 			entity.setValid(MsgCode.TRUE.getCode());
 			PageInfo<CmpyMedia> pageInfo = service.queryList(page, rows, " serial_number desc,id desc ", entity);

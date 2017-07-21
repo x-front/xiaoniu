@@ -24,6 +24,7 @@ import com.github.pagehelper.PageInfo;
 import com.xiaoniu.controller.base.BaseController;
 import com.xiaoniu.db.domain.CmpyImageNews;
 import com.xiaoniu.db.domain.CmpyImageNewsHead;
+import com.xiaoniu.domain.LangType;
 import com.xiaoniu.service.imageNews.ImageNewsHeadService;
 import com.xiaoniu.service.imageNews.ImageNewsService;
 import com.zxx.common.contants.Contants;
@@ -63,14 +64,31 @@ public class ImageNewsController extends BaseController<CmpyImageNews>{
 			map.put(Contants.ROWS, pageInfo.getList());
 		}catch(Exception e){
 			map.put(Contants.RESULT_CODE, MsgCode.FALSE.getCode());
-			map.put(Contants.MSG, e);
+			map.put(Contants.MSG, e.getMessage());
+		}
+		return map;
+	}
+	
+	@RequestMapping("updateHeadImageNews")
+	@ResponseBody
+	public Map<String,Object> updateHeadImageNews(CmpyImageNewsHead entity){
+		Map<String,Object> map = new HashMap<String,Object>();
+		try{
+			if(entity.getId() == null){
+				throw new Exception("id can not be null");
+			}
+			headService.updateNotNull(entity);
+			map.put(Contants.RESULT_CODE, MsgCode.UPDATE_SUCCESS.getCode());
+		}catch(Exception e){
+			map.put(Contants.RESULT_CODE, MsgCode.UPDATE_FAILED.getCode());
+			map.put(Contants.MSG, e.getMessage());
 		}
 		return map;
 	}
 	
 	@RequestMapping("saveImageNews")
 	@ResponseBody
-	public Map<String,Object> saveImageNews(Integer id,Integer valid,String title, Long showTime, String img1,String img2,String img3,String data){
+	public Map<String,Object> saveImageNews(Integer id,Integer valid,String title, Long showTime, String img1,String img2,String img3,Integer lang,String data){
 		Map<String,Object> map = new HashMap<String,Object>();
 		try{
 			CmpyImageNewsHead imageNewsHead = new CmpyImageNewsHead();
@@ -91,6 +109,10 @@ public class ImageNewsController extends BaseController<CmpyImageNews>{
 				imageNewsHead.setImgUrl1(img1);
 				imageNewsHead.setImgUrl2(img2);
 				imageNewsHead.setImgUrl3(img3);
+				if(lang == null){
+					lang = LangType.CN;
+				}
+				imageNewsHead.setLang(lang);
 				imageNewsHead = headService.save(imageNewsHead);
 				Integer newId = null;
 				if(id != null && id > 0){
@@ -119,7 +141,7 @@ public class ImageNewsController extends BaseController<CmpyImageNews>{
 			
 		}catch(Exception e){
 			map.put(Contants.RESULT_CODE, MsgCode.SAVE_FAILED.getCode());
-			map.put(Contants.MSG, e);
+			map.put(Contants.MSG, e.getMessage());
 		}
 		return map;
 	}
@@ -137,7 +159,7 @@ public class ImageNewsController extends BaseController<CmpyImageNews>{
 			map.put("list", list);
 		}catch(Exception e){
 			map.put(Contants.RESULT_CODE, MsgCode.SAVE_FAILED.getCode());
-			map.put(Contants.MSG, e);
+			map.put(Contants.MSG, e.getMessage());
 		}
 		return map;
 	}
@@ -153,7 +175,7 @@ public class ImageNewsController extends BaseController<CmpyImageNews>{
 			map.put(Contants.MSG, MsgCode.UPDATE_SUCCESS.getMsg());
 		}catch(Exception e){
 			map.put(Contants.RESULT_CODE, MsgCode.UPDATE_FAILED.getCode());
-			map.put(Contants.MSG, e);
+			map.put(Contants.MSG, e.getMessage());
 		}
 		return map;
 	}
@@ -172,7 +194,7 @@ public class ImageNewsController extends BaseController<CmpyImageNews>{
 			map.put(Contants.MSG, MsgCode.DELETE_SUCCESS.getMsg());
 		}catch(Exception e){
 			map.put(Contants.RESULT_CODE, MsgCode.DELETE_FAILED.getCode());
-			map.put(Contants.MSG, e);
+			map.put(Contants.MSG, e.getMessage());
 		}
 		return map;
 	}
@@ -215,7 +237,7 @@ public class ImageNewsController extends BaseController<CmpyImageNews>{
 			map.put(Contants.RESULT_CODE, MsgCode.SUCCESS.getCode());
 		}catch(Exception e){
 			map.put(Contants.RESULT_CODE, MsgCode.FALSE.getCode());
-			map.put(Contants.MSG, e);
+			map.put(Contants.MSG, e.getMessage());
 		}
 		return map;
 	}

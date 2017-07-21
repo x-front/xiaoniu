@@ -346,6 +346,10 @@
 		$("#div-preview").hide();
 		$("#edit-div").removeClass("none");
 	}
+	
+	function updateLang(lang){
+		
+	}
 </script>
 </head>
 <body>
@@ -358,6 +362,8 @@
 			<a href="javascript:void(0);" onclick="javascript:commonTable.batchDelete()"class="easyui-linkbutton" title="删除" plain="true" iconCls="icon-cancel" id="delBtn">删除</a>
 			<a href="javascript:void(0);" onclick="javascript:commonTable.batchPublish()"class="easyui-linkbutton" title="发布" plain="true" iconCls="icon-ok">发布</a>
 			<a href="javascript:void(0);" onclick="javascript:commonTable.batchCancelPublish()"class="easyui-linkbutton" title="撤销" plain="true" iconCls="icon-undo">撤销发布</a>
+			<a href="javascript:void(0);" onclick="javascript:updateLang(0)"class="easyui-linkbutton" title="迁移到中文版" plain="true" iconCls="icon-back">迁移到中文版</a>
+			<a href="javascript:void(0);" onclick="javascript:updateLang(1)"class="easyui-linkbutton" title="迁移到英文版" plain="true" iconCls="icon-undo">迁移到英文版</a>
 		</div>
 		
 		<!-- 添加 -->
@@ -370,6 +376,10 @@
 						<span style="margin-left:40px;margin-right:10px;">是否发布:</span><select id="edit_form_valid" name="valid" class="easyui-combobox clear-combobox">
 												<option value="0">未发布</option>
 												<option value="1">发布</option>
+											</select>
+						<span style="margin-left:40px;margin-right:10px;">语言:</span><select id="edit_form_lang" name="lang" class="easyui-combobox clear-combobox">
+												<option value="0">中文</option>
+												<option value="1">英文</option>
 											</select>
 					</div>
 					<div style="margin-bottom:4px;text-align: center;">

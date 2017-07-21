@@ -19,6 +19,7 @@ import tk.mybatis.mapper.entity.Example.Criteria;
 
 import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageInfo;
+import com.xiaoniu.controller.constant.LangType;
 import com.xiaoniu.db.domain.CmpyImageNews;
 import com.xiaoniu.db.domain.CmpyImageNewsHead;
 import com.xiaoniu.service.imageNews.ImageNewsHeadService;
@@ -43,11 +44,14 @@ public class ImageNewsController {
 	
 	@RequestMapping("queryImageHeadList")
 	@ResponseBody
-	public Map<String,Object> queryImageHeadList(Integer page,Integer  rows){
+	public Map<String,Object> queryImageHeadList(Integer page,Integer  rows,Integer lang){
 		Map<String,Object> map = new HashMap<String,Object>();
 		try{
 			CmpyImageNewsHead entity = new CmpyImageNewsHead();
 			entity.setValid(MsgCode.TRUE.getCode());
+			if(lang == null){
+				entity.setLang(LangType.CN);
+			}
 			PageInfo<CmpyImageNewsHead> pageInfo = headService.queryList(page, rows, "serial_number desc,id desc", entity);
 			map.put(Contants.TOTAL, pageInfo.getTotal());
 			map.put(Contants.ROWS, pageInfo.getList());
@@ -60,7 +64,7 @@ public class ImageNewsController {
 	
 	@RequestMapping("queryImageNews")
 	@ResponseBody
-	public Map<String,Object> queryImageNews(Integer id,Integer count){
+	public Map<String,Object> queryImageNews(Integer id,Integer count,Integer lang){
 		Map<String,Object> map = new HashMap<String,Object>();
 		JSONObject jsObj = new JSONObject();
 		List<CmpyImageNewsHead> dl = new ArrayList<CmpyImageNewsHead>();
@@ -81,6 +85,10 @@ public class ImageNewsController {
 			Criteria crt = example.createCriteria();
 			crt.andEqualTo("valid", MsgCode.TRUE.getCode());
 			crt.andBetween("id", id - count > 0 ? id -count : 0 , id + count);
+			if(lang == null){
+				lang = LangType.CN;
+			}
+			crt.andEqualTo("lang", lang);
 			List<CmpyImageNewsHead> dlist = headService.selectByExample(example );
 			if(dlist!= null && dlist.size() > 0){
 				int di = (dlist.size() - count);

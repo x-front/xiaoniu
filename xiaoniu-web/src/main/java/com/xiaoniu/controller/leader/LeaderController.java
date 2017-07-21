@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.pagehelper.PageInfo;
+import com.xiaoniu.controller.constant.LangType;
+import com.xiaoniu.controller.constant.TerminalType;
 import com.xiaoniu.db.domain.CmpyLeader;
 import com.xiaoniu.service.leader.LeaderService;
 import com.zxx.common.contants.Contants;
@@ -33,6 +35,14 @@ public class LeaderController {
 			}
 			if(rows == null || rows < 1 || rows > 20){
 				rows = 20;
+			}
+			if(entity != null ){
+				if(entity.getLang() == null){
+					entity.setLang(LangType.CN);
+				}
+				if(entity.getTerminal() == null){
+					entity.setTerminal(TerminalType.PC);
+				}
 			}
 			entity.setValid(MsgCode.TRUE.getCode());
 			PageInfo<CmpyLeader> pageInfo = service.queryList(page, rows, " serial_number desc,id desc ", entity);

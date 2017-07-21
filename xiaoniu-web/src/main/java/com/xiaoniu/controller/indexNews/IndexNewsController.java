@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.pagehelper.PageInfo;
+import com.xiaoniu.controller.constant.LangType;
+import com.xiaoniu.controller.constant.TerminalType;
 import com.xiaoniu.db.domain.CmpyIndexNews;
 import com.xiaoniu.service.indexNews.IndexNewsService;
 import com.zxx.common.contants.Contants;
@@ -34,6 +36,11 @@ public class IndexNewsController {
 			}
 			if(rows == null || rows < 1 || rows > 20){
 				rows = 20;
+			}
+			if(entity != null ){
+				if(entity.getLang() == null){
+					entity.setLang(LangType.CN);
+				}
 			}
 			entity.setValid(MsgCode.TRUE.getCode());
 			PageInfo<CmpyIndexNews> pageInfo = service.queryList(page, rows, " serial_number desc,id desc ", entity);

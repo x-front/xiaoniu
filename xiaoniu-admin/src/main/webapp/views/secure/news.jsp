@@ -11,9 +11,10 @@
 <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/xiaoniu/CRUD.css'/>"/>
 <link rel="stylesheet" href="/resources/kindeditor-4.1.10/themes/default/default.css" />
 <script type="text/javascript" src="<c:url value='/resources/js/xiaoniu/dateTool.js'/>?r=1134"></script>
-<script type="text/javascript" src="<c:url value='/resources/js/xiaoniu/common.js'/>?r=44"></script>
+<script type="text/javascript" src="<c:url value='/resources/js/xiaoniu/common.js'/>?r=2"></script>
 <script type="text/javascript" src="/resources/kindeditor-4.1.10/kindeditor-all-min.js"></script>
 <script type="text/javascript" src="/resources/kindeditor-4.1.10/lang/zh_CN.js"></script>
+<script type="text/javascript" src="/resources/3rd/easyUI/plugins/datagrid-cellediting.js"></script>
 <script type="text/javascript">
 	commonTable.loadDateURI = "/secure/news/queryList";
 	commonTable.batchUpdateValidURI = "/secure/news/batchUpdateValid?strIds=";
@@ -21,6 +22,7 @@
 	commonTable.updateURI = "/secure/news/update";
 	commonTable.insertURI = "/secure/news/insert";
 	commonTable.title = "文章列表";
+	commonTable.checkOnSelect = true;
 	commonTable.tableQueryParams = {
 			orderBy:'serial_number desc,id desc',
 			type:'<%=type%>'
@@ -34,7 +36,7 @@
 		{field:'summary',title: '摘要',align:'center',width:340},
 		publishTimeColumn,
 		{field:'clickTimes',title: '点击次数',align:'center'},
-		{field:'serialNumber',title: '序号',align:'center'},
+		{field:'serialNumber',title: '序号',align:'center',editor: "numberbox"},
 		publishColumn,
 		{field:'isTop',title: '是否置顶',align:'center',
 			formatter: function(value,row,index){
@@ -86,10 +88,38 @@
 	var PluginUpload;
 	var contentHeight;
 	var type = <%=type%>;
+	var IsCheckFlag = true; 
 	$(function(){
 		contentHeight = jQuery(window).height();
 		showPageLoading();
 		commonTable.init();
+		$("#html_table").datagrid('enableCellEditing').datagrid({
+			onAfterEdit: function(index,row,changes){
+				$.post("/secure/news/update",{'id':row.id,'serialNumber':row.serialNumber},function(result){
+					console.log(result.resultCode);
+				},"json")
+			},
+			onClickCell: function (rowIndex, field, value) {
+				console.log("iam click");
+		         IsCheckFlag = false;
+		     },
+		     onSelect: function (rowIndex, rowData) {
+		    	 console.log("imselect");
+		         if (!IsCheckFlag) {
+		             IsCheckFlag = true;
+		             $("#dg").datagrid("unselectRow", rowIndex);
+		         }
+		     },                    
+		     onUnselect: function (rowIndex, rowData) {
+		    	 console.log("iam unselect");
+		         if (!IsCheckFlag) {
+		             IsCheckFlag = true;
+		             $("#dg").datagrid("selectRow", rowIndex);
+		         }
+		     }
+		});
+		
+		
 		removePageLoading();
 		KindEditor.ready(function(K) {
 			contextEditor = K.create('textarea[name="content"]', {
