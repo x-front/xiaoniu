@@ -25,7 +25,8 @@
 	commonTable.title = "列表";
 	commonTable.tableQueryParams = {
 			orderBy:'serial_number desc, id desc',
-			type:'<%=type%>'
+			type:'<%=type%>',
+			lang:0
 	}
 	commonTable.columns = [
 		{field:'ck',checkbox:true},
@@ -53,6 +54,7 @@
 		$("#edit_form_extCover").textbox('setValue',row.extCover);
 		$("#edit_form_extMedia").textbox('setValue',row.extMedia);
 		$("#edit_form_valid").combobox('setValue',row.valid);
+		$("#edit_form_lang").combobox('setValue',row.lang);
 //		$("#edit_form_serialNumber").numberbox('setValue',row.serialNumber);
 		$('#edit-img-banner').attr('src',row.extCover).removeClass('none');
 		$("#edit-form").attr("action",commonTable.updateURI);
@@ -103,6 +105,31 @@
 		removePageLoading();
 	});
 	
+	function updateLang(lang){
+		var rows = $('#html_table').datagrid('getSelections');	
+		if(isSelected(rows)){
+			var ids = [];
+			for (var i = 0; i < rows.length; i++) {
+				var row = rows[i];
+				for(var i=0;i<rows.length;i+=1){		
+					ids.push(row['id']);	
+				}
+			}
+			$.post("/secure/media/batchUpdateMediaLang?strIds="+ids,{'lang':lang},function(result){
+				if(result.resultCode == 0){
+					$.messager.alert('提示',"成功更新" + ids.length + "条记录！");
+					$("#html_table").datagrid("reload");
+				}else{
+					$.messager.alert('提示',result['msg']);
+				}
+			},"json");
+		}
+	}
+	
+	function showLang(lang){
+		commonTable.tableQueryParams.lang = lang;
+		$("#html_table").datagrid("reload");
+	}
 	
 </script>
 </head>
@@ -115,7 +142,11 @@
 			<a href="javascript:void(0);" onclick="javascript:commonTable.initAddWindow()"class="easyui-linkbutton" title="添加" plain="true" iconCls="icon-add" id="addBtn">添加</a>
 			<a href="javascript:void(0);" onclick="javascript:commonTable.batchDelete()"class="easyui-linkbutton" title="删除" plain="true" iconCls="icon-cancel" id="delBtn">删除</a>
 			<a href="javascript:void(0);" onclick="javascript:commonTable.batchPublish()"class="easyui-linkbutton" title="发布" plain="true" iconCls="icon-ok">发布</a>
-			<a href="javascript:void(0);" onclick="javascript:commonTable.batchCancelPublish()"class="easyui-linkbutton" title="撤销" plain="true" iconCls="icon-undo">撤销发布</a>
+			<a href="javascript:void(0);" onclick="javascript:commonTable.batchCancelPublish()"class="easyui-linkbutton" title="撤销" plain="true" iconCls="icon-tip">撤销发布</a>
+			<a href="javascript:void(0);" onclick="javascript:showLang(0)"class="easyui-linkbutton" title="只显示中文版" plain="true" iconCls="icon-save">只显示中文版</a>
+			<a href="javascript:void(0);" onclick="javascript:showLang(1)"class="easyui-linkbutton" title="只显示英文版" plain="true" iconCls="icon-save">只显示英文版</a>
+			<a href="javascript:void(0);" onclick="javascript:updateLang(0)"class="easyui-linkbutton" title="迁移到中文版" plain="true" iconCls="icon-undo">迁移到中文版</a>
+			<a href="javascript:void(0);" onclick="javascript:updateLang(1)"class="easyui-linkbutton" title="迁移到英文版" plain="true" iconCls="icon-redo">迁移到英文版</a>
 		</div>
 		
 		<!-- 添加 -->
@@ -124,7 +155,7 @@
 				<table id="htm_edit_table" width="450">
 					<tbody>
 						<tr>
-							<td>封面</td>
+							<td style="width:60px;">封面:</td>
 							<td>
 								<input id="edit_form_extCover" required="true" name="extCover" class="easyui-textbox clear-textbox"  prompt="封面"/>
 								<input type="button" id="btn-banner-upload" value="选择图片" style="width:80px"/>
@@ -151,8 +182,17 @@
 							<td>发布状态:</td>
 							<td>
 								<select id="edit_form_valid" name="valid" class="easyui-combobox clear-combobox">
-									<option value="1">发布</option>
 									<option value="0">未发布</option>
+									<option value="1">发布</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td>语言:</td>
+							<td>
+								<select class="easyui-combobox" id="edit_form_lang" name="lang">
+									<option value="0">中文</option>
+									<option value="1">英文</option>
 								</select>
 							</td>
 						</tr>

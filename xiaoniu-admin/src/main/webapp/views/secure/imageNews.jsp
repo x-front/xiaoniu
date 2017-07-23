@@ -63,12 +63,13 @@
 	commonTable.title = "新闻图集";
 	commonTable.nowrap = false;
 	commonTable.tableQueryParams = {
-			orderBy:'id desc'
+			lang:0,
+			orderBy:'serial_number desc,id desc'
 	}
 	commonTable.columns = [
 		{field:'ck',checkbox:true},
 		{field:'id', title: 'ID',align:'center',  hidden:true},
-		{field:'title',title: '标题',align:'left'},
+		{field:'title',title: '标题',align:'left',width:240},
 		{field:'imgUrl1',title: '图片连接',align:'left',width:240},
 		{field:'serialNumber',title: '序号',align:'center'},
 		validColumn,
@@ -188,6 +189,7 @@
 				$("#display-none-id").val(id);
 				$("#edit-div-title").textbox("setValue",row.title);
 				$("#edit_form_valid").combobox("setValue",row.valid);
+				$("#edit_form_lang").combobox("setValue",row.lang);
 				$('#edit-div-showtime').datebox('setValue',dateTools.LongTimeToSimpleFormatDate(row.showTime));
 				$(".datagrid").addClass("none");
 				$("#edit-div").removeClass("none");
@@ -213,6 +215,7 @@
 		var image1='',image2='',image3='';
 		var title = $("#edit-div-title").textbox("getValue");
 		var valid = $("#edit_form_valid").combobox("getValue");
+		var lang = $("#edit_form_lang").combobox("getValue");
 		var id = $("#display-none-id").val();
 		for(var i=0; i<length; i++){
 			var node = $('.main_c li:eq('+i+')'); 
@@ -248,6 +251,7 @@
 				'img2':image2,
 				'img3':image3,
 				'valid':valid,
+				'lang' : lang,
 				'data':JSON.stringify(postData)
 			},function(result){
 				if(result.resultCode == 0){
@@ -348,7 +352,29 @@
 	}
 	
 	function updateLang(lang){
-		
+		var rows = $('#html_table').datagrid('getSelections');	
+		if(isSelected(rows)){
+			var ids = [];
+			for (var i = 0; i < rows.length; i++) {
+				var row = rows[i];
+				for(var i=0;i<rows.length;i+=1){		
+					ids.push(row['id']);	
+				}
+			}
+			$.post("/secure/imageNews/batchUpdateHeadImageNewsLang?strIds="+ids,{'lang':lang},function(result){
+				if(result.resultCode == 0){
+					$.messager.alert('提示',"成功更新" + ids.length + "条记录！");
+					$("#html_table").datagrid("reload");
+				}else{
+					$.messager.alert('提示',result['msg']);
+				}
+			},"json");
+		}
+	}
+	
+	function showLang(lang){
+		commonTable.tableQueryParams.lang = lang;
+		$("#html_table").datagrid("reload");
 	}
 </script>
 </head>
@@ -361,9 +387,11 @@
 			<a href="javascript:void(0);" onclick="javascript:initAddNewsWindow()"class="easyui-linkbutton" title="添加" plain="true" iconCls="icon-add" id="addBtn">添加</a>
 			<a href="javascript:void(0);" onclick="javascript:commonTable.batchDelete()"class="easyui-linkbutton" title="删除" plain="true" iconCls="icon-cancel" id="delBtn">删除</a>
 			<a href="javascript:void(0);" onclick="javascript:commonTable.batchPublish()"class="easyui-linkbutton" title="发布" plain="true" iconCls="icon-ok">发布</a>
-			<a href="javascript:void(0);" onclick="javascript:commonTable.batchCancelPublish()"class="easyui-linkbutton" title="撤销" plain="true" iconCls="icon-undo">撤销发布</a>
-			<a href="javascript:void(0);" onclick="javascript:updateLang(0)"class="easyui-linkbutton" title="迁移到中文版" plain="true" iconCls="icon-back">迁移到中文版</a>
-			<a href="javascript:void(0);" onclick="javascript:updateLang(1)"class="easyui-linkbutton" title="迁移到英文版" plain="true" iconCls="icon-undo">迁移到英文版</a>
+			<a href="javascript:void(0);" onclick="javascript:commonTable.batchCancelPublish()"class="easyui-linkbutton" title="撤销" plain="true" iconCls="icon-tip">撤销发布</a>
+			<a href="javascript:void(0);" onclick="javascript:showLang(0)"class="easyui-linkbutton" title="只显示中文版" plain="true" iconCls="icon-save">只显示中文版</a>
+			<a href="javascript:void(0);" onclick="javascript:showLang(1)"class="easyui-linkbutton" title="只显示英文版" plain="true" iconCls="icon-save">只显示英文版</a>
+			<a href="javascript:void(0);" onclick="javascript:updateLang(0)"class="easyui-linkbutton" title="迁移到中文版" plain="true" iconCls="icon-undo">迁移到中文版</a>
+			<a href="javascript:void(0);" onclick="javascript:updateLang(1)"class="easyui-linkbutton" title="迁移到英文版" plain="true" iconCls="icon-redo">迁移到英文版</a>
 		</div>
 		
 		<!-- 添加 -->
@@ -373,13 +401,13 @@
 				<div class="wrap">
 					<div style="margin-bottom:8px;text-align: center;">
 						<span style="margin-right:10px;">显示时间:</span><input style="width:140px;" class="easyui-datebox clear-datebox" id="edit-div-showtime" prompt="请选择图集时间" >
-						<span style="margin-left:40px;margin-right:10px;">是否发布:</span><select id="edit_form_valid" name="valid" class="easyui-combobox clear-combobox">
-												<option value="0">未发布</option>
-												<option value="1">发布</option>
-											</select>
 						<span style="margin-left:40px;margin-right:10px;">语言:</span><select id="edit_form_lang" name="lang" class="easyui-combobox clear-combobox">
 												<option value="0">中文</option>
 												<option value="1">英文</option>
+											</select>
+						<span style="margin-left:40px;margin-right:10px;">是否发布:</span><select id="edit_form_valid" name="valid" class="easyui-combobox clear-combobox">
+												<option value="0">未发布</option>
+												<option value="1">发布</option>
 											</select>
 					</div>
 					<div style="margin-bottom:4px;text-align: center;">

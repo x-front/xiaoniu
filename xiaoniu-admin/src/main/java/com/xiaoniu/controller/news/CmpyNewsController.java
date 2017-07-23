@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.xiaoniu.service.news.CmpyNewsService;
 import com.zxx.common.contants.Contants;
 import com.zxx.common.enums.MsgCode;
+import com.zxx.common.utils.StringUtils;
 import com.xiaoniu.db.domain.CmpyNews;
 import com.xiaoniu.controller.base.BaseController;
 
@@ -72,7 +73,7 @@ public class CmpyNewsController extends BaseController<CmpyNews>{
 			Date now = new Date();
 			CmpyNews entity = new CmpyNews();
 			entity.setId(id);
-			entity.setSerialNumber(-9999);
+//			entity.setSerialNumber(-9999);
 			entity.setIsTop(1);
 			entity.setUpdateTime(now);
 			service.updateNotNull(entity);
@@ -81,7 +82,7 @@ public class CmpyNewsController extends BaseController<CmpyNews>{
 			map.put(Contants.MSG, MsgCode.SAVE_SUCCESS.getMsg());
 		}catch(Exception e){
 			map.put(Contants.RESULT_CODE, MsgCode.SAVE_FAILED.getCode());
-			map.put(Contants.MSG, e);
+			map.put(Contants.MSG, e.getMessage());
 		}
 		return map;
 	}
@@ -97,6 +98,26 @@ public class CmpyNewsController extends BaseController<CmpyNews>{
 		}catch(Exception e){
 			map.put(Contants.RESULT_CODE, MsgCode.FAILED.getCode());
 			map.put(Contants.MSG, MsgCode.FAILED.getMsg());
+		}
+		return map;
+	}
+	
+	@RequestMapping("batchUpdateNewsLang")
+	@ResponseBody
+	public Map<String,Object> batchUpdateNewsLang(Integer lang,String strIds){
+		Map<String,Object> map = new HashMap<String,Object>();
+		try{
+			Integer[] ids = StringUtils.convertStringToIds(strIds);
+			for (int i = 0; i < ids.length; i++) {
+				CmpyNews entity  = new CmpyNews();
+				entity.setId(ids[i]);
+				entity.setLang(lang);
+				service.updateNotNull(entity);
+			}
+			map.put(Contants.RESULT_CODE, MsgCode.UPDATE_SUCCESS.getCode());
+		}catch(Exception e){
+			map.put(Contants.RESULT_CODE, MsgCode.UPDATE_FAILED.getCode());
+			map.put(Contants.MSG, e.getMessage());
 		}
 		return map;
 	}

@@ -25,7 +25,7 @@ public class MoreContentController {
 	private MoreContentService service;
 	
 	@RequestMapping("principle.html")
-	private ModelAndView principleHtml(){
+	public ModelAndView principleHtml(){
 		ModelAndView mv = new ModelAndView("secure/principle");
 		try{
 			mv.addObject("p1", service.selectByKey(11));
@@ -42,7 +42,7 @@ public class MoreContentController {
 	}
 	
 	@RequestMapping("advance.html")
-	private ModelAndView advanceHtml(){
+	public ModelAndView advanceHtml(){
 		ModelAndView mv = new ModelAndView("secure/advance");
 		try{
 			mv.addObject("p1", service.selectByKey(51));

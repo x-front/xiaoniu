@@ -14,7 +14,7 @@
 <script type="text/javascript" src="<c:url value='/resources/js/xiaoniu/common.js'/>?r=2"></script>
 <script type="text/javascript" src="/resources/kindeditor-4.1.10/kindeditor-all-min.js"></script>
 <script type="text/javascript" src="/resources/kindeditor-4.1.10/lang/zh_CN.js"></script>
-<script type="text/javascript" src="/resources/3rd/easyUI/plugins/datagrid-cellediting.js"></script>
+<!-- <script type="text/javascript" src="/resources/3rd/easyUI/plugins/datagrid-cellediting.js"></script> -->
 <script type="text/javascript">
 	commonTable.loadDateURI = "/secure/news/queryList";
 	commonTable.batchUpdateValidURI = "/secure/news/batchUpdateValid?strIds=";
@@ -25,7 +25,8 @@
 	commonTable.checkOnSelect = true;
 	commonTable.tableQueryParams = {
 			orderBy:'serial_number desc,id desc',
-			type:'<%=type%>'
+			type:'<%=type%>',
+			lang:0
 	}
 	commonTable.columns = [
 		{field:'ck',checkbox:true},
@@ -93,31 +94,69 @@
 		contentHeight = jQuery(window).height();
 		showPageLoading();
 		commonTable.init();
-		$("#html_table").datagrid('enableCellEditing').datagrid({
-			onAfterEdit: function(index,row,changes){
-				$.post("/secure/news/update",{'id':row.id,'serialNumber':row.serialNumber},function(result){
-					console.log(result.resultCode);
-				},"json")
-			},
-			onClickCell: function (rowIndex, field, value) {
-				console.log("iam click");
-		         IsCheckFlag = false;
-		     },
-		     onSelect: function (rowIndex, rowData) {
-		    	 console.log("imselect");
-		         if (!IsCheckFlag) {
-		             IsCheckFlag = true;
-		             $("#dg").datagrid("unselectRow", rowIndex);
-		         }
-		     },                    
-		     onUnselect: function (rowIndex, rowData) {
-		    	 console.log("iam unselect");
-		         if (!IsCheckFlag) {
-		             IsCheckFlag = true;
-		             $("#dg").datagrid("selectRow", rowIndex);
-		         }
-		     }
+		
+		/**********************************************
+		* 拓展支持 cell edit
+		**********************************************/
+		$.extend($.fn.datagrid.methods, {
+			editCell: function (b, a) {
+				return b.each(function () {
+					var c = $(this).datagrid("getColumnFields", true).concat($(this).datagrid("getColumnFields"));
+					for (var e = 0; e < c.length; e++) {
+						var d = $(this).datagrid("getColumnOption", c[e]);
+						d.editor1 = d.editor;
+						if (c[e] != a.field) {
+							d.editor = null
+						}
+					}
+					$(this).datagrid("beginEdit", a.index);
+					for (var e = 0; e < c.length; e++) {
+						var d = $(this).datagrid("getColumnOption", c[e]);
+						d.editor = d.editor1
+					}
+				})
+			}
 		});
+		var editIndex = undefined;
+		function endEditing() {
+			if (editIndex == undefined) {
+				return true
+			}
+			if ($("#html_table").datagrid("validateRow", editIndex)) {
+				$("#html_table").datagrid("endEdit", editIndex);
+				editIndex = undefined;
+				return true
+			} else {
+				return false
+			}
+		}
+		$("#html_table").datagrid({
+			onAfterEdit: function(index,row,changes){
+				if($.isEmptyObject(changes) == false){
+					$.post("/secure/news/update",{'id':row.id,'serialNumber':row.serialNumber},function(result){
+						if(result.resultCode == 0){
+							console.log(result.resultCode);
+						}else{
+							$("#html_table").datagrid("rejectChanges");
+							$.messager.alert('提示',result['msg']);
+						}
+					},"json");
+				}
+			},
+			onClickCell: function onClickCell(a, b) {
+				if (endEditing()) {
+					$("#html_table").datagrid("selectRow", a).datagrid("editCell", {
+						index: a,
+						field: b
+					});
+					editIndex = a
+				}
+			}
+		});
+		
+		/********************************************************************
+		* end cell edit
+		********************************************************************/
 		
 		
 		removePageLoading();
@@ -190,6 +229,7 @@
 		$("#edit-div-clickTimes").numberbox('setValue',row.clickTimes);
 		$("#edit-div-serialNumber").numberbox('setValue',row.serialNumber);
 		$("#edit-div-valid").combobox('setValue',row.valid);
+		$("#edit-div-lang").combobox('setValue',row.lang);
 		contextEditor.html(row.content);
 		contextEditor.focus();
 		$("#edit-form").attr("action",commonTable.updateURI);
@@ -335,6 +375,32 @@
 			});
 		}
 	}
+	
+	function updateLang(lang){
+		var rows = $('#html_table').datagrid('getSelections');	
+		if(isSelected(rows)){
+			var ids = [];
+			for (var i = 0; i < rows.length; i++) {
+				var row = rows[i];
+				for(var i=0;i<rows.length;i+=1){		
+					ids.push(row['id']);	
+				}
+			}
+			$.post("/secure/news/batchUpdateNewsLang?strIds="+ids,{'lang':lang},function(result){
+				if(result.resultCode == 0){
+					$.messager.alert('提示',"成功更新" + ids.length + "条记录！");
+					$("#html_table").datagrid("reload");
+				}else{
+					$.messager.alert('提示',result['msg']);
+				}
+			},"json");
+		}
+	}
+	
+	function showLang(lang){
+		commonTable.tableQueryParams.lang = lang;
+		$("#html_table").datagrid("reload");
+	}
 </script>
 <style type="text/css">
 	#edit-div{width: 1000px;margin: auto;margin-top: 10px;}
@@ -359,9 +425,9 @@
 		<!-- tool bar -->
 		<div id="table_tb" style="padding:5px;height:auto" class="none">
 			<a href="javascript:void(0);" onclick="javascript:initAddNewsWindow()"class="easyui-linkbutton" title="添加" plain="true" iconCls="icon-add" id="addBtn">添加</a>
-			<a href="javascript:void(0);" onclick="javascript:commonTable.batchDelete()"class="easyui-linkbutton" title="删除" plain="true" iconCls="icon-cancel" id="delBtn">删除</a>
+			<a href="javascript:void(0);" onclick="javascript:commonTable.batchDelete()"class="easyui-linkbutton" title="删除" plain="true" iconCls="icon-cut" id="delBtn">删除</a>
 			<a href="javascript:void(0);" onclick="javascript:commonTable.batchPublish()"class="easyui-linkbutton" title="发布" plain="true" iconCls="icon-ok">发布</a>
-			<a href="javascript:void(0);" onclick="javascript:commonTable.batchCancelPublish()"class="easyui-linkbutton" title="撤销" plain="true" iconCls="icon-undo">撤销发布</a>
+			<a href="javascript:void(0);" onclick="javascript:commonTable.batchCancelPublish()"class="easyui-linkbutton" title="撤销" plain="true" iconCls="icon-cancel">撤销发布</a>
 			<c:if test="${type ge 1 and type le 4 or type eq 9 }">
 				<a href="javascript:void(0);" onclick="javascript:set2Top()"class="easyui-linkbutton" title="置顶" plain="true" iconCls="icon-filter">置顶</a>
 			</c:if>
@@ -370,6 +436,10 @@
 				<a href="javascript:void(0);" onclick="javascript:updateTop(0)"class="easyui-linkbutton" title="取消置顶" plain="true" iconCls="icon-tip">取消置顶</a>
 			</c:if>
 			<a href="javascript:void(0);" onclick="javascript:set2IndexNews()"class="easyui-linkbutton" title="添加" plain="true" iconCls="icon-edit" >添加到首页新闻列表</a>
+			<a href="javascript:void(0);" onclick="javascript:showLang(0)"class="easyui-linkbutton" title="只显示中文版" plain="true" iconCls="icon-save">只显示中文版</a>
+			<a href="javascript:void(0);" onclick="javascript:showLang(1)"class="easyui-linkbutton" title="只显示英文版" plain="true" iconCls="icon-save">只显示英文版</a>
+			<a href="javascript:void(0);" onclick="javascript:updateLang(0)"class="easyui-linkbutton" title="迁移到中文版" plain="true" iconCls="icon-undo">迁移到中文版</a>
+			<a href="javascript:void(0);" onclick="javascript:updateLang(1)"class="easyui-linkbutton" title="迁移到英文版" plain="true" iconCls="icon-redo">迁移到英文版</a>
 		</div>
 		
 		<!-- 移动 -->
@@ -451,9 +521,14 @@
 					<input id="edit-div-publishTime" name="publishTime" required="true" class="easyui-datetimebox clear-easyui-datetimebox " prompt="发布时间"/>
 					<input id="edit-div-clickTimes" name="clickTimes" required="true" class="easyui-numberbox clear-easyui-numberbox " prompt="点击次数" data-options="min:0"/>
 					<input id="edit-div-serialNumber" name="serialNumber" required="true" class="easyui-numberbox clear-easyui-numberbox " prompt="序号(越大排序越靠前)"/>
-					<select class="easyui-combobox" required="true" id="edit-div-valid" name="valid">
+					
+					<select class="easyui-combobox" required="true" id="edit-div-valid" name="valid" style="width:104px;">
 						<option value="0">提交后不发布</option>
 						<option value="1">提交后直接发布</option>
+					</select>
+					<select class="easyui-combobox" required="true" id="edit-div-lang" name="lang" style="width:64px;">
+						<option value="0">中文</option>
+						<option value="1">英文</option>
 					</select>
 				</div>
 				<div id="div-title" >

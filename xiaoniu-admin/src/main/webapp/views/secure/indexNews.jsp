@@ -19,7 +19,8 @@
 	commonTable.title = "首页新闻";
 	commonTable.nowrap = false;
 	commonTable.tableQueryParams = {
-			orderBy:'serial_number desc,id desc'
+			orderBy:'serial_number desc,id desc',
+			lang:0
 	}
 	commonTable.columns = [
 		{field:'ck',checkbox:true},
@@ -43,6 +44,7 @@
 		$("#edit_form_title").textbox('setValue',row.title);
 		$("#edit_form_serialNumber").numberbox('setValue',row.serialNumber);
 		$("#edit_form_valid").combobox('setValue',row.valid);
+		$("#edit_form_lang").combobox('setValue',row.lang);
 		$("#edit-form").attr("action",commonTable.updateURI);
 	};
 	
@@ -53,7 +55,31 @@
 		removePageLoading();
 	});
 	
+	function updateLang(lang){
+		var rows = $('#html_table').datagrid('getSelections');	
+		if(isSelected(rows)){
+			var ids = [];
+			for (var i = 0; i < rows.length; i++) {
+				var row = rows[i];
+				for(var i=0;i<rows.length;i+=1){		
+					ids.push(row['id']);	
+				}
+			}
+			$.post("/secure/indexNews/batchUpdateIndexNewsLang?strIds="+ids,{'lang':lang},function(result){
+				if(result.resultCode == 0){
+					$.messager.alert('提示',"成功更新" + ids.length + "条记录！");
+					$("#html_table").datagrid("reload");
+				}else{
+					$.messager.alert('提示',result['msg']);
+				}
+			},"json");
+		}
+	}
 	
+	function showLang(lang){
+		commonTable.tableQueryParams.lang = lang;
+		$("#html_table").datagrid("reload");
+	}
 </script>
 </head>
 <body>
@@ -65,7 +91,11 @@
 			<!-- <a href="javascript:void(0);" onclick="javascript:commonTable.initAddWindow()"class="easyui-linkbutton" title="添加" plain="true" iconCls="icon-add" id="addBtn">添加</a> -->
 			<a href="javascript:void(0);" onclick="javascript:commonTable.batchDelete()"class="easyui-linkbutton" title="删除" plain="true" iconCls="icon-cancel" id="delBtn">删除</a>
 			<a href="javascript:void(0);" onclick="javascript:commonTable.batchPublish()"class="easyui-linkbutton" title="发布" plain="true" iconCls="icon-ok">发布</a>
-			<a href="javascript:void(0);" onclick="javascript:commonTable.batchCancelPublish()"class="easyui-linkbutton" title="撤销" plain="true" iconCls="icon-undo">撤销发布</a>
+			<a href="javascript:void(0);" onclick="javascript:commonTable.batchCancelPublish()"class="easyui-linkbutton" title="撤销" plain="true" iconCls="icon-tip">撤销发布</a>
+			<a href="javascript:void(0);" onclick="javascript:showLang(0)"class="easyui-linkbutton" title="只显示中文版" plain="true" iconCls="icon-save">只显示中文版</a>
+			<a href="javascript:void(0);" onclick="javascript:showLang(1)"class="easyui-linkbutton" title="只显示英文版" plain="true" iconCls="icon-save">只显示英文版</a>
+			<a href="javascript:void(0);" onclick="javascript:updateLang(0)"class="easyui-linkbutton" title="迁移到中文版" plain="true" iconCls="icon-undo">迁移到中文版</a>
+			<a href="javascript:void(0);" onclick="javascript:updateLang(1)"class="easyui-linkbutton" title="迁移到英文版" plain="true" iconCls="icon-redo">迁移到英文版</a>
 		</div>
 		
 		<!-- 添加 -->
@@ -87,6 +117,15 @@
 								<select id="edit_form_valid" name="valid" class="easyui-combobox clear-combobox">
 									<option value="1">发布</option>
 									<option value="0">未发布</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td>语言:</td>
+							<td>
+								<select class="easyui-combobox" required="true" id="edit_form_lang" name="lang">
+									<option value="0">中文</option>
+									<option value="1">英文</option>
 								</select>
 							</td>
 						</tr>

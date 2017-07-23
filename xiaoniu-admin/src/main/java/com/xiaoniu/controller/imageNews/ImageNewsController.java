@@ -86,6 +86,26 @@ public class ImageNewsController extends BaseController<CmpyImageNews>{
 		return map;
 	}
 	
+	@RequestMapping("batchUpdateHeadImageNewsLang")
+	@ResponseBody
+	public Map<String,Object> batchUpdateHeadImageNewsLang(Integer lang,String strIds){
+		Map<String,Object> map = new HashMap<String,Object>();
+		try{
+			Integer[] ids = StringUtils.convertStringToIds(strIds);
+			for (int i = 0; i < ids.length; i++) {
+				CmpyImageNewsHead entity  = new CmpyImageNewsHead();
+				entity.setId(ids[i]);
+				entity.setLang(lang);
+				headService.updateNotNull(entity);
+			}
+			map.put(Contants.RESULT_CODE, MsgCode.UPDATE_SUCCESS.getCode());
+		}catch(Exception e){
+			map.put(Contants.RESULT_CODE, MsgCode.UPDATE_FAILED.getCode());
+			map.put(Contants.MSG, e.getMessage());
+		}
+		return map;
+	}
+	
 	@RequestMapping("saveImageNews")
 	@ResponseBody
 	public Map<String,Object> saveImageNews(Integer id,Integer valid,String title, Long showTime, String img1,String img2,String img3,Integer lang,String data){
