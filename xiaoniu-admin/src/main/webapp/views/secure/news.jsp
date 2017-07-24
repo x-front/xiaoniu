@@ -361,7 +361,8 @@
 							'id':rows[i]['id'],
 							'title':rows[i]['title'],
 							'valid':0,
-							'serialNumber':1000
+							'serialNumber':1,
+							'lang':0
 						},function(result){
 							if(result.resultCode == 0){
 								$.messager.alert('提示', "成功添加！");

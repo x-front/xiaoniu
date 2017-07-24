@@ -51,7 +51,7 @@ function getAbout(){
 				titleHtml += buildTitle(row.introdution);
 				liHtml += buildLi(i);
 				coverHtml += buildCover(row.extCover);
-				mediaHtml += buildMedia(row.extCover);
+				mediaHtml += buildMedia(row.extMedia);
 			}
 			$(".idV-pic-t:eq(0)").append(coverHtml);
 			$(".idV-pic-c:eq(0)").append(liHtml);
