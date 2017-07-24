@@ -16,7 +16,7 @@
 <script type="text/javascript" src="/resources/kindeditor-4.1.10/plugins/media/media.js?v=4"></script>
 <script type="text/javascript" src="/resources/kindeditor-4.1.10/lang/zh_CN.js"></script>
 <script type="text/javascript">
-	var PluginUpload;
+	var PluginUpload,type = <%=type%>;
 	commonTable.loadDateURI = "/secure/media/queryList";
 	commonTable.batchUpdateValidURI = "/secure/media/batchUpdateValid?strIds=";
 	commonTable.batchDeleteURI = "/secure/media/batchDelete?strIds=";
@@ -90,16 +90,31 @@
 					});
 				});
 			});
-			
-			$("#btn-media-upload").click(function(){
-				PluginUpload.loadPlugin('media',function(){
-					PluginUpload.plugin.media['afterClickYesBtn']=function(url){
-						$('#edit_form_extMedia').textbox('setValue',url);
-					}
-					PluginUpload.plugin.media.edit({
-					}); 
+			if(type == 1 || type == 2){//报告、内刊
+				$("#btn-media-upload").click(function(){
+					PluginUpload.loadPlugin('image',function(){
+						PluginUpload.plugin.imageDialog({
+							imageUrl : $("#edit_form_extMedia").textbox('getValue'),
+							clickFn : function(url, title, width, height, border, align){
+								$('#edit_form_extMedia').textbox('setValue',url);
+								PluginUpload.hideDialog();
+							}
+						});
+					});
 				});
-			});
+			}else{
+				$("#btn-media-upload").click(function(){
+					PluginUpload.loadPlugin('media',function(){
+						PluginUpload.plugin.media['afterClickYesBtn']=function(url){
+							$('#edit_form_extMedia').textbox('setValue',url);
+						}
+						PluginUpload.plugin.media.edit({
+						}); 
+					});
+				});
+			}
+			
+			
 		});
 		
 		removePageLoading();
