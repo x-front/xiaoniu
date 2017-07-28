@@ -6,9 +6,9 @@ function _xn_init() {
 	getReport();
     $.post("/pageInfo/voice", function (a) {
         if (a.resultCode == 0) {
-            if (a.voice) {
-                $(".about-i p:eq(0)").html(a.voice.introdution)
-            }
+//            if (a.voice) {
+//                $(".about-i p:eq(0)").html(a.voice.introdution)
+//            }
             if (a.thinking) {
                 $("#idV-i p:eq(0)").html(a.thinking.introdution)
             }
@@ -195,6 +195,7 @@ function buildReport(data){
 			html += '<div class="clearfix"></div>';
 		}
 	}
+	html += '<div class="clearfix"></div>';
 	return html;
 }
 

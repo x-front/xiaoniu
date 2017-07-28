@@ -21,7 +21,8 @@ function _xn_init() {
             for (var c = 0; c < a.rows.length; c++) {
                 var b = e[c];
                 if (c % 3 == 0 && c != 0) {
-                    d += f + "</ul>";
+                    d += f + '<div class="clear"></div></ul>';
+//                    d += '<div class="clear"></div>';
                     f = '<ul class="wow fadeInUp">'
                     if ($(window).width() <= 500) {
                         f = '<ul class="">';
@@ -30,7 +31,7 @@ function _xn_init() {
                 f += '<li><div class="t-p"><img src="' + b.banner + '"/></div><br/><h4>' + b.name + "</h4><span>" + b.summary + "</span></li>"
             }
             if (a.rows.length != 0) {
-                f += "</ul>";
+                f += '<div class="clear"></div></ul>';
                 d += f
             }
 
