@@ -42,7 +42,7 @@ function _xn_init(){
 		if(result.resultCode == 0){
 			if(result.rows){
 				var html = "";
-				for(var i = 0; i < result.total && i < 3; i++){
+				for(var i = 0; i < result.rows.length && i < 3; i++){
 					var entity = result.rows[i];
 					html += '<li><a href="/static/news-t-inside.html?id='+entity.id +'"><div><img src="'+entity.banner+'"/></div><p>'
 							+ entity.title + '</p><span>'+entity.summary+'</span></a></li>';
@@ -59,7 +59,7 @@ function _xn_init(){
 	},function(result){
 		if(result.resultCode == 0){
 			var html = "";
-			for(var i = 0; i < result.total ; i++){
+			for(var i = 0; i < result.rows.length ; i++){
 				var entity = result.rows[i];
 				html += '<li><a href="/static/news-t-inside.html?id='+entity.id+'">'+entity.title+'</a></li>';
 			}

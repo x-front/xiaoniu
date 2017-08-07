@@ -4518,6 +4518,7 @@ h3:hover, h4:hover {
     display: inline-block;
     width: 346px;
     margin-right: 45px;
+    vertical-align: top;
 }
 
 .pics_list li:nth-child(3n) {
@@ -4526,13 +4527,13 @@ h3:hover, h4:hover {
 
 .pics_item {
     width: 100%;
-    height: 205px;
+    height: 187px;
     position: relative
 }
 
 .pics_item .img {
     width: 320px;
-    height: 179px;
+    height: 164px;
     border: 2px solid #FFF;
     overflow: hidden;
     box-shadow: 0 0 8px 1px #888;
@@ -4575,10 +4576,13 @@ h3:hover, h4:hover {
 
 .pics_list p {
     width: 100%;
-    line-height: 63px;
-    padding-bottom: 68px;
+    line-height: 28px;
+    padding-bottom: 57px;
+    padding-top: 10px;
     font-size: 18px;
-    text-align: center;
+    height:84px;
+    overflow: hidden;
+    text-align: justify;
 }
 
 .pics_list li:hover p {
@@ -4916,7 +4920,6 @@ h3:hover, h4:hover {
     .pics_list p {
         font-size: 16px;
         padding-bottom: 15%;
-        line-height: 3;
     }
 }
 
@@ -5087,7 +5090,7 @@ h3:hover, h4:hover {
     }
 
     .pics_item {
-        height: 175px;
+        height: 159px;
     }
 
     .s1_zz {
@@ -5353,7 +5356,7 @@ h3:hover, h4:hover {
     }
 
     .pics_item {
-        height: 135px;
+        height: 119px;
     }
 
     .section3 .s3-m {
@@ -5729,7 +5732,7 @@ h3:hover, h4:hover {
     }
 
     .pics_item {
-        height: 125px;
+        height: 105px;
     }
 
     .footer-inner .bah {
