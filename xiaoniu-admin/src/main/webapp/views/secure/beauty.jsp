@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<% String lang = request.getParameter("lang"); %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -55,9 +56,9 @@
 		});
 	});
 	
-	function initUpdateWhoWindow(type,index){
+	function initUpdateWhoWindow(type,index,id){
 		$("#display-none-index").val(index);
-		$("#display-none-id").val(type);
+		$("#display-none-id").val(id);
 		$("#display-none-type").val(type);
 		$("#edit-div-h2").html($("#main-div .content-h2:eq("+ index +")").html());
 		
@@ -111,7 +112,9 @@
 			}
 		});
 	}
-	
+	function jump(lang){
+		location.href='/secure/pageIntrodution/beauty.html?lang='+lang;
+	}
 </script>
 <style type="text/css">
 	.float-right{float: right;}
@@ -138,35 +141,48 @@
 	}
 	#edit-div{text-align: center;}
 	#edit-div .textbox {margin-bottom:5px}
+	
+	.btns a{text-align: center;display:inline-block;width:110px;height:50px;line-height: 50px;font-size: 16px;color:#FFF;border-radius: 5px;background: #ce2f10;margin-right: 10px;}
+    .btns .btn2{background: #4863ff}
+    .btns .btn3{background: #29bd4d}
 </style>
 </head>
 <body>
 		
 		<div id="main-div">
+			<div class="btns">
+				<c:if test="${lang eq 1 }">
+					<a class="btn1" href="javascript:jump(0);">查看中文版</a>
+				</c:if>
+				<c:if test="${lang eq 0 }">
+		        	<a class="btn1" href="javascript:jump(1);">查看英文版</a>
+		        </c:if>
+		    </div>
+		
 			<div class="content-div">
 				<div class="description-div">
-					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(18,0)" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
+					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(18,0,${family.id})" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
 					<h2 class="content-h2">美好家庭</h2>
 					<p class="content-p">${family.introdution }</p>
 					<img class="who-img content-img none" alt="" src="${family.extCover }" media="${family.extMedia }">
 				</div>
 				
 				<div class="description-div">
-					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(19,1)" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
+					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(19,1,${sports.id})" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
 					<h2 class="content-h2">美好体育</h2>
 					<p class="content-p">${sports.introdution }</p>
 					<img class="who-img content-img none" alt="" src="${sports.extCover }" media="${sports.extMedia }">
 				</div>
 				
 				<div class="description-div">
-					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(20,2)" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
+					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(20,2,${welfare.id})" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
 					<h2 class="content-h2">美好公益</h2>
 					<p class="content-p">${welfare.introdution }</p>
 					<img class="who-img content-img none" alt="" src="${welfare.extCover }" media="${welfare.extMedia }">
 				</div>
 				
 				<div class="description-div">
-					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(21,3)" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
+					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(21,3,${education.id})" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
 					<h2 class="content-h2">美好教育</h2>
 					<p class="content-p">${education.introdution }</p>
 					<img class="who-img content-img none" alt="" src="${education.extCover }" media="${education.extMedia }">
@@ -203,6 +219,8 @@
 				<div id="display-none-input" class="none">
 					<input id="display-none-id" name="id" class="clear-input">
 					<input id="display-none-type" name="type" class="clear-input">
+					<input id="display-none-lang" name="lang" value="${lang }">
+					<input id="display-none-terminal" name="terminal" value="0">
 					<input id="display-none-valid" name="valid" value="1">
 					<input id="display-none-index" >
 				</div>

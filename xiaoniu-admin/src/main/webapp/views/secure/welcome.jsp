@@ -57,9 +57,9 @@
 		});
 	});
 	
-	function initUpdateWhoWindow(type,index){
+	function initUpdateWhoWindow(type,index,id){
 		$("#display-none-index").val(index);
-		$("#display-none-id").val(type);
+		$("#display-none-id").val(id);
 		$("#display-none-type").val(type);
 		$("#edit-div-h2").html($("#main-div .content-h2:eq("+ index +")").html());
 		
@@ -173,21 +173,21 @@
 		    </div>
 			<div class="content-div">
 				<div class="description-div">
-					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(23,0)" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
+					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(23,0,${who.id})" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
 					<h2 class="content-h2">我们是谁</h2>
 					<p class="content-p">${who.introdution }</p>
 					<img class="who-img content-img none" alt="" src="${who.extCover }" media="${who.extMedia }">
 				</div>
 				
 				<div class="description-div">
-					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(24,1)" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
+					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(24,1,${doWhat.id})" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
 					<h2 class="content-h2">我们做什么</h2>
 					<p class="content-p">${doWhat.introdution }</p>
 					<img class="who-img content-img none" alt="" src="${doWhat.extCover }" media="${doWhat.extMedia }">
 				</div>
 				
 				<div class="description-div">
-					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(29,2)" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
+					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(29,2,${voice.id})" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
 					<h2 class="content-h2">小牛思想声音</h2>
 					<p class="content-p">${voice.introdution }</p>
 					<img class="content-img none" alt="" src="${voice.extCover }" media="${voice.extMedia }">
@@ -195,28 +195,28 @@
 				
 				<div>
 					<div class="description-div beautiful-div" style='background-image: url("${family.extCover}")'>
-						<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(25,3)" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
+						<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(25,3,${family.id})" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
 						<h2 class="content-h2">美好家庭</h2>
 						<p class="content-p none">${family.introdution }</p>
 						<img class="content-img  none" alt="" src="${family.extCover }" media="${family.extMedia }">
 					</div>
 					
 					<div class="description-div beautiful-div" style='background-image: url("${sports.extCover}")'>
-						<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(26,4)" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
+						<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(26,4,${sports.id})" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
 						<h2 class="content-h2">美好体育</h2>
 						<p class="content-p none">${sports.introdution }</p>
 						<img class="content-img none" alt="" src="${sports.extCover }" media="${sports.extMedia }">
 					</div>
 					
 					<div class="description-div beautiful-div" style='background-image: url("${welfare.extCover}")'>
-						<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(27,5)" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
+						<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(27,5,${welfare.id})" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
 						<h2 class="content-h2">美好公益</h2>
 						<p class="content-p none">${welfare.introdution }</p>
 						<img class="content-img none" alt="" src="${welfare.extCover }" media="${welfare.extMedia }">
 					</div>
 					
 					<div class="description-div beautiful-div" style='background-image: url("${education.extCover}")'>
-						<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(28,6)" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
+						<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(28,6,${education.id})" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
 						<h2 class="content-h2">美好教育</h2>
 						<p class="content-p none">${education.introdution }</p>
 						<img class="content-img none" alt="" src="${education.extCover }" media="${education.extMedia }">

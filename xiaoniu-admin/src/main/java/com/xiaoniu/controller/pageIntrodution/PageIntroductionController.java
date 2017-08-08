@@ -157,8 +157,9 @@ public class PageIntroductionController extends BaseController<CmpyPageIntroduct
 			}
 			
 			if(entity.getType() != null){
-				CmpyPageIntroduction tmp = queryByCondition(entity.getLang(),entity.getTerminal(),entity.getId());
+				CmpyPageIntroduction tmp = queryByCondition(entity.getLang(),entity.getTerminal(),entity.getType());
 				if(tmp != null){
+					entity.setId(tmp.getId());
 					service.updateAll(entity);
 				}else{
 					service.save(entity);
@@ -171,7 +172,7 @@ public class PageIntroductionController extends BaseController<CmpyPageIntroduct
 			}
 		}catch(Exception e){
 			map.put(Contants.RESULT_CODE, MsgCode.SAVE_FAILED.getCode());
-			map.put(Contants.MSG, e);
+			map.put(Contants.MSG, e.getMessage());
 		}
 		return map;
 	}

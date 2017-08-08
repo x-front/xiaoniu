@@ -40,7 +40,7 @@ function _xn_init(){
 }
 
 function getCarousel(){
-	$.post("/media/list",{'page':1,'rows':6,'type':3},function(result){
+	$.post("/media/list",{'page':1,'rows':6,'type':3,'lang':0},function(result){
 		if(result.resultCode == 0){
 			var rows = result.rows;
 			var titleHtml = '';

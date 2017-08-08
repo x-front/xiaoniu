@@ -34,7 +34,7 @@
 		{field:'extCover', title: '封面图',align:'center'},
 		{field:'extMedia',title: '媒体链接', align:'center',width:200},
 		{field:'introdution',title: '描述',align:'center',width:340},
-		{field:'serialNumber',title: '序号',align:'center',  hidden:true},
+		{field:'serialNumber',title: '序号',align:'center'},
 		publishColumn,
 		createTimeColumn,
 		updateTimeColumn,
@@ -188,7 +188,7 @@
 							<td>描述:</td>
 							<td><input id="edit_form_introdution" name="introdution" class="clear-textbox easyui-textbox" maxlength="255" data-options="multiline:true"  required="true" style="height: 100px;"/></td>
 						</tr>
-						<tr style="display:none">
+						<tr>
 							<td>序号:</td>
 							<td><input id="edit_form_serialNumber" name="serialNumber" class="clear-numberbox easyui-numberbox" required="true" value="1"/></td>
 						</tr>

@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<% String lang = request.getParameter("lang"); %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -63,9 +64,9 @@
 		});
 	});
 	
-	function initUpdateWhoWindow(type,index){
+	function initUpdateWhoWindow(type,index,id){
 		$("#display-none-index").val(index);
-		$("#display-none-id").val(type);
+		$("#display-none-id").val(id);
 		$("#display-none-type").val(type);
 		$("#edit-div-h2").html($("#main-div .content-h2:eq("+ index +")").html());
 		
@@ -124,7 +125,9 @@
 			}
 		});
 	}
-	
+	function jump(lang){
+		location.href='/secure/pageIntrodution/joinUsHead.html?lang='+lang;
+	}
 </script>
 <style type="text/css">
 	.float-right{float: right;}
@@ -145,14 +148,27 @@
 	#edit-div .textbox {margin-bottom:5px}
 	#edit-introdution-showOrHide{width: 775px;margin: auto;}
 	#main-div .content-img{width:1140px;}
+	
+	.btns a{text-align: center;display:inline-block;width:110px;height:50px;line-height: 50px;font-size: 16px;color:#FFF;border-radius: 5px;background: #ce2f10;margin-right: 10px;}
+    .btns .btn2{background: #4863ff}
+    .btns .btn3{background: #29bd4d}
 </style>
 </head>
 <body>
 		
 		<div id="main-div">
+		
+			<div class="btns">
+				<c:if test="${lang eq 1 }">
+					<a class="btn1" href="javascript:jump(0);">查看中文版</a>
+				</c:if>
+				<c:if test="${lang eq 0 }">
+		        	<a class="btn1" href="javascript:jump(1);">查看英文版</a>
+		        </c:if>
+		    </div>
 			<div class="content-div">
 				<div class="description-div">
-					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(22,0)" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
+					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(22,0,${joinUsHead.id})" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
 					<h2 class="content-h2">加入我们</h2>
 					<img class="content-img " alt="" src="${joinUsHead.extCover }" media="${joinUsHead.extMedia }">
 					<div class="content-p">${joinUsHead.introdution }</div>
@@ -191,6 +207,8 @@
 				<div id="display-none-input" class="none">
 					<input id="display-none-id" name="id" class="clear-input">
 					<input id="display-none-type" name="type" class="clear-input">
+					<input id="display-none-lang" name="lang" value="${lang }">
+					<input id="display-none-terminal" name="terminal" value="0">
 					<input id="display-none-valid" name="valid" value="1">
 					<input id="display-none-index" >
 				</div>
