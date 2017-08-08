@@ -3,6 +3,19 @@ $(function(){
 	_xn_init();
 });
 function _xn_init(){
+	$.post("/media/list",{'page':1,'rows':1,'type':6,'lang':0},function(result){
+		if(result.resultCode == 0){
+			var rows = result.rows;
+			var row = rows[0];
+			var media = row.extMedia;
+			$('.s1_v video').attr('src',media)
+		}else{
+			console.log(result.msg);
+			var meida='http://xiaoniu66-web.oss-cn-shenzhen.aliyuncs.com/media/20170704/20170704184846_326.mp4';
+			$('.s1_v video').attr('src',meida)
+		}
+	},"json");
+
 	$.post("/pageInfo/index",function(result){
 		if(result.resultCode == 0){
 			if(result.who){
@@ -80,16 +93,13 @@ function _xn_init(){
 					timer.stop(true,true).animate({ "width":"0%" },0).animate({ "width":"100%" },2500);
 */          /*$(".hd ul li").text("");*/
 
-
 			$("#dowebok .b-news .bd ul li").hover(function(){
 				var n=$(this).index();
 				$(".hd ul li").eq(n-1).css({"background":"#eea807"})
 			},function(){
 				var n=$(this).index();
 				$(".hd ul li").eq(n-1).css({"background":"#FFF"})
-
 			})
-
 		}else{
 			console.log(result.msg);
 		}
