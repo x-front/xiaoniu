@@ -317,7 +317,7 @@ a:hover {
     width: 54px;
     height: 54px;
     border-radius: 50%;
-    background: transparent url(../images/scrollTop.svg) no-repeat center center
+    background: transparent url(/static/images/scrollTop.svg) no-repeat center center
 }
 
 .scrollTop:hover {
@@ -455,7 +455,7 @@ a:hover {
     display: block;
     width: 175px;
     height: 45px;
-    background: url(../images/logo.svg) no-repeat left top;
+    background: url(/static/images/logo.svg) no-repeat left top;
     background-size: 175px 65px;
 }
 
@@ -568,7 +568,7 @@ a:hover {
     float: left;
     width: 20px;
     height: 20px;
-    background: url(../images/nav_share_03.svg) no-repeat center;
+    background: url(/static/images/nav_share_03.svg) no-repeat center;
     opacity: 0.7;
     margin: 1px 0 0 -2px;
 }
@@ -632,20 +632,20 @@ a:hover {
 }
 
 .share .bdshare-button-style0-16 .bds_sqq {
-    background: url(../images/nav_share_07.svg) no-repeat center;
+    background: url(/static/images/nav_share_07.svg) no-repeat center;
 }
 
 .share .bdshare-button-style0-16 .bds_tsina {
-    background: url(../images/nav_share_10.svg) no-repeat center;
+    background: url(/static/images/nav_share_10.svg) no-repeat center;
     margin: 0 5px 0 0
 }
 
 .share .WB_share_button .ico_share_btn_mini {
-    background: url(../images/nav_share_10.svg) no-repeat center !important;
+    background: url(/static/images/nav_share_10.svg) no-repeat center !important;
 }
 
 .share .bdshare-button-style0-16 .bds_weixin {
-    background: url(../images/nav_share_13.svg) no-repeat center;
+    background: url(/static/images/nav_share_13.svg) no-repeat center;
 }
 
 .ce {
@@ -711,7 +711,7 @@ a:hover {
     position: absolute;
     width: 656px;
     height: 167px;
-    background: url(../images/1.svg) no-repeat top center;
+    background: url(/static/images/1.svg) no-repeat top center;
     z-index: 1;
     top: 55%;
     left: 50%;
@@ -734,7 +734,7 @@ a:hover {
 .banner .dropdown {
     height: 52px;
     width: 52px;
-    background: url(../images/drop.png) no-repeat 50%;
+    background: url(/static/images/drop.png) no-repeat 50%;
     -webkit-animation: a 1.4s linear infinite;
     animation: a 1.4s linear infinite;
     display: none
@@ -758,7 +758,7 @@ a:hover {
     float: left;
     width: 42px;
     height: 26px;
-    background: url(../images/laba.svg) no-repeat left center;
+    background: url(/static/images/laba.svg) no-repeat left center;
     margin: 2px 5px 0 0;
     position: relative;
 }
@@ -1267,31 +1267,31 @@ a:hover {
 }
 
 .section1 .models li .icon-streng {
-    background: url(../images/icon_1.svg) no-repeat center;
+    background: url(/static/images/icon_1.svg) no-repeat center;
     width: 86px;
     height: 86px
 }
 
 .section1 .models li .icon-culture {
-    background: url(../images/icon_5.svg) no-repeat center;
+    background: url(/static/images/icon_5.svg) no-repeat center;
     width: 86px;
     height: 86px
 }
 
 .section1 .models li .icon-honor {
-    background: url(../images/icon_4.svg) no-repeat center;
+    background: url(/static/images/icon_4.svg) no-repeat center;
     width: 86px;
     height: 86px
 }
 
 .section1 .models li .icon-pheriy {
-    background: url(../images/icon_3.svg) no-repeat center;
+    background: url(/static/images/icon_3.svg) no-repeat center;
     width: 86px;
     height: 86px
 }
 
 .section1 .models li .icon-team {
-    background: url(../images/icon_2.svg) no-repeat center;
+    background: url(/static/images/icon_2.svg) no-repeat center;
     width: 86px;
     height: 86px
 }
@@ -1682,21 +1682,21 @@ a:hover {
 }
 
 #about-j {
-    background: #000 url(../images/about/about_j_01.jpg) no-repeat center;
+    background: #000 url(/static/images/about/about_j_01.jpg) no-repeat center;
     background-attachment: fixed;
     background-size: cover;
     width: 100%;
 }
 
 #about-w {
-    background: url(../images/about/about_w_01.jpg) no-repeat center;
+    background: url(/static/images/about/about_w_01.jpg) no-repeat center;
     background-attachment: fixed;
     background-size: cover;
     width: 100%;
 }
 
 #pro-k {
-    background: url(../images/pro/pro-k_01.jpg) no-repeat 50%;
+    background: url(/static/images/pro/pro-k_01.jpg) no-repeat 50%;
     background-attachment: fixed;
     background-size: cover;
     width: 100%;
@@ -1987,7 +1987,7 @@ a:hover {
 }
 
 .about-i.about-y {
-    background-image: url(../images/about/about-y_02.jpg);
+    background-image: url(/static/images/about/about-y_02.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
@@ -2241,7 +2241,7 @@ a:hover {
     line-height: 50px;
     color: #585858;
     padding-right: 28px;
-    background: url(../images/about/about-jt_11.jpg) no-repeat right center
+    background: url(/static/images/about/about-jt_11.jpg) no-repeat right center
 }
 
 .about-j1 a:hover {
@@ -2253,7 +2253,7 @@ a:hover {
 }
 
 .about-j2 {
-    background: url(../images/about/about-j_06.jpg) no-repeat center;
+    background: url(/static/images/about/about-j_06.jpg) no-repeat center;
     background-size: cover;
     padding: 70px 0 79px
 }
@@ -2296,13 +2296,13 @@ a:hover {
 }
 
 .about-j4 {
-    background: #fbfbfb url(../images/about/about-j_02.jpg) no-repeat center center;
+    background: #fbfbfb url(/static/images/about/about-j_02.jpg) no-repeat center center;
     background-size: cover;
     padding: 70px 0 130px
 }
 
 .about-j6 {
-    background: #fbfbfb url(../images/about/about-j_04.jpg) no-repeat center center;
+    background: #fbfbfb url(/static/images/about/about-j_04.jpg) no-repeat center center;
     background-size: cover;
     padding: 70px 0 130px;
 }
@@ -3039,7 +3039,7 @@ a:hover {
 }
 
 .about-i.pro-z {
-    background-image: url(../images/pro/pro-z_bg_06.jpg);
+    background-image: url(/static/images/pro/pro-z_bg_06.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
@@ -3063,7 +3063,7 @@ a:hover {
     color: #FFF;
     opacity: .5;
     font-size: 20px;
-    background: url(../images/pro/pro-z_btn_07.png) no-repeat 33px center;
+    background: url(/static/images/pro/pro-z_btn_07.png) no-repeat 33px center;
     text-align: left
 }
 
@@ -3121,7 +3121,7 @@ a:hover {
 }
 
 .about-i.pro-f {
-    background-image: url(../images/pro/pro-f_bg_02.jpg);
+    background-image: url(/static/images/pro/pro-f_bg_02.jpg);
     background-attachment: fixed;
     width: 100%;
     padding: 100px 0 150px;
@@ -3250,9 +3250,9 @@ a:hover {
     position: absolute;
     left: 50%;
     top: 50%;
-    width: 105px;
-    height: 105px;
-    margin: -52.5px 0 0 -52.5px;
+    width: 80px;
+    height: 80px;
+    margin: -40px 0 0 -40px;
     border-radius: 50%;
 }
 
@@ -3375,12 +3375,12 @@ a:hover {
     width: 20px;
     height: 17px;
     opacity: 0.5;
-    background: url(../images/download_01.svg) no-repeat center;
+    background: url(/static/images/download_01.svg) no-repeat center;
     cursor: pointer;
 }
 
 .idV-video .audio-ul a.download:hover {
-    background: url(../images/download.svg) no-repeat center;
+    background: url(/static/images/download.svg) no-repeat center;
     opacity: 1
 }
 
@@ -3734,7 +3734,7 @@ a:hover {
 .join-list .more {
     border: 0;
     padding: 0 22px 0 0;
-    background: url(../images/join/join_icon_05.png) no-repeat right center
+    background: url(/static/images/join/join_icon_05.png) no-repeat right center
 }
 
 .join-list .idV-more {
@@ -3847,7 +3847,7 @@ h3:hover, h4:hover {
     font-size: 14px;
     color: #4d4d4d;
     padding-left: 14px;
-    background: url(../images/hr/hr-index.png) no-repeat left 12px;
+    background: url(/static/images/hr/hr-index.png) no-repeat left 12px;
     line-height: 30px;
 }
 
@@ -4435,7 +4435,7 @@ h3:hover, h4:hover {
     margin: -60px 0 0 -60px;
     z-index: 2;
     opacity: 0.4;
-    background: url(../images/play_03.svg) no-repeat center;
+    background: url(/static/images/play_03.svg) no-repeat center;
     background-size: 100%
 }
 
@@ -4500,7 +4500,7 @@ h3:hover, h4:hover {
 }
 
 .pics_wrap {
-    background: url(../images/pics/pics_bg_02.jpg);
+    background: url(/static/images/pics/pics_bg_02.jpg);
 }
 
 .pics {
@@ -4860,12 +4860,12 @@ h3:hover, h4:hover {
 
 .pics_img_l {
     left: 20px;
-    background: #838282 url(../images/pics/l_03.svg) no-repeat center;
+    background: #838282 url(/static/images/pics/l_03.svg) no-repeat center;
 }
 
 .pics_img_r {
     right: 20px;
-    background: #838282 url(../images/pics/r_03.svg) no-repeat center;
+    background: #838282 url(/static/images/pics/r_03.svg) no-repeat center;
 }
 
 .pics_img:hover a {
@@ -4890,7 +4890,20 @@ h3:hover, h4:hover {
 .pics_b_r {
     right: 0;
 }
-
+.in_search{background:#FFF url(/static/images/search_bg.jpg) no-repeat bottom center;background-size:100%;color:#333;padding: 90px 0 300px}
+.search_wrap{max-width: 750px;width:96%;margin:0 auto;}
+.search_input{border:1px solid #eee;height:43px;line-height: 43px;font-size: 16px;margin-bottom: 27px;}
+.search_input input{width:80%;height:41px;border:none;padding-left: 2%;float:left;}
+.search_btn{width:15%;padding-left:3%;text-align: center;background:#e6bf7e url(/static/images/search_03.png) no-repeat 20% center;float:right;color:#333;}
+.search_btn:hover{background-color:#efcc7e;color:#333}
+.search_xg{font-size: 14px;line-height: 2;}
+.search_xg a{color:#a47017;margin:0 15px;white-space: nowrap}
+.search_list{padding-top: 60px;}
+.search_item{margin-bottom: 45px;display:block;color:#666;}
+.search_item h3{font-size:18px;line-height: 1.5;padding:5px 0 8px; }
+.search_item p{font-size:14px;line-height: 24px;text-align: justify }
+.search_item:hover h3{color:#efcc7e}
+.search_item:hover p{color:#666}
 @media screen and (max-width: 1400px) {
     .i-wrap {
         width: 84%;
@@ -4979,7 +4992,9 @@ h3:hover, h4:hover {
         width: 100%;
         padding: 0;
     }
-
+    #wrap.in_search{
+        padding:90px 0 300px;
+    }
     .about-yz {
         padding: 50px 0;
     }
@@ -5132,6 +5147,7 @@ h3:hover, h4:hover {
 }
 
 @media screen and (max-width: 769px) {
+    .share{display:none;}
     .s1_video_1 .close img {
         width: 30px;
     }
@@ -5162,7 +5178,7 @@ h3:hover, h4:hover {
     }
 
     .section0 {
-        background: url(../images/yuandan_p.jpg) no-repeat center;
+        background: url(/static/images/yuandan_p.jpg) no-repeat center;
         background-size: cover;
     }
 
@@ -5171,7 +5187,7 @@ h3:hover, h4:hover {
     }
 
     .footer {
-        background: url(../images/ipad_07.jpg) no-repeat center bottom;
+        background: url(/static/images/ipad_07.jpg) no-repeat center bottom;
         background-size: cover
     }
 
@@ -5197,7 +5213,7 @@ h3:hover, h4:hover {
     }
 
     .banner {
-        background-image: url(../images/pad_01.jpg)
+        background-image: url(/static/images/pad_01.jpg)
     }
 
     .section1 {
@@ -5205,7 +5221,7 @@ h3:hover, h4:hover {
     }
 
     .section3 {
-        background: url(../images/pad_04.jpg) no-repeat center;
+        background: url(/static/images/pad_04.jpg) no-repeat center;
         background-size: cover;
     }
 
@@ -5466,12 +5482,12 @@ h3:hover, h4:hover {
         padding: 0 2%;
         margin-left: -50%;
         top: 60%;
-        background: url(../images/1_1.svg) no-repeat top center;
+        background: url(/static/images/1_1.svg) no-repeat top center;
     }
 
     .banner .dropdown {
         float: right;
-        background: url(../images/drop_03.png) no-repeat 50%;
+        background: url(/static/images/drop_03.png) no-repeat 50%;
     }
 
     .section2 .wrap .s2-txt, .section2 .wrap .s2-txt2 {
@@ -5528,7 +5544,7 @@ h3:hover, h4:hover {
     }
 
     .nav {
-        padding-top: 6vh
+        padding-top: 12vh
     }
 
     .header-inside .nav {
@@ -5666,7 +5682,7 @@ h3:hover, h4:hover {
     }
 
     .section0 {
-        background: url(../images/yuandan_m.jpg) no-repeat center;
+        background: url(/static/images/yuandan_m.jpg) no-repeat center;
         background-size: cover;
     }
 
@@ -5681,12 +5697,14 @@ h3:hover, h4:hover {
     }
 
     .index-header .nav li {
-        line-height: 4.5vh
+        line-height: 6vh
     }
 
     .sidewrap .close {
-        right: 20px;
-        top: 23px;
+        right: 6px;
+        top: 0;
+        padding:10px;
+        z-index: 12;
     }
 
     .search, .share, .copy, .ce, .scan {
@@ -5875,43 +5893,45 @@ h3:hover, h4:hover {
 }
 
 @media screen and (max-width: 500px) {
+    #wrap.in_search{padding:80px 0 100px}
+    .search_btn{padding-left:0;width:18%;background-image:none;}
     .section3 .s3-m {
         text-align: right;
         margin: 80% 0 0 0
     }
 
     .banner {
-        background: #000 url(../images/pb_01.jpg) no-repeat center bottom;
+        background: #000 url(/static/images/pb_01.jpg) no-repeat center bottom;
         background-size: cover
     }
 
     .section1 {
-        background: url(../images/pb_03.jpg) no-repeat center center;
+        background: url(/static/images/pb_03.jpg) no-repeat center center;
         background-size: cover
     }
 
     .section2 {
-        background: url(../images/pb_02.jpg) no-repeat center center;
+        background: url(/static/images/pb_02.jpg) no-repeat center center;
         background-size: cover
     }
 
     .section3 {
-        background: url(../images/pb_04.jpg) no-repeat center center;
+        background: url(/static/images/pb_04.jpg) no-repeat center center;
         background-size: cover
     }
 
     .section4 {
-        background: url(../images/pb_06.jpg) no-repeat center center;
+        background: url(/static/images/pb_06.jpg) no-repeat center center;
         background-size: cover
     }
 
     .section5 {
-        background: url(../images/pb_05.jpg) no-repeat center center;
+        background: url(/static/images/pb_05.jpg) no-repeat center center;
         background-size: cover
     }
 
     .footer {
-        background: url(../images/pb_07.jpg) no-repeat center bottom;
+        background: url(/static/images/pb_07.jpg) no-repeat center bottom;
         background-size: cover
     }
 
@@ -6486,7 +6506,7 @@ h3:hover, h4:hover {
     }
 
     .banner .slogan {
-        background: url(../images/1_2.svg) no-repeat top center;
+        background: url(/static/images/1_2.svg) no-repeat top center;
         top: 50%
     }
 
