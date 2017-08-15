@@ -312,7 +312,7 @@
 				if(r){
 					var id = rows[0]['id'];
 					var type = rows[0]['type'];
-					var lang = row[0]['lang'];
+					var lang = rows[0]['lang'];
 					$.post("/secure/news/setTop",{'id':id,'type':type,'lang':lang},function(result){
 						$('#html_table').datagrid('loaded');
 						if(result['resultCode'] == 0) {
