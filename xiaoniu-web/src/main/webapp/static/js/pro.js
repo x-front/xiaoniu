@@ -7,7 +7,6 @@ function _xn_init(){
 		if(result.resultCode == 0){
 			if(result.who){
 				$("#pro-p p:eq(0)").html(result.who.introdution);
-				$("#pro-p .pro-p-video img:eq(0)").attr('src',result.who.extCover);
 			}
 			
 			if(result.advance){

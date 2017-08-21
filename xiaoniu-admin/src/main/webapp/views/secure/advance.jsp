@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<% String lang = request.getParameter("lang"); %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -53,7 +54,7 @@
 		});
 	});
 	
-	function initUpdateWhoWindow(type,index){
+	function initUpdateWhoWindow(type,index,lang){
 		$("#display-none-index").val(index);
 		$("#display-none-id").val(type);
 		
@@ -125,7 +126,7 @@
 				var index = $("#display-none-index").val();
 				$("#main-div .description-div:eq("+index+") .content-p:eq(0)").html($("#edit-div-content").textbox('getValue'));
 				$("#main-div .description-div:eq("+index+") .content-img:eq(0)").attr('src',$("#edit-div-banner").textbox('getValue'));
-				if(index == 4){
+				if(index == 4 || index == 6 || index == 8){
 					$('.description-div:eq('+ index +')').parent().css('background-image','url("'+$("#edit-div-banner").textbox('getValue')+'")');
 				}
 				var moreDiv = $('#main-div .description-div:eq('+index+') .more-div');
@@ -151,6 +152,10 @@
 	function moreDivToggle(div){
 		$(div).parent().find('.more-div').toggle();
 	}
+
+    function jump(lang){
+        location.href='/secure/moreContent/advance.html?lang='+lang;
+    }
 </script>
 <style type="text/css">
 	.float-right{float: right;}
@@ -183,23 +188,9 @@
 	    position: relative;
 	}
 	
-	.about-j7-img {
-	    width: 305px;
-	    float: left;
-	    margin-left: 115px;
-	    padding-top: 75px;
-	}
-	.title-float-right{
-		padding: 115px 0 177px;
-	    width: 36%;
-	    float: right;
-	}
-	.about-j5, .about-j6 {
-	    padding: 118px 0 200px;
-	}
-	.p5-float-right{
-		width: 36%;
-	    float: right;
+	.about-j5 {
+		height: 234px;
+	    padding: 118px 0 150px;
 	}
 	.bannerDesc-p{
 		width: 100%;
@@ -217,15 +208,26 @@
 		margin-bottom:16px;
 	    color: #000;
 	}
+
+	.btns a{text-align: center;text-decoration: none;display:inline-block;width:110px;height:50px;line-height: 50px;font-size: 16px;color:#FFF;border-radius: 5px;background: #ce2f10;margin-right: 10px;}
 </style>
 </head>
 <body>
 		<div id="main-div">
+			<div class="btns">
+				<!--lang-->
+				<c:if test="${lang eq 1 }">
+					<a class="btn1" href="javascript:jump(0);">查看中文版</a>
+				</c:if>
+				<c:if test="${lang eq 0 }">
+					<a class="btn1" href="javascript:jump(1);">查看英文版</a>
+				</c:if>
+			</div>
 			<div class="content-div">
 				<div class="about-j1">
 					<div class="description-div about-j1-l">
 						<h2 class="content-title">${p1.title }</h2>
-						<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(51,0)" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
+						<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(51,0,${lang})" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
 						<p class="content-p none">${p1.content }</p>
 						<div id="p1-banner" class="p-banner">
 							<img class="who-img content-img" alt="" src="${p1.banner }" >
@@ -235,7 +237,7 @@
 					
 					<div class="description-div pp-div" id="pp1-div">
 						<span class="content-title more-title" onclick="moreDivToggle(this)" >${pp1.title }</span>
-						<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(52,1)" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
+						<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(52,1,${lang})" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
 						<p class="content-p none">${pp1.content }</p>
 						<img class="who-img content-img none" alt="" src="${pp1.banner }" >
 						<div class="more-div none">${pp1.more }</div>
@@ -243,7 +245,7 @@
 					
 					<div class="description-div pp-div" id="pp2-div">
 						<span class="content-title more-title" onclick="moreDivToggle(this)" >${pp2.title }</span>
-						<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(53,2)" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
+						<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(53,2,${lang})" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
 						<p class="content-p none">${pp2.content }</p>
 						<img class="who-img content-img none" alt="" src="${pp2.banner }" >
 						<div class="more-div none">${pp2.more }</div>
@@ -252,7 +254,7 @@
 					
 					<div class="description-div pp-div" id="pp3-div">
 						<span class="content-title more-title" onclick="moreDivToggle(this)">${pp3.title }</span>
-						<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(54,3)" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
+						<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(54,3,${lang})" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
 						<p class="content-p none">${pp3.content }</p>
 						<img class="who-img content-img none" alt="" src="${pp3.banner }" >
 						<div class="more-div none">${pp3.more }</div>
@@ -265,83 +267,87 @@
 				<div style="background-image:url(${p2.banner});">
 					<div class="description-div about-j2" >
 						<h2 class="content-title">${p2.title }</h2>
-						<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(61,4)" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
+						<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(61,4,${lang})" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
 						<p class="content-p">${p2.content }</p>
 						<a href="javascript:void(0);" onclick="moreDivToggle(this)" class="seeMore">See more</a>
 						<div class="more-div none">${p2.more }</div>
-						<img class="who-img content-img none" alt="" src="${p2.banner }" ">
+						<img class="who-img content-img none" alt="" src="${p2.banner }" >
 					</div>
 				</div>
-				
-				<div class="description-div about-j3">
-					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(62,5)" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
-					<div id="p3-title" class="p-title">
-						<h2 class="content-title">${p3.title }</h2>
-						<p class="content-p">${p3.content }</p>
-						<a href="javascript:void(0);" onclick="moreDivToggle(this)" class="seeMore">See more</a>
-						<div class="more-div none">${p3.more }</div>
-					</div>
-					<div id="p3-banner" class="p-banner">
-						<img class="who-img content-img" alt="" src="${p3.banner }">
-						<p class="bannerDesc-p">${p3.bannerDesc }</p>
-					</div>
-				</div>
-				
-				<div class="clearfix"></div>
-				<div class="description-div about-j4">
-					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(63,6)" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
-					<div class="p-title">
-						<h2 class="content-title">${p4.title }</h2>
-						<p class="content-p">${p4.content }</p>
-						<a href="javascript:void(0);" onclick="moreDivToggle(this)" class="seeMore">See more</a>
-						<div class="more-div none">${p4.more }</div>
-					</div>
-					<div class="p-banner">
-						<img class="who-img content-img" alt="" src="${p4.banner }">
-						<p class="bannerDesc-p">${p4.bannerDesc }</p>
+
+				<div>
+					<div class="description-div about-j5">
+						<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(62,5,${lang})" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
+						<div id="p3-title" class="p-title">
+							<h2 class="content-title">${p3.title }</h2>
+							<p class="content-p">${p3.content }</p>
+							<a href="javascript:void(0);" onclick="moreDivToggle(this)" class="seeMore">See more</a>
+							<div class="more-div none">${p3.more }</div>
+						</div>
+						<div id="p3-banner" class="p-banner">
+							<img class="who-img content-img" alt="" src="${p3.banner }">
+							<p class="bannerDesc-p">${p3.bannerDesc }</p>
+						</div>
 					</div>
 				</div>
 				
 				<div class="clearfix"></div>
-				<div class="description-div about-j5" >
-					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(64,7)" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
-					<div class="p-title">
-						<h2 class="content-title">${p5.title }</h2>
-						<p class="content-p">${p5.content }</p>
-					</div>
-					<div class="p-banner">
-						<img class="who-img content-img" alt="" src="${p5.banner }">
-						<p class="bannerDesc-p">${p5.bannerDesc }</p>
+				<div style="background-image:url(${p4.banner});">
+					<div class="description-div about-j2">
+						<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(63,6,${lang})" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
+							<h2 class="content-title">${p4.title }</h2>
+							<p class="content-p">${p4.content }</p>
+							<a href="javascript:void(0);" onclick="moreDivToggle(this)" class="seeMore">See more</a>
+							<div class="more-div none">${p4.more }</div>
+							<img class="who-img content-img none" alt="" src="${p4.banner }">
 					</div>
 				</div>
 				
 				<div class="clearfix"></div>
-				
-				<div class="description-div about-j6" >
-					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(65,8)" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
-					<div class="p-title">
-						<h2 class="content-title">${p6.title }</h2>
-						<p class="content-p">${p6.content }</p>
+				<div>
+					<div class="description-div about-j5" >
+						<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(64,7,${lang})" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
+						<div class="p-title">
+							<h2 class="content-title">${p5.title }</h2>
+							<p class="content-p">${p5.content }</p>
+							<a href="javascript:void(0);" onclick="moreDivToggle(this)" class="seeMore">See more</a>
+							<div class="more-div none">${p5.more }</div>
+						</div>
+						<div class="p-banner">
+							<img class="who-img content-img" alt="" src="${p5.banner }">
+							<p class="bannerDesc-p">${p5.bannerDesc }</p>
+						</div>
 					</div>
-					<div class="p-banner">
-						<img class="who-img content-img" alt="" src="${p6.banner }">
-						<p class="bannerDesc-p">${p6.bannerDesc }</p>
+				</div>
+				
+				<div class="clearfix"></div>
+				<div style="background-image:url(${p6.banner});">
+					<div class="description-div about-j2" >
+						<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(65,8,${lang})" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
+							<h2 class="content-title">${p6.title }</h2>
+							<p class="content-p">${p6.content }</p>
+							<a href="javascript:void(0);" onclick="moreDivToggle(this)" class="seeMore">See more</a>
+							<div class="more-div none">${p6.more }</div>
+							<img class="who-img content-img none" alt="" src="${p6.banner }">
 					</div>
 				</div>
 				<div class="clearfix"></div>
-				
-				<div class="description-div about-j7">
-					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(66,9)" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
-					<div class="p-title">
-						<h2 class="content-title">${p7.title }</h2>
-						<p class="content-p">${p7.content }</p>
-					</div>
-					<div class="p-banner">
-						<img class="who-img content-img" alt="" src="${p7.banner }">
-						<p class="bannerDesc-p">${p7.bannerDesc }</p>
+
+				<div>
+					<div class="description-div about-j5">
+						<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(66,9,${lang})" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
+						<div class="p-title">
+							<h2 class="content-title">${p7.title }</h2>
+							<p class="content-p">${p7.content }</p>
+							<a href="javascript:void(0);" onclick="moreDivToggle(this)" class="seeMore">See more</a>
+							<div class="more-div none">${p7.more }</div>
+						</div>
+						<div class="p-banner">
+							<img class="who-img content-img" alt="" src="${p7.banner }">
+							<p class="bannerDesc-p">${p7.bannerDesc }</p>
+						</div>
 					</div>
 				</div>
-				
 			</div>
 		</div>
 		<!-- 添加 -->
@@ -383,6 +389,8 @@
 					<input id="display-none-id" name="id" class="clear-input">
 					<input id="display-none-type" name="type" value="1">
 					<input id="display-none-valid" name="valid" value="1">
+					<input id="display-none-lang" name="lang" value="${lang}">
+					<input id="display-none-terminal" name="terminal" value="0">
 					<input id="display-none-index" >
 				</div>
 			</form>

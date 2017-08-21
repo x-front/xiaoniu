@@ -13,6 +13,8 @@
   
   <name>xiaoniu-admin Maven Webapp</name>
   <url>http://maven.apache.org</url>
+
+
   
   <dependencies>
     <dependency>
@@ -201,15 +203,25 @@
 	    <artifactId>aliyun-sdk-oss</artifactId>
 	    <version>2.2.3</version>
 	</dependency>
-    
+
+	  <dependency>
+		  <groupId>javax.servlet</groupId>
+		  <artifactId>servlet-api</artifactId>
+		  <version>2.5</version>
+		  <scope>provided</scope>
+	  </dependency>
+
+
+
   </dependencies>
   <build>
     <finalName>xiaoniu-admin</finalName>
-    
+    <!--
     <filters>
 		<filter>src/main/filters/filter-${env}.properties</filter>
 	</filters>
-    
+    -->
+<!--
     <resources>
     	<resource>
     		<directory>src/main/resources</directory>
@@ -231,7 +243,6 @@
     
     <plugins>
     	<plugin>
-			<!-- YUI Compressor Maven压缩插件 -->
 			<groupId>net.alchim31.maven</groupId>
 			<artifactId>yuicompressor-maven-plugin</artifactId>
 			<version>1.4.0</version>
@@ -242,7 +253,6 @@
 						<goal>compress</goal>
 					</goals>
 					<configuration>
-						<!-- 读取js,css文件采用UTF-8编码 -->
 						<encoding>UTF-8</encoding>
 						<excludes>
 							<exclude>**/*.min.js</exclude>
@@ -262,9 +272,9 @@
 			</executions>
 		</plugin>
     </plugins>
-    
+    -->
   </build>
-  
+<!--  
   <profiles>
   	<profile>
   		<id>test</id>
@@ -282,5 +292,5 @@
   		</properties>
   	</profile>
   </profiles>
-  
+ --> 
 </project>

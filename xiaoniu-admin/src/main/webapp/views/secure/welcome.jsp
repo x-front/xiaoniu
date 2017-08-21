@@ -42,18 +42,6 @@
 				});
 			});
 			
-			$("#btn-media-upload").click(function(){
-				PluginUpload.loadPlugin('media',function(){
-					PluginUpload.plugin.imageDialog({
-						imageUrl : $("#edit-div-media").textbox('getValue'),
-						clickFn : function(url, title, width, height, border, align){
-							$('#edit-div-media').textbox('setValue',url);
-							PluginUpload.hideDialog();
-						}
-					});
-				});
-			});
-			
 		});
 	});
 	
@@ -73,15 +61,12 @@
 				$("#main-div .content-img:eq("+ index +")").attr('media'));
 		
 		
-		if(type == 23 || type == 24 || type == 29){
-			$('#edit-introdution-showOrHide').removeClass('none');
-		}else {
-			$("#edit-banner-showOrHide").removeClass('none');
-			if($('#edit-img-banner').attr('src') != ""){
-				$('#edit-img-banner').removeClass('none');
-			}
+		$('#edit-introdution-showOrHide').removeClass('none');
+		$("#edit-banner-showOrHide").removeClass('none');
+		if($('#edit-img-banner').attr('src') != ""){
+			$('#edit-img-banner').removeClass('none');
 		}
-		
+
 		$("#main-div").addClass("none");
 		$("#edit-div").removeClass("none");
 	}
@@ -91,8 +76,6 @@
 		$(".clear-easyui-datetimebox").datetimebox('clear');
 		$(".clear-easyui-combobox").combobox('clear');
 		$(".clear-input").val('');
-		
-		$("#edit-media-showOrHide").addClass('none');
 		$("#edit-banner-showOrHide").addClass('none');
 		$('#edit-introdution-showOrHide').addClass('none');
 		$('#edit-img-banner').addClass('none');
@@ -112,11 +95,7 @@
 				var index = $("#display-none-index").val();
 				$("#main-div .content-p:eq("+ index +")").html($("#edit-div-introdution").textbox('getValue'));
 				$("#main-div .content-img:eq("+ index +")").attr('src',$("#edit-div-banner").textbox('getValue'));
-				
-				if(index > 2 && index < 7){
-					$('.beautiful-div:eq('+ (index - 3) +')').css('background-image','url("'+$("#edit-div-banner").textbox('getValue')+'")');
-				}
-				
+                $('.description-div:eq('+ index+')').css('background-image','url("'+$("#edit-div-banner").textbox('getValue')+'")');
 				cancel();
 			} else {
 				$.messager.alert('提示',result['msg']);
@@ -132,33 +111,20 @@
 	.content-p{
 		font-size: 16px;
 		line-height: 33px;
-		color: #585858;
 		width: 702px;
 		max-width: 702px;
 		letter-spacing: 2px;
 		margin: 0 auto;
 		padding-bottom: 42px;
 	}
-	#main-div{width: 1200px;margin: auto;}
-	.content-div{margin: auto;}
-	.description-div{text-align: center;margin: auto;border-bottom: 1px solid #eee;padding-top: 10px;padding-bottom: 10px;}
-	.who-img{
-		width: 908px;
-		height: 393px;
-	}
-	.culture-img{
-		width: 702px;
-		height: 357px;
-	}
+	#main-div{max-width: 1200px;margin: auto;}
+	.content-div{margin: auto;width:100%;height:100%;color:#fff;}
+	.description-div{width:100%;height:600px;text-align: center;margin: auto;border-bottom: 1px solid #eee;padding-top: 10px;padding-bottom: 10px;}
+	.description-div h2{margin-top: 250px;}
 	#edit-div{text-align: center;}
-	#edit-div .textbox {margin-bottom:5px}
-	.beautiful-div{width:300px;height:616px; float:left;}
-	.beautiful-div h2{position: relative;bottom: -520px;}
-	
-	/* .btns{text-align: center;} */
-    .btns a{text-align: center;display:inline-block;width:110px;height:50px;line-height: 50px;font-size: 16px;color:#FFF;border-radius: 5px;background: #ce2f10;margin-right: 10px;}
-    .btns .btn2{background: #4863ff}
-    .btns .btn3{background: #29bd4d}
+
+    .btns a{text-decoration:none;text-align: center;display:inline-block;width:110px;height:50px;line-height: 50px;font-size: 16px;color:#FFF;border-radius: 5px;background: #ce2f10;margin-right: 10px;}
+
 </style>
 </head>
 <body>
@@ -172,55 +138,53 @@
 		        </c:if>
 		    </div>
 			<div class="content-div">
-				<div class="description-div">
+				<div class="description-div" style='background-image: url("${who.extCover}")'>
 					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(23,0,${who.id})" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
-					<h2 class="content-h2">我们是谁</h2>
+					<h2 class="content-h2">家庭金融的超级入口</h2>
 					<p class="content-p">${who.introdution }</p>
-					<img class="who-img content-img none" alt="" src="${who.extCover }" media="${who.extMedia }">
+					<img class="content-img none" alt="" src="${who.extCover }" media="${who.extMedia }">
 				</div>
 				
-				<div class="description-div">
+				<div class="description-div" style='background-image: url("${doWhat.extCover}")'>
 					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(24,1,${doWhat.id})" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
 					<h2 class="content-h2">我们做什么</h2>
 					<p class="content-p">${doWhat.introdution }</p>
-					<img class="who-img content-img none" alt="" src="${doWhat.extCover }" media="${doWhat.extMedia }">
+					<img class="content-img none" alt="" src="${doWhat.extCover }" media="${doWhat.extMedia }">
 				</div>
 				
-				<div class="description-div">
+				<div class="description-div" style='background-image: url("${voice.extCover}")'>
 					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(29,2,${voice.id})" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
-					<h2 class="content-h2">小牛思想声音</h2>
+					<h2 class="content-h2">我们用行动定义自己</h2>
 					<p class="content-p">${voice.introdution }</p>
 					<img class="content-img none" alt="" src="${voice.extCover }" media="${voice.extMedia }">
 				</div>
 				
-				<div>
-					<div class="description-div beautiful-div" style='background-image: url("${family.extCover}")'>
-						<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(25,3,${family.id})" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
-						<h2 class="content-h2">美好家庭</h2>
-						<p class="content-p none">${family.introdution }</p>
-						<img class="content-img  none" alt="" src="${family.extCover }" media="${family.extMedia }">
-					</div>
-					
-					<div class="description-div beautiful-div" style='background-image: url("${sports.extCover}")'>
-						<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(26,4,${sports.id})" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
-						<h2 class="content-h2">美好体育</h2>
-						<p class="content-p none">${sports.introdution }</p>
-						<img class="content-img none" alt="" src="${sports.extCover }" media="${sports.extMedia }">
-					</div>
-					
-					<div class="description-div beautiful-div" style='background-image: url("${welfare.extCover}")'>
-						<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(27,5,${welfare.id})" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
-						<h2 class="content-h2">美好公益</h2>
-						<p class="content-p none">${welfare.introdution }</p>
-						<img class="content-img none" alt="" src="${welfare.extCover }" media="${welfare.extMedia }">
-					</div>
-					
-					<div class="description-div beautiful-div" style='background-image: url("${education.extCover}")'>
-						<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(28,6,${education.id})" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
-						<h2 class="content-h2">美好教育</h2>
-						<p class="content-p none">${education.introdution }</p>
-						<img class="content-img none" alt="" src="${education.extCover }" media="${education.extMedia }">
-					</div>
+				<div class="description-div " style='background-image: url("${family.extCover}")'>
+					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(25,3,${family.id})" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
+					<h2 class="content-h2">我们的思考</h2>
+					<p class="content-p ">${family.introdution }</p>
+					<img class="content-img  none" alt="" src="${family.extCover }" media="${family.extMedia }">
+				</div>
+
+				<div class="description-div " style='background-image: url("${sports.extCover}")'>
+					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(26,4,${sports.id})" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
+					<h2 class="content-h2">我们的公众形象</h2>
+					<p class="content-p ">${sports.introdution }</p>
+					<img class="content-img none" alt="" src="${sports.extCover }" media="${sports.extMedia }">
+				</div>
+
+				<div class="description-div " style='background-image: url("${welfare.extCover}")'>
+					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(27,5,${welfare.id})" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
+					<h2 class="content-h2">我们的超越与想象</h2>
+					<p class="content-p ">${welfare.introdution }</p>
+					<img class="content-img none" alt="" src="${welfare.extCover }" media="${welfare.extMedia }">
+				</div>
+
+				<div class="description-div " style='background-image: url("${education.extCover}")'>
+					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(28,6,${education.id})" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
+					<h2 class="content-h2">我们渴望拥有你</h2>
+					<p class="content-p ">${education.introdution }</p>
+					<img class="content-img none" alt="" src="${education.extCover }" media="${education.extMedia }">
 				</div>
 			</div>
 		</div>
@@ -228,14 +192,11 @@
 		<div id="edit-div" class="none" >
 			<form id="edit-form" method="post" action="/secure/pageIntrodution/save">
 				<div class="">
-					<h2 id="edit-div-h2" class="content-h2">我们是谁</h2>
+					<h2 id="edit-div-h2" class="content-h2">家庭金融的超级入口</h2>
 					<div class="none " id="edit-introdution-showOrHide">
 						<input  id="edit-div-introdution" name="introdution" class="easyui-textbox clear-easyui-textbox" maxlength="512" data-options="multiline:true" prompt="描述" style="width: 703px;height: 158px;"/>
 					</div>
-					<div class="none " id="edit-media-showOrHide">
-						<input id="edit-div-media" name="extMedia" class="easyui-textbox clear-easyui-textbox"  prompt="宣传片" style="width:628px;">
-						<input type="button" id="btn-media-upload"  value="选择视频"/>
-					</div>
+
 					<div class="none " id="edit-banner-showOrHide">
 						<input id="edit-div-banner"  name="extCover" class="easyui-textbox clear-easyui-textbox"   prompt="封面图片" style="width:628px;"/>
 						<input type="button" id="btn-banner-upload"  value="选择图片"/><br>

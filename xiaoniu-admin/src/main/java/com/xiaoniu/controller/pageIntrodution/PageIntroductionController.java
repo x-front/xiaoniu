@@ -178,8 +178,8 @@ public class PageIntroductionController extends BaseController<CmpyPageIntroduct
 	}
 	
 	private CmpyPageIntroduction queryByCondition(Integer lang,Integer terminal,Integer type) throws Exception{
-		if(lang == null || lang != 1){
-			lang = 0;
+		if(lang == null || lang.intValue() != LangType.EN.intValue()){
+			lang = LangType.CN;
 		}
 		CmpyPageIntroduction entity = new CmpyPageIntroduction();
 		entity.setLang(lang);

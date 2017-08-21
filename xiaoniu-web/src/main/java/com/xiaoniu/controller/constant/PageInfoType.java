@@ -32,13 +32,13 @@ public class PageInfoType {
 	public static final Integer WELFARE = 20;//美好公益
 	public static final Integer EDUCATION = 21;//美好教育
 	public static final Integer XIAONIU_JION = 22;//加入小牛
-	public static final Integer INDEX_WHO = 23;//首页我们是谁
+	public static final Integer INDEX_WHO = 23;//首页我们是谁==>超级金融的家庭入口
 	public static final Integer INDEX_DO_WHAT = 24;//首页我们做什么
-	public static final Integer INDEX_FAMILY = 25;//首页美好家庭
-	public static final Integer INDEX_SPORTS = 26;//首页美好体育
-	public static final Integer INDEX_WELFARE = 27;//首页美好公益
-	public static final Integer INDEX_EDUCATION = 28;//首页美好教育
-	public static final Integer INDEX_THINKING_VOICE = 29;//首页小牛思想声音
+	public static final Integer INDEX_FAMILY = 25;//首页美好家庭 ==>我们用行动定义自己
+	public static final Integer INDEX_SPORTS = 26;//首页美好体育 ==>我们的思考
+	public static final Integer INDEX_WELFARE = 27;//首页美好公益 ==>我们的公众形象
+	public static final Integer INDEX_EDUCATION = 28;//首页美好教育 ==>我们的超越与想象
+	public static final Integer INDEX_THINKING_VOICE = 29;//首页小牛思想声音==>我们渴望拥有你
 	public static final Integer NEIKAN = 30;//小牛内刊
 	public static final Integer SOCIETY_HIRE = 31;//社会招聘
 	public static final Integer CAMPUS_HIRE = 32;//校园招聘

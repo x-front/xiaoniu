@@ -3,6 +3,8 @@ package com.xiaoniu.controller.moreContent;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.xiaoniu.controller.constant.LangType;
+import com.xiaoniu.db.domain.CmpyMoreContent;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,18 +24,18 @@ public class MoreContentController {
 	
 	@RequestMapping("principle")
 	@ResponseBody
-	public Map<String,Object> principle(){
+	public Map<String,Object> principle(Integer lang,Integer terminal){
 		Map<String,Object> map = new HashMap<String,Object>();
 		try{
-			map.put("p1", service.selectByKey(11));
-			map.put("p2", service.selectByKey(12));
-			map.put("p3", service.selectByKey(13));
-			map.put("p4", service.selectByKey(14));
-			map.put("p5", service.selectByKey(15));
-			map.put("p6", service.selectByKey(16));
-			map.put("p7", service.selectByKey(17));
+			map.put("p1", queryByCondition(11,lang,terminal));
+			map.put("p2", queryByCondition(12,lang,terminal));
+			map.put("p3", queryByCondition(13,lang,terminal));
+			map.put("p4", queryByCondition(14,lang,terminal));
+			map.put("p5", queryByCondition(15,lang,terminal));
+			map.put("p6", queryByCondition(16,lang,terminal));
+			map.put("p7", queryByCondition(17,lang,terminal));
 		}catch(Exception e){
-			log.error(e);
+			log.error("",e);
 			map.put(Contants.RESULT_CODE, MsgCode.FAILED.getCode());
 			map.put(Contants.MSG, MsgCode.FAILED.getMsg());
 		}
@@ -42,24 +44,32 @@ public class MoreContentController {
 	
 	@RequestMapping("advance")
 	@ResponseBody
-	private Map<String,Object> advanceHtml(){
+	private Map<String,Object> advanceHtml(Integer lang,Integer terminal){
 		Map<String,Object> map = new HashMap<String,Object>();
 		try{
-			map.put("p1", service.selectByKey(51));
-			map.put("pp1", service.selectByKey(52));
-			map.put("pp2", service.selectByKey(53));
-			map.put("pp3", service.selectByKey(54));
-			map.put("p2", service.selectByKey(61));
-			map.put("p3", service.selectByKey(62));
-			map.put("p4", service.selectByKey(63));
-			map.put("p5", service.selectByKey(64));
-			map.put("p6", service.selectByKey(65));
-			map.put("p7", service.selectByKey(66));
+			map.put("p1", queryByCondition(51,lang,terminal));
+			map.put("pp1", queryByCondition(52,lang,terminal));
+			map.put("pp2", queryByCondition(53,lang,terminal));
+			map.put("pp3", queryByCondition(54,lang,terminal));
+			map.put("p2", queryByCondition(61,lang,terminal));
+			map.put("p3", queryByCondition(62,lang,terminal));
+			map.put("p4", queryByCondition(63,lang,terminal));
+			map.put("p5", queryByCondition(64,lang,terminal));
+			map.put("p6", queryByCondition(65,lang,terminal));
+			map.put("p7", queryByCondition(66,lang,terminal));
 		}catch(Exception e){
 			log.error(e);
 			map.put(Contants.RESULT_CODE, MsgCode.FAILED.getCode());
 			map.put(Contants.MSG, MsgCode.FAILED.getMsg());
 		}
 		return map;
+	}
+
+	private CmpyMoreContent queryByCondition(Integer id, Integer lang, Integer terminal)throws Exception{
+		if(lang == null){
+			lang = LangType.CN;
+		}
+		Integer mid = lang * 1000 + id;
+		return service.selectByKey(mid);
 	}
 }

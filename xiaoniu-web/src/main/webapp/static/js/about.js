@@ -8,7 +8,6 @@ function _xn_init(){
 		if(result.resultCode == 0){
 			if(result.who){
 				$("#about-us p:eq(0)").html(result.who.introdution);
-				$("#about-us img:eq(0)").attr('src',result.who.extCover);
 			}
 			
 			if(result.advance){
@@ -28,7 +27,6 @@ function _xn_init(){
 			}
 			if(result.culture){
 				$("#about-w p:eq(0)").html(result.culture.introdution);
-				$("#about-w .about-w-pic img:eq(0)").attr('src',result.culture.extCover);
 			}
 		}else{
 			console.log(result.msg);

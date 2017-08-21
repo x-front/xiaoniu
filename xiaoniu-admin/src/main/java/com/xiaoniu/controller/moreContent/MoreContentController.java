@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.xiaoniu.domain.LangType;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,16 +26,19 @@ public class MoreContentController {
 	private MoreContentService service;
 	
 	@RequestMapping("principle.html")
-	public ModelAndView principleHtml(){
+	public ModelAndView principleHtml(Integer lang,Integer terminal){
 		ModelAndView mv = new ModelAndView("secure/principle");
+		mv.addObject("lang",lang);
+		mv.addObject("terminal",terminal);
 		try{
-			mv.addObject("p1", service.selectByKey(11));
-			mv.addObject("p2", service.selectByKey(12));
-			mv.addObject("p3", service.selectByKey(13));
-			mv.addObject("p4", service.selectByKey(14));
-			mv.addObject("p5", service.selectByKey(15));
-			mv.addObject("p6", service.selectByKey(16));
-			mv.addObject("p7", service.selectByKey(17));
+
+			mv.addObject("p1", queryByCondition(11,lang,terminal));
+			mv.addObject("p2", queryByCondition(12,lang,terminal));
+			mv.addObject("p3", queryByCondition(13,lang,terminal));
+			mv.addObject("p4", queryByCondition(14,lang,terminal));
+			mv.addObject("p5", queryByCondition(15,lang,terminal));
+			mv.addObject("p6", queryByCondition(16,lang,terminal));
+			mv.addObject("p7", queryByCondition(17,lang,terminal));
 		}catch(Exception e){
 			log.error(e);
 		}
@@ -42,19 +46,21 @@ public class MoreContentController {
 	}
 	
 	@RequestMapping("advance.html")
-	public ModelAndView advanceHtml(){
+	public ModelAndView advanceHtml(Integer lang,Integer terminal){
 		ModelAndView mv = new ModelAndView("secure/advance");
+		mv.addObject("lang",lang);
+		mv.addObject("terminal",terminal);
 		try{
-			mv.addObject("p1", service.selectByKey(51));
-			mv.addObject("pp1", service.selectByKey(52));
-			mv.addObject("pp2", service.selectByKey(53));
-			mv.addObject("pp3", service.selectByKey(54));
-			mv.addObject("p2", service.selectByKey(61));
-			mv.addObject("p3", service.selectByKey(62));
-			mv.addObject("p4", service.selectByKey(63));
-			mv.addObject("p5", service.selectByKey(64));
-			mv.addObject("p6", service.selectByKey(65));
-			mv.addObject("p7", service.selectByKey(66));
+			mv.addObject("p1", queryByCondition(51,lang,terminal));
+			mv.addObject("pp1", queryByCondition(52,lang,terminal));
+			mv.addObject("pp2", queryByCondition(53,lang,terminal));
+			mv.addObject("pp3", queryByCondition(54,lang,terminal));
+			mv.addObject("p2", queryByCondition(61,lang,terminal));
+			mv.addObject("p3", queryByCondition(62,lang,terminal));
+			mv.addObject("p4", queryByCondition(63,lang,terminal));
+			mv.addObject("p5", queryByCondition(64,lang,terminal));
+			mv.addObject("p6", queryByCondition(65,lang,terminal));
+			mv.addObject("p7", queryByCondition(66,lang,terminal));
 		}catch(Exception e){
 			log.error(e);
 		}
@@ -71,7 +77,7 @@ public class MoreContentController {
 			entity.setCreateTime(now);
 			entity.setUpdateTime(now);
 			if(entity.getId() != null){
-				CmpyMoreContent tmp = service.selectByKey(entity.getId());
+				CmpyMoreContent tmp = queryByCondition(entity.getId(),entity.getLang(),entity.getTerminal());
 				if(tmp != null){
 					service.updateAll(entity);
 				}else{
@@ -90,4 +96,13 @@ public class MoreContentController {
 		}
 		return map;
 	}
+
+	private CmpyMoreContent queryByCondition(Integer id,Integer lang,Integer terminal)throws Exception{
+		if(lang == null || lang.intValue() != LangType.EN.intValue()){
+			lang = LangType.CN;
+		}
+		Integer mid = lang * 1000 + id;
+		return service.selectByKey(mid);
+	}
+
 }

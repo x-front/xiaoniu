@@ -72,8 +72,7 @@
 				$("#main-div .content-img:eq("+ index +")").attr('media'));
 		
 		
-		if(type == 1){
-//			$("#edit-media-showOrHide").removeClass('none');
+		/*if(type == 1){
 			$("#edit-banner-showOrHide").removeClass('none');
 			if($('#edit-img-banner').attr('src') != ""){
 				$('#edit-img-banner').removeClass('none');
@@ -83,7 +82,7 @@
 			if($('#edit-img-banner').attr('src') != ""){
 				$('#edit-img-banner').removeClass('none');
 			}
-		}
+		}*/
 		
 		$("#main-div").addClass("none");
 		$("#edit-div").removeClass("none");
@@ -173,7 +172,7 @@
 					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(1,0,${who.id })" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
 					<h2 class="content-h2">我们是谁</h2>
 					<p class="content-p">${who.introdution }</p>
-					<img class="who-img content-img" alt="" src="${who.extCover }" media="${who.extMedia }">
+					<img class="who-img content-img none" alt="" src="${who.extCover }" media="${who.extMedia }">
 				</div>
 				
 				<div class="description-div">
@@ -207,7 +206,7 @@
 				<div class="description-div">
 					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(6,5,${culture.id })" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
 					<h2 class="content-h2">牛人文化</h2>
-					<img class="culture-img content-img " alt="" src="${culture.extCover }" media="${culture.extMedia }">
+					<img class="culture-img content-img none" alt="" src="${culture.extCover }" media="${culture.extMedia }">
 					<p class="content-p">${culture.introdution }</p>
 				</div>
 			</div>

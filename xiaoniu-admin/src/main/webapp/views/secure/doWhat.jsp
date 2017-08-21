@@ -148,7 +148,7 @@
 		
 		if(display == 1){
 			$(obj).attr('display',0);
-			$(obj).html('显示更多');
+			$(obj).html('See more');
 		}else{
 			$(obj).attr('display',1);
 			$(obj).html('隐藏');
@@ -160,7 +160,7 @@
 		
 		if(display == 1){
 			$(obj).attr('display',0);
-			$(obj).html('显示更多');
+			$(obj).html('See more');
 		}else{
 			$(obj).attr('display',1);
 			$(obj).html('隐藏');
@@ -174,13 +174,14 @@
 	.float-right{float: right;}
 	.content-p{
 		font-size: 16px;
-		line-height: 33px;
+		line-height: 28px;
 		color: #585858;
 		width: 702px;
 		max-width: 702px;
 		letter-spacing: 2px;
 		margin: 0 auto;
 		padding-bottom: 42px;
+		text-align: left;
 	}
 	.content-show-more{
 		font-size: 16px;
@@ -230,7 +231,8 @@
 					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(7,0,${who.id })" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
 					<h2 class="content-h2">小牛普惠</h2>
 					<p class="content-p">${who.introdution }</p>
-					<img class="who-img content-img" alt="" src="${who.extCover }" media="${who.extMedia }">
+					<img class="who-img content-img none" alt="" src="${who.extCover }" media="${who.extMedia }">
+					<p class="content-show-more" onclick="javascript:showMore(this)" display="0">See more</p>
 				</div>
 				
 				<div class="description-div">
@@ -238,7 +240,7 @@
 					<h2 class="content-h2">小牛在线</h2>
 					<p class="content-p">${advance.introdution }</p>
 					<img class="who-img content-img none" alt="" src="${advance.extCover }" media="${advance.extMedia }">
-					<p class="content-show-more" onclick="javascript:showMore(this)" display="0">显示更多</p>
+					<p class="content-show-more" onclick="javascript:showMore(this)" display="0">See more</p>
 				</div>
 				
 				<div class="description-div">
@@ -246,7 +248,7 @@
 					<h2 class="content-h2">小牛新财富</h2>
 					<p class="content-p">${manager.introdution }</p>
 					<img class="who-img content-img none" alt="" src="${manager.extCover }" media="${manager.extMedia }">
-					<p class="content-show-more" onclick="javascript:showMore(this)" display="0">显示更多</p>
+					<p class="content-show-more" onclick="javascript:showMore(this)" display="0">See more</p>
 				</div>
 				
 				<div class="description-div">
@@ -254,7 +256,7 @@
 					<h2 class="content-h2">小牛分期</h2>
 					<p class="content-p">${princeple.introdution }</p>
 					<img class="who-img content-img none" alt="" src="${princeple.extCover }" media="${princeple.extMedia }">
-					<p class="content-show-more" onclick="javascript:showMore(this)" display="0">显示更多</p>
+					<p class="content-show-more" onclick="javascript:showMore(this)" display="0">See more</p>
 				</div>
 				
 				<div class="description-div">
@@ -262,15 +264,15 @@
 					<h2 class="content-h2">小牛投资</h2>
 					<p class="content-p">${honor.introdution }</p>
 					<img class="who-img content-img none" alt="" src="${honor.extCover }" media="${honor.extMedia }">
-					<p class="content-show-more" onclick="javascript:showMore(this)" display="0">显示更多</p>
+					<p class="content-show-more" onclick="javascript:showMore(this)" display="0">See more</p>
 				</div>
 				
 				<div class="description-div">
 					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(12,5,${culture.id })" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
 					<h2 class="content-h2">牛鼎丰科技</h2>
-					<img class="culture-img content-img none" alt="" src="${culture.extCover }" media="${culture.extMedia }">
 					<p class="content-p culture-introduction">${culture.introdution }</p>
-					<p class="content-show-more culture-show-more" onclick="javascript:showMoreTail(this)" display="0">显示更多</p>
+					<img class="culture-img content-img none" alt="" src="${culture.extCover }" media="${culture.extMedia }">
+					<p class="content-show-more culture-show-more" onclick="javascript:showMore(this)" display="0">See more</p>
 				</div>
 			</div>
 		</div>

@@ -17,30 +17,35 @@
 #content{text-align: center;}
 #content hr{border:1px solid #eee;}
 #content p{width: 702px;margin: 0 auto;letter-spacing: 2px;font-size: 16px;line-height: 33px;color: #585858;}
+
+.btns a{text-align: center;text-decoration: none;display:inline-block;width:110px;height:50px;line-height: 50px;font-size: 16px;color:#FFF;border-radius: 5px;background: #ce2f10;margin-right: 10px;}
+.btns .btn2{background: #4863ff}
+.btns .btn3{background: #29bd4d}
 </style>
 </head>
 <body>
 	<div id="main-box" class="none" style="width:1000px;margin: auto;">
-			<c:choose>
-				<c:when test="${not empty content}">
-					<div id="tool-bar">
-						<a id="update-btn" class="easyui-linkbutton"  iconCls="icon-edit" onclick="javascript:update();">修改</a> 
-						<hr>
-					</div>
-					<div id="content">
-						${ content.content}
-					</div>
-				</c:when>
-				<c:otherwise>
-					<div id="tool-bar">
-						<a id="update-btn" class="easyui-linkbutton"  iconCls="icon-add" onclick="javascript:update();">新增</a> 
-						<hr>
-					</div>
-					<div id="content">
-					</div>
-				</c:otherwise>
-			</c:choose>
-		
+		<div class="btns">
+			<!--lang-->
+			<c:if test="${lang eq 1 }">
+				<a class="btn1" href="javascript:jump(0,${type});">查看中文版</a>
+			</c:if>
+			<c:if test="${lang eq 0 }">
+				<a class="btn1" href="javascript:jump(1,${type});">查看英文版</a>
+			</c:if>
+
+			<c:if test="${not empty content}">
+				<a class="btn2 update-btn"   href="javascript:update();">修改</a>
+			</c:if>
+			<c:if test="${empty content}">
+				<a class="btn2 update-btn"   href="javascript:update();">新增</a>
+			</c:if>
+
+		</div>
+		<div id="content">
+			<c:if test="${not empty content}">${ content.content}</c:if>
+		</div>
+
 		<div id="edit-div" class="none">
 			<form action="/secure/content/save" id="edit-form">
 				<textarea name="content" style="visibility:hidden;width: 100%"></textarea>
@@ -55,6 +60,8 @@
 				<div id="display-none-input" class="none">
 					<input id="display-none-id" name="id" value="${id}">
 					<input id="display-none-type" name="type" value="${type}">
+					<input id="display-none-lang" name="lang" value="${lang}">
+					<input id="display-none-terminal" name="terminal" value="0">
 					<input id="display-none-valid" name="valid" value="1">
 				</div>
 			</form>
@@ -97,10 +104,9 @@
 				$("#edit-div").addClass("none");
 				$("#content").removeClass("none");
 				contextEditor.html('');
-				$("#update-btn").linkbutton({
-					text:'修改',
-					iconCls:'icon-edit'
-				});
+				$(".update-btn").text(
+					'修改'
+				);
 			}else{
 				$.messager.alert('提示',result['msg']);
 			}
@@ -114,5 +120,8 @@
 		$("#content").removeClass("none");
 		$("#edit-div").addClass("none");
 	}
+    function jump(lang,type){
+        location.href='/secure/content/content.html?type='+type+'&lang='+lang;
+    }
 </script>
 </html>

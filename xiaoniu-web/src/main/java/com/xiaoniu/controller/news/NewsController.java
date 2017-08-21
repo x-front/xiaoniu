@@ -116,7 +116,7 @@ public class NewsController {
 	
 	@RequestMapping("search")
 	@ResponseBody
-	public Map<String,Object> search(Integer page,Integer  rows,Long totalCount,Integer type,Integer isEn,Integer isTop,String keyword){
+	public Map<String,Object> search(Integer page,Integer  rows,Long totalCount,Integer type,Integer lang,Integer isTop,String keyword){
 		Map<String,Object> map = new HashMap<String,Object>();
 		try{
 			if(page == null || page < 0){
@@ -125,10 +125,10 @@ public class NewsController {
 			if(rows == null || rows < 1 || rows > 20){
 				rows = 20;
 			}
-			List<NewsSearchVO> list = service.search(page, rows, totalCount, type, isEn, isTop, keyword);
+			List<NewsSearchVO> list = service.search(page, rows, totalCount, type, lang, isTop, keyword);
 			Long reTotalCount = 0L;
 			if(totalCount != null && totalCount < 1){
-				service.searchTotalCount(type, isEn, isTop, keyword);
+				service.searchTotalCount(type, lang, isTop, keyword);
 			}else{
 				reTotalCount = totalCount;
 			}
