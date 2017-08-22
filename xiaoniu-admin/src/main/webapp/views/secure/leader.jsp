@@ -218,6 +218,7 @@
 				
 				<div id="display-none-input" class="none">
 					<input id="display-none-id" name="id" class="clear-input">
+					<input id="display-none-terminal" name="terminal" value="0">
 				</div>
 			</form>
 		</div>

@@ -108,7 +108,7 @@ public class ImageNewsController extends BaseController<CmpyImageNews>{
 	
 	@RequestMapping("saveImageNews")
 	@ResponseBody
-	public Map<String,Object> saveImageNews(Integer id,Integer valid,String title, Long showTime, String img1,String img2,String img3,Integer lang,String data){
+	public Map<String,Object> saveImageNews(Integer id,Integer valid,String title, Long showTime, String img1,String img2,String img3,Integer lang,Integer serialNumber,String data){
 		Map<String,Object> map = new HashMap<String,Object>();
 		try{
 			CmpyImageNewsHead imageNewsHead = new CmpyImageNewsHead();
@@ -129,6 +129,7 @@ public class ImageNewsController extends BaseController<CmpyImageNews>{
 				imageNewsHead.setImgUrl1(img1);
 				imageNewsHead.setImgUrl2(img2);
 				imageNewsHead.setImgUrl3(img3);
+				imageNewsHead.setSerialNumber(serialNumber);
 				if(lang == null){
 					lang = LangType.CN;
 				}

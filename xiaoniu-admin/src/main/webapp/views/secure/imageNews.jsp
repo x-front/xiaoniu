@@ -190,6 +190,7 @@
 				$("#edit-div-title").textbox("setValue",row.title);
 				$("#edit_form_valid").combobox("setValue",row.valid);
 				$("#edit_form_lang").combobox("setValue",row.lang);
+                $("#edit_form_serialNumber").numberbox('setValue',row.serialNumber);
 				$('#edit-div-showtime').datebox('setValue',dateTools.LongTimeToSimpleFormatDate(row.showTime));
 				$(".datagrid").addClass("none");
 				$("#edit-div").removeClass("none");
@@ -217,6 +218,7 @@
 		var valid = $("#edit_form_valid").combobox("getValue");
 		var lang = $("#edit_form_lang").combobox("getValue");
 		var id = $("#display-none-id").val();
+		var serialNumber = $("#edit_form_serialNumber").numberbox('getValue');
 		for(var i=0; i<length; i++){
 			var node = $('.main_c li:eq('+i+')'); 
 			var imgUrl = node.find('img:eq(0)').attr('src');
@@ -252,6 +254,7 @@
 				'img3':image3,
 				'valid':valid,
 				'lang' : lang,
+				'serialNumber':serialNumber,
 				'data':JSON.stringify(postData)
 			},function(result){
 				if(result.resultCode == 0){
@@ -400,15 +403,16 @@
 				<!-- 图片 -->
 				<div class="wrap">
 					<div style="margin-bottom:8px;text-align: center;">
-						<span style="margin-right:10px;">显示时间:</span><input style="width:140px;" class="easyui-datebox clear-datebox" id="edit-div-showtime" prompt="请选择图集时间" >
-						<span style="margin-left:40px;margin-right:10px;">语言:</span><select id="edit_form_lang" name="lang" class="easyui-combobox clear-combobox">
+						<span style="margin-right:10px;">显示时间:</span><input style="width:130px;" class="easyui-datebox clear-datebox" id="edit-div-showtime" prompt="请选择图集时间" >
+						<span style="margin-left:40px;margin-right:10px;">语言:</span><select id="edit_form_lang" name="lang" class="easyui-combobox clear-combobox" style="width:80px;">
 												<option value="0">中文</option>
 												<option value="1">英文</option>
 											</select>
-						<span style="margin-left:40px;margin-right:10px;">是否发布:</span><select id="edit_form_valid" name="valid" class="easyui-combobox clear-combobox">
+						<span style="margin-left:40px;margin-right:10px;">是否发布:</span><select id="edit_form_valid" name="valid" class="easyui-combobox clear-combobox" style="width:80px;">
 												<option value="0">未发布</option>
 												<option value="1">发布</option>
 											</select>
+						<span style="margin-left:40px;margin-right:10px;">序号:</span><input id="edit_form_serialNumber" name="serialNumber" required="true" class="easyui-numberbox clear-easyui-numberbox " prompt="序号(越大排序越靠前)" style="width:120px;"/>
 					</div>
 					<div style="margin-bottom:4px;text-align: center;">
 						<span>标题：</span><input style="width:600px;" class="easyui-textbox clear-textbox" id="edit-div-title" name="title" prompt="请输入图集标题" required="required">

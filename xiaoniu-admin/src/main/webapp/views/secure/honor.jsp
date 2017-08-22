@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <% String type = request.getParameter("type"); %>
+<% String lang = request.getParameter("lang"); %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -211,6 +212,7 @@
 				
 				<div id="display-none-input" class="none">
 					<input id="display-none-id" name="id" class="clear-input">
+					<input id="display-none-terminal" name="terminal" value="0">
 				</div>
 			</form>
 		</div>
