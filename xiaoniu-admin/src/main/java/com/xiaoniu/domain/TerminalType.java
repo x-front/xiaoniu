@@ -12,4 +12,5 @@ package com.xiaoniu.domain;
 public class TerminalType {
 	public static final Integer PC = 0;
 	public static final Integer PHONE = 1;
+	public static final Integer PAD = 2;
 }

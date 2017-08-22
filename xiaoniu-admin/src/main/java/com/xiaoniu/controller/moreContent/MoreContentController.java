@@ -78,6 +78,7 @@ public class MoreContentController {
 			entity.setUpdateTime(now);
 			if(entity.getId() != null){
 				CmpyMoreContent tmp = queryByCondition(entity.getId(),entity.getLang(),entity.getTerminal());
+				entity.setId(getIdByCondition(entity.getId(),entity.getLang(),entity.getTerminal()));
 				if(tmp != null){
 					service.updateAll(entity);
 				}else{
@@ -103,6 +104,14 @@ public class MoreContentController {
 		}
 		Integer mid = lang * 1000 + id;
 		return service.selectByKey(mid);
+	}
+
+	private Integer getIdByCondition(Integer id,Integer lang,Integer terminal){
+		if(lang == null || lang.intValue() != LangType.EN.intValue()){
+			lang = LangType.CN;
+		}
+		Integer mid = lang * 1000 + id;
+		return mid;
 	}
 
 }

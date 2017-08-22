@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <% String lang = request.getParameter("lang"); %>
+<% String terminal = request.getParameter("terminal"); %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -16,11 +17,12 @@
 <script type="text/javascript" src="/resources/kindeditor-4.1.10/lang/zh_CN.js"></script>
 <script type="text/javascript">
 	var lang = <%=lang%>;
+	var terminal = <%=terminal%>;
 	var PluginUpload;
 	$(function(){
 		contentHeight = jQuery(window).height();
 		showPageLoading();
-		removePageLoading();
+        changeBtnSelectBackground(terminal,lang);
 		KindEditor.ready(function(K) {
 			PluginUpload = K.editor({
 				cssPath : '/resources/kindeditor-4.1.10/plugins/code/prettify.css',
@@ -43,7 +45,13 @@
 			});
 			
 		});
+        removePageLoading();
 	});
+
+	function changeBtnSelectBackground(terminal,lang) {
+	    var index = lang*3 + terminal;
+        $(".btns a:eq("+index+")").addClass("btn2").removeClass("btn1");
+    }
 	
 	function initUpdateWhoWindow(type,index,id){
 		$("#display-none-index").val(index);
@@ -95,15 +103,15 @@
 				var index = $("#display-none-index").val();
 				$("#main-div .content-p:eq("+ index +")").html($("#edit-div-introdution").textbox('getValue'));
 				$("#main-div .content-img:eq("+ index +")").attr('src',$("#edit-div-banner").textbox('getValue'));
-                $('.description-div:eq('+ index+')').css('background-image','url("'+$("#edit-div-banner").textbox('getValue')+'")');
+                $('.description-div:eq('+ index+')').css('background-image','url("'+$("#edit-div-banner").textbox('getValue')+'") no-repeat');
 				cancel();
 			} else {
 				$.messager.alert('提示',result['msg']);
 			}
 		});
 	}
-	function jump(lang){
-		location.href='/secure/pageIntrodution/welcome.html?lang='+lang;
+	function jump(lang,terminal){
+		location.href='/secure/pageIntrodution/welcome.html?lang='+lang+'&terminal='+terminal;
 	}
 </script>
 <style type="text/css">
@@ -123,19 +131,20 @@
 	.description-div h2{margin-top: 250px;}
 	#edit-div{text-align: center;}
 
-    .btns a{text-decoration:none;text-align: center;display:inline-block;width:110px;height:50px;line-height: 50px;font-size: 16px;color:#FFF;border-radius: 5px;background: #ce2f10;margin-right: 10px;}
-
+    .btns a{text-decoration:none;text-align: center;display:inline-block;width:110px;height:50px;line-height: 50px;font-size: 16px;color:#FFF;border-radius: 5px;margin-right: 10px;}
+	.btns .btn1{background: #29bd4d}
+	.btns .btn2{background: #ce2f10}
 </style>
 </head>
 <body>
 		<div id="main-div">
 			<div class="btns">
-				<c:if test="${lang eq 1 }">
-					<a class="btn1" href="javascript:jump(0);">查看中文版</a>
-				</c:if>
-				<c:if test="${lang eq 0 }">
-		        	<a class="btn1" href="javascript:jump(1);">查看英文版</a>
-		        </c:if>
+				<a class="btn1" href="javascript:jump(0,0);">PC端中文版</a>
+				<a class="btn1" href="javascript:jump(0,1);">手机端中文版</a>
+				<a class="btn1" href="javascript:jump(0,2);">IPAD端中文版</a>
+				<a class="btn1" href="javascript:jump(1,0);">PC端英文版</a>
+				<a class="btn1" href="javascript:jump(1,1);">手机端英文版</a>
+				<a class="btn1" href="javascript:jump(1,2);">IPAD端英文版</a>
 		    </div>
 			<div class="content-div">
 				<div class="description-div" style='background-image: url("${who.extCover}")'>
@@ -217,7 +226,7 @@
 					<input id="display-none-id" name="id" class="clear-input">
 					<input id="display-none-type" name="type" class="clear-input">
 					<input id="display-none-lang" name="lang" value="${lang }">
-					<input id="display-none-terminal" name="terminal" value="0">
+					<input id="display-none-terminal" name="terminal" value="${terminal}">
 					<input id="display-none-valid" name="valid" value="1">
 					<input id="display-none-index" >
 				</div>

@@ -181,9 +181,14 @@ public class PageIntroductionController extends BaseController<CmpyPageIntroduct
 		if(lang == null || lang.intValue() != LangType.EN.intValue()){
 			lang = LangType.CN;
 		}
+		if (terminal == null || (terminal.intValue() != TerminalType.PHONE.intValue() && terminal.intValue() != TerminalType.PAD.intValue())) {
+			terminal = TerminalType.PC;
+		}
 		CmpyPageIntroduction entity = new CmpyPageIntroduction();
 		entity.setLang(lang);
 		entity.setType(type);
+		entity.setTerminal(terminal);
 		return service.oneSelect(entity);
 	}
+
 }

@@ -92,6 +92,7 @@ public class ContentController extends BaseController<CmpyContent>{
 			if(tmp == null){
 				service.save(entity);
 			}else{
+				entity.setId(tmp.getId());
 				service.updateAll(entity);
 			}
 			map.put(Contants.RESULT_CODE, MsgCode.SAVE_SUCCESS.getCode());

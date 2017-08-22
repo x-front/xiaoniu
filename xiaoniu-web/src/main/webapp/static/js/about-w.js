@@ -17,13 +17,14 @@ function _xn_init() {
 function seeMore() {
     var a = $(".about-w-main .about-w-list .about-w-item").length;
     if (a >= 0) {
-        $.post("/news/list", {type: 9, page: a / 2 + 1, rows: 2, top: 0}, function (b) {
+        var targetPage =  Math.ceil(a / 2) + 1;
+        $.post("/news/list", {type: 9, page: targetPage, rows: 2, top: 0}, function (b) {
             if (b.resultCode == 0 && b.rows.length > 0) {
                 var d = b.rows;
                 var c = buildNewsRows(d, 0, 2);
                 $(".about-w-list:eq(0)").append(c)
             }
-            if ((a + 1) * 2 >= b.total) {
+            if (targetPage * 2 >= b.total) {
                 $("#seeMoreBtn").css("display", "none")
             }
         }, "json")

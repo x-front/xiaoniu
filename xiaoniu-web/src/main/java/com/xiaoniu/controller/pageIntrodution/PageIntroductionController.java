@@ -3,6 +3,8 @@ package com.xiaoniu.controller.pageIntrodution;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.xiaoniu.controller.constant.LangType;
+import com.xiaoniu.controller.constant.TerminalType;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -171,12 +173,16 @@ public class PageIntroductionController {
 	}
 	
 	private CmpyPageIntroduction queryByCondition(Integer lang,Integer terminal,Integer type) throws Exception{
-		if(lang == null || lang != 1){
-			lang = 0;
+		if(lang == null || lang.intValue() != LangType.EN){
+			lang = LangType.CN;
+		}
+		if (terminal == null || (terminal.intValue() != TerminalType.PHONE.intValue() && terminal.intValue() != TerminalType.PAD.intValue())) {
+			terminal = TerminalType.PC;
 		}
 		CmpyPageIntroduction entity = new CmpyPageIntroduction();
 		entity.setLang(lang);
 		entity.setType(type);
+		entity.setTerminal(terminal);
 		return service.oneSelect(entity);
 	}
 	

@@ -11,14 +11,20 @@ function _xn_init() {
             console.log(a.msg)
         }
     }, "json");
-    $.post("/honor/list", function (a) {
+    seeMore();
+};
+
+function seeMore(){
+    var length = $("#about-r-list li").length;
+    var targetPage =  Math.ceil(length / 20 ) + 1;
+    $.post("/honor/list",{'page':targetPage,'rows':20} ,function (a) {
         if (a.resultCode == 0) {
             var e = a.rows;
             var d = "", f = '<ul class="wow fadeInUp">';
             if ($(window).width() <= 500) {
                 f = '<ul class="">';
             }
-            for (var c = 0; c < a.total; c++) {
+            for (var c = 0; c < 20 && c < e.length; c++) {
                 var b = e[c];
                 if (c % 2 == 0 && c != 0) {
                     d += f + '<div class="clearfix"></div></ul>';
@@ -34,7 +40,12 @@ function _xn_init() {
                 f += '<div class="clearfix"></div></ul>';
                 d += f
             }
-            $("#about-r").append(d)
+            $("#about-r-list").append(d);
+            if(targetPage * 20 >= a.total){
+                $("#seeMoreBtn").css("display", "none");
+            }else{
+                $("#seeMoreBtn").css("display", "");;
+            }
         }
-    }, "json")
-};
+    }, "json");
+}

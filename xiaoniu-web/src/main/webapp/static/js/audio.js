@@ -18,7 +18,8 @@ function _xn_init(){
 function seeMore(){
 	var page = $("#idV-i .idV-ul").length;
 	if(page >= 0){
-		$.post("/news/list",{'type':8,'page':Math.ceil(page/2)+1,'rows':6,'top':0},function(result){
+        var targetPage =  Math.ceil(a / 2) + 1;
+		$.post("/news/list",{'type':8,'page':targetPage,'rows':6,'top':0},function(result){
 			if(result.resultCode == 0 && result.rows.length > 0){
 				var rows = result.rows;
 				var html = buildNewsRows(rows,0,3);
@@ -29,7 +30,7 @@ function seeMore(){
 				$('#idV-i').append(html);
 			}
 			
-			if((page + 1)*3 >= result.total){
+			if(targetPage*6 >= result.total){
 				$("#audio-more").css("display",'none');
 			}
 		},"json");
