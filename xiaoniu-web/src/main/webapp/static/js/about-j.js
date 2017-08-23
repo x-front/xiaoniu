@@ -2,7 +2,7 @@ $(function () {
     _xn_init()
 });
 function _xn_init() {
-    $.post("/moreContent/advance", function (a) {
+    $.post("/moreContent/advance", {lang:0},function (a) {
         if (a.pp1) {
             $(".about-j1-l .about-j1-item1 a:eq(0)").html(a.pp1.title);
             if ($(window).width() > 500) {
@@ -58,7 +58,7 @@ function _xn_init() {
             $(".about-j4:eq(1) .about-j4-l p:eq(0)").html(a.p5.content);
             $(".about-j4:eq(1) .about-j-r img:eq(0)").attr("src", a.p5.banner);
             $(".about-j4:eq(1) .about-j-r p:eq(0)").html(a.p5.bannerDesc);
-            $("#about-j5 .about-j5-pic").html(p5.more);
+            $("#about-j5 .about-j5-pic").html(a.p5.more);
         }
         if (a.p6) {
             $("#about-j6").attr("background", "url(" + a.p6.banner + ") no-repeat");
@@ -66,14 +66,14 @@ function _xn_init() {
             $(".about-j4:eq(2) .about-j4-l p:eq(0)").html(a.p6.content);
             $(".about-j4:eq(2) .about-j-r img:eq(0)").attr("src", a.p6.banner);
             $(".about-j4:eq(2) .about-j-r p:eq(0)").html(a.p6.bannerDesc);
-            $("#about-j6 .about-j6-pic").html(p6.more);
+            $("#about-j6 .about-j6-pic").html(a.p6.more);
         }
         if (a.p7) {
             $(".about-j4:eq(3) .about-j4-l h3:eq(0)").html(a.p7.title);
             $(".about-j4:eq(3) .about-j4-l p:eq(0)").html(a.p7.content);
             $(".about-j4:eq(3) .about-j-r img:eq(0)").attr("src", a.p7.banner);
             $(".about-j4:eq(3) .about-j-r p:eq(0)").html(a.p7.bannerDesc);
-            $("#about-j7 .about-j7-pic").html(p7.more);
+            $("#about-j7 .about-j7-pic").html(a.p7.more);
         }
     }, "json")
 };

@@ -7,7 +7,7 @@ function _xn_init() {
 function seeMore() {
     var a = $("#news-m .news-m-ul").length;
     if (a >= 0) {
-        $.post("/media/list", {type: 6, page: a / 2 + 1, rows: 6, lang: 0}, function (b) {
+        $.post("/media/list", {type: 7, page: a / 2 + 1, rows: 6, lang: 0}, function (b) {
             if (b.resultCode == 0 && b.rows.length > 0) {
                 var d = b.rows;
                 var c = buildNewsRows(d, 0, 3);
