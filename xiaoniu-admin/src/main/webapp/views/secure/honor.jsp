@@ -130,9 +130,7 @@
 			var ids = [];
 			for (var i = 0; i < rows.length; i++) {
 				var row = rows[i];
-				for(var i=0;i<rows.length;i+=1){		
-					ids.push(row['id']);	
-				}
+					ids.push(row['id']);
 			}
 			$.post("/secure/honor/batchUpdateHonorLang?strIds="+ids,{'lang':lang},function(result){
 				if(result.resultCode == 0){
