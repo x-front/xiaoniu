@@ -18,7 +18,7 @@ function _xn_init(){
 function seeMore(){
 	var page = $("#idV-i .idV-ul").length;
 	if(page >= 0){
-        var targetPage =  Math.ceil(a / 2) + 1;
+        var targetPage =  Math.ceil(page / 2) + 1;
 		$.post("/news/list",{'type':8,'page':targetPage,'rows':6,'top':0},function(result){
 			if(result.resultCode == 0 && result.rows.length > 0){
 				var rows = result.rows;

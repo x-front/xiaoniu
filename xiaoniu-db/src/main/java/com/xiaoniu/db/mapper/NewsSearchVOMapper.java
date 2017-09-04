@@ -6,6 +6,7 @@ package com.xiaoniu.db.mapper;
 
 import java.util.List;
 
+import com.xiaoniu.db.domain.CmpyNews;
 import org.apache.ibatis.annotations.Param;
 
 import com.xiaoniu.db.domain.NewsSearchVO;
@@ -20,4 +21,6 @@ public interface NewsSearchVOMapper {
 			@Param("isTop")Integer isTop, @Param("title")String title, @Param("summary")String summary);
 	
 	public long searchTotalCount( @Param("type")Integer type, @Param("lang")Integer lang,@Param("isTop")Integer isTop, @Param("title")String title, @Param("summary")String summary);
+
+	public List<CmpyNews> queryNewsList(CmpyNews entity);
 }

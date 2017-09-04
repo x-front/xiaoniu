@@ -36,7 +36,7 @@
 			}	
 		},
 		{field:'name',title: '名称', align:'center',},
-		{field:'position',title: '职位',align:'center'},
+		/*{field:'position',title: '职位',align:'center'},*/
 		{field:'summary',title: '描述',align:'left',width:340},
 		{field:'serialNumber',title: '序号',align:'center'},
 		validColumn,
@@ -201,7 +201,7 @@
 					</select>
 					<input id="edit-div-serialNumber" name="serialNumber" required="true" class="easyui-numberbox clear-easyui-numberbox " prompt="序号(越大排序越靠前)" style="width:490px"/>
 					<input id="edit-div-name" name="name" required="true" class="easyui-textbox clear-easyui-textbox " maxlength="12" prompt="名字" style="width:204px"/>
-					<input id="edit-div-position" name="position" class="easyui-textbox clear-easyui-textbox " maxlength="128" required="true" prompt="职位" style="width:490px"/>
+					<%--<input id="edit-div-position" name="position" class="easyui-textbox clear-easyui-textbox " maxlength="128" required="true" prompt="职位" style="width:490px"/>--%>
 					<input  id="edit-div-summary" name="summary" class="easyui-textbox clear-easyui-textbox" maxlength="512" required="true" data-options="multiline:true" prompt="描述" style="width: 703px;height: 178px;"/>
 				</div>
 				

@@ -149,52 +149,97 @@
 			<div class="content-div">
 				<div class="description-div" style='background-image: url("${who.extCover}")'>
 					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(23,0,${who.id})" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
-					<h2 class="content-h2">家庭金融的超级入口</h2>
+
+					<c:choose>
+						<c:when test="${lang eq 1}">
+							<h2 class="content-h2">THE SUPERIOR ACCESS TO HOUSEHOLD FINANCE</h2>
+						</c:when>
+						<c:otherwise>
+							<h2 class="content-h2">家庭金融的超级入口</h2>
+						</c:otherwise>
+					</c:choose>
 					<p class="content-p">${who.introdution }</p>
 					<img class="content-img none" alt="" src="${who.extCover }" media="${who.extMedia }">
 				</div>
 				
 				<div class="description-div" style='background-image: url("${doWhat.extCover}")'>
 					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(24,1,${doWhat.id})" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
-					<h2 class="content-h2">我们做什么</h2>
+					<c:choose>
+						<c:when test="${lang eq 1}">
+							<h2 class="content-h2">WHAT WE DO</h2>
+						</c:when>
+						<c:otherwise>
+							<h2 class="content-h2">我们做什么</h2>
+						</c:otherwise>
+					</c:choose>
 					<p class="content-p">${doWhat.introdution }</p>
 					<img class="content-img none" alt="" src="${doWhat.extCover }" media="${doWhat.extMedia }">
 				</div>
 				
 				<div class="description-div" style='background-image: url("${voice.extCover}")'>
 					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(29,2,${voice.id})" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
-					<h2 class="content-h2">我们用行动定义自己</h2>
+					<c:choose>
+						<c:when test="${lang eq 1}">
+							<h2 class="content-h2">HOW WE DO</h2>
+						</c:when>
+						<c:otherwise>
+							<h2 class="content-h2">我们用行动定义自己</h2>
+						</c:otherwise>
+					</c:choose>
 					<p class="content-p">${voice.introdution }</p>
 					<img class="content-img none" alt="" src="${voice.extCover }" media="${voice.extMedia }">
 				</div>
 				
 				<div class="description-div " style='background-image: url("${family.extCover}")'>
 					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(25,3,${family.id})" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
-					<h2 class="content-h2">我们的思考</h2>
+					<c:choose>
+						<c:when test="${lang eq 1}">
+							<h2 class="content-h2">OUR THINKING</h2>
+						</c:when>
+						<c:otherwise>
+							<h2 class="content-h2">我们的思考</h2>
+						</c:otherwise>
+					</c:choose>
 					<p class="content-p ">${family.introdution }</p>
 					<img class="content-img  none" alt="" src="${family.extCover }" media="${family.extMedia }">
 				</div>
 
 				<div class="description-div " style='background-image: url("${sports.extCover}")'>
 					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(26,4,${sports.id})" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
-					<h2 class="content-h2">我们的公众形象</h2>
+					<c:choose>
+						<c:when test="${lang eq 1}">
+							<h2 class="content-h2">PUBLIC IMAGE</h2>
+						</c:when>
+						<c:otherwise>
+							<h2 class="content-h2">我们的公众形象</h2>
+						</c:otherwise>
+					</c:choose>
 					<p class="content-p ">${sports.introdution }</p>
 					<img class="content-img none" alt="" src="${sports.extCover }" media="${sports.extMedia }">
 				</div>
 
 				<div class="description-div " style='background-image: url("${welfare.extCover}")'>
 					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(27,5,${welfare.id})" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
-					<h2 class="content-h2">我们的超越与想象</h2>
+					<c:choose>
+						<c:when test="${lang eq 1}">
+							<h2 class="content-h2">BEYOND BUSINESS</h2>
+						</c:when>
+						<c:otherwise>
+							<h2 class="content-h2">我们的超越与想象</h2>
+						</c:otherwise>
+					</c:choose>
 					<p class="content-p ">${welfare.introdution }</p>
 					<img class="content-img none" alt="" src="${welfare.extCover }" media="${welfare.extMedia }">
 				</div>
 
-				<div class="description-div " style='background-image: url("${education.extCover}")'>
-					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(28,6,${education.id})" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
-					<h2 class="content-h2">我们渴望拥有你</h2>
-					<p class="content-p ">${education.introdution }</p>
-					<img class="content-img none" alt="" src="${education.extCover }" media="${education.extMedia }">
-				</div>
+				<c:if test="${lang eq 0}">
+					<div class="description-div " style='background-image: url("${education.extCover}")'>
+						<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(28,6,${education.id})" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
+						<h2 class="content-h2">我们渴望拥有你</h2>
+						<p class="content-p ">${education.introdution }</p>
+						<img class="content-img none" alt="" src="${education.extCover }" media="${education.extMedia }">
+					</div>
+				</c:if>
 			</div>
 		</div>
 		<!-- 添加 -->

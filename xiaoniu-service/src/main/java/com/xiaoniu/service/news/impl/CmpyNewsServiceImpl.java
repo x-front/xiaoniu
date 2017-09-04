@@ -2,6 +2,9 @@ package com.xiaoniu.service.news.impl;
 
 import java.util.List;
 
+import com.github.pagehelper.ISelect;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,6 +39,18 @@ public class CmpyNewsServiceImpl extends BaseServiceImpl<CmpyNews> implements Cm
 			re = searchMapper.searchTotalCount(type, lang, isTop, null,keyword);
 		}
 		return re;
+	}
+
+	@Override
+	public PageInfo<CmpyNews> queryNewsList(Integer page, Integer rows, String orderBy, final CmpyNews entity) throws Exception {
+		PageInfo<CmpyNews> pageInfo = PageHelper.startPage(page, rows, orderBy).doSelectPageInfo(new ISelect() {
+
+			@Override
+			public void doSelect() {
+				searchMapper.queryNewsList(entity);
+			}
+		});
+		return pageInfo;
 	}
 
 }

@@ -16,13 +16,14 @@
 <script type="text/javascript" src="/resources/kindeditor-4.1.10/lang/zh_CN.js"></script>
 <!-- <script type="text/javascript" src="/resources/3rd/easyUI/plugins/datagrid-cellediting.js"></script> -->
 <script type="text/javascript">
-	commonTable.loadDateURI = "/secure/news/queryList";
+	commonTable.loadDateURI = "/secure/news/queryNewsList";
 	commonTable.batchUpdateValidURI = "/secure/news/batchUpdateValid?strIds=";
 	commonTable.batchDeleteURI = "/secure/news/batchDelete?strIds=";
 	commonTable.updateURI = "/secure/news/update";
 	commonTable.insertURI = "/secure/news/insert";
 	commonTable.title = "文章列表";
 	commonTable.checkOnSelect = true;
+	commonTable.nowrap = false;
 	commonTable.tableQueryParams = {
 			orderBy:'serial_number desc,id desc',
 			type:'<%=type%>',
@@ -356,23 +357,19 @@
 		var rows = $('#html_table').datagrid('getSelections');
 		if(isSelected(rows)){
 			$.messager.confirm('操作记录', "确定添加到首页新闻列表？", function(r){ 
-				if(r){	
-					for(var i=0;i<rows.length;i+=1){
-						$.post("/secure/indexNews/save",{
-							'id':rows[i]['id'],
-							'title':rows[i]['title'],
-							'valid':0,
-							'serialNumber':1,
-							'lang':0
-						},function(result){
-							if(result.resultCode == 0){
-								$.messager.alert('提示', "成功添加！");
-								console.log('success to  save ' + rows[i]['id'] + ' to index news');
-							}else{
-								console.log('failed to save ' + rows[i]['id'] + ' to index news');
-							}
-						},'json');
-					}
+				if(r){
+                    var ids = [];
+                    for (var i = 0; i < rows.length; i++) {
+                        var row = rows[i];
+                        ids.push(row['id']);
+                    }
+					$.post("/secure/indexNews/saveNews2IndexNews?strIds="+ids,function(result){
+						if(result.resultCode == 0){
+							$.messager.alert('提示', "成功添加"+ ids.length + "条记录到首页新闻！");
+						}else{
+							$.messager.alert('提示',result['msg']);
+						}
+					},'json');
 				}
 			});
 		}
@@ -401,6 +398,12 @@
 		commonTable.tableQueryParams.lang = lang;
 		$("#html_table").datagrid("reload");
 	}
+
+    function searchNewsByTitle(){
+        var searchValue = $('#title-search').searchbox('getValue');
+        commonTable.tableQueryParams.title = searchValue;
+        $("#html_table").datagrid("load",commonTable.tableQueryParams);
+    }
 </script>
 <style type="text/css">
 	#edit-div{width: 1000px;margin: auto;margin-top: 10px;}
@@ -424,6 +427,7 @@
 		
 		<!-- tool bar -->
 		<div id="table_tb" style="padding:5px;height:auto" class="none">
+			<input id="title-search" class="easyui-searchbox" searcher="searchNewsByTitle" prompt="请输入关键字" style="width:120px;"></input>
 			<a href="javascript:void(0);" onclick="javascript:initAddNewsWindow()"class="easyui-linkbutton" title="添加" plain="true" iconCls="icon-add" id="addBtn">添加</a>
 			<a href="javascript:void(0);" onclick="javascript:commonTable.batchDelete()"class="easyui-linkbutton" title="删除" plain="true" iconCls="icon-cut" id="delBtn">删除</a>
 			<a href="javascript:void(0);" onclick="javascript:commonTable.batchPublish()"class="easyui-linkbutton" title="发布" plain="true" iconCls="icon-ok">发布</a>

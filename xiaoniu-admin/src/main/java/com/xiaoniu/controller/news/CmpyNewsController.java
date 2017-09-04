@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -119,6 +120,24 @@ public class CmpyNewsController extends BaseController<CmpyNews>{
 		}catch(Exception e){
 			map.put(Contants.RESULT_CODE, MsgCode.UPDATE_FAILED.getCode());
 			map.put(Contants.MSG, e.getMessage());
+		}
+		return map;
+	}
+
+	@RequestMapping("queryNewsList")
+	@ResponseBody
+	public Map<String,Object> queryList(Integer page,Integer  rows, String orderBy,CmpyNews entity){
+		Map<String,Object> map = new HashMap<String,Object>();
+		try{
+			if(orderBy == null || "".equals(orderBy.trim())){
+				orderBy = " id desc";
+			}
+			PageInfo<CmpyNews> pageInfo = service.queryNewsList(page, rows, orderBy, entity);
+			map.put(Contants.TOTAL, pageInfo.getTotal());
+			map.put(Contants.ROWS, pageInfo.getList());
+		}catch(Exception e){
+			map.put(Contants.RESULT_CODE, MsgCode.FALSE.getCode());
+			map.put(Contants.MSG, e);
 		}
 		return map;
 	}
