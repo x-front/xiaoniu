@@ -8,7 +8,7 @@ function _xn_init(){
         lang = 0;
     }
     if(keyword){
-        $("#keyword").val(keyword);
+        $("#keyword").val(decodeURI(keyword));
         searchNews(lang,1,20);
     }
 }
@@ -27,21 +27,21 @@ function searchNews(lang,pageIndex,pageSize) {
         if ( result.resultCode == 0 ){
             searchResultTotalCount = result.total;
             var rows = result.rows;
-            var html = buildRows(rows);
+            var html = buildRows(rows,lang);
             $(".search_list").html(html);
         }else{
             console.error(result.msg);
         }
     },"json");
 }
-function buildRows(rows) {
+function buildRows(rows,lang) {
     var html = '';
     for (var i=0; i<rows.length; i++){
-        html += buildRow(rows[i]);
+        html += buildRow(rows[i],lang);
     }
     return html;
 }
-function buildRow(lang,row) {
+function buildRow(row,lang) {
     if(lang == 1){
         return '<a href="/static/en/news-m-inside.html?id=' + row.id + '" class="search_item"><h3>'+row.title+'</h3><p>'+row.summary+'</p></a>';
     }else{
