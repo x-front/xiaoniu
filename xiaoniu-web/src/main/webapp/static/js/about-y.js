@@ -2,7 +2,7 @@ $(function(){
 	_xn_init();
 });
 function _xn_init(){
-	$.post("/moreContent/principle",function(result){
+	/*$.post("/moreContent/principle",function(result){
 			if(result.p1){
 				$('.about-y1 .beautiful-f-inner p:eq(0)').html(result.p1.content);
 				$('.about-y1').css('background-image','url('+result.p1.banner+')');
@@ -37,6 +37,13 @@ function _xn_init(){
 				$('.about-y7 .beautiful-f-inner p:eq(0)').html(result.p7.content);
 				$('.about-y7').css('background-image','url('+result.p7.banner+')');
 			}
-	},"json");
-	
+	},"json");*/
+	$.post("/content/find",{'id':8,'lang':0},function (result) {
+		if (result.resultCode == 0) {
+			var entity = result.entity;
+			$(".about-yz").append(entity.content);
+        }else {
+			console.log(result.msg);
+        }
+    },"json");
 }
