@@ -28,7 +28,7 @@
 			orderBy:'serial_number desc,id desc',
 			type:'<%=type%>',
 			lang:0
-	}
+	},
 	commonTable.columns = [
 		{field:'ck',checkbox:true},
 		{field:'id', title: 'ID',align:'center'},
@@ -215,27 +215,32 @@
 	});
 	
 	function initUpdateNewsWindow(index){
-		var rows = $("#html_table").datagrid("getRows"),
-		row = rows[index];
-		$("#display-none-id").val(row.id);
-		$('#display-none-type').val(row.type);
-		$("#edit-div-source").textbox('setValue',row.source);
-		$("#edit-div-title").textbox('setValue',row.title);
-		$("#edit-div-banner").textbox('setValue',row.banner);
-		$('#edit-img-banner').attr('src',row.banner).removeClass('none');
-		$("#edit-div-summary").textbox('setValue',row.summary);
-		if(row.publishTime){
-			$("#edit-div-publishTime").datetimebox('setValue',dateTools.LongTimeToDateString(row.publishTime));
-		}
-		$("#edit-div-clickTimes").numberbox('setValue',row.clickTimes);
-		$("#edit-div-serialNumber").numberbox('setValue',row.serialNumber);
-		$("#edit-div-valid").combobox('setValue',row.valid);
-		$("#edit-div-lang").combobox('setValue',row.lang);
-		contextEditor.html(row.content);
-		contextEditor.focus();
-		$("#edit-form").attr("action",commonTable.updateURI);
-		$(".datagrid").addClass("none");
-		$("#edit-div").removeClass("none");
+		var rows = $("#html_table").datagrid("getRows");
+		$.post("/secure/news/find",{'id':rows[index]['id']},function (result) {
+			if(result.resultCode == 0) {
+                row = result.entity;
+                $("#display-none-id").val(row.id);
+                $('#display-none-type').val(row.type);
+                $("#edit-div-source").textbox('setValue',row.source);
+                $("#edit-div-title").textbox('setValue',row.title);
+                $("#edit-div-banner").textbox('setValue',row.banner);
+                $('#edit-img-banner').attr('src',row.banner).removeClass('none');
+                $("#edit-div-summary").textbox('setValue',row.summary);
+                if(row.publishTime){
+                    $("#edit-div-publishTime").datetimebox('setValue',dateTools.LongTimeToDateString(row.publishTime));
+                }
+                $("#edit-div-clickTimes").numberbox('setValue',row.clickTimes);
+                $("#edit-div-serialNumber").numberbox('setValue',row.serialNumber);
+                $("#edit-div-valid").combobox('setValue',row.valid);
+                $("#edit-div-lang").combobox('setValue',row.lang);
+                contextEditor.html(row.content);
+                contextEditor.focus();
+                $("#edit-form").attr("action",commonTable.updateURI);
+                $(".datagrid").addClass("none");
+                $("#edit-div").removeClass("none");
+            }
+        },"json");
+
 	}
 	
 	function initAddNewsWindow(){
@@ -440,10 +445,12 @@
 				<a href="javascript:void(0);" onclick="javascript:updateTop(0)"class="easyui-linkbutton" title="取消置顶" plain="true" iconCls="icon-tip">取消置顶</a>
 			</c:if>
 			<a href="javascript:void(0);" onclick="javascript:set2IndexNews()"class="easyui-linkbutton" title="添加" plain="true" iconCls="icon-edit" >添加到首页新闻列表</a>
-			<a href="javascript:void(0);" onclick="javascript:showLang(0)"class="easyui-linkbutton" title="只显示中文版" plain="true" iconCls="icon-save">只显示中文版</a>
-			<a href="javascript:void(0);" onclick="javascript:showLang(1)"class="easyui-linkbutton" title="只显示英文版" plain="true" iconCls="icon-save">只显示英文版</a>
-			<a href="javascript:void(0);" onclick="javascript:updateLang(0)"class="easyui-linkbutton" title="迁移到中文版" plain="true" iconCls="icon-undo">迁移到中文版</a>
-			<a href="javascript:void(0);" onclick="javascript:updateLang(1)"class="easyui-linkbutton" title="迁移到英文版" plain="true" iconCls="icon-redo">迁移到英文版</a>
+			<%--<c:if test="${type != 12 && type != 15 && type != 6}">--%>
+				<a href="javascript:void(0);" onclick="javascript:showLang(0)"class="easyui-linkbutton" title="只显示中文版" plain="true" iconCls="icon-save">只显示中文版</a>
+				<a href="javascript:void(0);" onclick="javascript:showLang(1)"class="easyui-linkbutton" title="只显示英文版" plain="true" iconCls="icon-save">只显示英文版</a>
+				<a href="javascript:void(0);" onclick="javascript:updateLang(0)"class="easyui-linkbutton" title="迁移到中文版" plain="true" iconCls="icon-undo">迁移到中文版</a>
+				<a href="javascript:void(0);" onclick="javascript:updateLang(1)"class="easyui-linkbutton" title="迁移到英文版" plain="true" iconCls="icon-redo">迁移到英文版</a>
+			<%--</c:if>--%>
 		</div>
 		
 		<!-- 移动 -->
@@ -453,7 +460,7 @@
 					<tbody>
 						<tr>
 							<td style="width:60px;color: #444;text-align: right;">文     章:</td>
-							<td><div id="move-div-title" style="height: 50px;width: 200px;"></div></td>
+							<td><div id="move-div-title" style="height: 50px;width: 200px;overflow: hidden;text-overflow:ellipsis "></div></td>
 						</tr>
 						<tr>
 							<td style="width:60px;color: #444;text-align: right;">移动到:</td>

@@ -55,15 +55,25 @@
 		$("#edit_form_extMedia").textbox('setValue',row.extMedia);
 		$("#edit_form_valid").combobox('setValue',row.valid);
 		$("#edit_form_lang").combobox('setValue',row.lang);
-//		$("#edit_form_serialNumber").numberbox('setValue',row.serialNumber);
+		$("#edit_form_serialNumber").numberbox('setValue',row.serialNumber);
 		$('#edit-img-banner').attr('src',row.extCover).removeClass('none');
 		$("#edit-form").attr("action",commonTable.updateURI);
 	};
 	
 	commonTable.addWindowCloseCallBack = function(){
 		$('#edit-img-banner').attr('src','');
+        cancel();
 	}
-	
+
+
+    function cancel(){
+        $(".clear-textbox").textbox('setValue','');
+        $(".clear-datetimebox").datetimebox('clear');
+        $(".clear-combobox").combobox('clear');
+        $(".clear-numberbox").numberbox('clear');
+        $(".clear-input").val('');
+    }
+
 	$(function(){
 		showPageLoading();
 		
@@ -156,10 +166,12 @@
 			<a href="javascript:void(0);" onclick="javascript:commonTable.batchDelete()"class="easyui-linkbutton" title="删除" plain="true" iconCls="icon-cancel" id="delBtn">删除</a>
 			<a href="javascript:void(0);" onclick="javascript:commonTable.batchPublish()"class="easyui-linkbutton" title="发布" plain="true" iconCls="icon-ok">发布</a>
 			<a href="javascript:void(0);" onclick="javascript:commonTable.batchCancelPublish()"class="easyui-linkbutton" title="撤销" plain="true" iconCls="icon-tip">撤销发布</a>
-			<a href="javascript:void(0);" onclick="javascript:showLang(0)"class="easyui-linkbutton" title="只显示中文版" plain="true" iconCls="icon-save">只显示中文版</a>
-			<a href="javascript:void(0);" onclick="javascript:showLang(1)"class="easyui-linkbutton" title="只显示英文版" plain="true" iconCls="icon-save">只显示英文版</a>
-			<a href="javascript:void(0);" onclick="javascript:updateLang(0)"class="easyui-linkbutton" title="迁移到中文版" plain="true" iconCls="icon-undo">迁移到中文版</a>
-			<a href="javascript:void(0);" onclick="javascript:updateLang(1)"class="easyui-linkbutton" title="迁移到英文版" plain="true" iconCls="icon-redo">迁移到英文版</a>
+			<%--<c:if test="${type != 7}">--%>
+				<a href="javascript:void(0);" onclick="javascript:showLang(0)"class="easyui-linkbutton" title="只显示中文版" plain="true" iconCls="icon-save">只显示中文版</a>
+				<a href="javascript:void(0);" onclick="javascript:showLang(1)"class="easyui-linkbutton" title="只显示英文版" plain="true" iconCls="icon-save">只显示英文版</a>
+				<a href="javascript:void(0);" onclick="javascript:updateLang(0)"class="easyui-linkbutton" title="迁移到中文版" plain="true" iconCls="icon-undo">迁移到中文版</a>
+				<a href="javascript:void(0);" onclick="javascript:updateLang(1)"class="easyui-linkbutton" title="迁移到英文版" plain="true" iconCls="icon-redo">迁移到英文版</a>
+			<%--</c:if>--%>
 		</div>
 		
 		<!-- 添加 -->
@@ -171,7 +183,7 @@
 							<td style="width:60px;">封面:</td>
 							<td>
 								<input id="edit_form_extCover" required="true" name="extCover" class="easyui-textbox clear-textbox"  prompt="封面"/>
-								<input type="button" id="btn-banner-upload" value="选择图片" style="width:80px"/>
+								<input class="clear-input" type="button" id="btn-banner-upload" value="选择图片" style="width:80px"/>
 								<img id="edit-img-banner" alt="" src=""  style="width: 203px;height: 102px;">
 							</td>
 						</tr>
@@ -179,7 +191,7 @@
 							<td>媒体链接:</td>
 							<td>
 								<input id="edit_form_extMedia" name="extMedia" class="easyui-textbox clear-textbox" required="true" />
-								<input type="button" id="btn-media-upload"  value="选择资源" style="width:80px"/>
+								<input class="clear-input" type="button" id="btn-media-upload"  value="选择资源" style="width:80px"/>
 							</td>
 						</tr>
 						<tr>
@@ -211,7 +223,7 @@
 						</tr>
 						<tr>
 							<td><input style="display:none" name="id" readonly="readonly" id="edit_form_id"  class="clear-input">
-								<input style="display:none" name="type" value="<%=request.getParameter("type") %>" readonly="readonly" id="edit_form_id"  class="">
+								<input style="display:none" name="type" value="<%=request.getParameter("type") %>" readonly="readonly" id="edit_form_type"  class="">
 							</td>
 						</tr>
 						<tr>

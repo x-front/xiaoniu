@@ -93,7 +93,7 @@
 		<!-- tool bar -->
 		<div id="table_tb" style="padding:5px;height:auto" class="none">
 			<!-- <a href="javascript:void(0);" onclick="javascript:commonTable.initAddWindow()"class="easyui-linkbutton" title="添加" plain="true" iconCls="icon-add" id="addBtn">添加</a> -->
-			<input id="id-search" class="easyui-searchbox" searcher="searchNewsById" prompt="请输入新闻ID" style="width:120px;"></input>
+			<%--<input id="id-search" class="easyui-searchbox" searcher="searchNewsById" prompt="请输入新闻ID" style="width:120px;"></input>--%>
 			<a href="javascript:void(0);" onclick="javascript:commonTable.batchDelete()"class="easyui-linkbutton" title="删除" plain="true" iconCls="icon-cancel" id="delBtn">删除</a>
 			<a href="javascript:void(0);" onclick="javascript:commonTable.batchPublish()"class="easyui-linkbutton" title="发布" plain="true" iconCls="icon-ok">发布</a>
 			<a href="javascript:void(0);" onclick="javascript:commonTable.batchCancelPublish()"class="easyui-linkbutton" title="撤销" plain="true" iconCls="icon-tip">撤销发布</a>
