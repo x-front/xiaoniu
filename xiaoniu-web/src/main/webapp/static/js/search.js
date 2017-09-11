@@ -15,6 +15,11 @@ function _xn_init(){
 var searchResultTotalCount = 0;
 function searchNews(lang,pageIndex,pageSize) {
     var keyword = $("#keyword").val();
+    keyword = trim(keyword);
+    if(keyword.length == 0){
+        $(".search_list").html('');
+        return;
+    }
     if(pageIndex == 1){
         searchResultTotalCount = 0;
     }
@@ -25,10 +30,10 @@ function searchNews(lang,pageIndex,pageSize) {
         'lang':lang,
         'keyword':keyword},function (result) {
         if ( result.resultCode == 0 ){
-            searchResultTotalCount = result.total;
             var rows = result.rows;
             var html = buildRows(rows,lang);
             $(".search_list").html(html);
+            searchResultTotalCount = result.total;
         }else{
             console.error(result.msg);
         }
@@ -47,4 +52,15 @@ function buildRow(row,lang) {
     }else{
         return '<a href="/static/news-m-inside.html?id=' + row.id + '" class="search_item"><h3>'+row.title+'</h3><p>'+row.summary+'</p></a>';
     }
+}
+
+function ltrim(s){
+    return s.replace( /^\s*/, "");
+}
+//去右空格;
+function rtrim(s){
+    return s.replace( /\s*$/, "");
+}
+function trim(s){
+    return rtrim(ltrim(s));
 }

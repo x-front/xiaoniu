@@ -19,8 +19,9 @@
 		from
 		    cmpy_news
 		<where>
+			valid = 1
 			<if test="type != null">
-				type = #{type}
+				and type = #{type}
 			</if>
 			<if test="lang != null">
 				and lang = #{lang}
@@ -45,8 +46,9 @@
 		from
 		    cmpy_news
 		<where>
+			valid = 1
 			<if test="type != null">
-				type = #{type}
+				and type = #{type}
 			</if>
 			<if test="lang != null">
 				and lang = #{lang}

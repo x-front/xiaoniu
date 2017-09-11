@@ -128,7 +128,7 @@ public class NewsController {
 			List<NewsSearchVO> list = service.search(page, rows, totalCount, type, lang, isTop, keyword);
 			Long reTotalCount = 0L;
 			if(totalCount != null && totalCount < 1){
-				service.searchTotalCount(type, lang, isTop, keyword);
+				reTotalCount = service.searchTotalCount(type, lang, isTop, keyword);
 			}else{
 				reTotalCount = totalCount;
 			}
