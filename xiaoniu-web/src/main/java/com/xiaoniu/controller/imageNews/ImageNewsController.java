@@ -49,8 +49,10 @@ public class ImageNewsController {
 		try{
 			CmpyImageNewsHead entity = new CmpyImageNewsHead();
 			entity.setValid(MsgCode.TRUE.getCode());
-			if(lang == null){
+			if (lang == null) {
 				entity.setLang(LangType.CN);
+			} else {
+				entity.setLang(lang);
 			}
 			PageInfo<CmpyImageNewsHead> pageInfo = headService.queryList(page, rows, "serial_number desc,id desc", entity);
 			map.put(Contants.TOTAL, pageInfo.getTotal());

@@ -130,7 +130,7 @@
 	}
 	#main-div{width: 1140px;margin: auto;}
 	.content-div{margin: auto;}
-	.description-div{text-align: center;margin: auto;padding-top: 10px;padding-bottom: 10px;}
+	.description-div{text-align: center;margin: auto;padding-top: 120px;padding-bottom: 170px; background-repeat:no-repeat;}
 	.who-img{
 		width: 908px;
 		height: 393px;
@@ -160,28 +160,28 @@
 		    </div>
 		
 			<div class="content-div">
-				<div class="description-div">
+				<div class="description-div" style="background-image: url('${family.extCover}')">
 					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(18,0,${family.id})" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
 					<h2 class="content-h2">美好家庭</h2>
 					<p class="content-p">${family.introdution }</p>
 					<img class="who-img content-img none" alt="" src="${family.extCover }" media="${family.extMedia }">
 				</div>
 				
-				<div class="description-div">
+				<div class="description-div" style="background-image: url('${sports.extCover}')">
 					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(19,1,${sports.id})" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
 					<h2 class="content-h2">美好体育</h2>
 					<p class="content-p">${sports.introdution }</p>
 					<img class="who-img content-img none" alt="" src="${sports.extCover }" media="${sports.extMedia }">
 				</div>
 				
-				<div class="description-div">
+				<div class="description-div" style="background-image: url('${welfare.extCover}')">
 					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(20,2,${welfare.id})" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
 					<h2 class="content-h2">美好公益</h2>
 					<p class="content-p">${welfare.introdution }</p>
 					<img class="who-img content-img none" alt="" src="${welfare.extCover }" media="${welfare.extMedia }">
 				</div>
 				
-				<div class="description-div">
+				<div class="description-div" style="background-image: url('${education.extCover}')">
 					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(21,3,${education.id})" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
 					<h2 class="content-h2">美好教育</h2>
 					<p class="content-p">${education.introdution }</p>
