@@ -21,6 +21,16 @@ public class NewsSearchVO {
 	private Integer type;
 	private Integer clickTimes;
 	private Integer lang;
+	private String banner;
+
+	public String getBanner() {
+		return banner;
+	}
+
+	public void setBanner(String banner) {
+		this.banner = banner;
+	}
+
 	public Integer getId() {
 		return id;
 	}

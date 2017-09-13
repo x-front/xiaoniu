@@ -48,9 +48,9 @@ function buildRows(rows,lang) {
 }
 function buildRow(row,lang) {
     if(lang == 1){
-        return '<a href="/static/en/news-m-inside.html?id=' + row.id + '" class="search_item"><h3>'+row.title+'</h3><p>'+row.summary+'</p></a>';
+        return '<a href="/static/en/news-t-inside.html?id=' + row.id + '" class="search_item"><div class="sea_img"><img src="'+row.banner+'"/></div><h3>'+row.title+'</h3></a>';
     }else{
-        return '<a href="/static/news-m-inside.html?id=' + row.id + '" class="search_item"><h3>'+row.title+'</h3><p>'+row.summary+'</p></a>';
+        return '<a href="/static/news-t-inside.html?id=' + row.id + '" class="search_item"><div class="sea_img"><img src="'+row.banner+'"/></div><h3>'+row.title+'</h3></a>';
     }
 }
 

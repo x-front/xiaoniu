@@ -11,11 +11,12 @@
 		<result column="type" property="type"/>
 		<result column="click_times" property="clickTimes"/>
 		<result column="lang" property="lang"/>
+		<result column="banner" jdbcType="VARCHAR" property="banner" />
 	</resultMap>
 	
 	<select id="search" resultMap="NewsSearchMap">
 		select 
-			id,title, summary, valid, is_top, update_time, type, click_times, lang
+			id,title, summary, valid, is_top, update_time, type, click_times, lang,banner
 		from
 		    cmpy_news
 		<where>
@@ -60,7 +61,7 @@
 				and title like "%${title}%"
 			</if>
 			<if test="summary != null">
-				and summary = "%${summary}%"
+				and summary like "%${summary}%"
 			</if>
 		</where>
 	</select>
