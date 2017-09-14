@@ -156,12 +156,12 @@
 		    </div>
 		
 			<div class="content-div">
-				<div class="description-div">
+				<%--<div class="description-div">
 					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(13,0,${voice.id })" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>
 					<h2 class="content-h2">小牛思想声音</h2>
 					<p class="content-p">${voice.introdution }</p>
 					<img class="who-img content-img none" alt="" src="${voice.extCover }" media="${voice.extMedia }">
-				</div>
+				</div>--%>
 				
 				<div class="description-div">
 					<a href="javascript:void(0);" onclick="javascript:initUpdateWhoWindow(14,1,${thinking.id })" class="easyui-linkbutton float-right" title="修改" plain="true" iconCls="icon-edit" id="addBtn">修改</a>

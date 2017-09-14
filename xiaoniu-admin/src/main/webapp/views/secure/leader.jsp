@@ -185,7 +185,7 @@
 		<div id="edit-div" class="none" >
 			<form id="edit-form" method="post">
 				<div id="div-banner">
-					<input id="edit-div-banner" required="true" name="banner" class="easyui-textbox clear-easyui-textbox"  prompt="相片(158*209)"/>
+					<input id="edit-div-banner" required="true" name="banner" class="easyui-textbox clear-easyui-textbox"  prompt="相片(159x159)"/>
 					<input type="button" id="btn-banner-upload" value="选择图片"/>
 					<img id="edit-img-banner" alt="" src="" class="none" style="width: 158px;height: 209px;">
 				</div>

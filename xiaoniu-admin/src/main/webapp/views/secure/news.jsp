@@ -510,16 +510,16 @@
 					
 					<c:choose>
 						<c:when test="${type == 10 }">
-							<input id="edit-div-banner" required="true" name="banner" class="easyui-textbox clear-easyui-textbox"  prompt="封面图(641*425)"/>
+							<input id="edit-div-banner" required="true" name="banner" class="easyui-textbox clear-easyui-textbox"  prompt="封面图(1280x850)"/>
 						</c:when>
 						<c:when test="${type == 11 }">
 							<input id="edit-div-banner" required="true" name="banner" class="easyui-textbox clear-easyui-textbox"  prompt="封面图(641*425)"/>
 						</c:when>
 						<c:when test="${type ge 1 and type le 4}">
-							<input id="edit-div-banner" required="true" name="banner" class="easyui-textbox clear-easyui-textbox"  prompt="封面图(981*499)"/>
+							<input id="edit-div-banner" required="true" name="banner" class="easyui-textbox clear-easyui-textbox"  prompt="封面图(1280x850)"/>
 						</c:when>
 						<c:otherwise>
-							<input id="edit-div-banner" required="true" name="banner" class="easyui-textbox clear-easyui-textbox"  prompt="封面图(354*185)"/>
+							<input id="edit-div-banner" required="true" name="banner" class="easyui-textbox clear-easyui-textbox"  prompt="封面图(708x370)"/>
 						</c:otherwise>
 					</c:choose>
 					

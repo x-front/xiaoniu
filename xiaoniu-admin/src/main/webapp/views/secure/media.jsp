@@ -182,7 +182,8 @@
 						<tr>
 							<td style="width:60px;">封面:</td>
 							<td>
-								<input id="edit_form_extCover" required="true" name="extCover" class="easyui-textbox clear-textbox"  prompt="封面"/>
+								<input id="edit_form_extCover" required="true" name="extCover" class="easyui-textbox clear-textbox"
+									   prompt="封面<c:if test="${type gt 2}">(1280x850)</c:if><c:if test="${type lt 3}">(226x293)</c:if>	"/>
 								<input class="clear-input" type="button" id="btn-banner-upload" value="选择图片" style="width:80px"/>
 								<img id="edit-img-banner" alt="" src=""  style="width: 203px;height: 102px;">
 							</td>

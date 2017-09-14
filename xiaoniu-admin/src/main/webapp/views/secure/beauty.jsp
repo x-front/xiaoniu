@@ -201,7 +201,7 @@
 						<input type="button" id="btn-media-upload"  value="选择视频"/>
 					</div>
 					<div class="none " id="edit-banner-showOrHide">
-						<input id="edit-div-banner"  name="extCover" class="easyui-textbox clear-easyui-textbox"   prompt="背景图片" style="width:628px;"/>
+						<input id="edit-div-banner"  name="extCover" class="easyui-textbox clear-easyui-textbox"   prompt="背景图片(1920x642)" style="width:628px;"/>
 						<input type="button" id="btn-banner-upload"  value="选择图片"/><br>
 						<img id="edit-img-banner" alt="" src="" class="none" style="max-width: 908px;">
 					</div>

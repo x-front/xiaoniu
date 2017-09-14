@@ -455,7 +455,7 @@
 					<tr>
 						<td class="left-td">选择图片</td>
 						<td class="right-td">
-							<input id="edit-div-banner" class="clear-textbox easyui-textbox" style="width:250px;">
+							<input id="edit-div-banner" class="clear-textbox easyui-textbox" prompt="图片(860x441)" style="width:250px;">
 							<input type="button" id="btn-banner-upload" value="选择图片" style="width:80px;"/>
 						</td>
 					</tr>
