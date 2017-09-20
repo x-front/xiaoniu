@@ -4945,8 +4945,9 @@ h3:hover, h4:hover {
 .search_xg a{color:#a47017;margin:0 15px;white-space: nowrap}
 .search_list{padding-top: 60px;min-height:413px;}
 .search_item{margin-bottom: 45px;display:block;color:#666;}
+.sea_img{width:50%;margin:0 auto}
 .sea_img img{width:100%}
-.search_item h3{font-size:18px;line-height: 1.5;padding:10px 0 8px; }
+.search_item h3{font-size:18px;line-height: 1.5;padding:10px 0 8px;text-align: center; }
 .search_item p{font-size:14px;line-height: 24px;text-align: justify }
 .search_item:hover h3{color:#eea807}
 .search_item:hover p{color:#666}
@@ -5205,6 +5206,7 @@ h3:hover, h4:hover {
 }
 
 @media screen and (max-width: 769px) {
+    .sea_img{width:100%;}
     .sidebar { width: 50%; }
     .ce{margin-bottom:15px}
     .idV-video .audio-ul a.download {
