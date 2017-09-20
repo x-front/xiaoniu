@@ -115,19 +115,19 @@ function getAbout(){
 			var titleHtml = '';
 			var liHtml = '';
 			var coverHtml = '';
-			var mediaHtml = '';
+			/*var mediaHtml = '';*/
 			for (var i = 0; i < rows.length; i++) {
 				var row = rows[i];
 				titleHtml += buildTitle(row.introdution);
 				liHtml += buildLi(i);
 				coverHtml += buildCover(row.extCover);
-				mediaHtml += buildMedia(row.extCover);
+				/*mediaHtml += buildMedia(row.extCover);*/
 			}
 			$(".idV-pic-t:eq(0)").append(coverHtml);
 			$(".idV-pic-c:eq(0)").append(liHtml);
 			$(".idV-pic-b:eq(0)").append(titleHtml);
-			$(".zz_video a:eq(0)").before(mediaHtml);
-			videoPlay();
+			/*$(".zz_video a:eq(0)").before(mediaHtml);
+			videoPlay();*/
 		}else{
 			console.log(result.msg);
 		}
@@ -157,10 +157,10 @@ function buildCover(img){
 	return html;
 }
 
-function buildMedia(media){
+/*function buildMedia(media){
 	var html = '<video src="'+media+'" controls></video>';
 	return html;
-}
+}*/
 
 
 // report

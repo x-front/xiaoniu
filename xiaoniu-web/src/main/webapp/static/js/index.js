@@ -3,6 +3,7 @@ $(function(){
     _xn_init();
 });
 function _xn_init(){
+/*
     $.post("/media/list",{'page':1,'rows':6,'type':6,'lang':0},function(result){
         if(result.resultCode == 0){
             var rows = result.rows;
@@ -15,6 +16,7 @@ function _xn_init(){
             $('.s1_v video').attr('src',meida)
         }
     },"json");
+*/
 
     var terminal;
     if($(window).width()<1025){

@@ -475,8 +475,8 @@
 									<option value="7">小牛思想</option>
 									<option value="8">小牛视频</option>
 									<option value="9">牛人文化</option>
-									<option value="10">小牛思想声音</option>
-									<option value="11">小牛新闻</option>
+									<option value="10">小牛思想声音置顶文章</option>
+									<option value="11">小牛新闻置顶新闻</option>
 									<option value="12">招聘动态</option>
 									<option value="15">小牛看世界</option>
 								</select>

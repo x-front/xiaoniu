@@ -53,12 +53,28 @@
     </div>
 </div>
 <script>
+     $(window).resize(function(){
+         navSize()
+     });
     $(document).ready(function(){
         $('.loading .img span i').animate({'width':'104px'},1000,function(){
             $('.loading').fadeOut(200);
         });
-
-    })
+        navSize();
+    });
+    function navSize(){
+        var ww=$(window).width();
+        if(ww<1025){
+            var a;
+            if(ww>500&&ww<750){
+                a=0.08;
+            }else{
+                a=0.058;
+            }
+            $('.sidewrap').css({'height':$(window).height()*0.82+'px','padding-top':$(window).height()*0.18+'px'});
+            $('.nav li').css('line-height',$(window).height()*a+'px');
+        }
+    }
 </script>
 <!--加载中 结束-->
 
@@ -85,18 +101,43 @@
                <li><a href="http://hr.neogroup.com.cn/wt/neocapital/web/index">加入小牛</a></li>
               <li><a href="/static/pics.html">小牛图集</a></li>
           </ul>
-          <div class="search"><a href="javascript:;"><img src="/static/images/nav_share_03.png"/></a><input type="text"/></div>
+          <div class="search"><a href="javascript:;"><img src="/static/images/nav_share_03.png"/></a><input id="searchInput" type="text"/></div>
+          <script>
+              $(function(){
+                  $('.search a').on('click',function(){
+                      var siv=$('#searchInput').val();
+                      if(siv){
+                          window.location.href='/static/search.html?lang=0&kw='+siv;
+                      }else{
+                          alert('请输入搜索内容！')
+                      }
+                  });
+                  $('#searchInput').focus(function(){
+                      $(document).on('keydown',function(e){
+                          var siv=$('#searchInput').val();
+                          if(e.which==13){
+                              if(siv){
+                                  window.location.href='/static/search.html?lang=0&kw='+siv;
+                              }else{
+                                  alert('请输入搜索内容！')
+                              }
+                          }
+                      })
+                  });
+
+              })
+          </script>
           <div class="share">
               <wb:share-button addition="simple" type="icon" default_text="我正在访问小牛资本官网，小牛的愿望可不“小”：既要富人赚钱，也要为穷人赚钱！还有，世界经济学家许成钢、耶鲁大学研究员朱宁、中国家庭金融研究第一人甘犁、宝马艺术车第一位中国艺术家曹斐都来过小牛，明明是一家金融企业，为什么追求“诗和远方”？" picture_search="false" language="zh_cn" pic="http://112.74.97.238:81/static/images/fx.jpg"></wb:share-button>
               <div class="bdsharebuttonbox">
-                  <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
-                  <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
-                  <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+                  <a href="javascript:;" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+                  <a href="javascript:;" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+                  <a href="javascript:;" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
               </div>
               <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"我正在访问小牛资本官网，小牛的愿望可不“小”：既要富人赚钱，也要为穷人赚钱！还有，世界经济学家许成钢、耶鲁大学研究员朱宁、中国家庭金融研究第一人甘犁、宝马艺术车第一位中国艺术家曹斐都来过小牛，明明是一家金融企业，为什么追求“诗和远方”？","bdMini":"1","bdMiniList":false,"bdPic":"http://www.xiaoniu66.com/static/images/fx.jpg","bdStyle":"0","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
           </div>
           <div class="ce"><a href="" class="active">中</a><a href="">EN</a></div>
-          <p class="copy">深圳市福田区北环彩田立交桥新浩E都A座43层</p>
+          <p class="copy">广东省深圳市福田区北环彩田立交桥新浩E都A座43层</p>
           <p class="copy">0755-32981999</p>
           <div class="scan"><img src="/static/images/erweima_27.png"/></div>
         <a href="javascript:;" class="close"><img src="/static/images/menu_close.svg"/></a>
@@ -121,7 +162,7 @@
           <div class="content">
               <div class="s1_video_1">
                   <div class="s1_v">
-                      <video width="100%" height="100%" src="" loop></video>
+                      <video width="100%" height="100%" src="/static/images/s0.mp4" loop></video>
                  <!--<img width="100%" height="100%" src="/static/images/750300.gif"/>-->
                   </div>
                   <span></span>
@@ -411,39 +452,39 @@
           <div class="i-wrap">
               <div class="s5-m">
                   <div class="tit a-fadeoutR">
-                  <a href="/hr/index.html">
+                  <a href="http://hr.neogroup.com.cn/wt/neocapital/web/index">
                       <!--<img src="/static/images/s_40.png"/>-->
                       <img src="/static/images/7.svg"/>
                   </a>
               </div>
                   <div class="tit11 a-fadeoutR">
-                  <a href="/hr/index.html">
+                  <a href="http://hr.neogroup.com.cn/wt/neocapital/web/index">
                       <img src="/static/images/7_2.svg"/></a>
               </div>
                   <div class="tit111 a-fadeoutR">
-                  <a href="/hr/index.html">
+                  <a href="http://hr.neogroup.com.cn/wt/neocapital/web/index">
                       <img src="/static/images/7_4.svg"/></a>
               </div>
                   <br/>
                   <div class="tit2 a-fadeoutR">
-                  <a href="/hr/index.html">
+                  <a href="http://hr.neogroup.com.cn/wt/neocapital/web/index">
                       <!--<img src="/static/images/s_44.png"/>-->
                       <img src="/static/images/7_1.svg"/>
                       <span class="zs index_zs"><i class="i1">></i><i class="i2">></i><i class="i3">></i><i class="i4">></i><i class="i5">></i><i class="i6">></i></span>
                   </a>
               </div>
                   <div class="tit22 a-fadeoutR">
-                  <a href="/hr/index.html">
+                  <a href="http://hr.neogroup.com.cn/wt/neocapital/web/index">
                       <img src="/static/images/7_3.svg"/>
                       <span class="zs index_zs"><i class="i1">></i><i class="i2">></i><i class="i3">></i><i class="i4">></i><i class="i5">></i><i class="i6">></i></span>
                   </a>
               </div>
                   <br/>
-                  <a href="/hr/index.html">
+                  <a href="http://hr.neogroup.com.cn/wt/neocapital/web/index">
                       <div class="desc a-fadeoutR">加入我们，我们会因你而不同，你会因我们而不同。
                       </div>
                   </a>
-                  <a href="/hr/index.html">
+                  <a href="http://hr.neogroup.com.cn/wt/neocapital/web/index">
                       <div class="desc1 a-fadeoutR">加入我们，我们会因你而不同，你会因我们而不同。
                       </div>
                   </a>

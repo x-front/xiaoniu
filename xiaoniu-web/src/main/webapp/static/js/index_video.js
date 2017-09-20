@@ -47,7 +47,7 @@ $(function(){
             }
             $(".banner").css("background-position-y",video_h-num+"px");
             $(".play_1").click(function(){
-                sv.attr({"src":"http://xiaoniu66-web.oss-cn-shenzhen.aliyuncs.com/media/20170704/20170704185014_248.mp4","controls":"controls","poster":"/static/images/s1_video.jpg"});
+                sv.attr({"src":"/static/images/s1.mp4","controls":"controls","poster":"/static/images/s1_video.jpg"});
                 sv.fadeIn(300);
                 sv1.find(".s1_v img").fadeOut(300);
                 sv[0].play();
