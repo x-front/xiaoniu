@@ -452,7 +452,9 @@
 				<a href="javascript:void(0);" onclick="javascript:updateLang(1)"class="easyui-linkbutton" title="迁移到英文版" plain="true" iconCls="icon-redo">迁移到英文版</a>
 			<%--</c:if>--%>
 		</div>
-		
+
+
+
 		<!-- 移动 -->
 		<div id="move-div" >
 			<form id="move-form" action="/secure/news/update">
