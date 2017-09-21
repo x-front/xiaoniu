@@ -32,8 +32,13 @@ function searchNews(lang,pageIndex,pageSize) {
         if ( result.resultCode == 0 ){
             var rows = result.rows;
             var html = buildRows(rows,lang);
-            $(".search_list").append(html);
-            alert(result.total);
+            if (pageIndex == 1) {
+                $(".search_list").html(html);
+            } else {
+                $(".search_list").append(html);
+            }
+
+
             if(result.total <= pageIndex*pageSize){
                 $('.search_more').hide();
             }else{

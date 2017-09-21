@@ -31,10 +31,10 @@
 				and is_top = #{isTop}
 			</if>
 			<if test="title != null">
-				and title like "%${title}%"
+				and title like concat("%",${title},"%")
 			</if>
 			<if test="summary != null">
-				and summary like "%${summary}%"
+				and summary like concat("%",${summary},"%")
 			</if>
 		</where>
 		order by serial_number desc , id desc
@@ -58,10 +58,10 @@
 				and is_top = #{isTop}
 			</if>
 			<if test="title != null">
-				and title like "%${title}%"
+				and title like concat("%",${title},"%")
 			</if>
 			<if test="summary != null">
-				and summary like "%${summary}%"
+				and summary like concat("%",${summary},"%")
 			</if>
 		</where>
 	</select>
@@ -99,10 +99,10 @@
 				and is_top = #{isTop}
 			</if>
 			<if test="title != null and title != ''">
-				and title like "%${title}%"
+				and title like concat("%",${title},"%")
 			</if>
 			<if test="summary != null and summary != ''">
-				and summary like "%${summary}%"
+				and summary like concat("%",${summary},"%")
 			</if>
 		</where>
 	</select>
