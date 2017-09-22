@@ -82,6 +82,7 @@
     function searchNewsById(){
         var searchValue = $('#id-search').searchbox('getValue');
         commonTable.tableQueryParams.id = searchValue;
+        $("#edit_form_lang").combobox('setValue',lang);
         $("#html_table").datagrid("load",commonTable.tableQueryParams);
     }
 </script>

@@ -401,6 +401,7 @@
 	
 	function showLang(lang){
 		commonTable.tableQueryParams.lang = lang;
+		$("#edit-div-lang").combobox('setValue',lang);
 		$("#html_table").datagrid("reload");
 	}
 
