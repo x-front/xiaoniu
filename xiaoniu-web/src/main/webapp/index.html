@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:wb="http://open.weibo.com/wb">
+<head>
+  <meta charset="UTF-8">
+  <title>小牛资本</title>
+  <meta name="robots" content="index,follow" />
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp,no-transform" />
+  <meta name ="viewport" content ="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+  <meta name="author" content="深圳网站建设公司|中为科技 www.lonwin.net|jungley"/>
+  <meta name="author" content="zxx" />
+  <meta name="format-detection" content="telephone=no,email=no" />
+  <meta name="msapplication-tap-highlight" content="no">
+  <meta name="keywords" content="">
+  <meta name="description" content="">
+  <div id='wx_pic' style='margin:0 auto;display:none;'>
+      <img src="/static/images/share.jpg"/>
+  </div>
+  <link rel="stylesheet" href="/static/css/jquery.fullPage.min.css" />
+  <link rel="stylesheet" href="/static/css/animation.css">
+    <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" type="text/css" href="http://code.uemo.net/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/static/css/index.css?v=1">
+  <link rel="stylesheet" href="/static/css/linemove.css"/>
+  <script src="/static/js/jquery-1.8.3.min.js"></script>
+  <script src="/static/js/jquery.SuperSlide.2.1.2.js"></script>
+  <script src="/static/js/jquery.fullPage.min.js"></script>
+    <style>
+        html,body{height:100%;}
+        .loading{position:fixed;top:0;left:0;width:100%;height:100%;background:#4d4d4d;z-index: 9999;text-align: center;}
+        .loading .img{position:absolute;top:50%;left:50%;-webkit-transform: translate(-50%,-50%);transform: translate(-50%,-50%);opacity:0.7;}
+        .loading .img span{display:inline-block;width:110px;height:12px;border:2px solid #FFF;border-radius: 10px;margin-top: 20px;position:relative}
+        .loading .img span i{position:absolute;left:3px;top:3px;height:6px;width:0;background:#FFF;border-radius: 3px;opacity:0.7}
+        .loading .img .img1{width:140px;}
+    </style>
+
+    <!--
+      <script src="/static/js/yanhua.js"></script>
+    -->
+  <script src="/static/js/index.js?v=1"></script>
+    <!--[if IE]><style type="text/css">.s2-ul .s2-l1 span{top:20px;right:-129px;}.s2-ul .s2-l3 span{top:19px;right:-129px;}.s2-ul .s2-l4 span{top:21px;left:-129px;}.s2-ul .s2-l6 span{top:18px;left:-129px;}</style><![endif]-->
+    <!--[if lte IE 9]><style type="text/css">.section3-link, .s5-nav a{float:left;} .s3-1{margin-right: 220px;}</style><![endif]-->
+    <!--[if IE 8]><style type="text/css">.b-news{margin-left:-13%;}.section2 .wrap .s2-txt{margin-left:-250px;margin-top:-244px;}.mainxza{margin-left:-231px;margin-top:-230px;}.mainxzb{margin-left:-250px;margin-top:-250px;}.footer-wrap{margin-top:-280px;}.h-mei{top:65px;}</style><![endif]-->
+ <script>
+ </script>
+</head>
+<body>
+<!--加载中-->
+<div class="loading">
+    <div class="img">
+        <img class="img1" src="/static/images/logo.svg"/><br/>
+        <span><i></i></span>
+    </div>
+</div>
+<script>
+     $(window).resize(function(){
+         navSize()
+     });
+    $(document).ready(function(){
+        $('.loading .img span i').animate({'width':'104px'},1000,function(){
+            $('.loading').fadeOut(200);
+        });
+        navSize();
+    });
+    function navSize(){
+        var ww=$(window).width();
+        if(ww<1025){
+            var a;
+            if(ww>500&&ww<750){
+                a=0.08;
+            }else{
+                a=0.058;
+            }
+            $('.sidewrap').css({'height':$(window).height()*0.82+'px','padding-top':$(window).height()*0.18+'px'});
+            $('.nav li').css('line-height',$(window).height()*a+'px');
+        }
+    }
+</script>
+<!--加载中 结束-->
+
+  <div id="header" class="index-header">
+    <div class="wrapper">
+        <a href="/static/index.html" class="big-logo"></a>
+        <a class="menu" href="javascript:;">
+            <span class='ms1'></span>
+            <span class='ms2'></span>
+            <span class='ms1 ms3'></span>
+      </a>
+    </div>
+    <div class="sidebar">
+      <div class="sidewrap">
+          <div class="logo"><img src="/static/images/logo.svg"/></div>
+          <ul class="nav">
+              <li><a href="/static/index.html">首页</a></li>
+          <!--<li><a href="/static/fold.html">小牛简介</a></li>-->
+              <li><a href="/static/pro.html">我们做什么</a></li>
+              <li><a href="/static/about.html">我们是谁</a></li>
+              <li><a href="/static/idV.html">小牛思想·声音</a></li>
+              <li><a href="/static/news.html">小牛新闻</a></li>
+              <li><a href="/static/beautiful.html">美好小牛</a></li>
+               <li><a href="http://hr.neogroup.com.cn/wt/neocapital/web/index">加入小牛</a></li>
+              <li><a href="/static/pics.html">小牛图集</a></li>
+          </ul>
+          <div class="search"><a href="javascript:;"><img src="/static/images/nav_share_03.png"/></a><input id="searchInput" type="text"/></div>
+          <script>
+              $(function(){
+                  $('.search a').on('click',function(){
+                      var siv=$('#searchInput').val();
+                      if(siv){
+                          window.location.href='/static/search.html?lang=0&kw='+siv;
+                      }else{
+
+                      }
+                  });
+                  $('#searchInput').focus(function(){
+                      $(document).on('keydown',function(e){
+                          var siv=$('#searchInput').val();
+                          if(e.which==13){
+                              if(siv){
+                                  window.location.href='/static/search.html?lang=0&kw='+siv;
+                              }else{
+
+                              }
+                          }
+                      })
+                  });
+
+              })
+          </script>
+          <div class="share">
+              <wb:share-button addition="simple" type="icon" default_text="我正在访问小牛资本官网，小牛的愿望可不“小”：既要富人赚钱，也要为穷人赚钱！还有，世界经济学家许成钢、耶鲁大学研究员朱宁、中国家庭金融研究第一人甘犁、宝马艺术车第一位中国艺术家曹斐都来过小牛，明明是一家金融企业，为什么追求“诗和远方”？" picture_search="false" language="zh_cn" pic="http://112.74.97.238:81/static/images/fx.jpg"></wb:share-button>
+              <div class="bdsharebuttonbox">
+                  <a href="javascript:;" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+                  <a href="javascript:;" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+                  <a href="javascript:;" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+              </div>
+              <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"我正在访问小牛资本官网，小牛的愿望可不“小”：既要富人赚钱，也要为穷人赚钱！还有，世界经济学家许成钢、耶鲁大学研究员朱宁、中国家庭金融研究第一人甘犁、宝马艺术车第一位中国艺术家曹斐都来过小牛，明明是一家金融企业，为什么追求“诗和远方”？","bdMini":"1","bdMiniList":false,"bdPic":"http://www.xiaoniu66.com/static/images/fx.jpg","bdStyle":"0","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+          </div>
+          <div class="ce"><a href="" class="active">中</a><a href="">EN</a></div>
+          <p class="copy">广东省深圳市福田区北环彩田立交桥新浩E都A座43层</p>
+          <p class="copy">0755-32981999</p>
+          <div class="scan"><img src="/static/images/erweima_27.png"/></div>
+        <a href="javascript:;" class="close"><img src="/static/images/menu_close.svg"/></a>
+      </div>
+    </div>
+  </div>
+  <div id="dowebok">
+<!--
+      <div class="section section0">
+          <a href="http://www.neogroup.com.cn/static/news-t-inside.html?id=391">
+              <canvas id="canvas"></canvas>
+              <div class="s0_btn">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+              </div>
+          </a>
+
+      </div>
+-->
+      <div class="section banner">
+          <div class="content">
+              <div class="s1_video_1">
+                  <div class="s1_v">
+                      <video width="100%" height="100%" src="/static/images/s0.mp4" loop></video>
+                 <!--<img width="100%" height="100%" src="/static/images/750300.gif"/>-->
+                  </div>
+                  <span></span>
+                  <a class="play_1" href="javascript:;">
+                      <!--<img src="/static/images/play_03.png"/>-->
+                  </a>
+                  <a href="javascript:;" class="close"><img src="/static/images/close.svg"/></a>
+
+              </div>
+              <div class="s1_zz"></div>
+<!--
+              <div class="s1_video">
+                  <a href="javascript:;" class="play"><img src="/static/images/play.png"/></a>
+                  <video src="/static/images/s1.mp4" preload="auto" poster="/static/images/s1_video.jpg"></video>
+              </div>
+-->
+              <div class="slogan a-fadeoutT">
+              </div>
+              <div class="b-news">
+                  <span><i class="i1"></i><i class="i2"></i><i class="i3"></i></span>
+                  <div class="bd">
+                  <ul>
+<!--
+                      <li><a href=""></a></li>
+                      <li><a href=""></a></li>
+                      <li><a href=""></a></li>
+                      <li><a href=""></a></li>
+-->
+                  </ul>
+                  </div>
+<!--
+                  <div class="hd">
+                      <ul>
+&lt;!&ndash;
+                          <li></li>
+                          <li></li>
+                          <li></li>
+                          <li></li>
+&ndash;&gt;
+                      </ul>
+                  </div>
+-->
+<!--
+                  <div class="line">
+                      <ul>
+                          <li></li>
+                          <li></li>
+                          <li></li>
+                          <li></li>
+                          <li></li>
+                      </ul>
+                  </div>
+-->
+              </div>
+
+              <div class="ft a-fadeoutB">
+                  <a class="dropdown" href="javascript:;" onclick="$.fn.fullpage.moveSectionDown()"></a>
+              </div>
+          </div>
+      </div>
+      <div class="section section2">
+          <div class="content">
+              <div class="wrap">
+                  <a class="s2-txt" href="/static/pro.html">
+                      <!--<img class="img1 a-fadeoutT" src="/static/images/s2_03.png"/>--><img class="img1 a-fadeoutT" src="/static/images/2.svg"/><br/>
+                      <!--<img class="img2 a-fadeoutT" src="/static/images/s2_07.png"/>--><img class="img2 a-fadeoutT" src="/static/images/2_1.svg"/><br/>
+
+                      <span class="img3 a-fadeoutT">我们致力于让金融服务于实体经济，致力于为<br/><br/>
+所有人——无论是高净值家庭还是普通家庭<br/><br/>
+——创造平等的、美好的金融服务。</span>
+                  </a>
+                  <a class="s2-txt1" href="/static/pro.html">
+                      <img class="img1 a-fadeoutL" src="/static/images/2_2.svg"/><br/>
+                      <img class="img2 a-fadeoutL" src="/static/images/2_3.svg"/><br/>
+                      <span class="img3 a-fadeoutL">我们致力于让金融服务于实体经济，致力于为<br/><br/>
+所有人——无论是高净值家庭还是普通家庭<br/><br/>
+——创造平等的、美好的金融服务。</span>
+                  </a>
+                  <a class="s2-txt2" href="/static/pro.html">
+                      <img class="img1 a-fadeoutL" src="/static/images/2_4.svg"/><br/>
+                      <img class="img2 a-fadeoutL" src="/static/images/2_3.svg"/><br/>
+                      <span class="img3 a-fadeoutL">我们致力于让金融服务于实体经济，致力于为
+所有人——无论是高净值家庭还是普通家庭
+——创造平等的、美好的金融服务。</span>
+                  </a>
+
+                  <ul class="s2-ul">
+                      <li class="s2-l1"><a href="/static/pro-p.html">小牛普惠</a>
+                          <span></span>
+                      </li>
+                      <li class="s2-l2"><a href="/static/pro-z.html">小牛在线</a>
+                          <span></span>
+                      </li>
+                      <li class="s2-l3"><a href="/static/pro-x.html">小牛新财富</a>
+                          <span></span>
+                      </li>
+                      <li class="s2-l4"><a href="/static/pro-f.html">小牛分期</a>
+                          <span></span>
+                      </li>
+                      <li class="s2-l5"><a href="/static/pro-t.html">小牛投资</a>
+                          <span></span>
+                      </li>
+                      <li class="s2-l6"><a href="/static/pro-k.html">牛鼎丰科技</a>
+                          <span></span>
+                      </li>
+                  </ul>
+                  <div class="r-line a-fadeoutB">
+                      <div class="mainxza"><div class="mainxz1"><div clss="mainxz1con"><img src="/static/images/11.svg" alt="正向旋转线条" /></div></div></div><!--旋转层1-->
+                      <div class="mainxzb"><div class="mainxz2"><div clss="mainxz2con"><img src="/static/images/111.svg" alt="反向旋转线条" /></div></div></div><!--旋转层2-->
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="section section1">
+          <div class="content">
+              <div class="wrap">
+                  <div class="tit a-fadeoutT">
+                      <a href="/static/about.html">
+                         <!-- <img src="/static/images/s_11.png"/>-->
+                          <img src="/static/images/3.svg"/>
+                      </a>
+                  </div>
+                  <div class="tit11 a-fadeoutR">
+                      <a href="/static/about.html">
+                          <img src="/static/images/3_2.svg"/></a>
+                  </div>
+                  <div class="tit111 a-fadeoutR">
+                      <a href="/static/about.html">
+                          <img src="/static/images/3_4.svg"/></a>
+                  </div>
+                  <br/>
+                  <div class="tit2 a-fadeoutT">
+                      <a href="/static/about.html">
+                          <!--<img src="/static/images/s_15.png"/>-->
+                          <img src="/static/images/3_1.svg"/>
+                      </a>
+                  </div>
+                  <div class="tit22 a-fadeoutR">
+                      <a href="/static/about.html">
+                          <img src="/static/images/3_3.svg"/>
+                          <span class="zs index_zs"><i class="i1">></i><i class="i2">></i><i class="i3">></i><i class="i4">></i><i class="i5">></i><i class="i6">></i></span>
+                      </a>
+                  </div>
+                  <br/>
+                  <a href="/static/about.html"><div class="desc a-fadeoutT">
+                      以深厚专业积淀、强大金融科技、不断升级的人才体系为支撑，我们倾力提供最美好的金融服务，迅速成为市场的先锋。正确的、合规的
+                      行动塑造了今天的小牛。我们不忘初心、时刻以原则自我约束、以忧患自我鞭策，不断探索未来的金融供给。
+                  </div></a>
+                  <a href="/static/about.html"><div class="desc1 a-fadeoutR">
+                      正确、合规的行动塑造了今天的小牛。我们将继续以深厚专业积淀、强大金融科技、先进人才体系为支撑，探索未来的金融供给。
+                  </div></a>
+                  <div class="models">
+                      <ul class="clearfix">
+                          <li class="m1 a-fadeoutB"><a href="/static/about-j.html" data-id="feature1"><span class="icon icon-streng"></span><span class="txt">核心竞争力</span></a></li>
+                          <li class="m2 a-fadeoutB"><a href="/static/about-t.html" data-id="feature2"><span class="icon icon-team"></span><span class="txt">高管团队</span></a></li>
+                          <li class="m3 a-fadeoutB"><a href="/static/about-y.html" data-id="feature3"><span class="icon icon-pheriy"></span><span class="txt">经营原则</span></a></li>
+                          <li class="m4 a-fadeoutB"><a href="/static/about-r.html" data-id="feature4"><span class="icon icon-honor"></span><span class="txt">资质荣誉</span></a></li>
+                          <li class="m5 a-fadeoutB"><a href="/static/about-w.html" data-id="feature5"><span class="icon icon-culture"></span><span class="txt">牛人文化</span></a></li>
+                      </ul>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="section section3">
+          <div class="i-wrap">
+              <div class="s3-m">
+                  <div class="tit a-fadeoutL">
+                      <a href="/static/idV.html">
+                          <!--<img src="/static/images/s_19.png"/>-->
+                          <img src="/static/images/4.svg"/>
+                      </a>
+                  </div>
+                  <div class="tit11 a-fadeoutL">
+                      <a href="/static/idV.html">
+                          <img src="/static/images/4_2.svg"/></a>
+                  </div>
+                  <div class="tit111 a-fadeoutL">
+                      <a href="/static/idV.html">
+                          <img src="/static/images/4_4.svg"/></a>
+                  </div>
+                  <br/>
+                  <div class="tit2 a-fadeoutL">
+                      <a href="/static/idV.html">
+                          <!--<img src="/static/images/s_22.png"/>-->
+                          <img src="/static/images/4_1.svg"/>
+                          <span class="zs index_zs"><i class="i1">></i><i class="i2">></i><i class="i3">></i><i class="i4">></i><i class="i5">></i><i class="i6">></i></span>
+                      </a>
+                  </div>
+                  <div class="tit22 a-fadeoutL">
+                      <a href="/static/idV.html">
+                          <img src="/static/images/4_3.svg"/>
+                          <span class="zs index_zs"><i class="i1">></i><i class="i2">></i><i class="i3">></i><i class="i4">></i><i class="i5">></i><i class="i6">></i></span>
+                      </a>
+                  </div>
+                  <br/>
+                  <a href="/static/idV.html"><div class="desc a-fadeoutL">
+                      小牛的专注和趣味不囿于金钱，相信金融的美好力量是塑造人的社会关系。我们思考金融如何让人们更有尊严，思考如何用金融的力量来进行社会创新和可持续公益，思考金融如何将好的思想进行传播。
+                  </div></a>
+                  <a href="/static/idV.html"><div class="desc1 a-fadeoutL">
+                      小牛的专注和趣味不囿于金钱，我们思考金融如何让人更有尊严，如何将好思想传播，如何用金融力量进行社会创新和可持续公益。
+                  </div></a>
+              </div>
+          </div>
+      </div>
+      <div class="section section5">
+          <div class="i-wrap">
+              <div class="s5-m">
+                  <div class="tit a-fadeoutR">
+                      <a href="/static/news.html">
+                          <!--<img src="/static/images/s_26.png"/>-->
+                          <img src="/static/images/5.svg"/>
+                      </a>
+                  </div>
+                  <div class="tit11 a-fadeoutR">
+                      <a href="/static/news.html">
+                          <img src="/static/images/5_2.svg"/></a>
+                  </div>
+                  <div class="tit111 a-fadeoutR">
+                      <a href="/static/news.html">
+                          <img src="/static/images/5_4.svg"/></a>
+                  </div>
+                  <br/>
+                  <div class="tit2 a-fadeoutR">
+                      <a href="/static/news.html">
+                          <!--<img src="/static/images/s_29.png"/>-->
+                          <img src="/static/images/5_1.svg"/>
+                          <span class="zs index_zs"><i class="i1">></i><i class="i2">></i><i class="i3">></i><i class="i4">></i><i class="i5">></i><i class="i6">></i></span>
+                      </a>
+                  </div>
+                  <div class="tit22 a-fadeoutR">
+                      <a href="/static/news.html">
+                          <img src="/static/images/5_3.svg"/>
+                          <span class="zs index_zs"><i class="i1">></i><i class="i2">></i><i class="i3">></i><i class="i4">></i><i class="i5">></i><i class="i6">></i></span>
+                      </a>
+                  </div>
+                  <br/>
+                  <a href="/static/news.html"><div class="desc a-fadeoutR">
+                      我们一直以公众企业来要求自己。小牛气质温和、乐于表达，更优质的产品和服务是最好的表达。同时，透明度和外部监督是企业进步的持久力量。我们尊重任何一种理性的声音，我们希望借助外部力量获得任何一种微小的进步。
+                  </div></a>
+                  <a href="/static/news.html"><div class="desc1 a-fadeoutR">
+                      透明度和外部监督是企业进步的持久力量。我们以公众企业要求自己,尊重理性声音，希望借助外部力量获得任何微小的进步。
+                  </div></a>
+              </div>
+          </div>
+      </div>
+      <div class="section section4">
+          <div class="i-wrap">
+              <div class="s4-m">
+                  <div class="tit a-fadeoutL">
+                      <a href="/static/beautiful.html">
+                          <!--<img src="/static/images/s_33.png"/>-->
+                          <img src="/static/images/6.svg"/>
+                      </a>
+                  </div>
+                  <div class="tit11 a-fadeoutL">
+                      <a href="/static/beautiful.html">
+                          <img src="/static/images/6_2.svg"/></a>
+                  </div>
+                  <div class="tit111 a-fadeoutL">
+                      <a href="/static/beautiful.html">
+                          <img src="/static/images/6_4.svg"/></a>
+                  </div>
+                  <br/>
+                  <div class="tit2 a-fadeoutL">
+                      <a href="/static/beautiful.html">
+                          <!--<img src="/static/images/s_36.png"/>-->
+                          <img src="/static/images/6_1.svg"/>
+                          <span class="zs index_zs"><i class="i1">></i><i class="i2">></i><i class="i3">></i><i class="i4">></i><i class="i5">></i><i class="i6">></i></span>
+                      </a>
+                  </div>
+                  <div class="tit22 a-fadeoutL">
+                      <a href="/static/beautiful.html">
+                          <img src="/static/images/6_3.svg"/>
+                          <span class="zs index_zs"><i class="i1">></i><i class="i2">></i><i class="i3">></i><i class="i4">></i><i class="i5">></i><i class="i6">></i></span>
+                      </a>
+                  </div>
+                  <br/>
+                  <a href="/static/beautiful.html"><div class="desc a-fadeoutL">
+                      “美好资本、美好金融、美好社会”是小牛的初心所在。我们相信金融不仅仅有商业属性，也应该有社会属性，因此，我们开启了一系列“美好计划”，以帮助普罗大众改善境遇，并驱动他们爱惜羽毛、尊重声誉、积累社会资本。
+                  </div></a>
+                      <a href="/static/beautiful.html"><div class="desc1 a-fadeoutL">“美好资本、美好金融、美好社会”是小牛的初心。我们相信金融有社会属性，因此开启了一系列“美好计划”，帮助大众积累社会资本。
+                  </div></a>
+              </div>
+          </div>
+      </div>
+      <div class="section footer">
+          <div class="i-wrap">
+              <div class="s5-m">
+                  <div class="tit a-fadeoutR">
+                  <a href="http://hr.neogroup.com.cn/wt/neocapital/web/index">
+                      <!--<img src="/static/images/s_40.png"/>-->
+                      <img src="/static/images/7.svg"/>
+                  </a>
+              </div>
+                  <div class="tit11 a-fadeoutR">
+                  <a href="http://hr.neogroup.com.cn/wt/neocapital/web/index">
+                      <img src="/static/images/7_2.svg"/></a>
+              </div>
+                  <div class="tit111 a-fadeoutR">
+                  <a href="http://hr.neogroup.com.cn/wt/neocapital/web/index">
+                      <img src="/static/images/7_4.svg"/></a>
+              </div>
+                  <br/>
+                  <div class="tit2 a-fadeoutR">
+                  <a href="http://hr.neogroup.com.cn/wt/neocapital/web/index">
+                      <!--<img src="/static/images/s_44.png"/>-->
+                      <img src="/static/images/7_1.svg"/>
+                      <span class="zs index_zs"><i class="i1">></i><i class="i2">></i><i class="i3">></i><i class="i4">></i><i class="i5">></i><i class="i6">></i></span>
+                  </a>
+              </div>
+                  <div class="tit22 a-fadeoutR">
+                  <a href="http://hr.neogroup.com.cn/wt/neocapital/web/index">
+                      <img src="/static/images/7_3.svg"/>
+                      <span class="zs index_zs"><i class="i1">></i><i class="i2">></i><i class="i3">></i><i class="i4">></i><i class="i5">></i><i class="i6">></i></span>
+                  </a>
+              </div>
+                  <br/>
+                  <a href="http://hr.neogroup.com.cn/wt/neocapital/web/index">
+                      <div class="desc a-fadeoutR">加入我们，我们会因你而不同，你会因我们而不同。
+                      </div>
+                  </a>
+                  <a href="http://hr.neogroup.com.cn/wt/neocapital/web/index">
+                      <div class="desc1 a-fadeoutR">加入我们，我们会因你而不同，你会因我们而不同。
+                      </div>
+                  </a>
+              </div>
+          </div>
+          <div class="index-footer">
+              <div class="footer-inner">
+                  <p class="fp1">广东省深圳市福田区北环彩田立交桥新浩E都A座43层<span>0755-32981999</span></p>
+                  <a class="bah" href="http://www.miitbeian.gov.cn/state/outPortal/loginPortal.action" target="_blank">粤ICP备14054585号-1</a>
+                  <p class="fp2"><span>版权所有 &nbsp;&nbsp;小牛资本管理集团有限公司&nbsp;&nbsp;</span><a class="lonwei" href="http://www.lonwin.net" target="_blank">BY : LONWIN</a></p>
+              </div>
+          </div>
+      </div>
+  </div>
+  <a class="scrollTop toTop" href="#banner"></a>
+  <script src="/static/js/commonI.js"></script>
+  <script src="/static/js/common.js"></script>
+  <script src="/static/js/index_video.js"></script>
+</body>
+</html>
