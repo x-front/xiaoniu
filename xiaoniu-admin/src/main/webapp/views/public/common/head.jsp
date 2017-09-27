@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- jQuery -->
-<script type="text/javascript" src="<c:url value="/resources/3rd/jquery-1.8.2.min.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/resources/3rd/jquery-1.8.3.min.js"/>"></script>
 
 <!-- easyUI -->
 <script type="text/javascript" src="<c:url value="/resources/3rd/easyUI/jquery.easyui.min.js"/>"></script>

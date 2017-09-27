@@ -55,16 +55,9 @@ $(function () {
     $("#join-more").click(function () {
         $(".join-ul").css("display", "block")
     });
-    $(".about-j1-l a").toggle(function () {
-        $(this).css({
-            color: "#eea807",
-            background: "url(images/about/about-jt_06.jpg) no-repeat right center"
-        }).next().slideDown(500)
-    }, function () {
-        $(this).css({
-            color: "#585858",
-            background: "url(images/about/about-jt_11.jpg) no-repeat right center"
-        }).next().slideUp(500)
+    $(".about-j1-l a").click(function () {
+        $(this).next().slideToggle(500);
+        $(this).toggleClass('on');
     });
     $(".about-j2 a").click(function () {
         $(".about-j2-pic").slideToggle(500)
@@ -88,18 +81,19 @@ $(function () {
         $(".hr-banner img").attr("src", "images/hr/hr-banner_03.jpg");
         $("*").removeClass("wow fadeInUp fadeInLeft fadeInRight");
         $(".sub_nav").append("<span class='btn'></span>");
-        $(".sub_nav .btn").toggle(function(){
-            $(".sub_nav ul").slideDown();
-            $(this).css({"-webkit-transform":"rotate(180deg)","-moz-transform":"rotate(180deg)","-ms-transform":"rotate(180deg)","transform":"rotate(180deg)"})
-        },function(){
-            $(".sub_nav ul").slideUp();
-            $(this).css({"-webkit-transform":"rotate(0)","-moz-transform":"rotate(0)","-ms-transform":"rotate(0)","transform":"rotate(0)"})
+        $(".sub_nav .btn").click(function(){
+            $(".sub_nav ul").slideToggle();
+            $(this).toggleClass('on')
         });
     }
-    if ($.browser.msie && parseInt($.browser.version) == 8) {
+    var browser=navigator.appName;
+    var b_version=navigator.appVersion;
+    var version=b_version.split(";");
+    var trim_Version=version[1].replace(/[ ]/g,"");
+    if(browser=="Microsoft Internet Explorer" && trim_Version=="MSIE8.0"){
         $("*").removeClass("wow fadeInUp fadeInLeft fadeInRight")
     }
-    /*$(".idV-more").append("<p>More</p>");*/
+    else if(browser=="Microsoft Internet Explorer" && trim_Version=="MSIE9.0"){}
     /* 内页轮播图 */
     window.onload=function(){
         $('.idV-pic-c li').eq(0).addClass('active');

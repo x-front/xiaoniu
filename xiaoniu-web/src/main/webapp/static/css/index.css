@@ -1712,6 +1712,8 @@ a:hover {
     display: none;
     background-size: 100%
 }
+.sub_nav .btn.on{-webkit-transform:rotate(180deg);-moz-transform:rotate(180deg);transform:rotate(180deg)
+}
 
 #about-j, #about-w, #news-t, #news-m, #idV-i, #idV-n, #idV-h {
     background: #f2f2f2;
@@ -2288,7 +2290,7 @@ a:hover {
 .about-j1 a:hover {
     color: #eea807
 }
-
+.about-j1 a.on{color:#eea807;background-image:url(/static/images/about/about-jt_06.jpg)}
 .about-j1 p {
     width: 100%
 }
@@ -2322,7 +2324,6 @@ a:hover {
 .about-j3-pic, .about-j4-pic, .about-j5-pic, .about-j6-pic, .about-j7-pic {
     width: 100%
 }
-
 .about-j1-l, .about-j3-l, .about-j4-l {
     float: left;
     width: 52%
@@ -5913,7 +5914,6 @@ h3:hover, h4:hover {
         opacity: 0.4;
         filter: alpha(opacity=40)
     }
-
     .sub_nav ul {
         position: absolute;
         top: 54px;
