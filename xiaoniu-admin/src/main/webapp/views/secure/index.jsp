@@ -7,8 +7,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="_csrf" content="${_csrf.token}"/>  
-	<meta name="_csrf_header" content="${_csrf.headerName}"/> 
     <title>小牛资本后台管理系统</title>
     <jsp:include page="../public/common/head.jsp"></jsp:include>
     <script type="text/javascript" src="<c:url value='/resources/js/xiaoniu/theme.js'/>?r=1134"></script>
@@ -21,7 +19,7 @@
 	    body {
 			overflow-y: hidden;
 			margin:0; 
-			scroll=no;
+			scroll:no;
 	    }
     	#header-inner {
 			text-align: left;
@@ -140,6 +138,7 @@
 						<td colspan="3" style="text-align: center;padding-top: 10px;">
 							<a class="easyui-linkbutton" iconCls="icon-ok" onclick="editpwdSubmit()">确定</a> 
 							<a class="easyui-linkbutton" iconCls="icon-cancel" onclick="$('#htm_pass').window('close');">取消</a>
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 						</td>
 					</tr>
 					<tr class="loading none">

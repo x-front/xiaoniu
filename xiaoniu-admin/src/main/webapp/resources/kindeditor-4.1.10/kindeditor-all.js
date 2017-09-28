@@ -4205,6 +4205,9 @@ _extend(KUploadButton, {
 				self.options.afterUpload.call(self, data);
 			}
 		});
+        var action = self.form[0].getAttribute("action");
+        action +="&_csrf="+document.getElementsByTagName("meta")[name='_csrf'].getAttribute("content");
+        self.form[0].setAttribute("action",action);
 		self.form[0].submit();
 		return self;
 	},
@@ -4451,21 +4454,24 @@ function _ajax(url, fn, method, param, dataType) {
 	method = method || 'GET';
 	dataType = dataType || 'json';
 	var xhr = window.XMLHttpRequest ? new window.XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+
 	xhr.open(method, url, true);
-	xhr.onreadystatechange = function () {
-		if (xhr.readyState == 4 && xhr.status == 200) {
-			if (fn) {
-				var data = _trim(xhr.responseText);
-				if (dataType == 'json') {
-					data = _json(data);
-				}
-				fn(data);
-			}
-		}
-	};
-	if (method == 'POST') {
-		var params = [];
-		_each(param, function(key, val) {
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            if (fn) {
+                var data = _trim(xhr.responseText);
+                if (dataType == 'json') {
+                    data = _json(data);
+                }
+                fn(data);
+            }
+        }
+    };
+    if (method == 'POST') {
+        var params = [];
+        xhr.setRequestHeader(document.getElementsByTagName("meta")[name='_csrf_header'].getAttribute("content"),document.getElementsByTagName("meta")[name='_csrf'].getAttribute("content"));
+        _each(param, function(key, val) {
 			params.push(encodeURIComponent(key) + '=' + encodeURIComponent(val));
 		});
 		try {

@@ -71,7 +71,7 @@ public class AliyunOSSController {
      * 阿里云OSS 绑定的域名,使用自己的域名，不使用阿里云提供的域名
      */
 //	private String OSS_DOMAIN="http://xn66-web.oss-cn-shenzhen.aliyuncs.com";
-	private String OSS_DOMAIN="http://neogroup.com.cn";
+	private String OSS_DOMAIN="http://image.neogroup.com.cn";
 
 	
 	

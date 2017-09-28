@@ -4,7 +4,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="_csrf" content="${_csrf.token}"/> <meta name="_csrf_header" content="${_csrf.headerName}"/>
 <title>管理员权限管理</title>
 <jsp:include page="../public/common/head.jsp"></jsp:include>
 <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/xiaoniu/CRUD.css'/>"/>
@@ -99,18 +99,26 @@
 		var privilegeIds 	= $("#edit_form_privilege").combogrid('getValues'),
 		userId = $("#edit_form_adminUser").combobox('getValue'),
 			valid	= $('#edit_form_valid').combobox("getValue");
-		$.post($("#edit_form").attr("action"),{
-			'userId' :userId,
-			'privilegeIds'	 :privilegeIds.toString(),
-			'valid'	 :valid,
-		},function(result){
-			if ( result['resultCode'] == 0 ) {
-				$("#html_table").datagrid("reload");
-				$('#htm_edit').window('close');
-			} else {
-				$.messager.alert('提示',result['msg']);
-			}
-		},"json");
+//		$.post($("#edit_form").attr("action"),{
+//			'userId' :userId,
+//			'privilegeIds'	 :privilegeIds.toString(),
+//			'valid'	 :valid,
+//		},function(result){
+//			if ( result['resultCode'] == 0 ) {
+//				$("#html_table").datagrid("reload");
+//				$('#htm_edit').window('close');
+//			} else {
+//				$.messager.alert('提示',result['msg']);
+//			}
+//		},"json");
+        $.post($("#edit_form").attr("action"),$("#edit_form").serialize(),function(result){
+            if ( result['resultCode'] == 0 ) {
+                $("#html_table").datagrid("reload");
+                $('#htm_edit').window('close');
+            } else {
+                $.messager.alert('提示',result['msg']);
+            }
+        },"json");
 	}
 	
 	
@@ -165,8 +173,9 @@
 					</tr>
 					<tr>
 						<td class="opt_btn" colspan="2" style="text-align: center;padding-top: 10px;">
-							<a class="easyui-linkbutton" id="edit_form_submit_btn" iconCls="icon-ok" onclick="javascript:commonTable.save();">确定</a> 
+							<a class="easyui-linkbutton" id="edit_form_submit_btn" iconCls="icon-ok" onclick="javascript:commonTable.save();">确定</a>
 							<a class="easyui-linkbutton" iconCls="icon-cancel" onclick="$('#htm_edit').window('close');">取消</a>
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 						</td>
 					</tr>
 					<tr class="loading none">

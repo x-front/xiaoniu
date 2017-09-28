@@ -7,3 +7,7 @@
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/3rd/easyUI/themes/default/easyui.css"/>">
 <script type="text/javascript" src="<c:url value="/resources/3rd/easyUI/locale/easyui-lang-zh_CN.js"/>"></script>
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/3rd/easyUI/themes/icon.css"/>">
+
+<!-- csrf-->
+<meta name="_csrf" content="${_csrf.token}"/>
+<meta name="_csrf_header" content="${_csrf.headerName}"/>

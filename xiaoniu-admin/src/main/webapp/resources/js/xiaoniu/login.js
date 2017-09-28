@@ -31,13 +31,13 @@ $(function(){
 	});
 });
 function loginSubmit(){
-		var username = $("input[name=j_username]").val();
+		var username = $("input[name=username]").val();
 		if($.trim(username) == ""){
 			$("#login-tips").html("账户不能为空");
 			$("#login-tips").removeClass("display-none");
 			return ;
 		}
-		var pwd = $("input[name=j_password]").val();
+		var pwd = $("input[name=password]").val();
 		if($.trim(pwd) == ""){
 			$("#login-tips").html("密码不能为空");
 			$("#login-tips").removeClass("display-none");

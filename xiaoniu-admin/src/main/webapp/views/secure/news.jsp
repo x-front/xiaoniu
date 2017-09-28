@@ -6,13 +6,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>新闻信息</title>
+	<meta name="_csrf" content="${_csrf.token}"/>
+	<meta name="_csrf_header" content="${_csrf.headerName}"/>
+	<title>新闻信息</title>
 <jsp:include page="../public/common/head.jsp"></jsp:include>
 <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/xiaoniu/CRUD.css'/>"/>
 <link rel="stylesheet" href="/resources/kindeditor-4.1.10/themes/default/default.css" />
 <script type="text/javascript" src="<c:url value='/resources/js/xiaoniu/dateTool.js'/>?r=1134"></script>
 <script type="text/javascript" src="<c:url value='/resources/js/xiaoniu/common.js'/>?r=2"></script>
-<script type="text/javascript" src="/resources/kindeditor-4.1.10/kindeditor-all-min.js"></script>
+<script type="text/javascript" src="/resources/kindeditor-4.1.10/kindeditor-all.js"></script>
 <script type="text/javascript" src="/resources/kindeditor-4.1.10/lang/zh_CN.js"></script>
 <!-- <script type="text/javascript" src="/resources/3rd/easyUI/plugins/datagrid-cellediting.js"></script> -->
 <script type="text/javascript">
@@ -134,7 +136,7 @@
 		$("#html_table").datagrid({
 			onAfterEdit: function(index,row,changes){
 				if($.isEmptyObject(changes) == false){
-					$.post("/secure/news/update",{'id':row.id,'serialNumber':row.serialNumber},function(result){
+					$.post("/secure/news/update",{'id':row.id,'serialNumber':row.serialNumber,'${_csrf.parameterName}':'${_csrf.token}'},function(result){
 						if(result.resultCode == 0){
 							console.log(result.resultCode);
 						}else{
@@ -216,7 +218,7 @@
 	
 	function initUpdateNewsWindow(index){
 		var rows = $("#html_table").datagrid("getRows");
-		$.post("/secure/news/find",{'id':rows[index]['id']},function (result) {
+		$.post("/secure/news/find",{'id':rows[index]['id'],'${_csrf.parameterName}':'${_csrf.token}'},function (result) {
 			if(result.resultCode == 0) {
                 row = result.entity;
                 $("#display-none-id").val(row.id);
@@ -296,7 +298,8 @@
 		$("#move-form .loading").show();
 		$.post($form.attr('action'),{
 			'id':$('#move-div-display-none-id').val(),
-			'type':$('#more-div-type').combobox('getValue')
+			'type':$('#more-div-type').combobox('getValue'),
+			'${_csrf.parameterName}':'${_csrf.token}'
 			},function(result){
 			$("#move-form .opt_btn").show();
 			$("#move-form .loading").hide();
@@ -319,7 +322,7 @@
 					var id = rows[0]['id'];
 					var type = rows[0]['type'];
 					var lang = rows[0]['lang'];
-					$.post("/secure/news/setTop",{'id':id,'type':type,'lang':lang},function(result){
+					$.post("/secure/news/setTop",{'id':id,'type':type,'lang':lang,'${_csrf.parameterName}':'${_csrf.token}'},function(result){
 						$('#html_table').datagrid('loaded');
 						if(result['resultCode'] == 0) {
 							$.messager.alert('提示',"成功置顶！");
@@ -344,7 +347,7 @@
 			for(var i=0 ; i<rows.length; i++){
 					var id = rows[i]['id'];
 					var type = rows[i]['type'];
-					$.post("/secure/news/update",{'id':id,'type':type,'isTop':top},function(result){
+					$.post("/secure/news/update",{'id':id,'type':type,'isTop':top,'${_csrf.parameterName}':'${_csrf.token}'},function(result){
 						$('#html_table').datagrid('loaded');
 						if(result['resultCode'] == 0) {
 							$.messager.alert('提示',"成功置顶！");
@@ -368,7 +371,7 @@
                         var row = rows[i];
                         ids.push(row['id']);
                     }
-					$.post("/secure/indexNews/saveNews2IndexNews?strIds="+ids,function(result){
+					$.post("/secure/indexNews/saveNews2IndexNews?strIds="+ids,{'${_csrf.parameterName}':'${_csrf.token}'},function(result){
 						if(result.resultCode == 0){
 							$.messager.alert('提示', "成功添加"+ ids.length + "条记录到首页新闻！");
 						}else{
@@ -388,7 +391,7 @@
 				var row = rows[i];
 				ids.push(row['id']);
 			}
-			$.post("/secure/news/batchUpdateNewsLang?strIds="+ids,{'lang':lang},function(result){
+			$.post("/secure/news/batchUpdateNewsLang?strIds="+ids,{'lang':lang,'${_csrf.parameterName}':'${_csrf.token}'},function(result){
 				if(result.resultCode == 0){
 					$.messager.alert('提示',"成功更新" + ids.length + "条记录！");
 					$("#html_table").datagrid("reload");
@@ -489,6 +492,7 @@
 							<td class="opt_btn" colspan="2" style="text-align: center;padding-top: 10px;">
 								<a class="easyui-linkbutton" id="edit_form_submit_btn" iconCls="icon-ok" onclick="javascript:changeType();">确定</a> 
 								<a class="easyui-linkbutton" iconCls="icon-cancel" onclick="$('#move-div').window('close');">取消</a>
+								<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 							</td>
 						</tr>
 						<tr class="loading none">
@@ -557,6 +561,7 @@
 				<div class="opt_btn"  style="text-align: center;padding-top: 10px;">
 					<a class="easyui-linkbutton" id="import-form-submit-btn" iconCls="icon-ok" onclick="javascript:save();">确定</a> 
 					<a class="easyui-linkbutton" iconCls="icon-cancel" onclick="cancel();">取消</a>
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 				</div>
 				<div class="loading display-none" style="text-align: center; padding-top: 10px; vertical-align:middle;">
 					<img alt="" src="/resources/images/loading.gif" style="vertical-align:middle;">

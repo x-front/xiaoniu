@@ -48,11 +48,12 @@
 			<s:url value="/j_spring_security_check" var="login" />
 			<form action="${login}" method="post" id="loginForm">
 				<p class="user">
-					<span>用户名：</span><input type="text" name="j_username" class="put_one">
+					<span>用户名：</span><input type="text" name="username" class="put_one">
 				</p>
 				<p class="password">
-					<span>密   码：</span><input type="password" name="j_password" class="put_two">
-					<input type='hidden' name='_csrf' value='${_csrf.token}'/>
+					<span>密   码：</span><input type="password" name="password" class="put_two">
+					<%--<input type='hidden' name='_csrf' value='${_csrf.token}'/>--%>
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 				</p>
 				<p class="yzm"><span>验证码：</span><input type="text" name="j_validate_code" maxlength="4"><em><img src="<c:url value='/public/validateImage'/>" id="validateImg" width="85px" height="30p"></em></p>
 				<p class="btn">

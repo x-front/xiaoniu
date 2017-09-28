@@ -4,14 +4,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="_csrf" content="${_csrf.token}"/> <meta name="_csrf_header" content="${_csrf.headerName}"/>
 <title>小牛图集</title>
 <jsp:include page="../public/common/head.jsp"></jsp:include>
 <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/xiaoniu/CRUD.css'/>"/>
 <link rel="stylesheet" href="/resources/kindeditor-4.1.10/themes/default/default.css" />
 <script type="text/javascript" src="<c:url value='/resources/js/xiaoniu/dateTool.js'/>?r=1134"></script>
 <script type="text/javascript" src="<c:url value='/resources/js/xiaoniu/common.js'/>?r=31"></script>
-<script type="text/javascript" src="/resources/kindeditor-4.1.10/kindeditor-all-min.js"></script>
+<script type="text/javascript" src="/resources/kindeditor-4.1.10/kindeditor-all.js"></script>
 <script type="text/javascript" src="/resources/kindeditor-4.1.10/lang/zh_CN.js"></script>
 <style type="text/css" rel="stylesheet">
      body{height:100%;width:100%}
@@ -178,7 +178,7 @@
 		var rows = $("#html_table").datagrid("getRows"),
 		row = rows[index];
 		var id = row['id'];
-		$.post("/secure/imageNews/queryImageNewsByNewsId",{'newsId':id},function(result){
+		$.post("/secure/imageNews/queryImageNewsByNewsId",{'newsId':id,'${_csrf.parameterName}':'${_csrf.token}'},function(result){
 			if(result.resultCode == 0){
 				$('#edit-div-showtime').datebox('setValue',row['showtime']);
 				var list = result.list;
@@ -246,6 +246,7 @@
 		}
 		if(postData.length > 2){
 			$.post("/secure/imageNews/saveImageNews",{
+                '${_csrf.parameterName}':'${_csrf.token}',
 				'id':id,
 				'showTime':showtime,
 				'title':title,
@@ -362,7 +363,7 @@
 				var row = rows[i];
 					ids.push(row['id']);
 			}
-			$.post("/secure/imageNews/batchUpdateHeadImageNewsLang?strIds="+ids,{'lang':lang},function(result){
+			$.post("/secure/imageNews/batchUpdateHeadImageNewsLang?strIds="+ids,{'lang':lang,'${_csrf.parameterName}':'${_csrf.token}'},function(result){
 				if(result.resultCode == 0){
 					$.messager.alert('提示',"成功更新" + ids.length + "条记录！");
 					$("#html_table").datagrid("reload");
@@ -436,6 +437,7 @@
 				<div class="opt_btn"  style="text-align: center;padding-top: 10px;">
 					<a class="easyui-linkbutton" id="import-form-submit-btn" iconCls="icon-ok" onclick="javascript:submitNewsWindow();">确定</a> 
 					<a class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:closeAddNewsWindow();">取消</a>
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 				</div>
 				<div class="loading none" style="text-align: center; padding-top: 10px; vertical-align:middle;">
 					<img alt="" src="/resources/images/loading.gif" style="vertical-align:middle;">
@@ -480,6 +482,7 @@
 						<td class="opt_btn" colspan="2" style="text-align: center;padding-top: 10px;">
 							<a class="easyui-linkbutton" iconCls="icon-ok" onclick="javascript:addSingleImage();">确定</a> 
 							<a class="easyui-linkbutton" iconCls="icon-cancel" onclick="$('#htm_edit').window('close');">取消</a>
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 						</td>
 					</tr>
 				</table>

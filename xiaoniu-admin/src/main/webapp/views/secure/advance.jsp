@@ -5,7 +5,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="_csrf" content="${_csrf.token}"/> <meta name="_csrf_header" content="${_csrf.headerName}"/>
 <title>核心竞争力</title>
 <jsp:include page="../public/common/head.jsp"></jsp:include>
 <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/xiaoniu/CRUD.css'/>"/>
@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="/resources/css/xiaoniu/advance.css?r=9" />
 <script type="text/javascript" src="<c:url value='/resources/js/xiaoniu/dateTool.js'/>?r=1134"></script>
 <script type="text/javascript" src="<c:url value='/resources/js/xiaoniu/common.js'/>?r=31"></script>
-<script type="text/javascript" src="/resources/kindeditor-4.1.10/kindeditor-all-min.js"></script>
+<script type="text/javascript" src="/resources/kindeditor-4.1.10/kindeditor-all.js"></script>
 <script type="text/javascript" src="/resources/kindeditor-4.1.10/lang/zh_CN.js"></script>
 <script type="text/javascript">
 	var PluginUpload;
@@ -379,6 +379,7 @@
 				<div class="opt_btn"  style="text-align: center;padding-top: 20px;">
 					<a class="easyui-linkbutton" id="import-form-submit-btn" iconCls="icon-ok" onclick="javascript:save();">确定</a> 
 					<a class="easyui-linkbutton" iconCls="icon-cancel" onclick="cancel();">取消</a>
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 				</div>
 				<div class="loading none" style="text-align: center; padding-top: 20px; vertical-align:middle;">
 					<img alt="" src="/resources/images/loading.gif" style="vertical-align:middle;">

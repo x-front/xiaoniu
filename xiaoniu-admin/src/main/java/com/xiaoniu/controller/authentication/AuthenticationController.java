@@ -98,18 +98,20 @@ public class AuthenticationController {
 	  }
 
 	  @RequestMapping({"public/logout.html"})
-	  public void logout(HttpServletRequest request, HttpServletResponse response)
+	  public String logout(HttpServletRequest request, HttpServletResponse response)
 	  {
 	    try
 	    {
 	      request.getSession().invalidate();
-	      if (request.getCookies() == null) return;
-	      Cookie cookie = request.getCookies()[0];
-	      cookie.setMaxAge(0);
+	      if (request.getCookies() != null) {
+			  Cookie cookie = request.getCookies()[0];
+			  cookie.setMaxAge(0);
+		  }
 	    }
 	    catch (Exception e) {
 	      e.printStackTrace();
 	    }
+	    return "redirect:/public/login.html";
 	  }
 
 	  @RequestMapping({"public/validateImage"})

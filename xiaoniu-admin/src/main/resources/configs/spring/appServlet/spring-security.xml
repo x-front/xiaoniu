@@ -20,6 +20,9 @@
 	    <intercept-url pattern="/secure/**" access="fullyAuthenticated" />
 	    <intercept-url pattern="/**" access="denyAll" />
 	    <custom-filter ref="validateCodeUsernamePasswordAuthenticationFilter" position="FORM_LOGIN_FILTER"/>
+		<headers>
+			<frame-options policy="SAMEORIGIN"/>
+		</headers>
 	</http>
 	
 	
@@ -56,7 +59,8 @@
 			<password-encoder ref="zxxzxjEncoder"/>
 		</authentication-provider>
 	</authentication-manager>
-	
+
+
 	<!-- spring security 4.0 set header -->
 	<!-- <http>
 	    <headers>
