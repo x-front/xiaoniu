@@ -17,6 +17,17 @@
 	    <param-value>classpath:configs/log4j/log4j2.xml</param-value>
 	</context-param>
    -->
+
+  <!-- Xss-html-filter -->
+  <filter>
+    <filter-name>xssHttpServletFilter</filter-name>
+    <filter-class>com.xiaoniu.filters.xssfilter.XssHttpServletFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>xssHttpServletFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
   <filter>
     <filter-name>springSecurityFilterChain</filter-name>
     <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>

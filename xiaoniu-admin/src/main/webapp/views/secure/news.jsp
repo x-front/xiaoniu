@@ -13,7 +13,7 @@
 <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/xiaoniu/CRUD.css'/>"/>
 <link rel="stylesheet" href="/resources/kindeditor-4.1.10/themes/default/default.css" />
 <script type="text/javascript" src="<c:url value='/resources/js/xiaoniu/dateTool.js'/>?r=1134"></script>
-<script type="text/javascript" src="<c:url value='/resources/js/xiaoniu/common.js'/>?r=2"></script>
+<script type="text/javascript" src="<c:url value='/resources/js/xiaoniu/common.js'/>?r=4"></script>
 <script type="text/javascript" src="/resources/kindeditor-4.1.10/kindeditor-all.js"></script>
 <script type="text/javascript" src="/resources/kindeditor-4.1.10/lang/zh_CN.js"></script>
 <!-- <script type="text/javascript" src="/resources/3rd/easyUI/plugins/datagrid-cellediting.js"></script> -->

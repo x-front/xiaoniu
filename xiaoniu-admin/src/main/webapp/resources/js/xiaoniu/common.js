@@ -112,7 +112,9 @@ var commonTable ={
 						}	
 						$('#html_table').datagrid('clearSelections'); //清除所有已选择的记录，避免重复提交id值	
 						$('#html_table').datagrid('loading');
-						$.post(commonTable.batchDeleteURI + ids,function(result){
+                        var csrf_token = $("meta[name='_csrf']").attr("content");
+                        var csrf_header = $("meta[name='_csrf_header']").attr("content");
+						$.post(commonTable.batchDeleteURI + ids,{'_csrf':csrf_token},function(result){
 							$('#html_table').datagrid('loaded');
 							if(result['resultCode'] == 0) {
 								$.messager.alert('提示',"成功" + ids.length + "条记录！");
@@ -148,7 +150,9 @@ var commonTable ={
 						}	
 						$('#html_table').datagrid('clearSelections'); //清除所有已选择的记录，避免重复提交id值	
 						$('#html_table').datagrid('loading');
-						$.post(commonTable.batchUpdateValidURI + ids,{'valid':valid},function(result){
+                        var csrf_token = $("meta[name='_csrf']").attr("content");
+                        var csrf_header = $("meta[name='_csrf_header']").attr("content");
+						$.post(commonTable.batchUpdateValidURI + ids,{'valid':valid,'_csrf':csrf_token},function(result){
 							$('#html_table').datagrid('loaded');
 							if(result['resultCode'] == 0) {
 								$.messager.alert('提示',successTipsMsg + ids.length + "条记录！");

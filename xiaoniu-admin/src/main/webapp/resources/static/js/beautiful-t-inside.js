@@ -3,7 +3,7 @@ $(function () {
 });
 function _xn_init() {
     var a = getParam("id");
-    $.post("/secure/news/find", {id: a}, function (b) {
+    $.get("/secure/news/find", {id: a}, function (b) {
         if (b.resultCode == 0) {
             if (b.entity) {
                 $(".news-item1 .news-title h3:eq(0)").html(b.entity.title);
