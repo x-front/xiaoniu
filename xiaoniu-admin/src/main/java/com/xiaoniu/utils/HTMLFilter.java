@@ -1,5 +1,7 @@
 package com.xiaoniu.utils;
 
+import org.apache.commons.lang.StringEscapeUtils;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -83,7 +85,7 @@ public final class HTMLFilter {
 
     /** html elements which must always be self-closing (e.g. "<img />") **/
     private final String[] vSelfClosingTags;
-    /** html elements which must always have separate opening and closing tags (e.g. "<b></b>") **/
+    /** html elements which must always have HTML entity表示，中文也全被转换成了”&#25105;”这样的格式，而在页面上显示一切正常。最终发现造成这个后果的原因是在将字符串保存到数据库之前，用StringEscapeUtils.escapeHtml对其进行separate opening and closing tags (e.g. "<b></b>") **/
     private final String[] vNeedClosingTags;
     /** set of disallowed html elements **/
     private final String[] vDisallowed;
@@ -111,6 +113,13 @@ public final class HTMLFilter {
      */
     public HTMLFilter() {
         vAllowed = new HashMap<String, List<String>>();
+        final ArrayList<String> p_atts = new ArrayList<String>();
+        p_atts.add("style");
+        vAllowed.put("p",p_atts);
+
+        final ArrayList<String> span_atts = new ArrayList<String>();
+        span_atts.add("style");
+        vAllowed.put("span",span_atts);
 
         final ArrayList<String> a_atts = new ArrayList<String>();
         a_atts.add("href");

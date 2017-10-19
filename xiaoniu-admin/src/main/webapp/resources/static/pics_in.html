@@ -15,102 +15,22 @@
         <img src="/resources/static/images/share.jpg"/>
     </div>
     <link rel="stylesheet" href="/resources/static/css/animation.css">
-    <link rel="stylesheet" href="/resources/static/css/index.css?v=3">
+    <link rel="stylesheet" href="/resources/static/css/index.css">
     <link rel="stylesheet" type="text/css" href="http://code.uemo.net/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="http://code.uemo.net/css/animate.min.css">
     <script type="text/javascript" src="/resources/static/js/jquery-1.8.3.min.js"></script>
     <script type="text/javascript" src="/resources/static/js/lib.v1.min.js"></script>
     <script type="text/javascript" src="/resources/static/js/org.js"></script>
-    <script src="/resources/static/js/common.js?v=2"></script>
-	<script type="text/javascript" src="/resources/static/js/param.js"></script>
-	<script type="text/javascript" src="/resources/static/js/dateTool.js"></script>
+    <script src="/resources/static/js/common.js"></script>
+	<script src="/resources/static/js/param.js"></script>
+	<script src="/resources/static/js/dateTool.js"></script>
+	<script src="/resources/static/js/pics-in.js"></script>
 </head>
 <body class="fff">
 <!--nav-->
 <div id="header-inside"></div>
 <script type="text/javascript">
-    $("#header-inside").load("/resources/static/publicFile/nav.html");
-</script>
-<script type="text/javascript">
-	var id;
-	$(function(){
-		/*
-		id=getParam("id");
-		$.post("/secure/imageNews/queryImageNews",{"id":id},function(result){
-			if(result.resultCode == 0){
-				var head = result.data.hd;
-				var imgs = result.data.imgs;
-				var showtimes = result.data.dl;
-				buildShowTime(showtimes);
-				buildPreImg(imgs);
-				buildText(imgs);
-				buildTitle(head);
-			}else{
-				$.messager.alert('提示',result['msg']);
-			}
-		},"json");
-		*/
-		initImgInfoFromParentWindow();
-		picPlay();
-	});
-	
-	function initImgInfoFromParentWindow(){
-		var imgs = $("#edit-form ul li",parent.document);
-		var title = $("#edit-div-title",parent.document).val();
-		var showtime = parent.getShowTime();
-		var htmlimg = "",htmltxt="";
-		for(var i=0; i<imgs.length; i++) {
-			var img = $(imgs[i]).find("img").attr("src");
-			var content = $(imgs[i]).find("p").html();
-			htmlimg += '<li><img src="'+img+'"/></li>';
-			htmltxt += '<li>'+content+"</li>";
-		}
-		$(".pics_txt ul").append(htmltxt);
-		$(".pics_img ul").append(htmlimg);
-		$(".pics_in_list ul").append(htmlimg);
-		$(".pics_img ul li:eq(0)").addClass("on");
-		$(".pics_txt ul li:eq(0)").addClass("on");
-		$(".pics_in_list ul li:eq(0)").addClass("on");
-		var strDay = dateTools.LongTimeToSimpleFormatDate(showtime);
-		strDay = strDay.substring(5, 10);
-		var href = "";
-		var html = '<li><a href="' + href+'">'+strDay+"</a>"+'<p>'+title+'</p></li>';
-		$(".num_nav ul").append(html);
-		$("#pic-title").html(title);
-	}
-	
-	function buildShowTime(showtimes){
-		for(var i=0; i<showtimes.length; i++){
-			var showtime = showtime[i];
-			var title = showtime["title"];
-			var strDay = dateTools.LongTimeToSimpleFormatDate(showtime.showTime);
-			strDay = strDay.substring(5, 10);
-			var href = "";
-			var html = '<li><a href="' + href+'">'+strDay+"</a>"+'<p>'+title+'</p></li>';
-			$(".num_nav ul"),apped(html);
-		}
-	}
-	
-	function buildPreImg(imgs){
-		for (var i = 0; i < imgs.length; i++) {
-			var img = imgs[i].image;
-			var html = '<li><img src="'+img+"></li>";
-			$(".pics_img ul").append(html);
-		}
-	}
-	
-	function buildText(imgs){
-		for (var i = 0; i < imgs.length; i++) {
-			var content = imgs[i].content;
-			var html = '<li>'+content+"</li>";
-			$(".pics_txt ul").append(html);
-		}
-	}
-	
-	function buildTitle(head){
-		$("#pic-title").html(head.title);
-	}
-	
+    $("#header-inside").load("publicFile/nav.html");
 </script>
 <!--nav end-->
 <div id="sub-nav">
@@ -144,8 +64,8 @@
             </ul>
         </div>
         <div class="pics_in_b">
-            <a href="javascript:;" class="pics_b_l"><img src="/resources/static/images/pics/left.png"/></a>
-            <a href="javascript:;" class="pics_b_r"><img src="/resources/static/images/pics/right.png"/></a>
+            <a href="javascript:;" class="pics_b_l"><img src="images/pics/left.png"/></a>
+            <a href="javascript:;" class="pics_b_r"><img src="images/pics/right.png"/></a>
             <div class="pics_in_list">
                 <ul>
                 </ul>
@@ -155,6 +75,9 @@
 </div>
 <!--footer-->
 <div id="footer"></div>
+<script type="text/javascript">
+    $("#footer").load("publicFile/footer.html");
+</script>
 <!--footer end-->
 <a class="scrollTop" href="javascript:scroll(0,0);"></a>
 </body>

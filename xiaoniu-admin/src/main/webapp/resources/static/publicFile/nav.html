@@ -1,5 +1,9 @@
     <script type=text/javascript>
+        $(window).resize(function(){
+            navSize();
+        });
         $(function(){
+            navSize();
         var url=window.location.pathname;
         var i=-1;
         if(url.indexOf('pro')!=-1){
@@ -18,7 +22,8 @@
             i=-1
         }
         console.log(i);
-        $(".inside-nav li").eq(i).addClass("active").siblings("li").removeClass("active");
+            $(".inside-nav li").eq(i).addClass("active").siblings("li").removeClass("active");
+            $(".nav li").eq(i).addClass("on").siblings("li").removeClass("on");
             var a=0;
             $(".menu").click(function () {
                 a=0;
@@ -40,27 +45,41 @@
                 $(".sidewrap").css({"opacity":0,"filter":"alpha(opacity=0)","-webkit-transform":"translateX(50px)","-moz-transform":"translateX(50px)","-ms-transform":"translateX(50px)","transform":"translateX(50px)"});
 
             }
-            $(window).scroll(function(){
+            /*$(window).scroll(function(){
                 if(a==0){
                     close();
                 }
                 a++;
-            });
+            });*/
 
-        })
+        });
+        function navSize(){
+            var ww=$(window).width();
+            if(ww<1025){
+                var a;
+                if(ww>500&&ww<750){
+                    a=0.08;
+                }else{
+                    a=0.058;
+                }
+                $('.sidewrap').css({'height':$(window).height()*0.82+'px','padding-top':$(window).height()*0.18+'px'});
+                $('.nav li').css('line-height',$(window).height()*a+'px');
+            }
+        }
+
     </script>
     <div class="header-inside">
-        <a href="/static/index.html" class="big-logo"></a>
+        <a href="/resources/static/index.html" class="big-logo"></a>
         <ul class="inside-nav">
-            <li><a href="/static/index.html">首页</a></li>
-        <!--<li><a href="/static/fold.html">小牛简介</a></li>-->
-            <li><a href="/static/pro.html">我们做什么</a></li>
-            <li><a href="/static/about.html">我们是谁</a></li>
-            <li><a href="/static/idV.html">小牛思想·声音</a></li>
-            <li><a href="/static/news.html">小牛新闻</a></li>
-            <li><a href="/static/beautiful.html">美好小牛</a></li>
-            <li><a href="/hr/index.html">加入小牛</a></li>
-            <li><a href="/static/pics.html">小牛图集</a></li>
+            <li><a href="/resources/static/index.html">首页</a></li>
+        <!--<li><a href="/resources/static/fold.html">小牛简介</a></li>-->
+            <li><a href="/resources/static/pro.html">我们做什么</a></li>
+            <li><a href="/resources/static/about.html">我们是谁</a></li>
+            <li><a href="/resources/static/idV.html">小牛思想·声音</a></li>
+            <li><a href="/resources/static/news.html">小牛新闻</a></li>
+            <li><a href="/resources/static/beautiful.html">美好小牛</a></li>
+            <li><a href="http://hr.neogroup.com.cn/wt/neocapital/web/index">加入小牛</a></li>
+            <li><a href="/resources/static/pics.html">小牛图集</a></li>
         </ul>
         <a class="menu inside-menu" href="javascript:;">
             <span class='ms1'></span>
@@ -69,23 +88,49 @@
         </a>
         <div class="sidebar">
             <div class="sidewrap">
-                <div class="logo"><img src="/static/images/logo_07.png"/></div>
+                <div class="logo"><img src="/resources/static/images/logo_07.png"/></div>
                 <ul class="nav">
-                    <li><a href="/static/index.html">首页</a></li>
-                <!--<li><a href="/static/fold.html">小牛简介</a></li>-->
-                    <li><a href="/static/pro.html">我们做什么</a></li>
-                    <li><a href="/static/about.html">我们是谁</a></li>
-                    <li><a href="/static/idV.html">小牛思想·声音</a></li>
-                    <li><a href="/static/news.html">小牛新闻</a></li>
-                    <li><a href="/static/beautiful.html">美好小牛</a></li>
-                    <li><a href="/hr/index.html">加入小牛</a></li>
-                    <li><a href="/static/pics.html">小牛图集</a></li>
+                    <li><a href="/resources/static/index.html">首页</a></li>
+                <!--<li><a href="/resources/static/fold.html">小牛简介</a></li>-->
+                    <li><a href="/resources/static/pro.html">我们做什么</a></li>
+                    <li><a href="/resources/static/about.html">我们是谁</a></li>
+                    <li><a href="/resources/static/idV.html">小牛思想·声音</a></li>
+                    <li><a href="/resources/static/news.html">小牛新闻</a></li>
+                    <li><a href="/resources/static/beautiful.html">美好小牛</a></li>
+                    <li><a href="http://hr.neogroup.com.cn/wt/neocapital/web/index">加入小牛</a></li>
+                    <li><a href="/resources/static/pics.html">小牛图集</a></li>
                 </ul>
-                <div class="search"><a href="javascript:;"><img src="/static/images/nav_share_03.png"/></a><input type="text"/></div>
+                <div class="search"><a href="javascript:;"><img src="/resources/static/images/nav_share_03.png"/></a><input id="searchInput" type="text"/></div>
+                <script>
+                    $(function(){
+                        $('.search a').on('click',function(){
+                            var siv=$('#searchInput').val();
+                            if(siv){
+                                window.location.href='/resources/static/search.html?lang=0&kw='+siv;
+                            }else{
+
+                            }
+                        });
+                        $('#searchInput').focus(function(){
+                            $(document).on('keydown',function(e){
+                                var siv=$('#searchInput').val();
+                                if(e.which==13){
+                                    if(siv){
+                                        window.location.href='/resources/static/search.html?lang=0&kw='+siv;
+                                    }else{
+
+                                    }
+                                }
+                            })
+                        });
+
+                    })
+                </script>
+
                 <div class="ce"><a href="" class="active">中</a><a href="">EN</a></div>
-                <p class="copy">深圳市福田区北环彩田立交桥新浩E都A座43层</p>
+                <p class="copy">广东省深圳市福田区北环彩田立交桥新浩E都A座43层</p>
                 <p class="copy">0755-32981999</p>
-                <a href="javascript:;" class="close"><img src="/static/images/menu_close.svg"/></a>
+                <a href="javascript:;" class="close"><img src="/resources/static/images/menu_close.svg"/></a>
             </div>
         </div>
 
