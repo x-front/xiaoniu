@@ -108,6 +108,12 @@ public final class HTMLFilter {
      */
     private final boolean alwaysMakeTags;
 
+    public static void main(String[] args) {
+        HTMLFilter htmlFilter = new HTMLFilter();
+        String str = "<p>\r\nssss<br /> kkk</p>";
+        System.out.printf(htmlFilter.filter(str));
+    }
+
     /** Default constructor.
      *
      */
@@ -138,6 +144,7 @@ public final class HTMLFilter {
         vAllowed.put("strong", no_atts);
         vAllowed.put("i", no_atts);
         vAllowed.put("em", no_atts);
+        vAllowed.put("br",no_atts);
 
         vSelfClosingTags = new String[]{"img"};
         vNeedClosingTags = new String[]{"a", "b", "strong", "i", "em"};
