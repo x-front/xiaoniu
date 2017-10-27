@@ -34,7 +34,18 @@
 		{field:'extCover', title: '封面图',align:'center'},
 		{field:'extMedia',title: '媒体链接', align:'center',width:200},
 		{field:'introdution',title: '描述',align:'center',width:340},
-		{field:'serialNumber',title: '序号',align:'center'},
+		{field:'serialNumber',title: '序号',align:'center',
+            formatter:function (value,row,index) {
+				if (row['type'] == 6) {//首页
+				    if (value == 1) {
+				        return "完整版";
+					} else {
+				        return "简版";
+					}
+				}
+				return value;
+            }
+		},
 		publishColumn,
 		createTimeColumn,
 		updateTimeColumn,
@@ -55,7 +66,12 @@
 		$("#edit_form_extMedia").textbox('setValue',row.extMedia);
 		$("#edit_form_valid").combobox('setValue',row.valid);
 		$("#edit_form_lang").combobox('setValue',row.lang);
-		$("#edit_form_serialNumber").numberbox('setValue',row.serialNumber);
+		if (row.type == 6){
+            $("#edit_form_serialNumber").combobox('setValue',row.serialNumber);
+		}else {
+            $("#edit_form_serialNumber").numberbox('setValue',row.serialNumber);
+        }
+
 		$('#edit-img-banner').attr('src',row.extCover).removeClass('none');
 		$("#edit-form").attr("action",commonTable.updateURI);
 	};
@@ -185,7 +201,7 @@
 							<td>
 								<input id="edit_form_extCover" required="true" name="extCover" class="easyui-textbox clear-textbox"
 									   prompt="封面<c:if test="${type gt 2}">(1280x850)</c:if><c:if test="${type lt 3}">(226x293)</c:if>	"/>
-								<input class="clear-input" type="button" id="btn-banner-upload" value="选择图片" style="width:80px"/>
+								<input class="" type="button" id="btn-banner-upload" value="选择图片" style="width:80px"/>
 								<img id="edit-img-banner" alt="" src=""  style="width: 203px;height: 102px;">
 							</td>
 						</tr>
@@ -193,7 +209,7 @@
 							<td>媒体链接:</td>
 							<td>
 								<input id="edit_form_extMedia" name="extMedia" class="easyui-textbox clear-textbox" required="true" />
-								<input class="clear-input" type="button" id="btn-media-upload"  value="选择资源" style="width:80px"/>
+								<input class="" type="button" id="btn-media-upload"  value="选择资源" style="width:80px"/>
 							</td>
 						</tr>
 						<tr>
@@ -202,7 +218,20 @@
 						</tr>
 						<tr>
 							<td>序号:</td>
-							<td><input id="edit_form_serialNumber" name="serialNumber" class="clear-numberbox easyui-numberbox" required="true" value="1"/></td>
+
+							<td>
+								<c:choose>
+									<c:when test="${type eq 6 }">
+										<select id="edit_form_serialNumber" name="serialNumber" class="easyui-combobox clear-combobox" >
+											<option value="1">完整版</option>
+											<option value="1000">简版</option>
+										</select>
+									</c:when>
+									<c:otherwise>
+										<input id="edit_form_serialNumber" name="serialNumber" class="clear-numberbox easyui-numberbox" required="true" value="1"/>
+									</c:otherwise>
+								</c:choose>
+							</td>
 						</tr>
 						
 						<tr>

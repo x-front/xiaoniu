@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang.StringEscapeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -117,7 +118,7 @@ public class ImageNewsController extends BaseController<CmpyImageNews>{
 				headService.delete(id);
 				imageNewsHead.setId(id);
 			}
-			
+			data = StringEscapeUtils.unescapeHtml(data);
 			JSONArray list = JSONObject.parseArray(data);
 			if(list != null && list.size() > 2){
 				Date now = new Date();
